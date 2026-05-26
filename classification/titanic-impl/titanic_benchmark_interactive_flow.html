@@ -1,0 +1,485 @@
+
+<h2 class="sr-only">Interactive flow diagram for the Titanic ML benchmark pipeline — 10 phases from data loading through HTML reporting</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{padding:16px 0 32px;font-family:var(--font-sans)}
+.flow{display:flex;flex-direction:column;gap:0;position:relative}
+.phase-row{display:flex;align-items:stretch;gap:0;position:relative}
+.phase-row+.phase-row .connector-v{display:block}
+.lane-label{width:52px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.lane-label span{font-size:10px;font-weight:500;color:var(--color-text-tertiary);writing-mode:vertical-rl;text-orientation:mixed;letter-spacing:.6px;text-transform:uppercase}
+.boxes{flex:1;padding:10px 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center;position:relative}
+.connector-area{width:20px;flex-shrink:0;display:flex;align-items:center;justify-content:center;position:relative}
+.vline{width:2px;height:100%;background:var(--color-border-secondary);position:absolute;left:9px;top:0}
+.arrow-down{position:absolute;bottom:-6px;left:3px;font-size:13px;color:var(--color-text-tertiary)}
+.node{border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:8px 12px;cursor:pointer;transition:border-color .15s,background .15s;background:var(--color-background-primary);min-width:0;position:relative}
+.node:hover{border-color:var(--color-border-primary);background:var(--color-background-secondary)}
+.node.active{border-width:1.5px}
+.node-title{font-size:13px;font-weight:500;color:var(--color-text-primary);line-height:1.3}
+.node-sub{font-size:11px;color:var(--color-text-secondary);margin-top:2px;line-height:1.35}
+.node.c-teal{border-color:#1D9E75;background:rgba(29,158,117,.07)}
+.node.c-teal .node-title{color:#085041}
+.node.c-teal:hover{background:rgba(29,158,117,.13)}
+.node.c-purple{border-color:#7F77DD;background:rgba(127,119,221,.07)}
+.node.c-purple .node-title{color:#3C3489}
+.node.c-purple:hover{background:rgba(127,119,221,.13)}
+.node.c-amber{border-color:#BA7517;background:rgba(186,117,23,.07)}
+.node.c-amber .node-title{color:#633806}
+.node.c-amber:hover{background:rgba(186,117,23,.13)}
+.node.c-coral{border-color:#993C1D;background:rgba(153,60,29,.07)}
+.node.c-coral .node-title{color:#712B13}
+.node.c-coral:hover{background:rgba(153,60,29,.13)}
+.node.c-pink{border-color:#993556;background:rgba(153,53,86,.07)}
+.node.c-pink .node-title{color:#4B1528}
+.node.c-pink:hover{background:rgba(153,53,86,.13)}
+.node.c-gray{border-color:#888780;background:rgba(136,135,128,.07)}
+.node.c-gray .node-title{color:#2C2C2A}
+@media(prefers-color-scheme:dark){
+  .node.c-teal{background:rgba(29,158,117,.12)}.node.c-teal .node-title{color:#9FE1CB}
+  .node.c-purple{background:rgba(127,119,221,.12)}.node.c-purple .node-title{color:#CECBF6}
+  .node.c-amber{background:rgba(186,117,23,.12)}.node.c-amber .node-title{color:#FAC775}
+  .node.c-coral{background:rgba(153,60,29,.12)}.node.c-coral .node-title{color:#F5C4B3}
+  .node.c-pink{background:rgba(153,53,86,.12)}.node.c-pink .node-title{color:#F4C0D1}
+  .node.c-gray{background:rgba(136,135,128,.12)}.node.c-gray .node-title{color:#D3D1C7}
+}
+.node.active.c-teal{border-color:#1D9E75;border-width:1.5px}
+.node.active.c-purple{border-color:#7F77DD;border-width:1.5px}
+.node.active.c-amber{border-color:#BA7517;border-width:1.5px}
+.phase-divider{height:2px;margin:4px 52px;background:linear-gradient(90deg,transparent,var(--color-border-tertiary) 20%,var(--color-border-tertiary) 80%,transparent);position:relative}
+.phase-divider::after{content:'↓';position:absolute;left:50%;transform:translateX(-50%);bottom:-14px;font-size:14px;color:var(--color-text-tertiary)}
+.section-gap{height:24px}
+.section-header{padding:0 0 6px 52px;font-size:11px;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:var(--color-text-tertiary)}
+.detail-panel{border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-lg);padding:16px 18px;margin:20px 0 0;background:var(--color-background-primary);min-height:80px;transition:opacity .15s}
+.detail-panel.hidden{opacity:0;pointer-events:none}
+.dp-header{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px}
+.dp-title{font-size:14px;font-weight:500;color:var(--color-text-primary);line-height:1.4}
+.dp-close{background:none;border:none;color:var(--color-text-tertiary);font-size:18px;cursor:pointer;padding:0;line-height:1;flex-shrink:0}
+.dp-body{font-size:13px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:10px}
+.dp-why{font-size:12px;color:var(--color-text-secondary);border-left:2px solid var(--color-border-secondary);padding-left:10px;margin-bottom:10px;line-height:1.55}
+.dp-why strong{color:var(--color-text-primary);font-weight:500}
+.dp-tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{font-size:11px;padding:2px 9px;border-radius:20px;font-weight:500}
+.tag-ref{background:rgba(29,158,117,.12);color:#085041}
+.tag-new{background:rgba(127,119,221,.12);color:#3C3489}
+.tag-out{background:rgba(186,117,23,.12);color:#633806}
+.tag-stat{background:rgba(153,60,29,.12);color:#712B13}
+@media(prefers-color-scheme:dark){
+  .tag-ref{background:rgba(29,158,117,.2);color:#9FE1CB}
+  .tag-new{background:rgba(127,119,221,.2);color:#CECBF6}
+  .tag-out{background:rgba(186,117,23,.2);color:#FAC775}
+  .tag-stat{background:rgba(153,60,29,.2);color:#F5C4B3}
+}
+.legend{display:flex;gap:16px;flex-wrap:wrap;padding:0 0 14px 52px}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--color-text-secondary)}
+.legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.phase-num{position:absolute;top:4px;right:6px;font-size:10px;font-weight:500;color:var(--color-text-tertiary)}
+.classifier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;width:100%}
+.clf-node{border:0.5px solid var(--color-border-tertiary);border-radius:6px;padding:6px 8px;cursor:pointer;background:var(--color-background-secondary);transition:border-color .12s,background .12s}
+.clf-node:hover{border-color:var(--color-border-primary);background:var(--color-background-primary)}
+.clf-section{font-size:10px;color:var(--color-text-tertiary);font-weight:500;margin:0 0 2px;letter-spacing:.4px}
+.clf-name{font-size:11px;font-weight:500;color:var(--color-text-primary)}
+</style>
+
+<div class="wrap">
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#1D9E75"></div>Reused from reference pipeline</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#7F77DD"></div>New benchmark logic</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#BA7517"></div>Outputs / artifacts</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#993C1D"></div>Statistical tests</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#993556"></div>Validation / governance</div>
+    <div class="legend-item" style="font-style:italic;color:var(--color-text-tertiary)">Click any node for details</div>
+  </div>
+
+  <div class="flow" id="flow">
+
+    <!-- Phase 0: Entry -->
+    <div class="section-header">Entry</div>
+    <div class="phase-row">
+      <div class="lane-label"><span>CLI</span></div>
+      <div class="boxes">
+        <div class="node c-gray" onclick="show('cli')">
+          <div class="node-title">python titanic_benchmark.py</div>
+          <div class="node-sub">--quick | --output-dir</div>
+        </div>
+        <div class="node c-gray" onclick="show('data')">
+          <div class="node-title">fetch_openml("titanic", v1)</div>
+          <div class="node-sub">fix_data_types · split_data 80/20</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-divider"></div><div class="section-gap"></div>
+
+    <!-- Phase 1 -->
+    <div class="section-header">Phase 1 — Exploratory data analysis</div>
+    <div class="phase-row">
+      <div class="lane-label"><span>EDA</span></div>
+      <div class="boxes">
+        <div class="node c-teal" onclick="show('eda_split')">
+          <span class="phase-num">1</span>
+          <div class="node-title">Train-only EDA</div>
+          <div class="node-sub">No test-set leakage</div>
+        </div>
+        <div class="node c-teal" onclick="show('eda_miss')">
+          <div class="node-title">Missingness report</div>
+          <div class="node-sub">Per-column missing rates</div>
+        </div>
+        <div class="node c-teal" onclick="show('eda_vif')">
+          <div class="node-title">VIF + correlation</div>
+          <div class="node-sub">Multicollinearity check</div>
+        </div>
+        <div class="node c-amber" onclick="show('eda_out')">
+          <div class="node-title">7 EDA plots + 4 CSVs</div>
+          <div class="node-sub">eda_*.png / eda_*.csv</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-divider"></div><div class="section-gap"></div>
+
+    <!-- Phase 2 -->
+    <div class="section-header">Phase 2 — Feature engineering & algorithm screening</div>
+    <div class="phase-row">
+      <div class="lane-label"><span>FE</span></div>
+      <div class="boxes">
+        <div class="node c-teal" onclick="show('fe')">
+          <span class="phase-num">2</span>
+          <div class="node-title">TitanicFeatureEngineer</div>
+          <div class="node-sub">Title · cabin · ticket · family</div>
+        </div>
+        <div class="node c-teal" onclick="show('prep')">
+          <div class="node-title">build_preprocessor</div>
+          <div class="node-sub">Impute · scale · OHE</div>
+        </div>
+        <div class="node c-purple" onclick="show('wrap')">
+          <div class="node-title">wrap_classifier(clf)</div>
+          <div class="node-sub">Shared pipeline for all 15 models</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:10px"></div>
+    <div class="phase-row">
+      <div class="lane-label"><span>Screen</span></div>
+      <div class="boxes" style="flex-direction:column;align-items:stretch">
+        <div class="classifier-grid" id="clf-grid">
+          <div class="clf-node" onclick="show('clf_lr')"><div class="clf-section">§1.1 Linear</div><div class="clf-name">LogisticRegression</div></div>
+          <div class="clf-node" onclick="show('clf_sgd')"><div class="clf-section">§1.1 Linear</div><div class="clf-name">SGD (log loss)</div></div>
+          <div class="clf-node" onclick="show('clf_lda')"><div class="clf-section">§1.2 Discriminant</div><div class="clf-name">LDA (shrinkage=auto)</div></div>
+          <div class="clf-node" onclick="show('clf_qda')"><div class="clf-section">§1.2 Discriminant</div><div class="clf-name">QDA (reg_param=0.1)</div></div>
+          <div class="clf-node" onclick="show('clf_svm')"><div class="clf-section">§1.4 SVM</div><div class="clf-name">SVC RBF kernel</div></div>
+          <div class="clf-node" onclick="show('clf_knn')"><div class="clf-section">§1.6 Neighbours</div><div class="clf-name">KNN (k=7, distance)</div></div>
+          <div class="clf-node" onclick="show('clf_nb')"><div class="clf-section">§1.9 Naive Bayes</div><div class="clf-name">GaussianNB</div></div>
+          <div class="clf-node" onclick="show('clf_dt')"><div class="clf-section">§1.10 Tree</div><div class="clf-name">DecisionTree (depth=6)</div></div>
+          <div class="clf-node" onclick="show('clf_rf')"><div class="clf-section">§1.11 Ensemble</div><div class="clf-name">RandomForest</div></div>
+          <div class="clf-node" onclick="show('clf_et')"><div class="clf-section">§1.11 Ensemble</div><div class="clf-name">ExtraTrees</div></div>
+          <div class="clf-node" onclick="show('clf_gb')"><div class="clf-section">§1.11 Ensemble</div><div class="clf-name">GradientBoosting</div></div>
+          <div class="clf-node" onclick="show('clf_ada')"><div class="clf-section">§1.11 Ensemble</div><div class="clf-name">AdaBoost</div></div>
+          <div class="clf-node" onclick="show('clf_mlp')"><div class="clf-section">§1.17 Neural net</div><div class="clf-name">MLP (128→64 ReLU)</div></div>
+          <div class="clf-node" onclick="show('clf_xgb')"><div class="clf-section">Industry (XGBoost)</div><div class="clf-name">XGBClassifier</div></div>
+          <div class="clf-node" onclick="show('clf_lgb')"><div class="clf-section">Industry (LightGBM)</div><div class="clf-name">LGBMClassifier</div></div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+          <div class="node c-purple" onclick="show('cv')" style="flex:1;min-width:140px">
+            <div class="node-title">5-fold stratified CV</div>
+            <div class="node-sub">6 metrics + overfit gap</div>
+          </div>
+          <div class="node c-amber" onclick="show('screen_out')" style="flex:1;min-width:140px">
+            <div class="node-title">screening_results.csv</div>
+            <div class="node-sub">Mean ± std per metric</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-divider"></div><div class="section-gap"></div>
+
+    <!-- Phase 3 -->
+    <div class="section-header">Phase 3 — Statistical significance</div>
+    <div class="phase-row">
+      <div class="lane-label"><span>Stats</span></div>
+      <div class="boxes">
+        <div class="node c-coral" onclick="show('friedman')">
+          <span class="phase-num">3</span>
+          <div class="node-title">Friedman χ² test</div>
+          <div class="node-sub">H₀: all models equal</div>
+        </div>
+        <div class="node c-coral" onclick="show('wilcoxon')">
+          <div class="node-title">Wilcoxon signed-rank</div>
+          <div class="node-sub">Pairwise vs champion</div>
+        </div>
+        <div class="node c-coral" onclick="show('bonferroni')">
+          <div class="node-title">Bonferroni correction</div>
+          <div class="node-sub">α = 0.05, n-1 comparisons</div>
+        </div>
+        <div class="node c-amber" onclick="show('stat_out')">
+          <div class="node-title">stat_tests.json</div>
+          <div class="node-sub">p-values + significance flags</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-divider"></div><div class="section-gap"></div>
+
+    <!-- Phase 4 -->
+    <div class="section-header">Phase 4 — Hyperparameter tuning (top-3 only)</div>
+    <div class="phase-row">
+      <div class="lane-label"><span>Tune</span></div>
+      <div class="boxes">
+        <div class="node c-purple" onclick="show('top3')">
+          <span class="phase-num">4</span>
+          <div class="node-title">Select top-3 by ROC-AUC</div>
+          <div class="node-sub">Cost-efficient screening first</div>
+        </div>
+        <div class="node c-purple" onclick="show('rsearch')">
+          <div class="node-title">RandomizedSearchCV</div>
+          <div class="node-sub">40 iterations, 5-fold CV</div>
+        </div>
+        <div class="node c-purple" onclick="show('param_grids')">
+          <div class="node-title">PARAM_GRIDS</div>
+          <div class="node-sub">15 model-specific grids</div>
+        </div>
+        <div class="node c-teal" onclick="show('clone')">
+          <div class="node-title">clone + refit on full train</div>
+          <div class="node-sub">No validation leakage</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-divider"></div><div class="section-gap"></div>
+
+    <!-- Phase 5 -->
+    <div class="section-header">Phase 5 — Ensemble construction</div>
+    <div class="phase-row">
+      <div class="lane-label"><span>Ensemble</span></div>
+      <div class="boxes">
+        <div class="node c-purple" onclick="show('voting')">
+          <span class="phase-num">5</span>
+          <div class="node-title">SoftVoting</div>
+          <div class="node-sub">Average predicted probabilities</div>
+        </div>
+        <div class="node c-purple" onclick="show('stacking')">
+          <div class="node-title">Stacking</div>
+          <div class="node-sub">LR meta-learner, 3-fold OOF</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-divider"></div><div class="section-gap"></div>
+
+    <!-- Phase 6 -->
+    <div class="section-header">Phase 6 — Hold-out test evaluation (10 metrics)</div>
+    <div class="phase-row">
+      <div class="lane-label"><span>Eval</span></div>
+      <div class="boxes">
+        <div class="node c-purple" onclick="show('youden')">
+          <span class="phase-num">6</span>
+          <div class="node-title">Youden's J threshold</div>
+          <div class="node-sub">Per-model optimal cutoff</div>
+        </div>
+        <div class="node c-purple" onclick="show('metrics10')">
+          <div class="node-title">10-metric suite</div>
+          <div class="node-sub">AUC · F1 · MCC · Brier · κ …</div>
+        </div>
+        <div class="node c-purple" onclick="show('leaderboard')">
+          <div class="node-title">Champion selection</div>
+          <div class="node-sub">Best test ROC-AUC wins</div>
+        </div>
+        <div class="node c-amber" onclick="show('model_save')">
+          <div class="node-title">champion_{name}_{ts}_{sha1}.joblib</div>
+          <div class="node-sub">Versioned, identical to reference</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-divider"></div><div class="section-gap"></div>
+
+    <!-- Phase 7 -->
+    <div class="section-header">Phase 7 — Calibration analysis</div>
+    <div class="phase-row">
+      <div class="lane-label"><span>Calib</span></div>
+      <div class="boxes">
+        <div class="node c-purple" onclick="show('brier')">
+          <span class="phase-num">7</span>
+          <div class="node-title">Brier score</div>
+          <div class="node-sub">Mean squared prob error</div>
+        </div>
+        <div class="node c-purple" onclick="show('calib_curve')">
+          <div class="node-title">Reliability diagrams</div>
+          <div class="node-sub">All tuned + ensemble models</div>
+        </div>
+        <div class="node c-amber" onclick="show('calib_plots')">
+          <div class="node-title">calibration_curves.png</div>
+          <div class="node-sub">+ ROC, PR, confusion, radar</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-divider"></div><div class="section-gap"></div>
+
+    <!-- Phase 8 -->
+    <div class="section-header">Phase 8 — SHAP explainability (champion only)</div>
+    <div class="phase-row">
+      <div class="lane-label"><span>SHAP</span></div>
+      <div class="boxes">
+        <div class="node c-purple" onclick="show('shap_exp')">
+          <span class="phase-num">8</span>
+          <div class="node-title">TreeExplainer / Explainer</div>
+          <div class="node-sub">Tree vs linear auto-detect</div>
+        </div>
+        <div class="node c-amber" onclick="show('shap_out')">
+          <div class="node-title">shap_bar.png + beeswarm.png</div>
+          <div class="node-sub">shap_importance.csv</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-divider"></div><div class="section-gap"></div>
+
+    <!-- Phase 9 -->
+    <div class="section-header">Phase 9 — Fairness / subgroup evaluation</div>
+    <div class="phase-row">
+      <div class="lane-label"><span>Fair</span></div>
+      <div class="boxes">
+        <div class="node c-pink" onclick="show('fair_groups')">
+          <span class="phase-num">9</span>
+          <div class="node-title">Disaggregated metrics</div>
+          <div class="node-sub">sex · pclass · age_group</div>
+        </div>
+        <div class="node c-pink" onclick="show('fair_alert')">
+          <div class="node-title">F1 gap alert</div>
+          <div class="node-sub">Flag if gap &gt; 0.10 vs overall</div>
+        </div>
+        <div class="node c-amber" onclick="show('fair_out')">
+          <div class="node-title">fairness_report.csv + plot</div>
+          <div class="node-sub">fairness_subgroup_f1.png</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-divider"></div><div class="section-gap"></div>
+
+    <!-- Phase 10 -->
+    <div class="section-header">Phase 10 — Report generation</div>
+    <div class="phase-row">
+      <div class="lane-label"><span>Report</span></div>
+      <div class="boxes">
+        <div class="node c-amber" onclick="show('html_report')">
+          <span class="phase-num">10</span>
+          <div class="node-title">benchmark_report.html</div>
+          <div class="node-sub">Self-contained, all tables + imgs</div>
+        </div>
+        <div class="node c-amber" onclick="show('json_report')">
+          <div class="node-title">benchmark_report.json</div>
+          <div class="node-sub">All results machine-readable</div>
+        </div>
+        <div class="node c-amber" onclick="show('csv_report')">
+          <div class="node-title">screening_results.csv</div>
+          <div class="node-sub">14 plots total across all phases</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /flow -->
+
+  <!-- Detail panel -->
+  <div class="detail-panel hidden" id="dp">
+    <div class="dp-header">
+      <div class="dp-title" id="dp-title">—</div>
+      <button class="dp-close" onclick="close_dp()" aria-label="Close">×</button>
+    </div>
+    <div class="dp-body" id="dp-body"></div>
+    <div class="dp-why" id="dp-why"></div>
+    <div class="dp-tags" id="dp-tags"></div>
+  </div>
+</div>
+
+<script>
+const DATA = {
+  cli:{title:"CLI entry: python titanic_benchmark.py",body:"Two flags: --quick (3-fold CV, 10 tune iterations, top-2 models — ~45 seconds) and --output-dir (default benchmark_out/). The quick flag is designed for CI smoke-tests and rapid iteration; the full run takes 8–12 minutes and uses 5-fold CV with 40 tune iterations.",why:"<strong>Why a CLI?</strong> Reproducibility. Every run is a single command with explicit flags. You can diff two runs' JSON outputs to see exactly what changed between experiment versions.",tags:["gray","reused from ref pipeline","gray","argparse"]},
+  data:{title:"Data loading: fetch_openml + fix_data_types + split_data",body:"fetch_openml('titanic', version=1, as_frame=True) loads the full 1,309-row OpenML dataset — richer than seaborn's 891-row version. fix_data_types casts pclass/sex/embarked to category. split_data does a stratified 80/20 split before any EDA, preserving the survival rate proportion in both splits.",why:"<strong>Why stratify before EDA?</strong> If you compute missingness rates or feature correlations on the full dataset and then split, test-set information leaks into your feature engineering decisions. Splitting first is mandatory in production.",tags:["ref","reused from reference pipeline","ref","fetch_openml v1","ref","stratified 80/20"]},
+  eda_split:{title:"Phase 1: Train-only EDA",body:"save_research_artifacts receives only X_train and y_train — the test split never touches EDA code. This is the same function used in the reference pipeline, called identically.",why:"<strong>Why EDA on train only?</strong> The test set simulates future unseen data. Any decision made by looking at it (e.g. 'cabin is 77% missing so let's drop it') constitutes a leak that inflates your test metrics.",tags:["ref","reused from reference pipeline","ref","no test leakage"]},
+  eda_miss:{title:"Missingness report",body:"missingness_report() produces per-column missing counts and rates, sorted descending. Key findings: age is ~20% missing, cabin is ~77% missing, embarked has 2 nulls. These drive the imputation strategy in the preprocessor (median for numeric, most-frequent for categorical).",why:"<strong>Why report missingness explicitly?</strong> Missing data is not random in Titanic — cabin missingness correlates strongly with pclass (upper class had cabins). Ignoring this pattern would lose signal. The report is saved to CSV so it's auditable.",tags:["ref","missingness_report()","out","eda_missingness.csv + .png"]},
+  eda_vif:{title:"VIF + correlation matrix",body:"Variance Inflation Factor measures multicollinearity. For each numeric feature, it regresses it against all others and computes VIF = 1/(1-R²). Values above 10 indicate high collinearity. The correlation matrix covers all engineered numeric features post-imputation.",why:"<strong>Why VIF matters:</strong> High VIF features don't add new information — they duplicate it. In linear models they inflate coefficient variance and hurt interpretability. In tree ensembles it's less critical but still worth knowing.",tags:["ref","reused from reference pipeline","out","eda_vif_report.csv + eda_correlation_matrix.csv"]},
+  eda_out:{title:"EDA outputs: 7 plots + 4 CSVs",body:"Plots: target balance, missingness bar, survival by sex, survival by class, age distribution by survival, survival by family size, survival by title. CSVs: missingness, schema, numeric summary, VIF, correlation matrix, grouped stats JSON. All use sns.set_theme(style='whitegrid') matching reference pipeline aesthetics.",why:"<strong>Why so many outputs?</strong> Documentation and reproducibility. When a stakeholder asks 'why did you drop cabin?', you show them the missingness plot. When the model misbehaves, you cross-reference with the grouped stats.",tags:["out","7 PNG plots","out","4 CSVs + 1 JSON"]},
+  fe:{title:"TitanicFeatureEngineer (copied verbatim from reference)",body:"Custom sklearn BaseEstimator + TransformerMixin. Fit phase learns rare title threshold. Transform phase creates: title (from name regex), has_cabin/cabin_deck/cabin_count (from cabin string), ticket_prefix, family_size, is_alone, fare_per_person, home_dest_known. Drops leakage (boat, body) and raw text columns.",why:"<strong>Why a custom transformer?</strong> Wrapping engineering in a sklearn transformer means it's part of the pipeline — it gets cloned for CV folds, it can't accidentally fit on test data, and it ships with the model artifact. The rare-title logic is fit-learned: titles seen fewer than 10 times in train become 'Rare'.",tags:["ref","reused verbatim","ref","fit-safe","ref","pipeline-compatible"]},
+  prep:{title:"build_preprocessor: ColumnTransformer",body:"Numeric pipeline: SimpleImputer(strategy='median', add_indicator=True) → StandardScaler. The add_indicator=True creates a boolean missingness column for each imputed feature — preserving the 'was this missing?' signal. Categorical pipeline: SimpleImputer(strategy='most_frequent') → OneHotEncoder(handle_unknown='ignore', min_frequency=5, sparse_output=False).",why:"<strong>Why add_indicator?</strong> For age (20% missing), the missingness itself is predictive. Lower-class passengers had higher missing age rates and lower survival. Without the indicator, the imputed value alone loses that signal.",tags:["ref","reused from reference","ref","median impute + missing indicator","ref","OHE min_frequency=5"]},
+  wrap:{title:"wrap_classifier(clf): shared pipeline wrapper",body:"Every classifier gets the same wrapper: Pipeline([('feature_engineering', TitanicFeatureEngineer()), ('preprocess', build_preprocessor()), ('model', clf)]). This is the key benchmarking discipline — only the final estimator varies. All CV folds, all stat tests, all comparisons are apples-to-apples.",why:"<strong>Why a shared wrapper?</strong> If you benchmarked raw classifiers on pre-processed data, preprocessing choices (imputation, scaling) become confounds. With wrap_classifier, every model gets identical input transformations. The benchmark measures classifier signal, not preprocessing luck.",tags:["new","benchmark core discipline","new","scikit-learn Pipeline"]},
+  cv:{title:"5-fold stratified cross-validation",body:"StratifiedKFold(n_splits=5, shuffle=True, random_state=42). cross_validate() computes 6 scoring metrics: roc_auc, f1, average_precision, balanced_accuracy, precision, recall. return_train_score=True captures train scores too. The raw per-fold arrays are stored internally (prefix _raw_{metric}) for the Friedman and Wilcoxon tests in Phase 3.",why:"<strong>Why stratified?</strong> Titanic survival is ~38% positive. Random splits can create folds with very different rates. Stratified ensures each fold mirrors the population rate, making the CV estimate stable. 5 folds is the standard for datasets of this size — large enough for stable estimates, small enough to be computationally feasible.",tags:["new","StratifiedKFold(5)","new","6 CV metrics + overfit gap"]},
+  screen_out:{title:"screening_results.csv",body:"One row per classifier, columns: model name, cv_time_s, roc_auc_mean, roc_auc_std, roc_auc_train_mean, roc_auc_overfit_gap, and the same for the other 5 metrics. Overfit gap = train_mean − cv_mean. Values above 0.05 flag potential overfitting. Sorted by roc_auc_mean descending.",why:"<strong>Why save the overfit gap?</strong> A model with AUC=0.88 on CV but 0.10 overfit gap is suspicious — it memorised training folds. The gap helps you distinguish a genuinely strong model from one that just happened to see easy CV splits.",tags:["out","screening_results.csv","out","screening_heatmap.png"]},
+  friedman:{title:"Friedman χ² test",body:"friedmanchisquare(*arrays) where arrays is a list of per-fold score arrays for all models. The null hypothesis H₀ is that all classifiers perform equally. If p < α (0.05), at least one model is significantly different. The test uses ranks across folds, making it non-parametric and robust to non-normal score distributions.",why:"<strong>Why a non-parametric test?</strong> CV scores are not normally distributed — they have 5 observations each, bounded between 0 and 1. Parametric ANOVA assumes normality and equal variance. The Friedman test makes no such assumption, treating fold scores as matched observations.",tags:["stat","Friedman χ² (non-parametric)","stat","stat_tests.json"]},
+  wilcoxon:{title:"Wilcoxon signed-rank test (pairwise vs champion)",body:"For each non-champion model, wilcoxon(champ_scores − model_scores, alternative='greater') tests whether the champion's fold scores are systematically higher. The 'greater' direction tests specifically 'is champion better than this model' — one-tailed. If all fold differences are zero, p = 1.0 (no evidence of difference).",why:"<strong>Why signed-rank instead of t-test?</strong> With only 5 fold differences, the t-test's normality assumption is extremely tenuous. The Wilcoxon signed-rank test ranks the absolute differences and considers their signs — valid with as few as 5 observations.",tags:["stat","Wilcoxon signed-rank","stat","pairwise vs champion"]},
+  bonferroni:{title:"Bonferroni correction",body:"p_bonferroni = min(1.0, p_raw × n_comparisons) where n_comparisons = n_models − 1. With 15 models, each pairwise p-value is multiplied by 14. A model is flagged 'significantly worse' if p_bonferroni < 0.05. The correction is conservative — it controls the family-wise error rate, reducing false positives at the cost of power.",why:"<strong>Why Bonferroni?</strong> Running 14 tests at α=0.05 means you'd expect 0.7 false positives by chance even if all models were equal. Bonferroni makes each test harder to pass, keeping the overall false-positive rate at 5%.",tags:["stat","Bonferroni FWER control","stat","α = 0.05 threshold"]},
+  stat_out:{title:"stat_tests.json output",body:"Contains: metric (roc_auc), champion_model name, friedman dict (statistic, p_value, significant bool), pairwise_vs_champion list — each entry has model name, wilcoxon_stat, p_value, p_bonferroni, significantly_worse bool. Also drives stat_test_results.png bar chart.",why:"<strong>Why save to JSON?</strong> Machine-readable results mean you can programmatically check 'did my new feature improve the champion significantly?' in a CI pipeline without re-reading HTML.",tags:["out","stat_tests.json","out","stat_test_results.png"]},
+  top3:{title:"Select top-3 by screening ROC-AUC",body:"screen_df.dropna(subset=['roc_auc_mean']).sort_values('roc_auc_mean', ascending=False).head(top_n). Failed models (nan) are excluded. top_n = 3 in full mode, 2 in --quick mode. Only these models proceed to expensive RandomizedSearchCV.",why:"<strong>Why not tune all 15?</strong> Tuning is O(n_iter × n_folds) times more expensive than screening. A model that scores 0.72 in screening will rarely reach 0.86 after tuning. The screening phase is designed to be a cheap filter so compute budget goes where it matters.",tags:["new","cost-efficient pipeline","new","top_n=3 by CV AUC"]},
+  rsearch:{title:"RandomizedSearchCV (40 iterations)",body:"RandomizedSearchCV(pipe, PARAM_GRIDS[name], n_iter=40, scoring='roc_auc', cv=5-fold, refit=True, random_state=42). refit=True means the best estimator is refit on all of X_train after search. n_iter=40 samples 40 random combinations from the grid — much faster than GridSearchCV which would try every combination.",why:"<strong>Why random search over grid search?</strong> Bergstra & Bengio (2012) showed that random search finds better hyperparameters than grid search in the same compute budget, because most parameters have low sensitivity — random search wastes less time on unimportant dimensions.",tags:["new","RandomizedSearchCV","new","40 iters, n_jobs=-1"]},
+  param_grids:{title:"PARAM_GRIDS: 15 model-specific search spaces",body:"Each model has a tailored grid. LogisticRegression: C × penalty × solver. SVM: C × gamma. RandomForest: n_estimators × max_depth × min_samples_leaf × max_features. XGBoost adds reg_alpha (L1 regularisation). GaussianNB only tunes var_smoothing. The grid keys use 'model__' prefix to traverse the Pipeline.",why:"<strong>Why model-specific grids?</strong> A universal grid would include inapplicable parameters (e.g. learning_rate for RandomForest). The '__' prefix syntax is sklearn Pipeline convention — model__C means 'the C parameter of the model step'.",tags:["new","15 tailored param grids","new","Pipeline __ convention"]},
+  clone:{title:"clone + refit on full training set",body:"After RandomizedSearchCV finds best_params_, the best_estimator_ is already refit on all of X_train (because refit=True). Clone + refit would be needed if refit=False. The final model has seen all 80% of training data, not just 80% × 80% = 64% as it would from a CV fold.",why:"<strong>Why full-train refit?</strong> The CV was for model selection. The final model should exploit all available labelled data. Keeping it on a CV fold would systematically underuse the training data.",tags:["ref","refit on full train","ref","no holdout leakage"]},
+  voting:{title:"SoftVoting ensemble",body:"VotingClassifier(estimators=tuned_estimators, voting='soft'). Soft voting averages the predict_proba arrays across all base models, then predicts the class with highest average probability. This is more stable than hard voting (majority vote on predicted classes) because it uses probability scores rather than binary decisions.",why:"<strong>Why soft over hard voting?</strong> Soft voting is more informative — a model that assigns 0.51 probability to class 1 and one that assigns 0.99 are treated differently. Hard voting treats both as the same 'yes' vote.",tags:["new","VotingClassifier","new","averages probabilities"]},
+  stacking:{title:"Stacking ensemble",body:"StackingClassifier(estimators=tuned, final_estimator=LogisticRegression(max_iter=2000), cv=3). The base estimators produce out-of-fold predictions (cv=3) which become input features for the meta-learner. LogisticRegression as meta-learner is simple, interpretable, and avoids overfitting the small meta-training set.",why:"<strong>Why LogisticRegression as meta-learner?</strong> Complex meta-learners (e.g. another RandomForest) overfit to the base model outputs. LR constrains the combination weights, effectively learning which base models to trust for which regions of the input space.",tags:["new","StackingClassifier","new","LR meta-learner, 3-fold OOF"]},
+  youden:{title:"Youden's J threshold selection",body:"fpr, tpr, thresholds = roc_curve(y_test, probs); j = tpr − fpr; threshold = thresholds[argmax(j)]. Youden's J maximises (sensitivity + specificity − 1). Unlike a fixed 0.5 cutoff, this adapts per model and per data distribution — a model might perform best at threshold=0.38 rather than 0.5.",why:"<strong>Why not 0.5?</strong> 0.5 is only optimal when positive and negative classes are equally frequent and equally costly to misclassify. With 38% survival rate and (arguably) higher cost for missed survivors, 0.5 is rarely the optimal cutoff.",tags:["new","Youden J statistic","new","per-model threshold"]},
+  metrics10:{title:"10-metric hold-out evaluation suite",body:"ROC-AUC (threshold-free discrimination), Average Precision (area under PR curve, imbalance-robust), F1 (harmonic precision-recall), Balanced Accuracy (mean of per-class recall), MCC (Matthews Correlation Coefficient — robust to imbalance), Cohen's κ (chance-corrected agreement), Precision, Recall, Accuracy, Brier score (calibration). Confusion matrix counts (TP/TN/FP/FN) also stored.",why:"<strong>Why 10 metrics?</strong> No single metric captures all failure modes. ROC-AUC ignores threshold. Accuracy ignores class imbalance. F1 ignores true negatives. MCC is the most robust single metric for imbalanced binary classification, but reporting 10 gives stakeholders the full picture.",tags:["new","10 metrics","new","MCC + Brier + Cohen κ"]},
+  leaderboard:{title:"Champion selection by test ROC-AUC",body:"champion_res = max(test_results, key=lambda r: r['roc_auc']). The leaderboard includes all tuned models + ensembles. The champion model is saved as champion_{name}_{timestamp}_{sha1}.joblib plus a stable pointer champion_model.joblib — identical versioning scheme as the reference pipeline.",why:"<strong>Why ROC-AUC for champion selection?</strong> It's threshold-independent and well-calibrated for ranking models on this dataset. You might choose F1 instead if the cost of false negatives is known and high — that's why all 10 metrics are also reported.",tags:["new","max test ROC-AUC","out","versioned .joblib"]},
+  model_save:{title:"Versioned model artifact",body:"Filename: champion_{model_name}_{YYYYMMDDTHHMMSSZ}_{sha1[:8]}.joblib. The sha1 is hashlib.sha1(pickle.dumps(model)).hexdigest()[:8]. A stable champion_model.joblib symlink is also saved. This is byte-for-byte identical to the reference pipeline's versioning scheme.",why:"<strong>Why sha1 in the filename?</strong> Two models trained at the same timestamp (e.g. in parallel) get different sha1s. Two models with identical parameters get the same sha1 — detecting accidental duplicates. The timestamp alone is ambiguous.",tags:["ref","ref pipeline versioning","out","sha1 fingerprint"]},
+  brier:{title:"Brier score: calibration metric",body:"brier_score_loss(y_true, probs) = mean((prob_i − y_i)²). Ranges 0–1, lower is better, 0 = perfect calibration. A model predicting 0.9 for every sample that's actually 50/50 positive has a terrible Brier score even if its AUC is high. The Brier score penalises confident wrong predictions.",why:"<strong>Why report calibration separately?</strong> A decision-maker using the probability output (e.g. 'only intervene when P(survival) < 0.3') needs the probabilities to mean what they say. High AUC but poor calibration = good ranking, bad absolute probabilities.",tags:["new","brier_score_loss","new","calibration quality"]},
+  calib_curve:{title:"Reliability diagrams (calibration curves)",body:"For each tuned + ensemble model: calibration_curve(y_true, probs, n_bins=8, strategy='quantile') produces actual vs predicted probability in 8 quantile bins. All models plotted on one axes with the 'perfectly calibrated' diagonal. Brier score shown in legend for each model.",why:"<strong>Why quantile bins?</strong> Uniform bins are sparse at the extremes for well-calibrated models. Quantile bins ensure each bin has equal sample count, making all parts of the probability range visible.",tags:["new","calibration_curve","out","calibration_curves.png"]},
+  calib_plots:{title:"Full plot suite: 14 PNGs across all phases",body:"ROC curves (all models on one axes), PR curves, calibration, confusion matrices (grid), metric radar chart, CV boxplots (roc_auc + f1), overfit gap bar, stat test bar, leaderboard bar, SHAP bar + beeswarm, fairness subgroup F1, EDA plots (7). All saved as PNG at dpi=150.",why:"<strong>Why so many plots?</strong> Each tells a different story. ROC = overall discrimination. PR = performance on the minority class. Calibration = can you trust the probabilities? Radar = multi-metric snapshot. You can't replace any one with another.",tags:["out","14 PNG plots total","out","consistent 150 dpi"]},
+  shap_exp:{title:"SHAP explainability (champion model only)",body:"TreeExplainer for tree-based models (RandomForest, XGBoost, LightGBM, GradientBoosting) — exact, fast. For non-tree models (LR, SVM, MLP), falls back to Explainer with maskers.Independent(max_samples=100) — approximate, slower. The pipeline is transformed to the preprocessed feature space before computing SHAP.",why:"<strong>Why champion only?</strong> SHAP is computationally expensive. Explaining all 15 models would add 10+ minutes. The champion is the one that ships, so it's the one that needs explainability for stakeholders and regulators.",tags:["new","TreeExplainer (tree) / Explainer (other)","new","graceful skip if not installed"]},
+  shap_out:{title:"SHAP outputs: bar + beeswarm + CSV",body:"shap_bar.png: global bar chart of mean |SHAP| per feature (top 20). shap_beeswarm.png: each dot is a sample, x-axis is SHAP value, color is feature value (red=high, blue=low). shap_importance.csv: feature name + mean_abs_shap, sorted descending. All built on the test set, not training.",why:"<strong>Why beeswarm over just bar?</strong> The bar shows magnitude but not direction or heterogeneity. The beeswarm shows: does high fare always help survival? Are there passengers where a high fare hurts (unlikely, but visible if true)?",tags:["out","shap_bar.png","out","shap_beeswarm.png","out","shap_importance.csv"]},
+  fair_groups:{title:"Fairness: disaggregated evaluation (Phase 9)",body:"evaluate_subgroups() — reused from reference pipeline. Groups: sex (male/female), pclass (1/2/3), age_group (child 0-12, teen 12-18, adult 18-40, middle_aged 40-60, senior 60+). For each group with n ≥ 10: computes F1 and ROC-AUC using the champion's predict_proba at the Youden threshold.",why:"<strong>Why evaluate subgroups?</strong> A model with 0.83 overall F1 might achieve 0.91 for women and 0.71 for men — a 0.20 gap. Reporting only overall metrics hides discriminatory performance. Required by EU AI Act and most enterprise ML governance frameworks.",tags:["ref","reused from reference pipeline","stat","sex + pclass + age_group"]},
+  fair_alert:{title:"F1 gap alert: flag when gap > 0.10",body:"alert = bool((overall_f1 − subgroup_f1) > 0.10). If any subgroup is flagged, a WARNING is logged listing the group, value, and gap magnitude. The threshold of 0.10 (10 percentage points) is a common industry heuristic — significant enough to be operationally meaningful, conservative enough not to trigger on noise.",why:"<strong>Why 0.10 as threshold?</strong> Too strict (0.02) and you alert on noise. Too lenient (0.25) and you miss real disparities. 0.10 is the de facto standard in fairness toolkits like IBM AI Fairness 360 and Google's What-If Tool.",tags:["ref","0.10 gap threshold","stat","WARNING log + JSON alert"]},
+  fair_out:{title:"Fairness outputs",body:"fairness_report.csv: one row per subgroup with columns group_col, group_val, n, positive_rate, f1, roc_auc, f1_gap_vs_overall, alert (bool). fairness_subgroup_f1.png: horizontal bar chart, red bars = alert triggered. Both based on champion model at Youden threshold.",why:"<strong>Why save fairness in CSV?</strong> Enables automated monitoring — a downstream job can read the CSV and fail a deployment pipeline if any alert=True is present.",tags:["out","fairness_report.csv","out","fairness_subgroup_f1.png"]},
+  html_report:{title:"benchmark_report.html: self-contained report",body:"Single HTML file with all results embedded. Contains: EDA plot thumbnails, Phase 2 screening table (color-coded by metric range), stat test interpretation, Phase 6 hold-out table (10 metrics for all models), all plot <img> references, calibration section, SHAP section, fairness table. Built from build_html_report() with inline CSS.",why:"<strong>Why HTML over PDF?</strong> HTML links plots by relative path — portable as a folder. It renders in any browser. It can be embedded in GitHub Pages or internal dashboards. PDF generation from Python requires heavy dependencies (weasyprint, reportlab).",tags:["out","benchmark_report.html","out","self-contained, opens in browser"]},
+  json_report:{title:"benchmark_report.json: machine-readable results",body:"Top-level keys: generated_at, champion, elapsed_seconds, data_source, n_classifiers_screened, cv_splits, screening_summary (all 15 models), stat_tests, tuning_summary (best_params per model), test_results (10 metrics per model), fairness, champion_test_metrics. All values are to_jsonable-safe (no inf/nan/ndarray).",why:"<strong>Why JSON alongside HTML?</strong> The HTML is for humans; the JSON is for programs. A CI system can read benchmark_report.json and assert that champion ROC-AUC > 0.82, or that no fairness alerts are present, before allowing deployment.",tags:["out","benchmark_report.json","out","CI-parseable"]},
+  csv_report:{title:"screening_results.csv + 14 PNG plots",body:"screening_results.csv: all 15 models × 6 metrics × (mean, std, train_mean, overfit_gap) = 360 values in tidy format. Plots: screening_heatmap.png, cv_boxplot_roc_auc.png, cv_boxplot_f1.png, overfit_gap.png, stat_test_results.png, roc_curves_all.png, pr_curves_all.png, calibration_curves.png, confusion_matrices.png, metric_radar.png, leaderboard.png, shap_bar.png, shap_beeswarm.png, fairness_subgroup_f1.png.",why:"<strong>Why 14 plots?</strong> Each answers a different question that no other plot answers. They are not decorative — each is referenced in the HTML report with an interpretation guide.",tags:["out","screening_results.csv","out","14 PNG at dpi=150"]},
+  clf_lr:{title:"LogisticRegression (sklearn §1.1)",body:"solver='liblinear', class_weight='balanced', C=1.0, max_iter=3000. Liblinear solver supports both L1 and L2 penalties — important for the tuning phase which searches over both. class_weight='balanced' adjusts for the 62/38 class split automatically.",why:"<strong>Why this configuration?</strong> liblinear is the fastest solver for small-to-medium datasets and is the only one supporting L1 (which produces sparse coefficients, useful for feature selection insight). 'balanced' weights prevent the majority-class bias that kills recall.",tags:["new","§1.1 Linear","new","L1/L2, balanced weights"]},
+  clf_sgd:{title:"SGD (sklearn §1.1)",body:"loss='log_loss' (logistic regression via gradient descent), penalty='elasticnet', l1_ratio=0.15, class_weight='balanced'. ElasticNet combines L1 sparsity with L2 stability. SGD is the only linear classifier that scales to millions of samples — included to represent online/streaming learning scenarios.",why:"<strong>Why include SGD?</strong> On large datasets where LogisticRegression's BFGS solver is too slow, SGD is the practical choice. Including it in the benchmark shows practitioners where it sits relative to batch methods.",tags:["new","§1.1 Linear","new","ElasticNet, online learning"]},
+  clf_lda:{title:"LDA: LinearDiscriminantAnalysis (§1.2)",body:"solver='lsqr', shrinkage='auto' (Ledoit-Wolf). LDA assumes Gaussian class-conditional distributions and finds the linear combination of features that maximises between-class variance relative to within-class variance. Shrinkage regularises the covariance estimate for high-dimensional data.",why:"<strong>Why LDA in 2024?</strong> LDA is fast, interpretable, and theoretically optimal when the Gaussian assumption holds. On Titanic with 38 features, it's a useful baseline that often matches LogisticRegression while being faster to train.",tags:["new","§1.2 Discriminant","new","Ledoit-Wolf shrinkage"]},
+  clf_qda:{title:"QDA: QuadraticDiscriminantAnalysis (§1.2)",body:"reg_param=0.1. QDA fits a separate covariance matrix per class (quadratic decision boundary) rather than a shared one (linear). reg_param=0.1 adds a regularisation term to avoid singular covariance matrices — critical when OHE creates many near-collinear binary columns.",why:"<strong>Why reg_param?</strong> Without it, QDA often fails with 'covariance matrix is not full rank' on OHE-heavy feature sets. 0.1 is a light touch — it stabilises the matrix without overly shrinking toward the diagonal.",tags:["new","§1.2 Discriminant","new","reg_param=0.1 for stability"]},
+  clf_svm:{title:"SVM RBF kernel (sklearn §1.4)",body:"SVC(kernel='rbf', probability=True, class_weight='balanced'). probability=True uses Platt scaling (5-fold internal CV) to produce calibrated probabilities — required for soft voting and Brier score evaluation. RBF is the most expressive single kernel for moderate-dimensional data.",why:"<strong>Why probability=True?</strong> SVMs don't natively produce probabilities — they produce margin distances. Platt scaling fits a sigmoid to the margins via internal CV, producing calibrated probabilities. This makes the SVM compatible with all probability-based metrics (AUC, Brier, calibration curve).",tags:["new","§1.4 SVM","new","Platt scaling for proba"]},
+  clf_knn:{title:"KNN: k=7, distance weights (§1.6)",body:"KNeighborsClassifier(n_neighbors=7, weights='distance'). Distance weighting means closer neighbours have proportionally more influence. k=7 is odd (avoids ties) and large enough to be robust to noise. Euclidean distance is the default but Manhattan is also searched in the tuning phase.",why:"<strong>Why k=7?</strong> Small k (1, 3) is prone to noise in Titanic where cabin deck, ticket prefix, and title create sparse high-dimensional one-hot space. k=7 smooths over noisy neighbours while remaining local enough to capture the non-linear class boundaries.",tags:["new","§1.6 Neighbours","new","distance-weighted"]},
+  clf_nb:{title:"GaussianNB: Naive Bayes (§1.9)",body:"GaussianNB() assumes feature independence and Gaussian-distributed numeric features. Despite being 'naive', it often performs surprisingly well because in practice features are rarely perfectly correlated. var_smoothing is tuned in the hyperparameter search (logspace -9 to -5).",why:"<strong>Why include NB?</strong> It's an important baseline — if a model doesn't beat GaussianNB, something is wrong. It's also the fastest classifier and degrades gracefully with missing data (which Titanic has a lot of).",tags:["new","§1.9 Naive Bayes","new","var_smoothing tuned"]},
+  clf_dt:{title:"DecisionTree (sklearn §1.10)",body:"max_depth=6, class_weight='balanced', min_samples_leaf=4. Depth 6 gives 64 possible leaf nodes — enough expressive power for Titanic's ~1000 training samples without severe overfitting. min_samples_leaf=4 prevents leaves with very few samples that would memorise noise.",why:"<strong>Why include a single tree?</strong> It serves as the interpretability baseline. When a stakeholder asks 'can you show me the rules?', the decision tree is the answer. It also shows the gain from ensemble methods — RandomForest should beat it by ~0.05 AUC.",tags:["new","§1.10 Tree","new","depth=6, leaf≥4"]},
+  clf_rf:{title:"RandomForest (sklearn §1.11)",body:"n_estimators=300, class_weight='balanced_subsample', max_depth=8, min_samples_leaf=2. 'balanced_subsample' rebalances class weights per bootstrap sample rather than globally — important for bagging classifiers. 300 trees is sufficient for Titanic's sample size; more adds diminishing returns.",why:"<strong>Why balanced_subsample over balanced?</strong> Each bootstrap sample has a different class distribution due to random sampling. balanced_subsample adapts the weights to each sample, which is more accurate than a global rebalancing that doesn't account for sample-to-sample variation.",tags:["new","§1.11 Ensemble","new","balanced_subsample, 300 trees"]},
+  clf_et:{title:"ExtraTrees (sklearn §1.11)",body:"ExtraTreesClassifier with same params as RandomForest but with random feature thresholds (completely random splits) rather than optimal thresholds. This further decorrelates trees and dramatically speeds up training. Often matches or exceeds RandomForest on noisy tabular data.",why:"<strong>ExtraTrees vs RandomForest?</strong> RandomForest finds the optimal split threshold for each candidate feature. ExtraTrees picks thresholds randomly — this adds bias but reduces variance. On noisy datasets like Titanic, the variance reduction often wins.",tags:["new","§1.11 Ensemble","new","random thresholds, faster"]},
+  clf_gb:{title:"GradientBoosting (sklearn §1.11)",body:"n_estimators=300, max_depth=4, learning_rate=0.05, subsample=0.8. Gradient boosting builds trees sequentially, each correcting the residuals of the previous ensemble. Shallow trees (depth=4) are combined to form a complex model. subsample=0.8 introduces stochasticity (stochastic gradient boosting) for regularisation.",why:"<strong>Why slow learning rate?</strong> learning_rate=0.05 with 300 trees is preferable to 0.2 with 75 trees. More trees at lower rate finds a more stable minimum. The tradeoff is training time — compensated by tuning.",tags:["new","§1.11 Ensemble","new","sequential, lr=0.05"]},
+  clf_ada:{title:"AdaBoost (sklearn §1.11)",body:"n_estimators=100, learning_rate=0.5. AdaBoost reweights training samples — misclassified samples get higher weight in the next iteration, forcing subsequent weak learners to focus on hard cases. Uses decision stumps (depth=1 trees) by default.",why:"<strong>Why AdaBoost when GBM exists?</strong> AdaBoost is theoretically cleaner and more interpretable. It's also more sensitive to noisy labels — Titanic has ambiguous survival cases (missing lifeboats, undocumented passengers). Including AdaBoost shows practitioners this sensitivity in the overfit gap.",tags:["new","§1.11 Ensemble","new","sample reweighting"]},
+  clf_mlp:{title:"MLP: neural network (sklearn §1.17)",body:"hidden_layer_sizes=(128, 64), activation='relu', max_iter=500, early_stopping=True. The two-layer architecture with 128→64 neurons applies a bottleneck pattern — the 64-neuron layer forces compression of the 128-neuron representation. early_stopping uses 10% of training data as a validation set internally.",why:"<strong>Why early_stopping?</strong> MLPs can overfit dramatically on small tabular datasets. early_stopping monitors validation loss and stops when it stops improving (patience=10 by default). Without it, 500 epochs almost always overfits Titanic.",tags:["new","§1.17 Neural Net","new","early stopping, bottleneck"]},
+  clf_xgb:{title:"XGBoost (industry standard)",body:"XGBClassifier: n_estimators=300, max_depth=4, learning_rate=0.05, subsample=0.8, colsample_bytree=0.8, scale_pos_weight=1.5, eval_metric='logloss'. scale_pos_weight = n_negative / n_positive ≈ 62/38 ≈ 1.6 — the XGBoost equivalent of class_weight='balanced'. colsample_bytree randomly samples 80% of columns per tree, adding regularisation.",why:"<strong>Why XGBoost when sklearn has GBM?</strong> XGBoost uses a second-order (Newton) approximation to the loss function, enabling larger step sizes. It also implements L1/L2 regularisation at the tree level, built-in column subsampling, and hardware-optimised tree construction. Typically 5-15% better AUC than sklearn GBM.",tags:["new","Industry XGBoost","new","scale_pos_weight, colsample"]},
+  clf_lgb:{title:"LightGBM (industry standard)",body:"LGBMClassifier: same hyperparameter defaults as XGBoost but uses leaf-wise tree growth (grows the leaf with highest gain) rather than level-wise. This produces more asymmetric trees that better fit complex patterns. class_weight='balanced' used instead of scale_pos_weight.",why:"<strong>LightGBM vs XGBoost?</strong> LightGBM typically trains 5–10× faster due to histogram-based splits and leaf-wise growth. On datasets with many categorical features (Titanic post-OHE), LightGBM's native categorical support (bypassed here due to OHE) and GOSS sampling can be advantageous. Both are included to let the data decide.",tags:["new","Industry LightGBM","new","leaf-wise growth, faster"]}
+};
+
+let currentNode = null;
+
+function show(id) {
+  const d = DATA[id];
+  if (!d) return;
+  if (currentNode) currentNode.classList.remove('active');
+  const clicked = event.currentTarget;
+  clicked.classList.add('active');
+  currentNode = clicked;
+
+  document.getElementById('dp-title').textContent = d.title;
+  document.getElementById('dp-body').textContent = d.body;
+  const why = document.getElementById('dp-why');
+  why.innerHTML = d.why;
+  const tags = document.getElementById('dp-tags');
+  tags.innerHTML = '';
+  for (let i = 0; i < d.tags.length; i += 2) {
+    const cls = d.tags[i];
+    const label = d.tags[i+1];
+    const tag = document.createElement('span');
+    tag.className = 'tag tag-' + cls;
+    tag.textContent = label;
+    tags.appendChild(tag);
+  }
+  const dp = document.getElementById('dp');
+  dp.classList.remove('hidden');
+  dp.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function close_dp() {
+  document.getElementById('dp').classList.add('hidden');
+  if (currentNode) { currentNode.classList.remove('active'); currentNode = null; }
+}
+</script>

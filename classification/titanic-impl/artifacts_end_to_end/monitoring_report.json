@@ -1,0 +1,143 @@
+{
+  "checked_at": "2026-05-25T17:14:23.733629+00:00",
+  "row_count": 10,
+  "missing_required_columns": [],
+  "extra_columns": [],
+  "missing_rate_alert_threshold": 0.15,
+  "missing_rate_drift": [
+    {
+      "column": "pclass",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "name",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "sex",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "age",
+      "train_missing_rate": 0.19961795606494748,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.19961795606494748,
+      "alert": true
+    },
+    {
+      "column": "sibsp",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "parch",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "ticket",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "fare",
+      "train_missing_rate": 0.0009551098376313276,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0009551098376313276,
+      "alert": false
+    },
+    {
+      "column": "cabin",
+      "train_missing_rate": 0.7851002865329513,
+      "current_missing_rate": 0.1,
+      "absolute_change": 0.6851002865329513,
+      "alert": true
+    },
+    {
+      "column": "embarked",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "boat",
+      "train_missing_rate": 0.6284622731614136,
+      "current_missing_rate": 0.5,
+      "absolute_change": 0.12846227316141356,
+      "alert": false
+    },
+    {
+      "column": "body",
+      "train_missing_rate": 0.9121298949379179,
+      "current_missing_rate": 0.8,
+      "absolute_change": 0.1121298949379178,
+      "alert": false
+    },
+    {
+      "column": "home.dest",
+      "train_missing_rate": 0.4297994269340974,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.4297994269340974,
+      "alert": true
+    }
+  ],
+  "ks_pvalue_alert_threshold": 0.05,
+  "distribution_drift": [
+    {
+      "column": "age",
+      "ks_statistic": 0.32,
+      "p_value": 0.2624108862157698,
+      "train_mean": 29.284065616045847,
+      "incoming_mean": 36.09167,
+      "train_std": 12.857821036594602,
+      "incoming_std": 22.335518585877967,
+      "alert": false
+    },
+    {
+      "column": "sibsp",
+      "ks_statistic": 0.29,
+      "p_value": 0.37232198397603994,
+      "train_mean": 0.48424068767908307,
+      "incoming_mean": 0.7,
+      "train_std": 1.0097376754415088,
+      "incoming_std": 0.6403124237432849,
+      "alert": false
+    },
+    {
+      "column": "parch",
+      "ks_statistic": 0.29,
+      "p_value": 0.37232198397603994,
+      "train_mean": 0.3858643744030564,
+      "incoming_mean": 0.8,
+      "train_std": 0.8620796209830028,
+      "incoming_std": 0.9797958971132713,
+      "alert": false
+    },
+    {
+      "column": "fare",
+      "ks_statistic": 0.62,
+      "p_value": 0.0008040820202593602,
+      "train_mean": 32.14931122254059,
+      "incoming_mean": 102.30292,
+      "train_std": 48.87236461750263,
+      "incoming_std": 66.14941223484605,
+      "alert": true
+    }
+  ]
+}

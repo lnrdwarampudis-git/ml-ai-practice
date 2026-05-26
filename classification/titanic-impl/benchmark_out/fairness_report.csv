@@ -1,0 +1,10 @@
+group_col,group_val,n,positive_rate,f1,roc_auc,f1_gap_vs_overall,alert
+sex,female,94,0.7553,0.9091,0.8867,0.1131,False
+sex,male,168,0.1726,0.4255,0.7533,-0.3705,True
+pclass,1,74,0.6216,0.8,0.8455,0.004,False
+pclass,2,57,0.4561,0.9804,0.9814,0.1844,False
+pclass,3,131,0.2137,0.6333,0.8067,-0.1627,True
+_age_group,child,18,0.5,0.8182,0.9383,0.0222,False
+_age_group,adult,128,0.375,0.7872,0.8714,-0.0088,False
+_age_group,middle_aged,47,0.4681,0.8205,0.9473,0.0245,False
+_age_group,unknown,54,0.2593,0.7333,0.8938,-0.0627,False

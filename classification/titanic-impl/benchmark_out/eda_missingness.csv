@@ -1,0 +1,15 @@
+,missing_count,missing_rate,dtype
+body,955.0,0.9121298949379179,float64
+cabin,822.0,0.7851002865329513,object
+boat,658.0,0.6284622731614136,object
+home.dest,450.0,0.4297994269340974,object
+age,209.0,0.19961795606494748,float64
+fare,1.0,0.0009551098376313276,float64
+pclass,0.0,0.0,category
+name,0.0,0.0,object
+sex,0.0,0.0,category
+sibsp,0.0,0.0,int64
+parch,0.0,0.0,int64
+ticket,0.0,0.0,object
+embarked,0.0,0.0,category
+survived,0.0,0.0,int64

@@ -1,0 +1,9 @@
+column,unique_values,top_value,top_value_count
+pclass,3,3,578
+name,1047,"McCarthy, Miss. Catherine 'Katie'",1
+sex,2,male,675
+ticket,789,347077,7
+cabin,155,,822
+embarked,3,S,730
+boat,26,,658
+home.dest,329,,450

@@ -1,0 +1,102 @@
+{
+  "metric": "roc_auc",
+  "champion_model": "GradientBoosting",
+  "friedman": {
+    "statistic": 40.34916446789795,
+    "p_value": 0.00012143461634027679,
+    "significant": true
+  },
+  "pairwise_vs_champion": [
+    {
+      "model": "LogisticRegression",
+      "wilcoxon_stat": 14.0,
+      "p_value": 0.0625,
+      "p_bonferroni": 0.8125,
+      "significantly_worse": false
+    },
+    {
+      "model": "SGD",
+      "wilcoxon_stat": 15.0,
+      "p_value": 0.03125,
+      "p_bonferroni": 0.40625,
+      "significantly_worse": false
+    },
+    {
+      "model": "LDA",
+      "wilcoxon_stat": 14.0,
+      "p_value": 0.0625,
+      "p_bonferroni": 0.8125,
+      "significantly_worse": false
+    },
+    {
+      "model": "QDA",
+      "wilcoxon_stat": 14.0,
+      "p_value": 0.0625,
+      "p_bonferroni": 0.8125,
+      "significantly_worse": false
+    },
+    {
+      "model": "SVM_RBF",
+      "wilcoxon_stat": 15.0,
+      "p_value": 0.03125,
+      "p_bonferroni": 0.40625,
+      "significantly_worse": false
+    },
+    {
+      "model": "KNN",
+      "wilcoxon_stat": 14.0,
+      "p_value": 0.0625,
+      "p_bonferroni": 0.8125,
+      "significantly_worse": false
+    },
+    {
+      "model": "GaussianNB",
+      "wilcoxon_stat": 15.0,
+      "p_value": 0.03125,
+      "p_bonferroni": 0.40625,
+      "significantly_worse": false
+    },
+    {
+      "model": "DecisionTree",
+      "wilcoxon_stat": 15.0,
+      "p_value": 0.03125,
+      "p_bonferroni": 0.40625,
+      "significantly_worse": false
+    },
+    {
+      "model": "RandomForest",
+      "wilcoxon_stat": 8.0,
+      "p_value": 0.5,
+      "p_bonferroni": 1.0,
+      "significantly_worse": false
+    },
+    {
+      "model": "ExtraTrees",
+      "wilcoxon_stat": 10.0,
+      "p_value": 0.3125,
+      "p_bonferroni": 1.0,
+      "significantly_worse": false
+    },
+    {
+      "model": "AdaBoost",
+      "wilcoxon_stat": 15.0,
+      "p_value": 0.03125,
+      "p_bonferroni": 0.40625,
+      "significantly_worse": false
+    },
+    {
+      "model": "MLP",
+      "wilcoxon_stat": 8.0,
+      "p_value": 0.5,
+      "p_bonferroni": 1.0,
+      "significantly_worse": false
+    },
+    {
+      "model": "XGBoost",
+      "wilcoxon_stat": 9.0,
+      "p_value": 0.40625,
+      "p_bonferroni": 1.0,
+      "significantly_worse": false
+    }
+  ]
+}

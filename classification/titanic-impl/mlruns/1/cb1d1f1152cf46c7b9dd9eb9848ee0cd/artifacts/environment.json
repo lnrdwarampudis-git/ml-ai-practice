@@ -1,0 +1,15 @@
+{
+  "saved_at": "2026-05-25T16:56:41.614539+00:00",
+  "python": "3.12.7 (v3.12.7:0b05ead877f, Sep 30 2024, 23:18:00) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "platform": "darwin",
+  "libraries": {
+    "sklearn": "1.8.0",
+    "pandas": "2.3.3",
+    "numpy": "2.4.5",
+    "scipy": "1.17.1",
+    "joblib": "1.5.3",
+    "shap": "0.51.0",
+    "mlflow": "3.12.0",
+    "pandera": "0.31.1"
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-05-25T16:56:42.685192+00:00",
+  "model_details": {
+    "name": "Titanic Survival Classifier",
+    "version": "20260525T165642Z",
+    "type": "Binary classification (sklearn Pipeline)",
+    "algorithm": "RandomForestClassifier(class_weight='balanced_subsample', max_depth=8,\n                       max_features=0.75, min_samples_leaf=4, n_estimators=800,\n                       n_jobs=1, random_state=42)",
+    "framework": "scikit-learn"
+  },
+  "intended_use": {
+    "primary_use": "Predict survival probability for Titanic passengers.",
+    "out_of_scope": [
+      "Any real-time or operational life-safety decision.",
+      "Populations outside the Titanic passenger demographic."
+    ]
+  },
+  "training_data": {
+    "source": "OpenML Titanic dataset (version 1)",
+    "rows": 1047,
+    "test_rows": 262,
+    "stratified": true,
+    "target": "survived",
+    "positive_class": "survived (1)"
+  },
+  "evaluation_results": {
+    "test_roc_auc": 0.8994135802469136,
+    "test_f1": 0.7783783783783784,
+    "test_precision": 0.8470588235294118,
+    "test_recall": 0.72,
+    "test_brier_score": 0.12154964050762317,
+    "decision_threshold": 0.61,
+    "threshold_fn_cost": 1.0,
+    "threshold_fp_cost": 1.0
+  },
+  "fairness": {
+    "overall_f1": 0.7783783783783784,
+    "subgroup_f1": {
+      "sex": {
+        "female": 0.9103448275862069,
+        "male": 0.3
+      },
+      "pclass": {
+        "1": 0.7906976744186046,
+        "2": 0.9803921568627451,
+        "3": 0.5416666666666666
+      },
+      "_age_group": {
+        "child": 0.8571428571428571,
+        "adult": 0.735632183908046,
+        "middle_aged": 0.8108108108108109,
+        "unknown": 0.72
+      }
+    },
+    "alerts": [
+      {
+        "group": "sex",
+        "value": "male",
+        "f1_gap": -0.47837837837837843
+      },
+      {
+        "group": "pclass",
+        "value": "3",
+        "f1_gap": -0.2367117117117118
+      }
+    ]
+  },
+  "limitations": [
+    "Trained on historical data \u2014 causality cannot be inferred.",
+    "Class imbalance handled via class_weight; still imperfect for rare groups.",
+    "Age missing for ~20% of passengers; median imputation may introduce bias.",
+    "Cabin deck is a proxy for socioeconomic status and carries survivorship bias."
+  ],
+  "ethical_considerations": [
+    "Model reflects historical inequalities (sex, class) present in the data.",
+    "Do not use predictions to infer present-day group-level survival outcomes."
+  ],
+  "hyperparameters": {
+    "model__n_estimators": 800,
+    "model__min_samples_leaf": 4,
+    "model__max_features": 0.75,
+    "model__max_depth": 8,
+    "model": "RandomForestClassifier(class_weight='balanced_subsample', n_jobs=1,\n                       random_state=42)",
+    "feature_selection__threshold": "1.25*median"
+  },
+  "cv_best_roc_auc": 0.8605263118664281
+}

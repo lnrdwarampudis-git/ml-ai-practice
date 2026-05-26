@@ -1,0 +1,15 @@
+,dtype
+pclass,category
+name,object
+sex,category
+age,float64
+sibsp,int64
+parch,int64
+ticket,object
+fare,float64
+cabin,object
+embarked,category
+boat,object
+body,float64
+home.dest,object
+survived,int64

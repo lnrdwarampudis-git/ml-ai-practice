@@ -1,0 +1,42 @@
+pclass,name,sex,age,sibsp,parch,ticket,fare,cabin,embarked,boat,body,home.dest,actual_survived,predicted_survived,survival_probability,error_type
+3,"Moran, Miss. Bertha",female,,1,0,371110,24.15,,Q,16,,,1,0,0.42479722480532184,false_negative
+3,"Peter, Master. Michael J",male,,1,1,2668,22.3583,,C,C,,,1,0,0.5877279206577375,false_negative
+1,"Beckwith, Mr. Richard Leonard",male,37.0,1,1,11751,52.5542,D35,S,5,,"New York, NY",1,0,0.36470993541965685,false_negative
+3,"Lobb, Mrs. William Arthur (Cordelia K Stanlick)",female,26.0,1,0,A/5. 3336,16.1,,S,,,,0,1,0.7571657018080877,false_positive
+1,"Compton, Mr. Alexander Taylor Jr",male,37.0,1,1,PC 17756,83.1583,E52,C,,,"Lakewood, NJ",0,1,0.6280552398961992,false_positive
+1,"Lesurer, Mr. Gustave J",male,35.0,0,0,PC 17755,512.3292,B101,C,3,,,1,0,0.2971153144330186,false_negative
+3,"Dahl, Mr. Karl Edwart",male,45.0,0,0,7598,8.05,,S,15,,"Australia Fingal, ND",1,0,0.09257159173257529,false_negative
+3,"Johansson Palmquist, Mr. Oskar Leander",male,26.0,0,0,347070,7.775,,S,15,,,1,0,0.33998467283357764,false_negative
+2,"Wilhelms, Mr. Charles",male,31.0,0,0,244270,13.0,,S,9,,"London, England",1,0,0.14204812255845575,false_negative
+1,"Bradley, Mr. George ('George Arthur Brayton')",male,,0,0,111427,26.55,,S,9,,"Los Angeles, CA",1,0,0.46454302541660725,false_negative
+3,"Hirvonen, Mrs. Alexander (Helga E Lindqvist)",female,22.0,1,1,3101298,12.2875,,S,15,,,1,0,0.45391769122591674,false_negative
+3,"Tornquist, Mr. William Henry",male,25.0,0,0,LINE,0.0,,S,15,,,1,0,0.16507672116778063,false_negative
+1,"Gracie, Col. Archibald IV",male,53.0,0,0,113780,28.5,C51,C,B,,"Washington, DC",1,0,0.40855083637964784,false_negative
+3,"Backstrom, Mrs. Karl Alfred (Maria Mathilda Gustafsson)",female,33.0,3,0,3101278,15.85,,S,,,"Ruotsinphytaa, Finland New York, NY",1,0,0.5445611352663213,false_negative
+1,"Anderson, Mr. Harry",male,48.0,0,0,19952,26.55,E12,S,3,,"New York, NY",1,0,0.31240344610504966,false_negative
+3,"Rosblom, Miss. Salli Helena",female,2.0,1,1,370129,20.2125,,S,,,,0,1,0.8105226088111988,false_positive
+3,"Kink-Heilmann, Mr. Anton",male,29.0,3,1,315153,22.025,,S,2,,,1,0,0.09917222119614139,false_negative
+3,"Kennedy, Mr. John",male,,0,0,368783,7.75,,Q,,,,1,0,0.24106367342167828,false_negative
+3,"Lang, Mr. Fang",male,26.0,0,0,1601,56.4958,,S,14,,,1,0,0.5987562906720801,false_negative
+1,"Williams-Lambert, Mr. Fletcher Fellows",male,,0,0,113510,35.0,C128,S,,,"London, England",0,1,0.6576476565935931,false_positive
+3,"Devaney, Miss. Margaret Delia",female,19.0,0,0,330958,7.8792,,Q,C,,"Kilmacowen, Co Sligo, Ireland New York, NY",1,0,0.534692465341021,false_negative
+1,"Evans, Miss. Edith Corse",female,36.0,0,0,PC 17531,31.6792,A29,C,,,"New York, NY",0,1,0.9853189193735784,false_positive
+3,"Vartanian, Mr. David",male,22.0,0,0,2658,7.225,,C,13 15,,,1,0,0.28921686770741806,false_negative
+1,"Straus, Mrs. Isidor (Rosalie Ida Blun)",female,63.0,1,0,PC 17483,221.7792,C55 C57,S,,,"New York, NY",0,1,0.9595585784505823,false_positive
+3,"Persson, Mr. Ernst Ulrik",male,25.0,1,0,347083,7.775,,S,15,,,1,0,0.1889615048524852,false_negative
+1,"Snyder, Mr. John Pillsbury",male,24.0,1,0,21228,82.2667,B45,S,7,,"Minneapolis, MN",1,0,0.32996489264410395,false_negative
+3,"Peacock, Master. Alfred Edward",male,0.75,1,1,SOTON/O.Q. 3101315,13.775,,S,,,,0,1,0.7035568167358085,false_positive
+3,"Aks, Mrs. Sam (Leah Rosen)",female,18.0,0,1,392091,9.35,,S,13,,"London, England Norfolk, VA",1,0,0.5444740734561061,false_negative
+3,"Buckley, Mr. Daniel",male,21.0,0,0,330920,7.8208,,Q,13,,"Kingwilliamstown, Co Cork, Ireland New York, NY",1,0,0.1975561839680697,false_negative
+1,"Salomon, Mr. Abraham L",male,,0,0,111163,26.0,,S,1,,"New York, NY",1,0,0.13800778324350937,false_negative
+1,"Duff Gordon, Sir. Cosmo Edmund ('Mr Morgan')",male,49.0,1,0,PC 17485,56.9292,A20,C,1,,London / Paris,1,0,0.5408821556438497,false_negative
+1,"Daly, Mr. Peter Denis",male,51.0,0,0,113055,26.55,E17,S,5 9,,"Lima, Peru",1,0,0.2818934562339695,false_negative
+1,"Chevre, Mr. Paul Romaine",male,45.0,0,0,PC 17594,29.7,A9,C,7,,"Paris, France",1,0,0.4040058548937799,false_negative
+1,"Ovies y Rodriguez, Mr. Servando",male,28.5,0,0,PC 17562,27.7208,D43,C,,189.0,"?Havana, Cuba",0,1,0.6524303898203123,false_positive
+1,"Peuchen, Major. Arthur Godfrey",male,52.0,0,0,113786,30.5,C104,S,6,,"Toronto, ON",1,0,0.38864355975101444,false_negative
+1,"Hoyt, Mr. Frederick Maxfield",male,38.0,1,0,19943,90.0,C93,S,D,,"New York, NY /  Stamford CT",1,0,0.2952355646776471,false_negative
+3,"Lindahl, Miss. Agda Thorilda Viktoria",female,25.0,0,0,347071,7.775,,S,,,,0,1,0.675844973577762,false_positive
+1,"Rowe, Mr. Alfred G",male,33.0,0,0,113790,26.55,,S,,109.0,London,0,1,0.6389471932184839,false_positive
+3,"Strom, Miss. Telma Matilda",female,2.0,0,1,347054,10.4625,G6,S,,,,0,1,0.771447976815868,false_positive
+3,"Boulos, Mrs. Joseph (Sultana)",female,,0,2,2678,15.2458,,C,,,"Syria Kent, ON",0,1,0.7732636854951412,false_positive
+3,"Lindell, Mrs. Edvard Bengtsson (Elin Gerda Persson)",female,30.0,1,0,349910,15.55,,S,A,,,0,1,0.64293260307967,false_positive

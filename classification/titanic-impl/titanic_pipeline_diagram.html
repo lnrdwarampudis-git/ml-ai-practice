@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Titanic ML Pipeline — Interactive Flow Diagram</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #f5f4f0;
+    color: #1a1a18;
+    min-height: 100vh;
+    padding: 24px 16px 48px;
+  }
+
+  h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a18;
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+  }
+  .subtitle {
+    font-size: 13px;
+    color: #6b6a63;
+    margin-bottom: 18px;
+  }
+
+  .legend {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+    padding: 10px 14px;
+    background: #ffffff;
+    border: 0.5px solid #d3d1c7;
+    border-radius: 10px;
+    font-size: 12px;
+    color: #6b6a63;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot {
+    width: 12px; height: 12px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  #diagram-root {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  svg { display: block; width: 100%; }
+
+  /* Node hover */
+  .node-g { cursor: pointer; }
+  .node-g:hover rect, .node-g:hover circle { opacity: .88; }
+  .node-g rect { transition: opacity .12s; }
+
+  /* Detail panel */
+  #detail-panel {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 300px;
+    background: #ffffff;
+    border: 0.5px solid #b4b2a9;
+    border-radius: 12px;
+    padding: 16px 18px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    display: none;
+    z-index: 100;
+  }
+  #detail-panel.visible { display: block; }
+
+  #dp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+  #dp-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a18;
+    line-height: 1.35;
+    flex: 1;
+    padding-right: 8px;
+  }
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #888780;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  .close-btn:hover { color: #1a1a18; }
+  #dp-desc {
+    font-size: 12px;
+    color: #5f5e5a;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  #dp-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .tag {
+    font-size: 11px;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+  .tag-new  { background: #d4edda; color: #1a5c2a; }
+  .tag-orig { background: #d4e8f7; color: #0c3f6e; }
+  .tag-file { background: #ececea; color: #444441; }
+  .tag-warn { background: #fef3cd; color: #7a5a00; }
+
+  /* Section labels */
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 600px) {
+    #detail-panel { width: calc(100vw - 32px); right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="diagram-root">
+  <h1>Titanic ML Pipeline</h1>
+  <p class="subtitle">Click any node to see implementation details · Colors indicate module type</p>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#1d9e75"></div>Original logic</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#534ab7"></div>New improvements</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#ba7517"></div>Output artifacts</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#993556"></div>Optional / graceful</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#444441"></div>CLI entry</div>
+  </div>
+
+  <svg id="flow-svg" viewBox="0 0 860 1640" role="img" aria-label="Titanic ML pipeline interactive flow diagram">
+    <defs>
+      <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5"
+              markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M2 1L8 5L2 9" fill="none" stroke="#888780"
+              stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </marker>
+      <marker id="arr-purple" viewBox="0 0 10 10" refX="8" refY="5"
+              markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M2 1L8 5L2 9" fill="none" stroke="#534ab7"
+              stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </marker>
+      <marker id="arr-pink" viewBox="0 0 10 10" refX="8" refY="5"
+              markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M2 1L8 5L2 9" fill="none" stroke="#993556"
+              stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </marker>
+    </defs>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- SECTION LABELS -->
+    <!-- ══════════════════════════════════════════ -->
+    <text x="30"  y="188" font-family="'Segoe UI',system-ui,sans-serif" font-size="10" font-weight="700" letter-spacing="0.8" fill="#1d9e75">TRAIN</text>
+    <text x="270" y="188" font-family="'Segoe UI',system-ui,sans-serif" font-size="10" font-weight="700" letter-spacing="0.8" fill="#888780">SAMPLE-INPUT</text>
+    <text x="450" y="188" font-family="'Segoe UI',system-ui,sans-serif" font-size="10" font-weight="700" letter-spacing="0.8" fill="#1d9e75">PREDICT</text>
+    <text x="680" y="188" font-family="'Segoe UI',system-ui,sans-serif" font-size="10" font-weight="700" letter-spacing="0.8" fill="#1d9e75">MONITOR</text>
+
+    <!-- Dividers -->
+    <line x1="248" y1="180" x2="248" y2="1620" stroke="#d3d1c7" stroke-width="0.5" stroke-dasharray="4 4"/>
+    <line x1="435" y1="180" x2="435" y2="1620" stroke="#d3d1c7" stroke-width="0.5" stroke-dasharray="4 4"/>
+    <line x1="660" y1="180" x2="660" y2="1620" stroke="#d3d1c7" stroke-width="0.5" stroke-dasharray="4 4"/>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- ROW 0: CLI -->
+    <!-- ══════════════════════════════════════════ -->
+    <g class="node-g" onclick="showPanel('cli')">
+      <rect x="270" y="20" width="300" height="46" rx="8" fill="#2c2c2a" stroke="#444441" stroke-width="0.5"/>
+      <text x="420" y="40" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="13" font-weight="600" fill="#f1efe8">CLI entry point</text>
+      <text x="420" y="57" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#b4b2a9">parse_args + main()</text>
+    </g>
+
+    <!-- CLI → four commands fan: train(100) sample(330) predict(540) monitor(770) -->
+    <line x1="420" y1="66" x2="420" y2="78" stroke="#888780" stroke-width="1"/>
+    <line x1="100" y1="78" x2="770" y2="78" stroke="#888780" stroke-width="0.5"/>
+    <line x1="100" y1="78" x2="100" y2="200" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+    <line x1="330" y1="78" x2="330" y2="200" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+    <line x1="540" y1="78" x2="540" y2="200" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+    <line x1="770" y1="78" x2="770" y2="200" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- ROW 1: Sub-commands -->
+    <!-- ══════════════════════════════════════════ -->
+    <!-- train (x=30..170, cx=100) -->
+    <g class="node-g" onclick="showPanel('train-cmd')">
+      <rect x="30" y="200" width="140" height="44" rx="8" fill="#0f6e56" stroke="#1d9e75" stroke-width="0.5"/>
+      <text x="100" y="222" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="13" font-weight="600" fill="#e1f5ee">train</text>
+    </g>
+    <!-- sample-input (x=260..400, cx=330) -->
+    <g class="node-g" onclick="showPanel('sample-cmd')">
+      <rect x="260" y="200" width="140" height="44" rx="8" fill="#444441" stroke="#888780" stroke-width="0.5"/>
+      <text x="330" y="222" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="13" font-weight="600" fill="#d3d1c7">sample-input</text>
+    </g>
+    <!-- predict (x=470..610, cx=540) -->
+    <g class="node-g" onclick="showPanel('predict-cmd')">
+      <rect x="470" y="200" width="140" height="44" rx="8" fill="#0f6e56" stroke="#1d9e75" stroke-width="0.5"/>
+      <text x="540" y="222" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="13" font-weight="600" fill="#e1f5ee">predict</text>
+    </g>
+    <!-- monitor (x=700..840, cx=770) -->
+    <g class="node-g" onclick="showPanel('monitor-cmd')">
+      <rect x="700" y="200" width="140" height="44" rx="8" fill="#0f6e56" stroke="#1d9e75" stroke-width="0.5"/>
+      <text x="770" y="222" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="13" font-weight="600" fill="#e1f5ee">monitor</text>
+    </g>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- SAMPLE-INPUT PIPELINE (x≈330) -->
+    <!-- ══════════════════════════════════════════ -->
+    <line x1="330" y1="244" x2="330" y2="276" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+
+    <!-- load raw data -->
+    <g class="node-g" onclick="showPanel('sample-load')">
+      <rect x="260" y="276" width="150" height="52" rx="8" fill="#2c2c2a" stroke="#5f5e5a" stroke-width="0.5"/>
+      <text x="335" y="296" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#d3d1c7">load_data</text>
+      <text x="335" y="312" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#888780">fix_data_types</text>
+    </g>
+    <line x1="335" y1="328" x2="335" y2="360" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+
+    <!-- drop target + head(N) -->
+    <g class="node-g" onclick="showPanel('sample-drop')">
+      <rect x="260" y="360" width="150" height="52" rx="8" fill="#2c2c2a" stroke="#5f5e5a" stroke-width="0.5"/>
+      <text x="335" y="380" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#d3d1c7">drop target col</text>
+      <text x="335" y="396" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#888780">df.drop(survived).head(N)</text>
+    </g>
+    <line x1="335" y1="412" x2="335" y2="444" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+
+    <!-- output CSV -->
+    <g class="node-g" onclick="showPanel('sample-out')">
+      <rect x="260" y="444" width="150" height="52" rx="8" fill="#412402" stroke="#ba7517" stroke-width="1"/>
+      <text x="335" y="464" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#fac775">sample_passengers.csv</text>
+      <text x="335" y="480" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#ef9f27">default: 10 rows</text>
+    </g>
+    <!-- note: feeds predict -->
+    <path d="M410 470 L440 470 L440 516 L470 516" fill="none" stroke="#ba7517" stroke-width="0.5" stroke-dasharray="3 3" marker-end="url(#arr)"/>
+    <text x="416" y="462" font-family="'Segoe UI',system-ui,sans-serif" font-size="10" fill="#888780">feeds predict →</text>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- TRAIN PIPELINE (x≈100) -->
+    <!-- ══════════════════════════════════════════ -->
+
+    <!-- ── load_data ── -->
+    <line x1="100" y1="244" x2="100" y2="276" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+    <g class="node-g" onclick="showPanel('load')">
+      <rect x="30" y="276" width="210" height="52" rx="8" fill="#085041" stroke="#0f6e56" stroke-width="0.5"/>
+      <text x="135" y="296" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#9fe1cb">load_data + fix_data_types</text>
+      <text x="135" y="312" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#5dcaa5">OpenML fetch · type cast</text>
+    </g>
+
+    <!-- ── split_data ── -->
+    <line x1="100" y1="328" x2="100" y2="360" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+    <g class="node-g" onclick="showPanel('split')">
+      <rect x="30" y="360" width="210" height="52" rx="8" fill="#085041" stroke="#0f6e56" stroke-width="0.5"/>
+      <text x="135" y="380" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#9fe1cb">split_data</text>
+      <text x="135" y="396" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#5dcaa5">Stratified 80/20 before EDA</text>
+    </g>
+
+    <!-- ── EDA (split feeds EDA + feature pipe) ── -->
+    <line x1="100" y1="412" x2="100" y2="444" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+    <g class="node-g" onclick="showPanel('eda')">
+      <rect x="30" y="444" width="210" height="52" rx="8" fill="#085041" stroke="#0f6e56" stroke-width="0.5"/>
+      <text x="135" y="464" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#9fe1cb">save_research_artifacts</text>
+      <text x="135" y="480" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#5dcaa5">EDA on train only</text>
+    </g>
+    <!-- EDA → output artifact -->
+    <path d="M240 470 L270 470 L270 524 L264 524" fill="none" stroke="#ba7517" stroke-width="0.5" stroke-dasharray="3 3" marker-end="url(#arr)"/>
+    <g class="node-g" onclick="showPanel('eda-out')">
+      <rect x="264" y="508" width="180" height="44" rx="8" fill="#633806" stroke="#ba7517" stroke-width="0.5"/>
+      <text x="354" y="526" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#fac775">EDA artifacts</text>
+      <text x="354" y="542" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#ef9f27">CSV · PNG · JSON</text>
+    </g>
+
+    <!-- ── Feature engineering ── -->
+    <line x1="100" y1="496" x2="100" y2="528" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+    <g class="node-g" onclick="showPanel('feat')">
+      <rect x="30" y="528" width="210" height="52" rx="8" fill="#085041" stroke="#0f6e56" stroke-width="0.5"/>
+      <text x="135" y="548" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#9fe1cb">TitanicFeatureEngineer</text>
+      <text x="135" y="564" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#5dcaa5">Title · cabin · ticket · family</text>
+    </g>
+
+    <!-- ── Preprocessor ── -->
+    <line x1="100" y1="580" x2="100" y2="612" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+    <g class="node-g" onclick="showPanel('preprocess')">
+      <rect x="30" y="612" width="210" height="52" rx="8" fill="#085041" stroke="#0f6e56" stroke-width="0.5"/>
+      <text x="135" y="632" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#9fe1cb">build_preprocessor</text>
+      <text x="135" y="648" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#5dcaa5">Impute · scale · OHE</text>
+    </g>
+
+    <!-- ── Feature selection ── -->
+    <line x1="100" y1="664" x2="100" y2="696" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+    <g class="node-g" onclick="showPanel('featsel')">
+      <rect x="30" y="696" width="210" height="52" rx="8" fill="#085041" stroke="#0f6e56" stroke-width="0.5"/>
+      <text x="135" y="716" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#9fe1cb">SelectFromModel</text>
+      <text x="135" y="732" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#5dcaa5">ExtraTrees · median threshold</text>
+    </g>
+
+    <!-- ── tune_model ── -->
+    <line x1="100" y1="748" x2="100" y2="780" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+    <g class="node-g" onclick="showPanel('tunemodel')">
+      <rect x="30" y="780" width="210" height="52" rx="8" fill="#085041" stroke="#0f6e56" stroke-width="0.5"/>
+      <text x="135" y="800" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#9fe1cb">tune_model</text>
+      <text x="135" y="816" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#5dcaa5">RandomizedSearchCV 5-fold</text>
+    </g>
+
+    <!-- ── tune_threshold (IMPROVED) ── -->
+    <line x1="100" y1="832" x2="100" y2="864" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+    <g class="node-g" onclick="showPanel('tunethresh')">
+      <rect x="30" y="864" width="210" height="52" rx="8" fill="#3c3489" stroke="#534ab7" stroke-width="1"/>
+      <text x="135" y="884" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#cecbf6">tune_threshold</text>
+      <text x="135" y="900" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#afa9ec">OOF · cost-matrix aware ✦</text>
+    </g>
+
+    <!-- ── final fit ── -->
+    <line x1="100" y1="916" x2="100" y2="948" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+    <g class="node-g" onclick="showPanel('finalfit')">
+      <rect x="30" y="948" width="210" height="44" rx="8" fill="#085041" stroke="#0f6e56" stroke-width="0.5"/>
+      <text x="135" y="970" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#9fe1cb">final_model.fit</text>
+    </g>
+
+    <!-- ── evaluate_predictions ── -->
+    <line x1="100" y1="992" x2="100" y2="1024" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+    <g class="node-g" onclick="showPanel('evaluate')">
+      <rect x="30" y="1024" width="210" height="52" rx="8" fill="#085041" stroke="#0f6e56" stroke-width="0.5"/>
+      <text x="135" y="1044" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#9fe1cb">evaluate_predictions</text>
+      <text x="135" y="1060" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#5dcaa5">ROC-AUC · F1 · Brier · PR</text>
+    </g>
+
+    <!-- ── save_model_artifacts ── -->
+    <line x1="100" y1="1076" x2="100" y2="1108" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+    <g class="node-g" onclick="showPanel('saveartifacts')">
+      <rect x="30" y="1108" width="210" height="52" rx="8" fill="#085041" stroke="#0f6e56" stroke-width="0.5"/>
+      <text x="135" y="1128" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#9fe1cb">save_model_artifacts</text>
+      <text x="135" y="1144" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#5dcaa5">versioned .joblib + profile</text>
+    </g>
+
+    <!-- ── outputs block ── -->
+    <line x1="100" y1="1160" x2="100" y2="1192" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+    <g class="node-g" onclick="showPanel('outputs')">
+      <rect x="30" y="1192" width="420" height="52" rx="8" fill="#412402" stroke="#ba7517" stroke-width="1"/>
+      <text x="240" y="1212" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#fac775">All training artifact outputs</text>
+      <text x="240" y="1228" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#ef9f27">model · metrics · profile · card · env · shap · fairness</text>
+    </g>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- NEW IMPROVEMENTS (right of train, x≈270-450) -->
+    <!-- ══════════════════════════════════════════ -->
+
+    <!-- SHAP -->
+    <g class="node-g" onclick="showPanel('shap')">
+      <rect x="264" y="1024" width="180" height="52" rx="8" fill="#3c3489" stroke="#534ab7" stroke-width="1"/>
+      <text x="354" y="1044" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#cecbf6">save_shap_artifacts ✦</text>
+      <text x="354" y="1060" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#afa9ec">TreeExplainer · waterfall</text>
+    </g>
+    <path d="M240 1050 L264 1050" fill="none" stroke="#534ab7" stroke-width="0.5" stroke-dasharray="3 3" marker-end="url(#arr-purple)"/>
+
+    <!-- Fairness -->
+    <g class="node-g" onclick="showPanel('fairness')">
+      <rect x="264" y="948" width="180" height="52" rx="8" fill="#3c3489" stroke="#534ab7" stroke-width="1"/>
+      <text x="354" y="968" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#cecbf6">evaluate_subgroups ✦</text>
+      <text x="354" y="984" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#afa9ec">sex · pclass · age_group</text>
+    </g>
+    <path d="M240 970 L264 970" fill="none" stroke="#534ab7" stroke-width="0.5" stroke-dasharray="3 3" marker-end="url(#arr-purple)"/>
+
+    <!-- Model Card -->
+    <g class="node-g" onclick="showPanel('modelcard')">
+      <rect x="264" y="864" width="180" height="52" rx="8" fill="#3c3489" stroke="#534ab7" stroke-width="1"/>
+      <text x="354" y="884" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#cecbf6">save_model_card ✦</text>
+      <text x="354" y="900" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#afa9ec">EU AI Act · Google spec</text>
+    </g>
+    <path d="M240 890 L264 890" fill="none" stroke="#534ab7" stroke-width="0.5" stroke-dasharray="3 3" marker-end="url(#arr-purple)"/>
+
+    <!-- MLflow -->
+    <g class="node-g" onclick="showPanel('mlflow')">
+      <rect x="264" y="780" width="180" height="52" rx="8" fill="#4b1528" stroke="#993556" stroke-width="1"/>
+      <text x="354" y="800" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#f4c0d1">log_to_mlflow ✦</text>
+      <text x="354" y="816" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#ed93b1">optional · graceful fallback</text>
+    </g>
+    <path d="M240 806 L264 806" fill="none" stroke="#993556" stroke-width="0.5" stroke-dasharray="3 3" marker-end="url(#arr-pink)"/>
+
+    <!-- Environment snapshot -->
+    <g class="node-g" onclick="showPanel('env')">
+      <rect x="264" y="696" width="180" height="52" rx="8" fill="#3c3489" stroke="#534ab7" stroke-width="1"/>
+      <text x="354" y="716" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#cecbf6">save_environment ✦</text>
+      <text x="354" y="732" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#afa9ec">Python · lib versions</text>
+    </g>
+    <path d="M240 722 L264 722" fill="none" stroke="#534ab7" stroke-width="0.5" stroke-dasharray="3 3" marker-end="url(#arr-purple)"/>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- PREDICT PIPELINE (x≈540) -->
+    <!-- ══════════════════════════════════════════ -->
+    <line x1="540" y1="244" x2="540" y2="340" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+
+    <!-- Schema validation -->
+    <g class="node-g" onclick="showPanel('schema')">
+      <rect x="470" y="340" width="180" height="52" rx="8" fill="#3c3489" stroke="#534ab7" stroke-width="1"/>
+      <text x="560" y="360" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#cecbf6">schema validation ✦</text>
+      <text x="560" y="376" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#afa9ec">pandera · ranges · categories</text>
+    </g>
+
+    <!-- sample CSV arrow lands here at y=516; draw a separate entry line -->
+    <line x1="560" y1="392" x2="560" y2="424" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+
+    <!-- Load model -->
+    <g class="node-g" onclick="showPanel('loadmodel')">
+      <rect x="470" y="424" width="180" height="52" rx="8" fill="#085041" stroke="#0f6e56" stroke-width="0.5"/>
+      <text x="560" y="444" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#9fe1cb">joblib.load model</text>
+      <text x="560" y="460" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#5dcaa5">predict_proba guard</text>
+    </g>
+
+    <line x1="560" y1="476" x2="560" y2="508" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+
+    <!-- Column check -->
+    <g class="node-g" onclick="showPanel('colcheck')">
+      <rect x="470" y="508" width="180" height="52" rx="8" fill="#085041" stroke="#0f6e56" stroke-width="0.5"/>
+      <text x="560" y="528" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#9fe1cb">column completeness</text>
+      <text x="560" y="544" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#5dcaa5">vs training_profile.json</text>
+    </g>
+
+    <line x1="560" y1="560" x2="560" y2="592" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+
+    <!-- predict + confidence -->
+    <g class="node-g" onclick="showPanel('confidenceflag')">
+      <rect x="470" y="592" width="180" height="52" rx="8" fill="#3c3489" stroke="#534ab7" stroke-width="1"/>
+      <text x="560" y="612" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#cecbf6">predict + low_confidence ✦</text>
+      <text x="560" y="628" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#afa9ec">±0.10 band · env-var</text>
+    </g>
+
+    <line x1="560" y1="644" x2="560" y2="676" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+
+    <!-- Output CSV -->
+    <g class="node-g" onclick="showPanel('outputcsv')">
+      <rect x="470" y="676" width="180" height="52" rx="8" fill="#412402" stroke="#ba7517" stroke-width="1"/>
+      <text x="560" y="696" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#fac775">predictions.csv</text>
+      <text x="560" y="712" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#ef9f27">prob · pred · threshold · flag</text>
+    </g>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- MONITOR PIPELINE (x≈770) -->
+    <!-- ══════════════════════════════════════════ -->
+    <line x1="770" y1="244" x2="770" y2="340" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+
+    <!-- Missing rate drift -->
+    <g class="node-g" onclick="showPanel('missingdrift')">
+      <rect x="690" y="340" width="160" height="52" rx="8" fill="#085041" stroke="#0f6e56" stroke-width="0.5"/>
+      <text x="770" y="360" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#9fe1cb">missing-rate drift</text>
+      <text x="770" y="376" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#5dcaa5">per-column alert</text>
+    </g>
+
+    <line x1="770" y1="392" x2="770" y2="424" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+
+    <!-- KS drift (improved) -->
+    <g class="node-g" onclick="showPanel('ksdrift')">
+      <rect x="690" y="424" width="160" height="52" rx="8" fill="#3c3489" stroke="#534ab7" stroke-width="1"/>
+      <text x="770" y="444" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#cecbf6">KS distribution drift ✦</text>
+      <text x="770" y="460" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#afa9ec">quantile-based storage</text>
+    </g>
+
+    <line x1="770" y1="476" x2="770" y2="508" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+
+    <!-- Training profile note -->
+    <g class="node-g" onclick="showPanel('profile')">
+      <rect x="690" y="508" width="160" height="52" rx="8" fill="#3c3489" stroke="#534ab7" stroke-width="1"/>
+      <text x="770" y="528" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#cecbf6">training_profile.json ✦</text>
+      <text x="770" y="544" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#afa9ec">100 quantiles, not raw values</text>
+    </g>
+
+    <line x1="770" y1="560" x2="770" y2="592" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+
+    <!-- Monitor report -->
+    <g class="node-g" onclick="showPanel('monitorreport')">
+      <rect x="690" y="592" width="160" height="52" rx="8" fill="#412402" stroke="#ba7517" stroke-width="1"/>
+      <text x="770" y="612" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="12" font-weight="600" fill="#fac775">monitoring_report.json</text>
+      <text x="770" y="628" text-anchor="middle" dominant-baseline="central"
+            font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#ef9f27">drift alerts flagged</text>
+    </g>
+
+    <!-- ✦ legend note -->
+    <text x="30" y="1290" font-family="'Segoe UI',system-ui,sans-serif" font-size="11" fill="#888780">✦ = new improvement added in this iteration</text>
+  </svg>
+</div>
+
+<!-- Detail panel (fixed bottom-right) -->
+<div id="detail-panel">
+  <div id="dp-header">
+    <div id="dp-title">Node title</div>
+    <button class="close-btn" onclick="hidePanel()">×</button>
+  </div>
+  <p id="dp-desc">Description</p>
+  <div id="dp-tags"></div>
+</div>
+
+<script>
+const DATA = {
+  cli: {
+    title: "CLI entry point — parse_args + main()",
+    desc: "Subcommand router accepting train, predict, monitor, sample-input. Added --fn-cost and --fp-cost flags for cost-matrix threshold tuning. n_jobs is now read from ML_N_JOBS env var (default 1, set to -1 for all cores).",
+    tags: [["original","orig"],["n_jobs env-var","new"]]
+  },
+  "sample-cmd": {
+    title: "sample-input command",
+    desc: "Utility command that exports N raw passenger rows (without the survived target column) as a CSV file. Use this to quickly generate realistic test input for the predict command without hand-crafting a CSV. Default: 10 rows.",
+    tags: [["original","orig"],["--rows N","orig"],["--output-csv","orig"]]
+  },
+  "sample-load": {
+    title: "load_data + fix_data_types (inside sample-input)",
+    desc: "Reuses the same load_data() and fix_data_types() functions as the train pipeline. Loads the full OpenML Titanic dataset and casts column types. Then the target column is dropped before export.",
+    tags: [["original","orig"],["shared with train","orig"]]
+  },
+  "sample-drop": {
+    title: "drop target + head(N)",
+    desc: "Calls df.drop(columns=['survived']) to remove the label, then takes the first N rows via .head(rows). N is set by the --rows CLI argument (default 10). The result is a raw-feature-only CSV identical in schema to what predict expects.",
+    tags: [["original","orig"],["N configurable","orig"]]
+  },
+  "sample-out": {
+    title: "sample_passengers.csv",
+    desc: "Output file: N rows of raw passenger features with no target column. Saved to --output-csv path (default: artifacts_end_to_end/sample_passengers.csv). Feed this directly to the predict command to verify the inference pipeline end-to-end.",
+    tags: [["csv","file"],["feeds predict","orig"]]
+  },
+  "train-cmd": {
+    title: "train command",
+    desc: "Runs full pipeline: data load → EDA → tune → fit → evaluate → SHAP → fairness → model card → MLflow. Exposes --fn-cost / --fp-cost to encode business cost of false negatives vs false positives.",
+    tags: [["original","orig"],["+fn-cost flag","new"],["+fp-cost flag","new"]]
+  },
+  "predict-cmd": {
+    title: "predict command",
+    desc: "Loads versioned model, validates input schema with pandera, scores rows, and outputs survival_probability + low_confidence flag column.",
+    tags: [["original","orig"],["+schema validation","new"],["+confidence flag","new"]]
+  },
+  "monitor-cmd": {
+    title: "monitor command",
+    desc: "Reads training_profile.json and incoming CSV. Checks missing-rate drift and KS distribution drift. Profile now stores 100 quantiles per feature (not raw arrays) so the JSON stays compact even at scale.",
+    tags: [["original","orig"],["+KS quantile storage","new"]]
+  },
+  load: {
+    title: "load_data + fix_data_types",
+    desc: "Fetches OpenML Titanic v1 as a DataFrame. Casts pclass, sex, embarked to category and survived to int. Unchanged from original.",
+    tags: [["original","orig"]]
+  },
+  split: {
+    title: "split_data — stratified 80/20",
+    desc: "Stratified 80/20 train/test split using RANDOM_STATE=42. The split happens before any EDA — critical for preventing test-set leakage into feature engineering decisions.",
+    tags: [["original","orig"],["leakage-free","new"]]
+  },
+  eda: {
+    title: "save_research_artifacts",
+    desc: "Produces missingness report, schema CSV, correlation matrix, VIF report, and grouped survival stats — all computed on the training set only. Also calls save_research_plots() for 6 PNG charts.",
+    tags: [["original","orig"],["train-only EDA","orig"]]
+  },
+  "eda-out": {
+    title: "EDA artifact outputs",
+    desc: "research_missingness_report.csv, schema.csv, numeric_summary.csv, categorical_summary.csv, numeric_correlation_matrix.csv, vif_report.csv, research_decisions.json, plot_target_balance.png, plot_missingness.png, plot_fare_distribution.png, plot_survival_by_family_size.png, plot_survival_by_title.png, plot_cabin_missing_by_pclass.png.",
+    tags: [["csv","file"],["json","file"],["png","file"]]
+  },
+  feat: {
+    title: "TitanicFeatureEngineer (sklearn transformer)",
+    desc: "Custom BaseEstimator+TransformerMixin. Extracts: title from name (with rare bucketing learned in fit()), has_cabin / cabin_deck / cabin_count, ticket_prefix, family_size, is_alone, fare_per_person, home_dest_known. Drops leakage + raw text columns.",
+    tags: [["original","orig"],["sklearn-compatible","orig"]]
+  },
+  preprocess: {
+    title: "build_preprocessor (ColumnTransformer)",
+    desc: "Numeric pipeline: median imputation with missing indicators + StandardScaler. Categorical pipeline: most-frequent imputation + OneHotEncoder (handle_unknown=ignore, min_frequency=5). Wrapped in ColumnTransformer.",
+    tags: [["original","orig"]]
+  },
+  featsel: {
+    title: "SelectFromModel — ExtraTreesClassifier",
+    desc: "ExtraTrees with 200 estimators selects features above the median importance threshold. n_jobs now reads from N_JOBS env var instead of hardcoded 1.",
+    tags: [["original","orig"],["+n_jobs env-var","new"]]
+  },
+  tunemodel: {
+    title: "tune_model — RandomizedSearchCV",
+    desc: "Searches over LogisticRegression (L1/L2, C in [0.05,10]) and RandomForestClassifier (depth, leaf size, max_features). 5-fold StratifiedKFold. Scores: roc_auc, f1, average_precision, balanced_accuracy. n_jobs from env var.",
+    tags: [["original","orig"],["+n_jobs env-var","new"]]
+  },
+  tunethresh: {
+    title: "tune_threshold ✦ IMPROVED",
+    desc: "Uses cross_val_predict OOF probabilities — no data leakage. NEW: minimises fn_cost×FN + fp_cost×FP instead of just F1. Exposed as --fn-cost / --fp-cost CLI args. Default fn=fp=1.0 reproduces original F1 behaviour exactly.",
+    tags: [["improved","new"],["OOF no-leakage","orig"],["cost-matrix","new"]]
+  },
+  finalfit: {
+    title: "final_model.fit — clone + refit",
+    desc: "Clones the best estimator from RandomizedSearchCV and refits on the full training set. Ensures the saved model has seen all 80% of training data, not just a CV fold.",
+    tags: [["original","orig"]]
+  },
+  evaluate: {
+    title: "evaluate_predictions",
+    desc: "Computes accuracy, balanced_accuracy, precision, recall, F1, ROC-AUC, average_precision, Brier score, confusion matrix, and full classification_report. Called twice: default threshold (0.5) and tuned threshold.",
+    tags: [["original","orig"]]
+  },
+  shap: {
+    title: "save_shap_artifacts ✦ NEW",
+    desc: "TreeExplainer for forest models, Explainer+IndependentMasker for linear models. Outputs: global SHAP bar chart, beeswarm plot, per-sample mean |SHAP| CSV, waterfall for worst false negative. Gracefully skips if shap not installed (pip install shap).",
+    tags: [["new","new"],["TreeExplainer","new"],["graceful fallback","warn"]]
+  },
+  fairness: {
+    title: "evaluate_subgroups ✦ NEW",
+    desc: "Disaggregated metrics for sex, pclass, and age_group buckets (child/teen/adult/middle_aged/senior). Fires a WARNING log when any subgroup F1 is >0.10 below overall. Saves fairness_report.csv, fairness_report.json, and plot_fairness_f1.png.",
+    tags: [["new","new"],["fairness alerts","new"],["sex + pclass + age","new"]]
+  },
+  modelcard: {
+    title: "save_model_card ✦ NEW",
+    desc: "Writes model_card.json covering: model details, intended use, out-of-scope uses, training data provenance, test metrics by threshold, fairness alerts, limitations, ethical considerations. Compatible with Google Model Card spec and EU AI Act documentation requirements.",
+    tags: [["new","new"],["governance","new"],["EU AI Act","new"]]
+  },
+  mlflow: {
+    title: "log_to_mlflow ✦ NEW (optional)",
+    desc: "Logs params (best_params + fn/fp costs), metrics (cv ROC-AUC, test F1, Brier), and artifact files to MLflow under experiment 'titanic_survival'. Silently skips if mlflow not installed or tracking server unreachable — training run always completes. pip install mlflow to enable.",
+    tags: [["new","new"],["optional","warn"],["graceful fallback","warn"]]
+  },
+  env: {
+    title: "save_environment_snapshot ✦ NEW",
+    desc: "Saves environment.json with: Python version, platform, and versions of sklearn, pandas, numpy, scipy, shap, mlflow, pandera. Saved alongside the model for reproducibility audits and debugging version-mismatch issues in production.",
+    tags: [["new","new"],["reproducibility","new"]]
+  },
+  saveartifacts: {
+    title: "save_model_artifacts",
+    desc: "Saves versioned .joblib (filename includes UTC timestamp + first 8 chars of SHA1 hash) AND a stable pointer titanic_survival_pipeline.joblib. Also saves: cv_results.csv, feature_importance.csv, all evaluation plots, error_analysis.csv, test_predictions.csv, and training_profile.json.",
+    tags: [["original","orig"],["versioned filename","orig"],["SHA1 hash","orig"]]
+  },
+  outputs: {
+    title: "All training artifact outputs",
+    desc: "titanic_survival_pipeline_{ts}_{sha1}.joblib, titanic_survival_pipeline.joblib (stable pointer), metrics.json, training_profile.json, model_card.json, environment.json, fairness_report.json, fairness_report.csv, shap_importance.csv, feature_importance.csv, cv_results.csv, test_predictions.csv, error_analysis.csv, plus ~12 PNG plots.",
+    tags: [["joblib","file"],["json","file"],["csv","file"],["png","file"]]
+  },
+  schema: {
+    title: "Input schema validation ✦ NEW (pandera)",
+    desc: "Validates: age (0–120, nullable), fare (≥0, nullable), sibsp/parch (0–20, nullable), pclass (category: 1/2/3), sex (category: male/female), embarked (category: C/Q/S, nullable). Uses lazy=True so ALL errors surface at once. Gracefully skips if pandera not installed.",
+    tags: [["new","new"],["pandera","new"],["graceful fallback","warn"]]
+  },
+  loadmodel: {
+    title: "joblib.load + predict_proba guard",
+    desc: "Loads the .joblib pipeline. Verifies the model has predict_proba — raises TypeError with a clear message if not. Reads saved tuned threshold from metrics.json; falls back to 0.5 if file not found.",
+    tags: [["original","orig"],["guard clause","orig"]]
+  },
+  colcheck: {
+    title: "Column completeness check",
+    desc: "Compares incoming CSV columns against raw_columns list stored in training_profile.json. Raises ValueError listing all missing columns. Logs a warning for unexpected extra columns (doesn't block inference).",
+    tags: [["original","orig"]]
+  },
+  confidenceflag: {
+    title: "predict + low_confidence flag ✦ NEW",
+    desc: "Scores all rows with predict_proba. NEW: adds low_confidence=1 for rows where the probability falls within ±CONFIDENCE_BAND of the threshold. Default band is ±0.10, configurable via ML_CONFIDENCE_BAND environment variable. Flag these rows for human review.",
+    tags: [["new","new"],["confidence band","new"],["env-var configurable","new"]]
+  },
+  outputcsv: {
+    title: "predictions.csv output",
+    desc: "Output columns: all original input features + survival_probability (float), predicted_survived (0/1), decision_threshold (float), low_confidence (0/1). Rows with low_confidence=1 are near the decision boundary and warrant human review.",
+    tags: [["csv","file"]]
+  },
+  missingdrift: {
+    title: "Missing-rate drift check",
+    desc: "For each column in training_profile.json, computes current missing rate in the incoming CSV and flags if the absolute change exceeds --missing-rate-alert threshold (default 0.15). Unchanged from original implementation.",
+    tags: [["original","orig"]]
+  },
+  ksdrift: {
+    title: "KS distribution drift ✦ IMPROVED",
+    desc: "Two-sample KS test comparing training vs incoming distributions for each numeric feature. IMPROVED: training profile now stores 100 quantiles per feature instead of the full raw value array, keeping the JSON file compact for large datasets.",
+    tags: [["improved","new"],["KS test","orig"],["quantile storage","new"]]
+  },
+  profile: {
+    title: "training_profile.json ✦ IMPROVED",
+    desc: "Stores: trained_at timestamp, row_count, raw_columns list, engineered_columns list, target_distribution, raw_missing_rate, engineered_missing_rate. IMPROVED: numeric_train_stats now stores 100 quantiles (not raw arrays) per feature for compact drift detection.",
+    tags: [["improved","new"],["100 quantiles","new"],["was: raw arrays","warn"]]
+  },
+  monitorreport: {
+    title: "monitoring_report.json output",
+    desc: "Contains: checked_at (UTC ISO), row_count, missing_required_columns list, extra_columns list, missing_rate_drift table (with alert flags), distribution_drift table (KS statistic, p-value, train/incoming mean+std, alert flag).",
+    tags: [["json","file"]]
+  }
+};
+
+function showPanel(id) {
+  const d = DATA[id];
+  if (!d) return;
+  document.getElementById('dp-title').textContent = d.title;
+  document.getElementById('dp-desc').textContent = d.desc;
+  const tagsEl = document.getElementById('dp-tags');
+  tagsEl.innerHTML = d.tags.map(([label, type]) => {
+    const cls = type === 'new' ? 'tag-new' : type === 'file' ? 'tag-file' : type === 'warn' ? 'tag-warn' : 'tag-orig';
+    return `<span class="tag ${cls}">${label}</span>`;
+  }).join('');
+  document.getElementById('detail-panel').classList.add('visible');
+}
+
+function hidePanel() {
+  document.getElementById('detail-panel').classList.remove('visible');
+}
+
+// Close panel when clicking SVG background
+document.getElementById('flow-svg').addEventListener('click', function(e) {
+  if (e.target === this || e.target.tagName === 'svg') hidePanel();
+});
+</script>
+</body>
+</html>

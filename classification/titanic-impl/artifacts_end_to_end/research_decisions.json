@@ -1,0 +1,111 @@
+{
+  "problem_definition": {
+    "problem_type": "binary_classification",
+    "target": "survived",
+    "positive_class": "survived",
+    "prediction_time": "Before knowing rescue/death outcome."
+  },
+  "metric_policy": {
+    "primary": "roc_auc",
+    "secondary": [
+      "f1",
+      "precision",
+      "recall",
+      "average_precision"
+    ],
+    "calibration": [
+      "brier_score",
+      "calibration_curve"
+    ]
+  },
+  "column_policy": {
+    "drop_leakage": [
+      "boat",
+      "body"
+    ],
+    "engineer_then_drop": {
+      "name": [
+        "title"
+      ],
+      "cabin": [
+        "has_cabin",
+        "cabin_deck",
+        "cabin_count"
+      ],
+      "ticket": [
+        "ticket_prefix"
+      ],
+      "home.dest": [
+        "home_dest_known"
+      ]
+    },
+    "keep": [
+      "pclass",
+      "sex",
+      "age",
+      "sibsp",
+      "parch",
+      "fare",
+      "embarked"
+    ]
+  },
+  "missing_value_policy": {
+    "numeric": "median imputation with missing indicators inside pipeline",
+    "categorical": "most-frequent imputation plus one-hot encoding",
+    "cabin": "preserve missingness as has_cabin before dropping raw cabin"
+  },
+  "grouped_research": {
+    "age_missing_by_pclass": {
+      "1": 0.10040160642570281,
+      "2": 0.06363636363636363,
+      "3": 0.29411764705882354
+    },
+    "cabin_missing_by_pclass": {
+      "1": 0.19678714859437751,
+      "2": 0.9272727272727272,
+      "3": 0.9844290657439446
+    },
+    "survival_by_sex": {
+      "female": 0.7204301075268817,
+      "male": 0.19555555555555557
+    },
+    "survival_by_pclass": {
+      "1": 0.6184738955823293,
+      "2": 0.42272727272727273,
+      "3": 0.2647058823529412
+    },
+    "survival_by_has_cabin": {
+      "0": 0.3077858880778589,
+      "1": 0.6533333333333333
+    },
+    "survival_by_family_size": {
+      "1": 0.2939346811819596,
+      "2": 0.5561797752808989,
+      "3": 0.6016260162601627,
+      "4": 0.7428571428571429,
+      "5": 0.2,
+      "6": 0.2,
+      "7": 0.26666666666666666,
+      "8": 0.0,
+      "11": 0.0
+    },
+    "title_summary": {
+      "count": {
+        "Master": 51,
+        "Miss": 214,
+        "Mr": 606,
+        "Mrs": 156,
+        "Nobility": 3,
+        "Officer": 17
+      },
+      "mean": {
+        "Master": 0.49019607843137253,
+        "Miss": 0.6682242990654206,
+        "Mr": 0.16996699669966997,
+        "Mrs": 0.7884615384615384,
+        "Nobility": 0.6666666666666666,
+        "Officer": 0.23529411764705882
+      }
+    }
+  }
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Titanic ML — Algorithm Benchmark Report</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:#f5f4f0;
+       color:#1a1a18;padding:28px 36px 64px;max-width:1150px;margin:auto}
+  h1{font-size:26px;font-weight:700;border-bottom:3px solid #1d9e75;
+     padding-bottom:10px;margin-bottom:6px}
+  h2{font-size:17px;font-weight:600;color:#0f5c3a;margin:36px 0 10px}
+  p{font-size:13px;color:#555;margin:4px 0 10px;line-height:1.65}
+  .meta{font-size:12px;color:#888;margin-bottom:28px}
+  .note{font-size:12px;color:#666;background:#fff;border-left:3px solid #1d9e75;
+         padding:8px 12px;border-radius:0 6px 6px 0;margin-bottom:12px}
+  .alert{color:#c0392b;font-weight:600;margin-bottom:8px}
+  table{border-collapse:collapse;width:100%;font-size:12px;margin-bottom:20px}
+  th{background:#0f5c3a;color:#fff;padding:8px 10px;text-align:left}
+  td{padding:6px 10px;border-bottom:0.5px solid #d3d1c7}
+  tr:nth-child(even) td{background:#f0efe9}
+  img{display:block;margin:14px 0 28px;border:0.5px solid #ccc;
+      border-radius:8px;max-width:100%;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+  footer{margin-top:48px;font-size:11px;color:#aaa;
+          border-top:0.5px solid #ddd;padding-top:12px;line-height:1.8}
+</style>
+</head>
+<body>
+
+<h1>Titanic Survival — Algorithm Benchmark Report</h1>
+<p class="meta">
+  Generated 2026-05-25 20:59 UTC
+  &nbsp;|&nbsp; Champion: <b>RandomForest</b>
+  &nbsp;|&nbsp; Data: OpenML Titanic v1 (fetch_openml)
+  &nbsp;|&nbsp; Reference pipeline: titanic-ml-pipeline.py
+</p>
+
+<h2>Phase 1 — EDA (train-set only)</h2>
+<p class="note">All EDA computed on the training split only — no test-set leakage.
+See eda_*.csv / eda_*.png files.</p>
+<img src="eda_survival_by_sex.png" style="max-width:500px">
+<img src="eda_age_distribution.png" style="max-width:600px">
+
+<h2>Phase 2 — Algorithm Screening (5-fold Stratified CV)</h2>
+<p class="note">All 15 classifiers share identical feature engineering and preprocessing
+from the reference pipeline. Only the final estimator changes.
+Overfit gap = Train AUC − CV AUC; values &gt; 0.05 shown in red.</p>
+<table>
+  <tr><th>Model</th><th>ROC-AUC</th><th>F1</th><th>Avg Precision</th>
+      <th>Bal. Accuracy</th><th>Overfit Gap</th><th>CV Time (s)</th></tr>
+  <tr><td><b>GradientBoosting</b></td><td><span style="background:#c8f5c8;padding:2px 7px;border-radius:4px;font-weight:600">0.859</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.736</span></td><td><span style="background:#c8f5c8;padding:2px 7px;border-radius:4px;font-weight:600">0.832</span></td><td><span style="background:#fff3c8;padding:2px 7px;border-radius:4px;font-weight:600">0.788</span></td><td style='color:#c0392b;font-weight:600'>0.129</td><td>1.35</td></tr>
+<tr><td><b>XGBoost</b></td><td><span style="background:#c8f5c8;padding:2px 7px;border-radius:4px;font-weight:600">0.859</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.742</span></td><td><span style="background:#c8f5c8;padding:2px 7px;border-radius:4px;font-weight:600">0.827</span></td><td><span style="background:#fff3c8;padding:2px 7px;border-radius:4px;font-weight:600">0.791</span></td><td style='color:#c0392b;font-weight:600'>0.116</td><td>2.43</td></tr>
+<tr><td><b>🏆 RandomForest</b></td><td><span style="background:#c8f5c8;padding:2px 7px;border-radius:4px;font-weight:600">0.857</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.735</span></td><td><span style="background:#c8f5c8;padding:2px 7px;border-radius:4px;font-weight:600">0.826</span></td><td><span style="background:#fff3c8;padding:2px 7px;border-radius:4px;font-weight:600">0.785</span></td><td style='color:#c0392b;font-weight:600'>0.077</td><td>1.8</td></tr>
+<tr><td><b>MLP</b></td><td><span style="background:#c8f5c8;padding:2px 7px;border-radius:4px;font-weight:600">0.855</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.717</span></td><td><span style="background:#fff3c8;padding:2px 7px;border-radius:4px;font-weight:600">0.819</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.774</span></td><td style='color:#27ae60;font-weight:600'>0.022</td><td>0.53</td></tr>
+<tr><td><b>ExtraTrees</b></td><td><span style="background:#c8f5c8;padding:2px 7px;border-radius:4px;font-weight:600">0.852</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.733</span></td><td><span style="background:#c8f5c8;padding:2px 7px;border-radius:4px;font-weight:600">0.822</span></td><td><span style="background:#fff3c8;padding:2px 7px;border-radius:4px;font-weight:600">0.783</span></td><td style='color:#c0392b;font-weight:600'>0.061</td><td>1.29</td></tr>
+<tr><td><b>LDA</b></td><td><span style="background:#c8f5c8;padding:2px 7px;border-radius:4px;font-weight:600">0.846</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.736</span></td><td><span style="background:#fff3c8;padding:2px 7px;border-radius:4px;font-weight:600">0.818</span></td><td><span style="background:#fff3c8;padding:2px 7px;border-radius:4px;font-weight:600">0.787</span></td><td style='color:#27ae60;font-weight:600'>0.015</td><td>0.24</td></tr>
+<tr><td><b>LogisticRegression</b></td><td><span style="background:#c8f5c8;padding:2px 7px;border-radius:4px;font-weight:600">0.844</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.742</span></td><td><span style="background:#fff3c8;padding:2px 7px;border-radius:4px;font-weight:600">0.815</span></td><td><span style="background:#fff3c8;padding:2px 7px;border-radius:4px;font-weight:600">0.790</span></td><td style='color:#27ae60;font-weight:600'>0.022</td><td>0.24</td></tr>
+<tr><td><b>AdaBoost</b></td><td><span style="background:#c8f5c8;padding:2px 7px;border-radius:4px;font-weight:600">0.841</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.725</span></td><td><span style="background:#fff3c8;padding:2px 7px;border-radius:4px;font-weight:600">0.801</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.778</span></td><td style='color:#27ae60;font-weight:600'>0.024</td><td>0.46</td></tr>
+<tr><td><b>SVM_RBF</b></td><td><span style="background:#c8f5c8;padding:2px 7px;border-radius:4px;font-weight:600">0.838</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.735</span></td><td><span style="background:#fff3c8;padding:2px 7px;border-radius:4px;font-weight:600">0.793</span></td><td><span style="background:#fff3c8;padding:2px 7px;border-radius:4px;font-weight:600">0.785</span></td><td style='color:#27ae60;font-weight:600'>0.048</td><td>0.66</td></tr>
+<tr><td><b>QDA</b></td><td><span style="background:#c8f5c8;padding:2px 7px;border-radius:4px;font-weight:600">0.826</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.700</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.747</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.756</span></td><td style='color:#27ae60;font-weight:600'>0.030</td><td>0.27</td></tr>
+<tr><td><b>KNN</b></td><td><span style="background:#c8f5c8;padding:2px 7px;border-radius:4px;font-weight:600">0.825</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.698</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.744</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.758</span></td><td style='color:#c0392b;font-weight:600'>0.174</td><td>0.43</td></tr>
+<tr><td><b>DecisionTree</b></td><td><span style="background:#c8f5c8;padding:2px 7px;border-radius:4px;font-weight:600">0.825</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.731</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.750</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.779</span></td><td style='color:#c0392b;font-weight:600'>0.088</td><td>0.16</td></tr>
+<tr><td><b>SGD</b></td><td><span style="background:#fff3c8;padding:2px 7px;border-radius:4px;font-weight:600">0.809</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.706</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.750</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.760</span></td><td style='color:#27ae60;font-weight:600'>0.039</td><td>0.27</td></tr>
+<tr><td><b>GaussianNB</b></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.774</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.593</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.643</span></td><td><span style="background:#f5c8c8;padding:2px 7px;border-radius:4px;font-weight:600">0.581</span></td><td style='color:#27ae60;font-weight:600'>0.021</td><td>0.17</td></tr>
+</table>
+<img src="screening_heatmap.png">
+<img src="cv_boxplot_roc_auc.png">
+<img src="cv_boxplot_f1.png">
+<img src="overfit_gap.png">
+
+
+        <h2>Phase 3 — Statistical Significance</h2>
+        <p class="note">Friedman χ² test (global H₀: all models perform equally) +
+        pairwise Wilcoxon signed-rank vs champion with Bonferroni correction (α = 0.05).</p>
+        <p><b>Friedman:</b> χ² = 40.34916446789795, p = 0.00012143461634027679,
+        result = <span style="color:#c0392b;font-weight:bold">Significant</span></p>
+        <p>Champion: <b>GradientBoosting</b></p>
+        <img src="stat_test_results.png">
+        
+
+<h2>Phase 4 — Hyperparameter Tuning (Top 3 models)</h2>
+<p class="note">RandomizedSearchCV with 40 iterations per model on the same
+5-fold CV. Only the top-3 screening models are tuned — cost-efficient
+industry practice.</p>
+
+<h2>Phase 5 — Ensemble Construction</h2>
+<p class="note">SoftVoting and Stacking (meta-learner = LogisticRegression) built
+from the tuned top-3 estimators.</p>
+
+<h2>Phase 6 — Hold-out Test Evaluation</h2>
+<p class="note">Threshold per model via Youden's J (maximises sensitivity + specificity).
+10 metrics: ROC-AUC (discrimination), Avg Precision (imbalance-robust), F1 (harm-balanced),
+Brier ↓ (calibration), MCC (class-imbalance robust), Cohen's κ (chance-corrected).</p>
+<table>
+  <tr><th>Model</th><th>ROC-AUC</th><th>Avg Prec</th><th>F1</th>
+      <th>Precision</th><th>Recall</th><th>Bal Acc</th><th>Brier↓</th>
+      <th>MCC</th><th>Kappa</th><th>TP</th><th>TN</th><th>FP</th><th>FN</th>
+      <th>Threshold</th></tr>
+  <tr><td><b>🏆 RandomForest</b></td><td>0.8989</td><td>0.8769</td><td>0.796</td><td>0.7921</td><td>0.8</td><td>0.8352</td><td>0.122</td><td>0.6691</td><td>0.6691</td><td>80</td><td>141</td><td>21</td><td>20</td><td>0.5032</td></tr>
+<tr><td><b>SoftVoting</b></td><td>0.8969</td><td>0.872</td><td>0.8063</td><td>0.8462</td><td>0.77</td><td>0.8418</td><td>0.118</td><td>0.6975</td><td>0.6956</td><td>77</td><td>148</td><td>14</td><td>23</td><td>0.5367</td></tr>
+<tr><td><b>Stacking</b></td><td>0.8968</td><td>0.871</td><td>0.802</td><td>0.8144</td><td>0.79</td><td>0.8394</td><td>0.1156</td><td>0.683</td><td>0.6828</td><td>79</td><td>144</td><td>18</td><td>21</td><td>0.4587</td></tr>
+<tr><td><b>XGBoost</b></td><td>0.8937</td><td>0.8645</td><td>0.7914</td><td>0.8506</td><td>0.74</td><td>0.8299</td><td>0.1211</td><td>0.6806</td><td>0.6766</td><td>74</td><td>149</td><td>13</td><td>26</td><td>0.593</td></tr>
+<tr><td><b>GradientBoosting</b></td><td>0.8925</td><td>0.8589</td><td>0.8061</td><td>0.8229</td><td>0.79</td><td>0.8425</td><td>0.1183</td><td>0.6907</td><td>0.6903</td><td>79</td><td>145</td><td>17</td><td>21</td><td>0.4763</td></tr>
+</table>
+<img src="leaderboard.png">
+<img src="roc_curves_all.png">
+<img src="pr_curves_all.png">
+
+<h2>Phase 7 — Calibration Analysis</h2>
+<p class="note">Reliability diagrams. Lower Brier score = better calibrated predictions.</p>
+<img src="calibration_curves.png">
+<img src="confusion_matrices.png">
+<img src="metric_radar.png">
+
+<h2>Phase 8 — SHAP Explainability (Champion)</h2>
+<p class="note">Global feature importance via SHAP. Bar = mean |SHAP value|.
+Beeswarm = feature value direction (red = high, blue = low).</p>
+<img src="shap_bar.png">
+<img src="shap_beeswarm.png">
+
+
+        <h2>Phase 9 — Fairness / Subgroup Evaluation (Champion)</h2>
+        <p class="note">Disaggregated metrics for sex, pclass, and age_group.
+        F1 gap = subgroup F1 − overall F1. Alert when gap &lt; −0.10.</p>
+        <p class="alert">⚠ 2 subgroup(s) have F1 gap &gt; 0.10</p>
+        <table>
+          <tr><th>Group</th><th>Value</th><th>N</th><th>F1</th>
+              <th>ROC-AUC</th><th>F1 Gap</th></tr>
+          <tr><td>sex</td><td>female</td><td>94</td><td>0.9091</td><td>0.8867</td><td style='color:#27ae60;font-weight:600'>+0.1131</td></tr>
+<tr><td>sex</td><td>male</td><td>168</td><td>0.4255</td><td>0.7533</td><td style='color:#c0392b;font-weight:600'>-0.3705</td></tr>
+<tr><td>pclass</td><td>1</td><td>74</td><td>0.8</td><td>0.8455</td><td style='color:#27ae60;font-weight:600'>+0.0040</td></tr>
+<tr><td>pclass</td><td>2</td><td>57</td><td>0.9804</td><td>0.9814</td><td style='color:#27ae60;font-weight:600'>+0.1844</td></tr>
+<tr><td>pclass</td><td>3</td><td>131</td><td>0.6333</td><td>0.8067</td><td style='color:#c0392b;font-weight:600'>-0.1627</td></tr>
+<tr><td>_age_group</td><td>child</td><td>18</td><td>0.8182</td><td>0.9383</td><td style='color:#27ae60;font-weight:600'>+0.0222</td></tr>
+<tr><td>_age_group</td><td>adult</td><td>128</td><td>0.7872</td><td>0.8714</td><td style='color:#27ae60;font-weight:600'>-0.0088</td></tr>
+<tr><td>_age_group</td><td>middle_aged</td><td>47</td><td>0.8205</td><td>0.9473</td><td style='color:#27ae60;font-weight:600'>+0.0245</td></tr>
+<tr><td>_age_group</td><td>unknown</td><td>54</td><td>0.7333</td><td>0.8938</td><td style='color:#27ae60;font-weight:600'>-0.0627</td></tr>
+        </table>
+        <img src="fairness_subgroup_f1.png">
+        
+
+<footer>
+  <b>Metric guide:</b><br>
+  ROC-AUC — discrimination across all thresholds, threshold-independent.<br>
+  Average Precision — area under P-R curve, robust to class imbalance.<br>
+  F1 — harmonic mean of precision and recall, balance between both error types.<br>
+  Brier score — mean squared error of probabilities (lower = better; 0 = perfect).<br>
+  MCC (Matthews) — correlation between predicted and actual; robust to imbalance.<br>
+  Cohen's κ — agreement corrected for chance.<br>
+  <br>
+  <b>Statistical tests:</b> Friedman χ² (global H₀: all models equal) +
+  pairwise Wilcoxon signed-rank vs champion with Bonferroni correction (α = 0.05).<br>
+  <b>Threshold selection:</b> Youden's J statistic (maximises sensitivity + specificity).
+</footer>
+</body></html>
