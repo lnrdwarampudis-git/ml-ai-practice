@@ -1,0 +1,75 @@
+{
+  "overall_rmse": 2.762025895729686,
+  "overall_r2": 0.8959717238097037,
+  "subgroups": {
+    "CHAS": {
+      "0": {
+        "n": 96,
+        "mean_actual": 21.279166666666665,
+        "rmse": 2.8192,
+        "r2": 0.8953,
+        "mae": 2.1055,
+        "rmse_gap": 0.0572,
+        "alert": false
+      }
+    },
+    "RAD": {
+      "24": {
+        "n": 31,
+        "mean_actual": 16.816129032258065,
+        "rmse": 3.6606,
+        "r2": 0.7976,
+        "mae": 2.6627,
+        "rmse_gap": 0.8986,
+        "alert": true
+      },
+      "4": {
+        "n": 30,
+        "mean_actual": 23.35,
+        "rmse": 2.3866,
+        "r2": 0.945,
+        "mae": 1.8924,
+        "rmse_gap": -0.3754,
+        "alert": false
+      },
+      "5": {
+        "n": 21,
+        "mean_actual": 23.80952380952381,
+        "rmse": 2.054,
+        "r2": 0.8955,
+        "mae": 1.5482,
+        "rmse_gap": -0.708,
+        "alert": false
+      }
+    },
+    "price_tier": {
+      "low": {
+        "n": 20,
+        "mean_actual": 11.59,
+        "rmse": 3.1264,
+        "r2": -0.2612,
+        "mae": 2.3111,
+        "rmse_gap": 0.3643,
+        "alert": false
+      },
+      "mid": {
+        "n": 63,
+        "mean_actual": 20.53968253968254,
+        "rmse": 2.1369,
+        "r2": 0.3396,
+        "mae": 1.649,
+        "rmse_gap": -0.6251,
+        "alert": false
+      },
+      "high": {
+        "n": 12,
+        "mean_actual": 29.433333333333334,
+        "rmse": 3.9012,
+        "r2": -1.4104,
+        "mae": 3.1398,
+        "rmse_gap": 1.1392,
+        "alert": true
+      }
+    }
+  }
+}

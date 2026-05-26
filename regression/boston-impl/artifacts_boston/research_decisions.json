@@ -1,0 +1,101 @@
+{
+  "problem_definition": {
+    "problem_type": "regression",
+    "target": "MEDV",
+    "target_unit": "1000s USD (median home value)",
+    "prediction_time": "Given neighbourhood attributes, predict median home value."
+  },
+  "metric_policy": {
+    "primary": "r2",
+    "secondary": [
+      "rmse",
+      "mae",
+      "mape",
+      "medae"
+    ]
+  },
+  "feature_policy": {
+    "log_transforms": [
+      "CRIM",
+      "LSTAT"
+    ],
+    "interactions": [
+      "rm_lstat_interact",
+      "rooms_per_tax",
+      "crime_per_room"
+    ],
+    "categorical": [
+      "CHAS",
+      "RAD"
+    ],
+    "note": "CHAS and RAD arrive as category from OpenML; no bucketing needed."
+  },
+  "grouped_stats": {
+    "medv_by_chas": {
+      "mean": {
+        "0": 22.3024,
+        "1": 29.186206896551724
+      },
+      "median": {
+        "0": 21.2,
+        "1": 23.3
+      },
+      "std": {
+        "0": 8.849158973905627,
+        "1": 12.725444817876028
+      }
+    },
+    "medv_by_rad": {
+      "mean": {
+        "1": 24.705882352941178,
+        "2": 27.04285714285714,
+        "24": 16.277227722772277,
+        "3": 28.803125,
+        "4": 20.651249999999997,
+        "5": 26.130851063829788,
+        "6": 21.330434782608698,
+        "7": 27.60666666666667,
+        "8": 30.623809523809523
+      },
+      "median": {
+        "1": 22.0,
+        "2": 24.1,
+        "24": 14.1,
+        "3": 27.65,
+        "4": 20.3,
+        "5": 23.05,
+        "6": 21.8,
+        "7": 26.2,
+        "8": 27.5
+      }
+    },
+    "target_stats": {
+      "count": 404.0,
+      "mean": 22.796534653465343,
+      "std": 9.332147158711562,
+      "min": 5.0,
+      "25%": 16.95,
+      "50%": 21.6,
+      "75%": 26.4,
+      "max": 50.0
+    },
+    "skew_kurtosis": {
+      "CRIM": {
+        "skew": 5.4652724790291005,
+        "kurtosis": 39.45639194902409
+      },
+      "LSTAT": {
+        "skew": 0.9337198316549744,
+        "kurtosis": 0.494418296223019
+      },
+      "DIS": {
+        "skew": 0.951572371690093,
+        "kurtosis": 0.222560102367777
+      },
+      "MEDV": {
+        "skew": 1.0489844505274597,
+        "kurtosis": 1.2420360542977238
+      }
+    }
+  }
+}

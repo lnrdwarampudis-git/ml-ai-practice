@@ -1,0 +1,41 @@
+{
+  "overall_rmse": 2.385483125307445,
+  "subgroups": {
+    "CHAS": {
+      "0.0": {
+        "n": 97,
+        "mean_actual": 22.165,
+        "rmse": 2.3424,
+        "r2": 0.9354,
+        "rmse_ratio": 0.9819,
+        "alert": false
+      }
+    },
+    "RAD_group": {
+      "low_access": {
+        "n": 55,
+        "mean_actual": 25.193,
+        "rmse": 1.8796,
+        "r2": 0.9596,
+        "rmse_ratio": 0.7879,
+        "alert": false
+      },
+      "medium_access": {
+        "n": 19,
+        "mean_actual": 25.484,
+        "rmse": 2.3753,
+        "r2": 0.8593,
+        "rmse_ratio": 0.9957,
+        "alert": false
+      },
+      "high_access": {
+        "n": 28,
+        "mean_actual": 15.932,
+        "rmse": 3.1562,
+        "r2": 0.8492,
+        "rmse_ratio": 1.3231,
+        "alert": true
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+,missing_count,missing_rate,dtype
+CRIM,0.0,0.0,float64
+ZN,0.0,0.0,float64
+INDUS,0.0,0.0,float64
+CHAS,0.0,0.0,category
+NOX,0.0,0.0,float64
+RM,0.0,0.0,float64
+AGE,0.0,0.0,float64
+DIS,0.0,0.0,float64
+RAD,0.0,0.0,category
+TAX,0.0,0.0,float64
+PTRATIO,0.0,0.0,float64
+B,0.0,0.0,float64
+LSTAT,0.0,0.0,float64
+MEDV,0.0,0.0,float64

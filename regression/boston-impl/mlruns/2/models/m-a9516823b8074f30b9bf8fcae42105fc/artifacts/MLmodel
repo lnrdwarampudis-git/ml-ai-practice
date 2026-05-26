@@ -1,0 +1,23 @@
+artifact_path: /Users/lakshmikalyani/Downloads/ml-ai-practice/regression/boston-impl/mlruns/2/models/m-a9516823b8074f30b9bf8fcae42105fc/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.11.15
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+mlflow_version: 3.11.1
+model_id: m-a9516823b8074f30b9bf8fcae42105fc
+model_size_bytes: 11557740
+model_uuid: m-a9516823b8074f30b9bf8fcae42105fc
+prompts: null
+run_id: 7d6bd8456a9b4607bc83283653a9502f
+utc_time_created: '2026-05-26 04:26:24.206700'
