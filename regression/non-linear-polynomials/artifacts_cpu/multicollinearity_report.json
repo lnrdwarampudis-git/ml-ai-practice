@@ -1,0 +1,106 @@
+{
+  "vif_table": [
+    {
+      "feature": "vflt",
+      "vif": 18.657992712685495,
+      "alert": true
+    },
+    {
+      "feature": "fork",
+      "vif": 18.108300692834007,
+      "alert": true
+    },
+    {
+      "feature": "ppgout",
+      "vif": 14.829810961923668,
+      "alert": true
+    },
+    {
+      "feature": "pflt",
+      "vif": 11.221867102728702,
+      "alert": true
+    },
+    {
+      "feature": "pgfree",
+      "vif": 8.282194703424869,
+      "alert": false
+    },
+    {
+      "feature": "ppgin",
+      "vif": 7.839984077073759,
+      "alert": false
+    },
+    {
+      "feature": "pgin",
+      "vif": 7.417148075243636,
+      "alert": false
+    },
+    {
+      "feature": "sread",
+      "vif": 6.965340266610413,
+      "alert": false
+    },
+    {
+      "feature": "swrite",
+      "vif": 5.472608843204494,
+      "alert": false
+    },
+    {
+      "feature": "pgout",
+      "vif": 5.164932468616697,
+      "alert": false
+    },
+    {
+      "feature": "exec",
+      "vif": 3.148749719840494,
+      "alert": false
+    },
+    {
+      "feature": "scall",
+      "vif": 2.4394495433131267,
+      "alert": false
+    },
+    {
+      "feature": "freeswap",
+      "vif": 2.198562078206494,
+      "alert": false
+    },
+    {
+      "feature": "rchar",
+      "vif": 2.0044426337726557,
+      "alert": false
+    },
+    {
+      "feature": "freemem",
+      "vif": 1.6853651390245967,
+      "alert": false
+    },
+    {
+      "feature": "wchar",
+      "vif": 1.5994203241351697,
+      "alert": false
+    },
+    {
+      "feature": "lread",
+      "vif": 1.5328028847277562,
+      "alert": false
+    },
+    {
+      "feature": "lwrite",
+      "vif": 1.4553390101835615,
+      "alert": false
+    },
+    {
+      "feature": "runqsz",
+      "vif": 1.375959333981454,
+      "alert": false
+    }
+  ],
+  "high_vif_features": [
+    "vflt",
+    "fork",
+    "ppgout",
+    "pflt"
+  ],
+  "note": "sys+wait+usr\u2248100: sys and wait are near-perfect predictors of usr. Models will have inflated R\u00b2 \u2014 report on held-out set only."
+}

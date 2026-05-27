@@ -1,0 +1,528 @@
+{
+  "research": {
+    "problem_definition": {
+      "problem_type": "regression",
+      "target": "usr",
+      "unit": "% CPU time in user mode",
+      "key_constraint": "sys + wait + usr \u2248 100 (CPU time decomposition)"
+    },
+    "metric_policy": {
+      "primary": "r2",
+      "secondary": [
+        "rmse",
+        "mae",
+        "mape",
+        "medae"
+      ]
+    },
+    "feature_policy": {
+      "log_transforms": [
+        "lread",
+        "lwrite",
+        "scall",
+        "sread",
+        "swrite",
+        "fork",
+        "exec",
+        "rchar",
+        "wchar",
+        "pgout",
+        "ppgout",
+        "pgfree",
+        "pgin",
+        "ppgin",
+        "pflt",
+        "vflt",
+        "runqsz",
+        "freemem",
+        "freeswap"
+      ],
+      "polynomial_candidates": [
+        "runqsz",
+        "sys",
+        "wait",
+        "vflt",
+        "pflt",
+        "freemem",
+        "fork",
+        "exec"
+      ],
+      "multicollinearity_concern": [
+        "sys",
+        "wait"
+      ]
+    },
+    "grouped_stats": {
+      "usr_by_load_tier": {
+        "mean": {
+          "idle": 89.56122448979592,
+          "low": 87.42787682333874,
+          "medium": 84.22682119205298,
+          "high": 75.42857142857143
+        },
+        "median": {
+          "idle": 92.0,
+          "low": 89.0,
+          "medium": 86.0,
+          "high": 78.0
+        },
+        "std": {
+          "idle": 8.973896179434783,
+          "low": 8.385861982972806,
+          "medium": 8.935924489015473,
+          "high": 11.804018686144866
+        }
+      },
+      "target_stats": {
+        "count": 6553.0,
+        "mean": 83.78132153212269,
+        "std": 18.660188378056862,
+        "min": 0.0,
+        "25%": 81.0,
+        "50%": 89.0,
+        "75%": 93.0,
+        "max": 99.0
+      },
+      "pct_sys_wait_constraint": 0.0
+    }
+  },
+  "baselines": {
+    "mean": {
+      "mae": 10.311840647530945,
+      "rmse": 17.336063549370774,
+      "r2": -0.0029324411709972242,
+      "mape": 1.1050177769840404e+16,
+      "medae": 8.21867846787731,
+      "residual_mean": 0.937409401373345,
+      "residual_std": 17.31070082353799,
+      "residual_max_abs": 83.78132153212269
+    },
+    "median": {
+      "mae": 9.170835875533863,
+      "rmse": 17.832263676321148,
+      "r2": -0.06116679775789713,
+      "mape": 1.1738485422896132e+16,
+      "medae": 6.0,
+      "residual_mean": -4.281269066503966,
+      "residual_std": 17.31070082353799,
+      "residual_max_abs": 89.0
+    }
+  },
+  "split": {
+    "train_rows": 6553,
+    "test_rows": 1639,
+    "use_poly": false
+  },
+  "polynomial_analysis": {
+    "Linear (d=1)": {
+      "degree": 1,
+      "interact_only": false,
+      "n_features": 6,
+      "r2_mean": 0.5633146929964123,
+      "r2_std": 0.03393148896510466,
+      "rmse_mean": 12.302055570764864
+    },
+    "Poly d=2 full": {
+      "degree": 2,
+      "interact_only": false,
+      "n_features": 27,
+      "r2_mean": 0.7730933583756256,
+      "r2_std": 0.0446551748626831,
+      "rmse_mean": 8.860460283921892
+    },
+    "Poly d=2 interact": {
+      "degree": 2,
+      "interact_only": true,
+      "n_features": 21,
+      "r2_mean": 0.6006973324505072,
+      "r2_std": 0.052330596036717844,
+      "rmse_mean": 11.76006625442878
+    },
+    "Poly d=3 full": {
+      "degree": 3,
+      "interact_only": false,
+      "n_features": 83,
+      "r2_mean": 0.6583029456833813,
+      "r2_std": 0.25003997438796904,
+      "rmse_mean": 10.368304008239386
+    },
+    "Poly d=3 interact": {
+      "degree": 3,
+      "interact_only": true,
+      "n_features": 41,
+      "r2_mean": 0.5306334302965607,
+      "r2_std": 0.10454274083733234,
+      "rmse_mean": 12.703768157911759
+    }
+  },
+  "basis_analysis": {
+    "Raw (linear)": {
+      "n_features": 1,
+      "r2_mean": 0.37925711979764287,
+      "r2_std": 0.03280918583954184
+    },
+    "Polynomial d=2": {
+      "n_features": 2,
+      "r2_mean": 0.600393651416345,
+      "r2_std": 0.03754080145563482
+    },
+    "Natural spline (5 knots)": {
+      "n_features": 6,
+      "r2_mean": 0.6753972437310841,
+      "r2_std": 0.03542445753458628
+    },
+    "RBF Nystroem (k=20)": {
+      "n_features": 20,
+      "r2_mean": 0.783676998211479,
+      "r2_std": 0.030482483079190336
+    },
+    "Fourier (RBFSampler)": {
+      "n_features": 20,
+      "r2_mean": 0.7769760492435478,
+      "r2_std": 0.029516340254247552
+    }
+  },
+  "mutual_info": {
+    "pearson": {
+      "lread": -0.1378261546489069,
+      "lwrite": -0.10582477793025055,
+      "scall": -0.3178034326735146,
+      "sread": -0.3149028253552699,
+      "swrite": -0.25903676618335303,
+      "fork": -0.3572175158629781,
+      "exec": -0.2828856762322798,
+      "rchar": -0.32604826010234295,
+      "wchar": -0.2935685264713995,
+      "pgout": -0.22169148922772494,
+      "ppgout": -0.21135172609571914,
+      "pgfree": -0.21718714644015516,
+      "pgin": -0.24199983823834165,
+      "ppgin": -0.23554463042595436,
+      "pflt": -0.3636736380514558,
+      "vflt": -0.41449984437515297,
+      "runqsz": -0.6267390736410823,
+      "freemem": 0.26881478570285383,
+      "freeswap": 0.6833182310156237
+    },
+    "mi_normalised": {
+      "lread": 0.31031428828925023,
+      "lwrite": 0.10235461100848713,
+      "scall": 0.711021333068383,
+      "sread": 0.6657047408661964,
+      "swrite": 0.6103708275587648,
+      "fork": 0.736516444830782,
+      "exec": 0.5599404893913446,
+      "rchar": 0.41848550478315094,
+      "wchar": 0.2622348209313418,
+      "pgout": 0.14971996248218553,
+      "ppgout": 0.168949859344624,
+      "pgfree": 0.1764359892586097,
+      "pgin": 0.356736368835287,
+      "ppgin": 0.35334256582303675,
+      "pflt": 0.7531786793637945,
+      "vflt": 1.0,
+      "runqsz": 0.3611628947939119,
+      "freemem": 0.44519527623289884,
+      "freeswap": 0.5944073495212616
+    },
+    "nonlinear_score": {
+      "lread": 0.17248813364034332,
+      "lwrite": -0.0034701669217634262,
+      "scall": 0.3932179003948684,
+      "sread": 0.35080191551092643,
+      "swrite": 0.3513340613754118,
+      "fork": 0.3792989289678039,
+      "exec": 0.27705481315906477,
+      "rchar": 0.092437244680808,
+      "wchar": -0.03133370554005771,
+      "pgout": -0.07197152674553942,
+      "ppgout": -0.04240186675109514,
+      "pgfree": -0.040751157181545455,
+      "pgin": 0.11473653059694533,
+      "ppgin": 0.11779793539708239,
+      "pflt": 0.38950504131233865,
+      "vflt": 0.585500155624847,
+      "runqsz": -0.2655761788471704,
+      "freemem": 0.176380490530045,
+      "freeswap": -0.0889108814943621
+    },
+    "top_nonlinear_features": [
+      "vflt",
+      "scall",
+      "pflt",
+      "fork",
+      "swrite"
+    ]
+  },
+  "kernel_approx": {
+    "Ridge (linear)": {
+      "n_features": 6,
+      "r2_mean": 0.5709946528008507,
+      "r2_std": 0.025534503462876647
+    },
+    "Poly d=2 + Ridge": {
+      "n_features": 27,
+      "r2_mean": 0.7819986553813437,
+      "r2_std": 0.020445000172301664
+    },
+    "Nystroem RBF (k=50) + Ridge": {
+      "n_features": 50,
+      "r2_mean": 0.7519623022174141,
+      "r2_std": 0.01652176808777472
+    },
+    "RBFSampler (k=100) + Ridge": {
+      "n_features": 100,
+      "r2_mean": 0.840137958864046,
+      "r2_std": 0.012212550559231641
+    }
+  },
+  "multicollinearity": {
+    "vif_table": [
+      {
+        "feature": "vflt",
+        "vif": 18.657992712685495,
+        "alert": true
+      },
+      {
+        "feature": "fork",
+        "vif": 18.108300692834007,
+        "alert": true
+      },
+      {
+        "feature": "ppgout",
+        "vif": 14.829810961923668,
+        "alert": true
+      },
+      {
+        "feature": "pflt",
+        "vif": 11.221867102728702,
+        "alert": true
+      },
+      {
+        "feature": "pgfree",
+        "vif": 8.282194703424869,
+        "alert": false
+      },
+      {
+        "feature": "ppgin",
+        "vif": 7.839984077073759,
+        "alert": false
+      },
+      {
+        "feature": "pgin",
+        "vif": 7.417148075243636,
+        "alert": false
+      },
+      {
+        "feature": "sread",
+        "vif": 6.965340266610413,
+        "alert": false
+      },
+      {
+        "feature": "swrite",
+        "vif": 5.472608843204494,
+        "alert": false
+      },
+      {
+        "feature": "pgout",
+        "vif": 5.164932468616697,
+        "alert": false
+      },
+      {
+        "feature": "exec",
+        "vif": 3.148749719840494,
+        "alert": false
+      },
+      {
+        "feature": "scall",
+        "vif": 2.4394495433131267,
+        "alert": false
+      },
+      {
+        "feature": "freeswap",
+        "vif": 2.198562078206494,
+        "alert": false
+      },
+      {
+        "feature": "rchar",
+        "vif": 2.0044426337726557,
+        "alert": false
+      },
+      {
+        "feature": "freemem",
+        "vif": 1.6853651390245967,
+        "alert": false
+      },
+      {
+        "feature": "wchar",
+        "vif": 1.5994203241351697,
+        "alert": false
+      },
+      {
+        "feature": "lread",
+        "vif": 1.5328028847277562,
+        "alert": false
+      },
+      {
+        "feature": "lwrite",
+        "vif": 1.4553390101835615,
+        "alert": false
+      },
+      {
+        "feature": "runqsz",
+        "vif": 1.375959333981454,
+        "alert": false
+      }
+    ],
+    "high_vif_features": [
+      "vflt",
+      "fork",
+      "ppgout",
+      "pflt"
+    ],
+    "note": "sys+wait+usr\u2248100: sys and wait are near-perfect predictors of usr. Models will have inflated R\u00b2 \u2014 report on held-out set only."
+  },
+  "regularisation": {
+    "ridge_raw_optimal_alpha": 14.563484775012444,
+    "ridge_poly_optimal_alpha": 1.5264179671752334,
+    "lasso_poly_optimal_alpha": 0.022229964825261943,
+    "lasso_poly_n_zeroed": 6,
+    "lasso_poly_n_total": 27,
+    "insight": "Polynomial expansion (27 features) requires stronger Ridge regularisation (\u03b1=1.526 vs 14.563 for raw). Lasso automatically zeros 6/27 poly terms."
+  },
+  "cv_stability": {
+    "KFold_5": {
+      "mean": 0.9811003427214174,
+      "std": 0.001681936454858282,
+      "n": 5
+    },
+    "RepeatedKFold_5x5": {
+      "mean": 0.9810596208232902,
+      "std": 0.0021036428002844504,
+      "n": 25
+    },
+    "std_reduction_pct": -25.0726681265554
+  },
+  "spline_analysis": {
+    "Linear": {
+      "n_knots": 2,
+      "degree": 1,
+      "n_features": 1,
+      "r2_mean": 0.3804712126540084,
+      "r2_std": 0.027862096401115102
+    },
+    "Quadratic 5k": {
+      "n_knots": 5,
+      "degree": 2,
+      "n_features": 5,
+      "r2_mean": 0.7259073282112859,
+      "r2_std": 0.03217864387041075
+    },
+    "Cubic 5k": {
+      "n_knots": 5,
+      "degree": 3,
+      "n_features": 6,
+      "r2_mean": 0.6753972437310841,
+      "r2_std": 0.03542445753458628
+    },
+    "Cubic 10k": {
+      "n_knots": 10,
+      "degree": 3,
+      "n_features": 11,
+      "r2_mean": 0.7471512977992116,
+      "r2_std": 0.031071944363599478
+    },
+    "Cubic 15k": {
+      "n_knots": 15,
+      "degree": 3,
+      "n_features": 16,
+      "r2_mean": 0.7703217258961801,
+      "r2_std": 0.030486262849629728
+    }
+  },
+  "best_cv": {
+    "best_r2": 0.9806651822735052,
+    "best_params": {
+      "model__min_samples_leaf": 4,
+      "model__max_depth": 12,
+      "model": "RandomForestRegressor(n_estimators=50, n_jobs=1, random_state=42)",
+      "feature_selection__threshold": "1.25*median"
+    }
+  },
+  "uncertainty_info": {
+    "oof_rmse": 2.554207027914125,
+    "oof_mae": 1.7916556100685321,
+    "oof_r2": 0.9812609994984929,
+    "lower_band": 2.554207027914125,
+    "upper_band": 2.554207027914125,
+    "overpredict_cost": 1.0,
+    "underpredict_cost": 1.0
+  },
+  "residual_diag": {
+    "breusch_pagan": {
+      "statistic": 2.854335182717617,
+      "p_value": 0.09112790575168983,
+      "heteroscedastic": false
+    },
+    "shapiro_wilk": {
+      "statistic": 0.9280159722738651,
+      "p_value": 2.35562391359278e-27,
+      "normal": false
+    }
+  },
+  "test_metrics": {
+    "mae": 1.8146125202147343,
+    "rmse": 2.591865336072868,
+    "r2": 0.9775820670674072,
+    "mape": 6729913253084.978,
+    "medae": 1.3315926698735865,
+    "residual_mean": 0.10317966408066441,
+    "residual_std": 2.5898107802031256,
+    "residual_max_abs": 20.022533314918206
+  },
+  "subgroups": {
+    "overall_rmse": 2.591865336072868,
+    "subgroups": [
+      {
+        "group_col": "load_tier",
+        "group_val": "idle",
+        "n": 344,
+        "mean_actual": 90.0203488372093,
+        "rmse": 2.1968,
+        "r2": 0.9364,
+        "rmse_gap": -0.395,
+        "alert": false
+      },
+      {
+        "group_col": "load_tier",
+        "group_val": "low",
+        "n": 882,
+        "mean_actual": 87.74943310657596,
+        "rmse": 2.6579,
+        "r2": 0.8987,
+        "rmse_gap": 0.066,
+        "alert": false
+      },
+      {
+        "group_col": "load_tier",
+        "group_val": "medium",
+        "n": 325,
+        "mean_actual": 84.68923076923078,
+        "rmse": 2.9282,
+        "r2": 0.8704,
+        "rmse_gap": 0.3363,
+        "alert": false
+      },
+      {
+        "group_col": "load_tier",
+        "group_val": "high",
+        "n": 39,
+        "mean_actual": 76.05128205128206,
+        "rmse": 2.913,
+        "r2": 0.9669,
+        "rmse_gap": 0.3211,
+        "alert": false
+      }
+    ]
+  }
+}

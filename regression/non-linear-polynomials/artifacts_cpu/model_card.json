@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-05-27T02:30:17.353636+00:00",
+  "model_details": {
+    "name": "CPU Activity Predictor",
+    "type": "Regression (sklearn Pipeline)",
+    "algorithm": "RandomForestRegressor(max_depth=12, min_samples_leaf=4, n_estimators=300,\n                      n_jobs=1, random_state=42)"
+  },
+  "intended_use": {
+    "primary_use": "Predict CPU user-mode time (usr %) from system performance counters.",
+    "out_of_scope": [
+      "Real-time scheduling decisions",
+      "Architectures other than the training system"
+    ]
+  },
+  "evaluation_results": {
+    "test_r2": 0.9775820670674072,
+    "test_rmse": 2.591865336072868,
+    "test_mae": 1.8146125202147343
+  },
+  "polynomial_insights": {
+    "Linear (d=1)": {
+      "degree": 1,
+      "interact_only": false,
+      "n_features": 6,
+      "r2_mean": 0.5633146929964123,
+      "r2_std": 0.03393148896510466,
+      "rmse_mean": 12.302055570764864
+    },
+    "Poly d=2 full": {
+      "degree": 2,
+      "interact_only": false,
+      "n_features": 27,
+      "r2_mean": 0.7730933583756256,
+      "r2_std": 0.0446551748626831,
+      "rmse_mean": 8.860460283921892
+    },
+    "Poly d=2 interact": {
+      "degree": 2,
+      "interact_only": true,
+      "n_features": 21,
+      "r2_mean": 0.6006973324505072,
+      "r2_std": 0.052330596036717844,
+      "rmse_mean": 11.76006625442878
+    },
+    "Poly d=3 full": {
+      "degree": 3,
+      "interact_only": false,
+      "n_features": 83,
+      "r2_mean": 0.6583029456833813,
+      "r2_std": 0.25003997438796904,
+      "rmse_mean": 10.368304008239386
+    },
+    "Poly d=3 interact": {
+      "degree": 3,
+      "interact_only": true,
+      "n_features": 41,
+      "r2_mean": 0.5306334302965607,
+      "r2_std": 0.10454274083733234,
+      "rmse_mean": 12.703768157911759
+    }
+  },
+  "regularisation_insights": {
+    "ridge_raw_optimal_alpha": 14.563484775012444,
+    "ridge_poly_optimal_alpha": 1.5264179671752334,
+    "lasso_poly_optimal_alpha": 0.022229964825261943,
+    "lasso_poly_n_zeroed": 6,
+    "lasso_poly_n_total": 27,
+    "insight": "Polynomial expansion (27 features) requires stronger Ridge regularisation (\u03b1=1.526 vs 14.563 for raw). Lasso automatically zeros 6/27 poly terms."
+  },
+  "limitations": [
+    "sys+wait+usr\u2248100 constraint means sys and wait are near-perfect predictors \u2014 R\u00b2 may be inflated compared to models without these features.",
+    "Synthetic fallback used if OpenML is unreachable."
+  ],
+  "hyperparameters": {
+    "model__min_samples_leaf": 4,
+    "model__max_depth": 12,
+    "model": "RandomForestRegressor(n_estimators=50, n_jobs=1, random_state=42)",
+    "feature_selection__threshold": "1.25*median"
+  },
+  "cv_best_r2": 0.9806651822735052
+}

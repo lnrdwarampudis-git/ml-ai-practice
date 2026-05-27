@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-05-26T20:24:23.572390+00:00",
+  "model_details": {
+    "name": "California Housing Price Predictor",
+    "version": "20260526T202423Z",
+    "type": "Regression (sklearn Pipeline)",
+    "algorithm": "GradientBoostingRegressor(learning_rate=0.05, max_depth=5, n_estimators=400,\n                          random_state=42, subsample=0.9)",
+    "framework": "scikit-learn"
+  },
+  "intended_use": {
+    "primary_use": "Predict median house value for California census block groups.",
+    "out_of_scope": [
+      "Individual property valuations \u2014 this is a block-group aggregate model.",
+      "Current (post-1990s) housing markets \u2014 data is from the 1990 US Census.",
+      "Jurisdictions outside California."
+    ]
+  },
+  "training_data": {
+    "source": "fetch_openml(name='california_housing', version=1)",
+    "rows": 16512,
+    "test_rows": 4128,
+    "target": "median_house_value",
+    "target_unit": "Hundreds of thousands USD",
+    "capped_pct": "100.0%"
+  },
+  "evaluation_results": {
+    "test_r2": 0.6267224957471813,
+    "test_rmse": 69938.98719228418,
+    "test_mae": 40541.6576422776,
+    "test_mape": 0.254685459590833,
+    "oof_rmse": 48520.0427139459,
+    "uncertainty_band": {
+      "lower": 48520.0427139459,
+      "upper": 48520.0427139459
+    }
+  },
+  "regularisation_analysis": {
+    "ridge_optimal_alpha": 11.689518164985776,
+    "lasso_optimal_alpha": 47.639380104013405,
+    "elasticnet_optimal_alpha": 0.0012638482029342984,
+    "elasticnet_optimal_l1_ratio": 0.3,
+    "n_features_zeroed_by_lasso": 1,
+    "features_zeroed": [
+      "log_AveBedrms"
+    ]
+  },
+  "fairness": {
+    "overall_rmse": 69938.98719228418,
+    "subgroup_rmse": {
+      "income_tier": {
+        "low": 86003.1342,
+        "mid": 75151.6714,
+        "high": 56469.0508,
+        "very_high": 53424.2494
+      },
+      "house_age_group": {
+        "new": 61942.6409,
+        "mid": 69650.7304,
+        "old": 73983.7634,
+        "very_old": 67683.0161
+      },
+      "geo_cluster": {
+        "0": 55294.611,
+        "1": 62831.7865,
+        "12": 92253.9313,
+        "16": 49805.3794,
+        "19": 42286.3595,
+        "2": 40255.8722,
+        "4": 45402.7206,
+        "5": 39607.3759,
+        "8": 48265.6315
+      }
+    },
+    "alerts": [
+      {
+        "group": "geo_cluster",
+        "value": "12",
+        "rmse_gap": 22314.9441
+      }
+    ]
+  },
+  "limitations": [
+    "Data from 1990 US Census \u2014 does not reflect current California housing market.",
+    "median_house_value is capped at $500k (MedHouseVal \u2265 5.0) \u2014 model predictions above this are unreliable.",
+    "Block-group averages mask within-block-group variation.",
+    "Geospatial features assume static city reference points (LA, SF, Sacramento)."
+  ],
+  "ethical_considerations": [
+    "Do not use for individual lending, insurance, or credit decisions.",
+    "Geographic features may encode redlining and historical housing discrimination.",
+    "Income-tier disparities in model accuracy should be audited before deployment."
+  ],
+  "hyperparameters": {
+    "model__subsample": 0.9,
+    "model__n_estimators": 400,
+    "model__max_depth": 5,
+    "model__learning_rate": 0.05,
+    "model": "GradientBoostingRegressor(random_state=42)",
+    "feature_selection__threshold": "median"
+  },
+  "cv_best_r2": 0.8239654343484701
+}

@@ -1,0 +1,37 @@
+{
+  "Linear": {
+    "n_knots": 2,
+    "degree": 1,
+    "n_features": 1,
+    "r2_mean": 0.3804712126540084,
+    "r2_std": 0.027862096401115102
+  },
+  "Quadratic 5k": {
+    "n_knots": 5,
+    "degree": 2,
+    "n_features": 5,
+    "r2_mean": 0.7259073282112859,
+    "r2_std": 0.03217864387041075
+  },
+  "Cubic 5k": {
+    "n_knots": 5,
+    "degree": 3,
+    "n_features": 6,
+    "r2_mean": 0.6753972437310841,
+    "r2_std": 0.03542445753458628
+  },
+  "Cubic 10k": {
+    "n_knots": 10,
+    "degree": 3,
+    "n_features": 11,
+    "r2_mean": 0.7471512977992116,
+    "r2_std": 0.031071944363599478
+  },
+  "Cubic 15k": {
+    "n_knots": 15,
+    "degree": 3,
+    "n_features": 16,
+    "r2_mean": 0.7703217258961801,
+    "r2_std": 0.030486262849629728
+  }
+}

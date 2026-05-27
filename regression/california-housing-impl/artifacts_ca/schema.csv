@@ -1,0 +1,11 @@
+,dtype
+Longitude,float64
+Latitude,float64
+HouseAge,float64
+AveRooms,float64
+AveBedrms,float64
+Population,float64
+AveOccup,float64
+MedInc,float64
+ocean_proximity,float64
+median_house_value,float64

@@ -1,0 +1,89 @@
+{
+  "problem_definition": {
+    "problem_type": "regression",
+    "target": "median_house_value",
+    "target_unit": "Hundreds of thousands USD (median house value per block group)",
+    "n_rows": 16512,
+    "note": "100.0% of rows capped at PRICE_CAP=5.0"
+  },
+  "metric_policy": {
+    "primary": "r2",
+    "secondary": [
+      "rmse",
+      "mae",
+      "mape",
+      "medae"
+    ]
+  },
+  "feature_policy": {
+    "log_transforms": [
+      "AveRooms",
+      "AveBedrms",
+      "Population",
+      "AveOccup",
+      "MedInc"
+    ],
+    "geospatial": [
+      "dist_LA",
+      "dist_SF",
+      "dist_SAC",
+      "geo_cluster"
+    ],
+    "interactions": [
+      "medinc_rooms_interact",
+      "medinc_age_interact",
+      "rooms_per_person",
+      "bedrooms_ratio",
+      "income_per_room"
+    ],
+    "scaler_chosen": "see scaler_comparison.json"
+  },
+  "grouped_stats": {
+    "medv_by_income_tier": {
+      "mean": {
+        "low": 112641.83350357508,
+        "mid": 167739.2494396015,
+        "high": 244317.285218899,
+        "very_high": 380324.5790575916
+      },
+      "median": {
+        "low": 93800.0,
+        "mid": 152800.0,
+        "high": 226600.0,
+        "very_high": 372650.0
+      },
+      "std": {
+        "low": 70908.8578913535,
+        "mid": 84417.45408639805,
+        "high": 93730.73749035213,
+        "very_high": 101146.35118386171
+      }
+    },
+    "medv_by_age_group": {
+      "mean": {
+        "new": 193352.4205960015,
+        "mid": 202525.4612816028,
+        "old": 206049.31848783014,
+        "very_old": 248058.00337268127
+      },
+      "median": {
+        "new": 165000.0,
+        "mid": 180900.0,
+        "old": 178000.0,
+        "very_old": 225000.0
+      }
+    },
+    "target_stats": {
+      "count": 16512.0,
+      "mean": 207194.6937378876,
+      "std": 115622.62644809148,
+      "min": 14999.0,
+      "25%": 119800.0,
+      "50%": 179850.0,
+      "75%": 265125.0,
+      "max": 500001.0
+    },
+    "capped_rows": 16512,
+    "capped_pct": 1.0
+  }
+}

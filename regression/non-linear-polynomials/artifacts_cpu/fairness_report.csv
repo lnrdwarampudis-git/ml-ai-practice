@@ -1,0 +1,5 @@
+group_col,group_val,n,mean_actual,rmse,r2,rmse_gap,alert
+load_tier,idle,344,90.0203488372093,2.1968,0.9364,-0.395,False
+load_tier,low,882,87.74943310657596,2.6579,0.8987,0.066,False
+load_tier,medium,325,84.68923076923078,2.9282,0.8704,0.3363,False
+load_tier,high,39,76.05128205128206,2.913,0.9669,0.3211,False

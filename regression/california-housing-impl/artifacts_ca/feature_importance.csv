@@ -1,0 +1,12 @@
+feature,importance,coefficient
+num__MedInc,0.3164997557185709,
+num__log_MedInc,0.2210216657798941,
+num__Latitude,0.07437484072611787,
+num__geo_cluster,0.0726590196185484,
+num__Longitude,0.0722514966473157,
+num__medinc_age_interact,0.06851263564161822,
+num__dist_SF,0.05140251538295866,
+num__dist_SAC,0.04934746058963416,
+num__bedrooms_ratio,0.038798766557810754,
+num__dist_LA,0.02847898316650795,
+num__HouseAge,0.00665286017102344,

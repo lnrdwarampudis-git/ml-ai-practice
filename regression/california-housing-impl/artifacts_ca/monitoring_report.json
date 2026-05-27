@@ -1,0 +1,139 @@
+{
+  "checked_at": "2026-05-26T20:30:27.533865+00:00",
+  "row_count": 20,
+  "missing_required_columns": [],
+  "extra_columns": [],
+  "missing_rate_alert_threshold": 0.05,
+  "missing_rate_drift": [
+    {
+      "column": "Longitude",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "Latitude",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "HouseAge",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "AveRooms",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "AveBedrms",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "Population",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "AveOccup",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "MedInc",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "ocean_proximity",
+      "train_missing_rate": 1.0,
+      "current_missing_rate": 1.0,
+      "absolute_change": 0.0,
+      "alert": false
+    }
+  ],
+  "ks_pvalue_alert_threshold": 0.05,
+  "distribution_drift": [
+    {
+      "column": "MedInc",
+      "ks_statistic": 0.19,
+      "p_value": 0.5458595210470847,
+      "train_mean": 3.88075425750969,
+      "incoming_mean": 3.7857150000000006,
+      "alert": false
+    },
+    {
+      "column": "HouseAge",
+      "ks_statistic": 0.77,
+      "p_value": 2.1345989967036315e-10,
+      "train_mean": 28.60828488372093,
+      "incoming_mean": 49.2,
+      "alert": true
+    },
+    {
+      "column": "AveRooms",
+      "ks_statistic": 0.16,
+      "p_value": 0.7515867387258937,
+      "train_mean": 2642.0047843992247,
+      "incoming_mean": 2230.0,
+      "alert": false
+    },
+    {
+      "column": "AveBedrms",
+      "ks_statistic": 0.19,
+      "p_value": 0.5458595210470847,
+      "train_mean": 538.4968507751938,
+      "incoming_mean": 442.7,
+      "alert": false
+    },
+    {
+      "column": "Population",
+      "ks_statistic": 0.32,
+      "p_value": 0.05591262693934339,
+      "train_mean": 1426.453003875969,
+      "incoming_mean": 932.5,
+      "alert": false
+    },
+    {
+      "column": "AveOccup",
+      "ks_statistic": 0.16,
+      "p_value": 0.7515867387258937,
+      "train_mean": 499.9869186046512,
+      "incoming_mean": 428.6,
+      "alert": false
+    },
+    {
+      "column": "Latitude",
+      "ks_statistic": 0.8,
+      "p_value": 2.2901541960545157e-11,
+      "train_mean": 35.6431492248062,
+      "incoming_mean": 37.84850000000001,
+      "alert": true
+    },
+    {
+      "column": "Longitude",
+      "ks_statistic": 0.87,
+      "p_value": 5.2404914765639164e-14,
+      "train_mean": -119.58229045542636,
+      "incoming_mean": -122.25400000000002,
+      "alert": true
+    }
+  ]
+}

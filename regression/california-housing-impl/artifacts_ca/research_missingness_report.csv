@@ -1,0 +1,11 @@
+,missing_count,missing_rate,dtype
+ocean_proximity,16512.0,1.0,float64
+Longitude,0.0,0.0,float64
+Latitude,0.0,0.0,float64
+HouseAge,0.0,0.0,float64
+AveRooms,0.0,0.0,float64
+AveBedrms,0.0,0.0,float64
+Population,0.0,0.0,float64
+AveOccup,0.0,0.0,float64
+MedInc,0.0,0.0,float64
+median_house_value,0.0,0.0,float64

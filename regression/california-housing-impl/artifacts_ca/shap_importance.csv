@@ -1,0 +1,12 @@
+feature,mean_abs_shap
+num__Latitude,39218.33544121655
+num__Longitude,33952.538318489605
+num__MedInc,24053.589088508397
+num__log_MedInc,17952.026520140636
+num__geo_cluster,15347.992196696752
+num__bedrooms_ratio,14929.77254116931
+num__dist_SF,13720.009770689532
+num__dist_SAC,11185.54050934014
+num__dist_LA,8648.616892924421
+num__medinc_age_interact,6559.078214073232
+num__HouseAge,2547.741717997904

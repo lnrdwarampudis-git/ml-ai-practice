@@ -1,0 +1,332 @@
+{
+  "research": {
+    "problem_definition": {
+      "problem_type": "regression",
+      "target": "median_house_value",
+      "target_unit": "Hundreds of thousands USD (median house value per block group)",
+      "n_rows": 16512,
+      "note": "100.0% of rows capped at PRICE_CAP=5.0"
+    },
+    "metric_policy": {
+      "primary": "r2",
+      "secondary": [
+        "rmse",
+        "mae",
+        "mape",
+        "medae"
+      ]
+    },
+    "feature_policy": {
+      "log_transforms": [
+        "AveRooms",
+        "AveBedrms",
+        "Population",
+        "AveOccup",
+        "MedInc"
+      ],
+      "geospatial": [
+        "dist_LA",
+        "dist_SF",
+        "dist_SAC",
+        "geo_cluster"
+      ],
+      "interactions": [
+        "medinc_rooms_interact",
+        "medinc_age_interact",
+        "rooms_per_person",
+        "bedrooms_ratio",
+        "income_per_room"
+      ],
+      "scaler_chosen": "see scaler_comparison.json"
+    },
+    "grouped_stats": {
+      "medv_by_income_tier": {
+        "mean": {
+          "low": 112641.83350357508,
+          "mid": 167739.2494396015,
+          "high": 244317.285218899,
+          "very_high": 380324.5790575916
+        },
+        "median": {
+          "low": 93800.0,
+          "mid": 152800.0,
+          "high": 226600.0,
+          "very_high": 372650.0
+        },
+        "std": {
+          "low": 70908.8578913535,
+          "mid": 84417.45408639805,
+          "high": 93730.73749035213,
+          "very_high": 101146.35118386171
+        }
+      },
+      "medv_by_age_group": {
+        "mean": {
+          "new": 193352.4205960015,
+          "mid": 202525.4612816028,
+          "old": 206049.31848783014,
+          "very_old": 248058.00337268127
+        },
+        "median": {
+          "new": 165000.0,
+          "mid": 180900.0,
+          "old": 178000.0,
+          "very_old": 225000.0
+        }
+      },
+      "target_stats": {
+        "count": 16512.0,
+        "mean": 207194.6937378876,
+        "std": 115622.62644809148,
+        "min": 14999.0,
+        "25%": 119800.0,
+        "50%": 179850.0,
+        "75%": 265125.0,
+        "max": 500001.0
+      },
+      "capped_rows": 16512,
+      "capped_pct": 1.0
+    }
+  },
+  "split": {
+    "train_rows": 16512,
+    "test_rows": 4128,
+    "drop_capped": false
+  },
+  "baseline": {
+    "mean": {
+      "mae": 90606.8549000715,
+      "rmse": 114485.63543099792,
+      "r2": -0.00021908714592466794,
+      "mape": 0.6288614963259941,
+      "medae": 75050.0,
+      "residual_mean": -1694.3841448643425,
+      "residual_std": 114473.09632576992,
+      "residual_max_abs": 292806.3062621124
+    },
+    "median": {
+      "mae": 87403.99224806202,
+      "rmse": 117311.67105035602,
+      "r2": -0.05020862899620537,
+      "mape": 0.5310435444086293,
+      "medae": 67350.0,
+      "residual_mean": 25650.309593023256,
+      "residual_std": 114473.09632576992,
+      "residual_max_abs": 320151.0
+    }
+  },
+  "best_scaler": "RobustScaler",
+  "regularisation": {
+    "ridge_optimal_alpha": 11.689518164985776,
+    "lasso_optimal_alpha": 47.639380104013405,
+    "elasticnet_optimal_alpha": 0.0012638482029342984,
+    "elasticnet_optimal_l1_ratio": 0.3,
+    "n_features_zeroed_by_lasso": 1,
+    "features_zeroed": [
+      "log_AveBedrms"
+    ]
+  },
+  "cv_comparison": {
+    "KFold": {
+      "rmse_mean": 65799.89159747213,
+      "rmse_std": 1636.6547979364636
+    },
+    "GroupKFold": {
+      "rmse_mean": 70713.93784144486,
+      "rmse_std": 7202.354111328941
+    },
+    "spatial_leakage_estimate_rmse": -4914.046243972727
+  },
+  "best_cv": {
+    "best_r2": 0.8239654343484701,
+    "best_params": {
+      "model__subsample": 0.9,
+      "model__n_estimators": 400,
+      "model__max_depth": 5,
+      "model__learning_rate": 0.05,
+      "model": "GradientBoostingRegressor(random_state=42)",
+      "feature_selection__threshold": "median"
+    }
+  },
+  "uncertainty_info": {
+    "oof_rmse": 48520.0427139459,
+    "oof_mae": 32552.471033556554,
+    "oof_r2": 0.8238904162110945,
+    "lower_band": 48520.0427139459,
+    "upper_band": 48520.0427139459,
+    "overpredict_cost": 1.0,
+    "underpredict_cost": 1.0
+  },
+  "residual_diag": {
+    "breusch_pagan": {
+      "statistic": 615.164686940878,
+      "p_value": 0.0,
+      "heteroscedastic": true
+    },
+    "shapiro_wilk": {
+      "statistic": 0.79416070689567,
+      "p_value": 3.0418707500499035e-58,
+      "normal_residuals": false
+    },
+    "residual_mean": -9947.165384652903,
+    "residual_std": 69227.99888984843
+  },
+  "test_metrics": {
+    "mae": 40541.6576422776,
+    "rmse": 69938.98719228418,
+    "r2": 0.6267224957471813,
+    "mape": 0.254685459590833,
+    "medae": 22541.445665121704,
+    "residual_mean": -9947.165384652903,
+    "residual_std": 69227.99888984843,
+    "residual_max_abs": 416724.7009998469
+  },
+  "fairness": {
+    "overall_rmse": 69938.98719228418,
+    "overall_r2": 0.6267224957471813,
+    "subgroups": {
+      "income_tier": {
+        "low": {
+          "n": 499,
+          "rmse": 86003.1342,
+          "r2": -0.342,
+          "mae": 41322.9084,
+          "rmse_gap": 16064.147,
+          "alert": false
+        },
+        "mid": {
+          "n": 2066,
+          "rmse": 75151.6714,
+          "r2": 0.2188,
+          "mae": 40996.8417,
+          "rmse_gap": 5212.6842,
+          "alert": false
+        },
+        "high": {
+          "n": 1111,
+          "rmse": 56469.0508,
+          "r2": 0.6532,
+          "mae": 40052.8573,
+          "rmse_gap": -13469.9364,
+          "alert": false
+        },
+        "very_high": {
+          "n": 452,
+          "rmse": 53424.2494,
+          "r2": 0.7375,
+          "mae": 38800.071,
+          "rmse_gap": -16514.7378,
+          "alert": false
+        }
+      },
+      "house_age_group": {
+        "new": {
+          "n": 636,
+          "rmse": 61942.6409,
+          "r2": 0.6036,
+          "mae": 37490.8142,
+          "rmse_gap": -7996.3463,
+          "alert": false
+        },
+        "mid": {
+          "n": 1569,
+          "rmse": 69650.7304,
+          "r2": 0.611,
+          "mae": 40919.1001,
+          "rmse_gap": -288.2568,
+          "alert": false
+        },
+        "old": {
+          "n": 1491,
+          "rmse": 73983.7634,
+          "r2": 0.5883,
+          "mae": 40897.5797,
+          "rmse_gap": 4044.7763,
+          "alert": false
+        },
+        "very_old": {
+          "n": 432,
+          "rmse": 67683.0161,
+          "r2": 0.7409,
+          "mae": 42433.9019,
+          "rmse_gap": -2255.9711,
+          "alert": false
+        }
+      },
+      "geo_cluster": {
+        "0": {
+          "n": 169,
+          "rmse": 55294.611,
+          "r2": 0.8002,
+          "mae": 37771.608,
+          "rmse_gap": -14644.3762,
+          "alert": false
+        },
+        "1": {
+          "n": 19,
+          "rmse": 62831.7865,
+          "r2": 0.6514,
+          "mae": 44853.7187,
+          "rmse_gap": -7107.2007,
+          "alert": false
+        },
+        "12": {
+          "n": 271,
+          "rmse": 92253.9313,
+          "r2": 0.3583,
+          "mae": 53346.3922,
+          "rmse_gap": 22314.9441,
+          "alert": true
+        },
+        "16": {
+          "n": 99,
+          "rmse": 49805.3794,
+          "r2": 0.7777,
+          "mae": 31244.5511,
+          "rmse_gap": -20133.6078,
+          "alert": false
+        },
+        "19": {
+          "n": 71,
+          "rmse": 42286.3595,
+          "r2": 0.8803,
+          "mae": 30170.4689,
+          "rmse_gap": -27652.6277,
+          "alert": false
+        },
+        "2": {
+          "n": 38,
+          "rmse": 40255.8722,
+          "r2": 0.8805,
+          "mae": 26281.7851,
+          "rmse_gap": -29683.115,
+          "alert": false
+        },
+        "4": {
+          "n": 30,
+          "rmse": 45402.7206,
+          "r2": 0.8675,
+          "mae": 32735.6035,
+          "rmse_gap": -24536.2666,
+          "alert": false
+        },
+        "5": {
+          "n": 39,
+          "rmse": 39607.3759,
+          "r2": 0.8629,
+          "mae": 31783.5436,
+          "rmse_gap": -30331.6113,
+          "alert": false
+        },
+        "8": {
+          "n": 25,
+          "rmse": 48265.6315,
+          "r2": 0.7546,
+          "mae": 33263.2758,
+          "rmse_gap": -21673.3557,
+          "alert": false
+        }
+      }
+    }
+  }
+}

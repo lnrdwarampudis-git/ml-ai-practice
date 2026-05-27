@@ -1,0 +1,42 @@
+{
+  "Linear (d=1)": {
+    "degree": 1,
+    "interact_only": false,
+    "n_features": 6,
+    "r2_mean": 0.5633146929964123,
+    "r2_std": 0.03393148896510466,
+    "rmse_mean": 12.302055570764864
+  },
+  "Poly d=2 full": {
+    "degree": 2,
+    "interact_only": false,
+    "n_features": 27,
+    "r2_mean": 0.7730933583756256,
+    "r2_std": 0.0446551748626831,
+    "rmse_mean": 8.860460283921892
+  },
+  "Poly d=2 interact": {
+    "degree": 2,
+    "interact_only": true,
+    "n_features": 21,
+    "r2_mean": 0.6006973324505072,
+    "r2_std": 0.052330596036717844,
+    "rmse_mean": 11.76006625442878
+  },
+  "Poly d=3 full": {
+    "degree": 3,
+    "interact_only": false,
+    "n_features": 83,
+    "r2_mean": 0.6583029456833813,
+    "r2_std": 0.25003997438796904,
+    "rmse_mean": 10.368304008239386
+  },
+  "Poly d=3 interact": {
+    "degree": 3,
+    "interact_only": true,
+    "n_features": 41,
+    "r2_mean": 0.5306334302965607,
+    "r2_std": 0.10454274083733234,
+    "rmse_mean": 12.703768157911759
+  }
+}

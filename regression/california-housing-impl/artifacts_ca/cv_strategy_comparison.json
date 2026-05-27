@@ -1,0 +1,11 @@
+{
+  "KFold": {
+    "rmse_mean": 65799.89159747213,
+    "rmse_std": 1636.6547979364636
+  },
+  "GroupKFold": {
+    "rmse_mean": 70713.93784144486,
+    "rmse_std": 7202.354111328941
+  },
+  "spatial_leakage_estimate_rmse": -4914.046243972727
+}
