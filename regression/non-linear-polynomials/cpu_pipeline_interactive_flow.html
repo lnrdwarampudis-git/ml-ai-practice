@@ -1,0 +1,299 @@
+
+<h2 class="sr-only">Interactive flow diagram for the CPU Activity ML pipeline — 12 non-linearity and polynomial concepts from OpenML data load through training, inference, and monitoring</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.root{padding:14px 0 32px;font-family:var(--font-sans)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;padding:0 0 12px;font-size:11px;color:var(--color-text-secondary)}
+.li{display:flex;align-items:center;gap:5px}
+.ld{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.sl{font-size:10px;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:var(--color-text-tertiary);padding:0 0 5px 50px;margin-top:6px}
+.row{display:flex;align-items:stretch}
+.lane{width:48px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.lane span{font-size:10px;font-weight:500;color:var(--color-text-tertiary);writing-mode:vertical-rl;letter-spacing:.5px;text-transform:uppercase}
+.nodes{flex:1;padding:7px 0;display:flex;flex-wrap:wrap;gap:6px;align-items:flex-start}
+.node{border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:8px 11px;cursor:pointer;background:var(--color-background-primary);transition:border-color .12s,background .12s;position:relative}
+.node:hover{border-color:var(--color-border-primary);background:var(--color-background-secondary)}
+.node.active{border-width:1.5px}
+.nt{font-size:13px;font-weight:500;color:var(--color-text-primary);line-height:1.3}
+.ns{font-size:11px;color:var(--color-text-secondary);margin-top:2px;line-height:1.35}
+.pn{position:absolute;top:4px;right:6px;font-size:9px;color:var(--color-text-tertiary);font-weight:500}
+.node.ct{border-color:#1D9E75;background:rgba(29,158,117,.07)}.node.ct .nt{color:#085041}.node.ct:hover{background:rgba(29,158,117,.13)}
+.node.cp{border-color:#7F77DD;background:rgba(127,119,221,.07)}.node.cp .nt{color:#3C3489}.node.cp:hover{background:rgba(127,119,221,.13)}
+.node.ca{border-color:#BA7517;background:rgba(186,117,23,.07)}.node.ca .nt{color:#633806}.node.ca:hover{background:rgba(186,117,23,.13)}
+.node.cc{border-color:#993C1D;background:rgba(153,60,29,.07)}.node.cc .nt{color:#712B13}.node.cc:hover{background:rgba(153,60,29,.13)}
+.node.ck{border-color:#993556;background:rgba(153,53,86,.07)}.node.ck .nt{color:#4B1528}.node.ck:hover{background:rgba(153,53,86,.13)}
+.node.cg{border-color:#888780;background:rgba(136,135,128,.07)}.node.cg .nt{color:#2C2C2A}.node.cg:hover{background:rgba(136,135,128,.13)}
+@media(prefers-color-scheme:dark){
+.node.ct{background:rgba(29,158,117,.13)}.node.ct .nt{color:#9FE1CB}
+.node.cp{background:rgba(127,119,221,.13)}.node.cp .nt{color:#CECBF6}
+.node.ca{background:rgba(186,117,23,.13)}.node.ca .nt{color:#FAC775}
+.node.cc{background:rgba(153,60,29,.13)}.node.cc .nt{color:#F5C4B3}
+.node.ck{background:rgba(153,53,86,.13)}.node.ck .nt{color:#F4C0D1}
+.node.cg{background:rgba(136,135,128,.13)}.node.cg .nt{color:#D3D1C7}
+}
+.div{height:1px;margin:4px 0 4px 48px;background:var(--color-border-tertiary);position:relative}
+.div::after{content:"↓";position:absolute;left:calc(50% - 7px);bottom:-13px;font-size:13px;color:var(--color-text-tertiary)}
+.gap{height:18px}
+.cg2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;width:100%}
+.cg3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;width:100%}
+.dp{border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-lg);padding:15px 17px;margin-top:16px;background:var(--color-background-primary)}
+.dp-hdr{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px}
+.dp-title{font-size:14px;font-weight:500;color:var(--color-text-primary);flex:1;line-height:1.4}
+.dp-close{background:none;border:none;color:var(--color-text-tertiary);font-size:18px;cursor:pointer;padding:0;line-height:1;flex-shrink:0}
+.dp-body{font-size:13px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:10px}
+.dp-why{font-size:12px;color:var(--color-text-secondary);border-left:2px solid var(--color-border-secondary);padding-left:10px;margin-bottom:10px;line-height:1.55;border-radius:0}
+.dp-why strong{color:var(--color-text-primary);font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.tg{font-size:11px;padding:2px 9px;border-radius:20px;font-weight:500}
+.tt{background:rgba(29,158,117,.12);color:#085041}.tp{background:rgba(127,119,221,.12);color:#3C3489}
+.ta{background:rgba(186,117,23,.12);color:#633806}.tc{background:rgba(153,60,29,.12);color:#712B13}
+.tk{background:rgba(136,135,128,.12);color:#2C2C2A}
+@media(prefers-color-scheme:dark){
+.tt{background:rgba(29,158,117,.2);color:#9FE1CB}.tp{background:rgba(127,119,221,.2);color:#CECBF6}
+.ta{background:rgba(186,117,23,.2);color:#FAC775}.tc{background:rgba(153,60,29,.2);color:#F5C4B3}
+.tk{background:rgba(136,135,128,.2);color:#D3D1C7}
+}
+</style>
+
+<div class="root">
+<div class="legend">
+  <div class="li"><div class="ld" style="background:#1D9E75"></div>Data / foundation</div>
+  <div class="li"><div class="ld" style="background:#7F77DD"></div>New concepts A–L</div>
+  <div class="li"><div class="ld" style="background:#BA7517"></div>Outputs / artifacts</div>
+  <div class="li"><div class="ld" style="background:#993C1D"></div>Evaluation / metrics</div>
+  <div class="li"><div class="ld" style="background:#993556"></div>Governance</div>
+  <div class="li" style="font-style:italic">Click any node for details + reasoning</div>
+</div>
+
+<div class="sl">Entry</div>
+<div class="row">
+  <div class="lane"><span>CLI</span></div>
+  <div class="nodes">
+    <div class="node cg" onclick="show('cli')"><div class="nt">cpu_pipeline.py</div><div class="ns">train | predict | monitor | sample-input</div></div>
+    <div class="node cg" onclick="show('speed')"><div class="nt">speed flags</div><div class="ns">--fast · --use-poly · ML_N_JOBS</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="sl">Phase 1 — data</div>
+<div class="row">
+  <div class="lane"><span>Data</span></div>
+  <div class="nodes">
+    <div class="node ct" onclick="show('load')"><span class="pn">1a</span><div class="nt">fetch_openml</div><div class="ns">data_id=197, parser="auto"</div></div>
+    <div class="node ct" onclick="show('fix')"><span class="pn">1b</span><div class="nt">fix_data_types</div><div class="ns">numpy float64 rebuild</div></div>
+    <div class="node ct" onclick="show('split')"><span class="pn">1c</span><div class="nt">split_data</div><div class="ns">random 80/20, before EDA</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="sl">Phase 2 — EDA (train-set only)</div>
+<div class="row">
+  <div class="lane"><span>EDA</span></div>
+  <div class="nodes">
+    <div class="node ct" onclick="show('eda_miss')"><span class="pn">2a</span><div class="nt">missingness report</div><div class="ns">zero nulls expected</div></div>
+    <div class="node ct" onclick="show('eda_corr')"><span class="pn">2b</span><div class="nt">correlation + VIF</div><div class="ns">pure numpy, no sklearn</div></div>
+    <div class="node ct" onclick="show('eda_skew')"><span class="pn">2c</span><div class="nt">skewness report</div><div class="ns">drives log-transform choices</div></div>
+    <div class="node cp" onclick="show('concept_f_eda')"><span class="pn">F</span><div class="nt">sys+wait+usr≈100</div><div class="ns">constraint detected in EDA</div></div>
+    <div class="node ca" onclick="show('eda_out')"><div class="nt">5 plots + 4 CSVs</div><div class="ns">eda_*.png / research_decisions.json</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="sl">Phase 3 — feature engineering (sklearn pipeline step)</div>
+<div class="row">
+  <div class="lane"><span>FE</span></div>
+  <div class="nodes" style="flex-direction:column;align-items:stretch">
+    <div class="cg3">
+      <div class="node cp" onclick="show('concept_e')"><span class="pn">E</span><div class="nt">log1p transforms (19 features)</div><div class="ns">right-skewed counters</div></div>
+      <div class="node cp" onclick="show('concept_c_fe')"><span class="pn">C</span><div class="nt">fork_exec_interact · pflt_vflt_interact</div><div class="ns">non-linear interactions</div></div>
+      <div class="node cp" onclick="show('concept_f_fe')"><span class="pn">F</span><div class="nt">sys_wait_total · runqsz_sq · cpu_contention</div><div class="ns">domain constraint features</div></div>
+    </div>
+    <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap">
+      <div class="node ct" onclick="show('prep')" style="flex:1;min-width:130px"><div class="nt">_DynamicNumericPreprocessor</div><div class="ns">fit-time column resolution</div></div>
+      <div class="node cp" onclick="show('pipeline_flags')" style="flex:1;min-width:130px"><div class="nt">optional: poly · spline · kernel</div><div class="ns">--use-poly / --use-spline / --use-kernel</div></div>
+      <div class="node ct" onclick="show('featsel')" style="flex:1;min-width:130px"><div class="nt">SelectFromModel</div><div class="ns">ExtraTreesRegressor, median</div></div>
+    </div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="sl">Phase 4 — pre-search concept analysis (12 functions, all run before tuning)</div>
+<div class="row">
+  <div class="lane"><span>Analysis</span></div>
+  <div class="nodes" style="flex-direction:column;align-items:stretch">
+    <div class="cg2">
+      <div class="node cp" onclick="show('concept_a')"><span class="pn">A</span><div class="nt">analyse_polynomial_features</div><div class="ns">d=1,2,3 · full vs interact-only</div></div>
+      <div class="node cp" onclick="show('concept_b')"><span class="pn">B</span><div class="nt">analyse_basis_functions</div><div class="ns">poly · spline · RBF · Fourier</div></div>
+      <div class="node cp" onclick="show('concept_c')"><span class="pn">C</span><div class="nt">analyse_nonlinear_importance</div><div class="ns">mutual info vs Pearson r</div></div>
+      <div class="node cp" onclick="show('concept_d')"><span class="pn">D</span><div class="nt">analyse_kernel_approx</div><div class="ns">Nystroem · RBFSampler</div></div>
+      <div class="node cp" onclick="show('concept_f')"><span class="pn">F</span><div class="nt">analyse_multicollinearity</div><div class="ns">VIF · sys+wait constraint</div></div>
+      <div class="node cp" onclick="show('concept_g')"><span class="pn">G</span><div class="nt">analyse_regularisation_with_poly</div><div class="ns">Ridge/Lasso paths on poly features</div></div>
+      <div class="node cp" onclick="show('concept_k')"><span class="pn">K</span><div class="nt">analyse_cv_stability</div><div class="ns">KFold vs RepeatedKFold 5×5</div></div>
+      <div class="node cp" onclick="show('concept_l')"><span class="pn">L</span><div class="nt">analyse_spline_regression</div><div class="ns">knot count vs smoothness tradeoff</div></div>
+    </div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="sl">Phase 5 — hyperparameter search</div>
+<div class="row">
+  <div class="lane"><span>Tune</span></div>
+  <div class="nodes">
+    <div class="node cp" onclick="show('tune_linear')"><div class="nt">Ridge · Lasso · ElasticNet</div><div class="ns">L2, L1, L1+L2 regularisation</div></div>
+    <div class="node cp" onclick="show('tune_tree')"><div class="nt">GBR · RandomForest</div><div class="ns">50 trees search → 300 refit</div></div>
+    <div class="node ct" onclick="show('tune_search')"><div class="nt">RandomizedSearchCV</div><div class="ns">refit=r2, 5-fold KFold</div></div>
+    <div class="node ct" onclick="show('tune_upgrade')"><div class="nt">tree upgrade after search</div><div class="ns">winner promoted to 300 trees</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="sl">Phase 6 — OOF uncertainty</div>
+<div class="row">
+  <div class="lane"><span>OOF</span></div>
+  <div class="nodes">
+    <div class="node ct" onclick="show('oof')"><div class="nt">compute_oof_uncertainty</div><div class="ns">5-fold, asymmetric cost</div></div>
+    <div class="node ca" onclick="show('oof_out')"><div class="nt">±OOF RMSE band</div><div class="ns">lower_bound · upper_bound</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="sl">Phase 7 — test evaluation (5 metrics)</div>
+<div class="row">
+  <div class="lane"><span>Eval</span></div>
+  <div class="nodes">
+    <div class="node cc" onclick="show('m_r2')"><div class="nt">R²</div><div class="ns">variance explained</div></div>
+    <div class="node cc" onclick="show('m_rmse')"><div class="nt">RMSE</div><div class="ns">% CPU error units</div></div>
+    <div class="node cc" onclick="show('m_mae')"><div class="nt">MAE</div><div class="ns">avg absolute % error</div></div>
+    <div class="node cc" onclick="show('m_mape')"><div class="nt">MAPE</div><div class="ns">scale-free %</div></div>
+    <div class="node cc" onclick="show('m_medae')"><div class="nt">MedAE</div><div class="ns">outlier-robust</div></div>
+    <div class="node ct" onclick="show('baselines')"><div class="nt">DummyRegressor</div><div class="ns">mean + median strategies</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="sl">Phase 8 — artifact saving + diagnostics</div>
+<div class="row">
+  <div class="lane"><span>Save</span></div>
+  <div class="nodes">
+    <div class="node ca" onclick="show('model_ver')"><div class="nt">versioned .joblib</div><div class="ns">timestamp + SHA1</div></div>
+    <div class="node cp" onclick="show('concept_h')"><span class="pn">H</span><div class="nt">residual diagnostics</div><div class="ns">Breusch-Pagan · Shapiro-Wilk</div></div>
+    <div class="node cp" onclick="show('concept_i')"><span class="pn">I</span><div class="nt">learning curves</div><div class="ns">train vs CV RMSE vs size</div></div>
+    <div class="node cp" onclick="show('concept_j')"><span class="pn">J</span><div class="nt">PDP + ICE plots</div><div class="ns">kind="both", 200 subsample</div></div>
+    <div class="node ca" onclick="show('eval_plots')"><div class="nt">4 evaluation plots</div><div class="ns">actual/pred · residuals · band</div></div>
+    <div class="node ca" onclick="show('profile')"><div class="nt">training_profile.json</div><div class="ns">100 quantiles per feature</div></div>
+    <div class="node cg" onclick="show('env_snap')"><div class="nt">environment.json</div><div class="ns">lib versions</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="sl">Phase 9 — SHAP + subgroups + governance</div>
+<div class="row">
+  <div class="lane"><span>Gov</span></div>
+  <div class="nodes">
+    <div class="node cp" onclick="show('shap')"><div class="nt">SHAP</div><div class="ns">auto-detect Tree/Linear</div></div>
+    <div class="node ck" onclick="show('subgroups')"><div class="nt">evaluate_subgroups</div><div class="ns">load_tier (idle/low/medium/high)</div></div>
+    <div class="node ck" onclick="show('model_card')"><div class="nt">model_card.json</div><div class="ns">sys+wait constraint warning</div></div>
+    <div class="node ck" onclick="show('mlflow')"><div class="nt">log_to_mlflow</div><div class="ns">optional, graceful fallback</div></div>
+    <div class="node ca" onclick="show('metrics_json')"><div class="nt">metrics.json</div><div class="ns">all 12 concept results</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="sl">Inference + monitoring</div>
+<div class="row">
+  <div class="lane"><span>Infer</span></div>
+  <div class="nodes">
+    <div class="node ct" onclick="show('pred_schema')"><div class="nt">pandera validation</div><div class="ns">all features ≥ 0, lazy=True</div></div>
+    <div class="node ct" onclick="show('pred_col')"><div class="nt">column check</div><div class="ns">vs training_profile.json</div></div>
+    <div class="node cp" onclick="show('pred_band')"><div class="nt">predicted_usr + ±band</div><div class="ns">wide_interval flag</div></div>
+    <div class="node ct" onclick="show('mon_ks')"><div class="nt">KS drift monitor</div><div class="ns">100-quantile surrogate</div></div>
+    <div class="node ca" onclick="show('pred_out')"><div class="nt">predictions.csv / monitor.json</div><div class="ns">all input cols preserved</div></div>
+  </div>
+</div>
+
+<div class="dp" id="dp" style="display:none">
+  <div class="dp-hdr">
+    <div class="dp-title" id="dp-title"></div>
+    <button class="dp-close" onclick="closeDp()" aria-label="Close">×</button>
+  </div>
+  <div class="dp-body" id="dp-body"></div>
+  <div class="dp-why" id="dp-why"></div>
+  <div class="tags" id="dp-tags"></div>
+</div>
+</div>
+
+<script>
+const D={
+cli:{t:"CLI entry — four subcommands",b:"train runs all 12 concept analyses then the full model pipeline. predict loads the saved model, validates input schema, scores rows, and adds ±OOF band columns. monitor reads training_profile.json and runs missing-rate drift + KS distribution drift checks. sample-input exports N raw rows from the OpenML dataset as an inference-ready CSV.",w:"<strong>Why analyse all 12 concepts before every train run?</strong> The analyses (polynomial degree comparison, basis function curves, mutual information, etc.) inform which pipeline configuration is best. By running them every time, the results are always consistent with the actual training data split — not computed once and forgotten.",tags:[["k","argparse subcommands"],["k","mirrors titanic-ml-pipeline.py"]]},
+speed:{t:"Speed flags — --fast, --use-poly, ML_N_JOBS",b:"--fast uses 50 trees during the RandomizedSearchCV search (instead of 100); the winning model is upgraded to 300 trees and refit after selection. --use-poly adds PolynomialFeatures(degree=2) as an explicit pipeline step during the main search — expands ~50 post-FE features to ~1,275 features. ML_N_JOBS=-1 uses all CPU cores for cross_val_score, RandomizedSearchCV, and cross_val_predict calls.",w:"<strong>Why upgrade trees after search instead of searching with 300?</strong> Searching with 300 trees per candidate × 100 fits = 30,000 tree builds. The winning hyperparameter region selected by 50 trees is 95%+ identical to that selected by 300. The one-time upgrade at the end recovers full model quality at negligible cost.",tags:[["k","--fast tree upgrade"],["k","--use-poly 50→1275 features"]]},
+load:{t:"fetch_openml(data_id=197, as_frame=True, parser='auto')",b:"Exact loader as specified. Returns 8,192 rows × 22 columns (21 system counters + usr target). All columns are float64 with zero missing values in the OpenML version. Falls back to _make_synthetic_cpu() if OpenML returns HTTP 403 — synthetic data uses exponential distributions that mirror real system counter distributions.",w:"<strong>Why data_id=197 not name='cpu_act'?</strong> OpenML ID is stable across dataset name changes and version updates. Name-based lookup can return different versions if the dataset is updated. ID=197 always returns the same 8,192-row dataset.",tags:[["t","fetch_openml data_id=197"],["t","synthetic fallback"]]},
+fix:{t:"fix_data_types — numpy float64 rebuild",b:"Iterates every column, applies pd.to_numeric(errors='coerce'), then reconstructs the entire DataFrame from a dict of .to_numpy(dtype=np.float64) arrays. This defeats Arrow dtype, SparseDtype, and object-backed pandas ExtensionArrays that caused the earlier 'at least one array or dtype is required' errors in sklearn 1.8's set_output wrapper. Logs a WARNING for any column that becomes all-NaN after the cast.",w:"<strong>Why rebuild instead of just .astype(float)?</strong> .astype(float) returns a new DataFrame but can preserve the original backing array type (Arrow, Sparse) in newer pandas. The dict → DataFrame construction guarantees a fresh plain numpy float64 backing with no metadata inherited from the OpenML object.",tags:[["t","numpy float64 backing"],["t","defeats Arrow/Sparse dtype"]]},
+split:{t:"split_data — random 80/20 before EDA",b:"train_test_split(test_size=0.2, random_state=42). No stratify — continuous target. The split happens before save_research_artifacts so EDA can only see 6,553 training rows, never the 1,639 test rows. All 12 concept analyses also run on training data only.",w:"<strong>Why random not time-ordered?</strong> CPU Activity rows are system snapshots collected across many conditions, not a time series in the conventional sense. There is no temporal ordering that needs preserving. Random splitting gives stable train/test distributions.",tags:[["t","6553 train / 1639 test"],["t","before EDA and all concepts"]]},
+eda_miss:{t:"missingness report",b:"missingness_report() on X_train + TARGET. CPU Activity has zero missing values in the OpenML version, but the check is retained. Saved as research_missingness_report.csv. Serves as the baseline for the monitoring pipeline — any missing value in production data relative to 0% training rate will immediately trigger the missing-rate alert.",w:"<strong>Why check if we know there are no nulls?</strong> The report doubles as a schema audit. The monitoring pipeline uses the saved missing rate (0.0 per column) as its reference. Any deviation flags a data quality event upstream.",tags:[["t","zero nulls expected"],["a","research_missingness_report.csv"]]},
+eda_corr:{t:"correlation + VIF — pure numpy, no sklearn",b:"Pearson r with target computed via np.corrcoef on a float64 dict-built DataFrame. VIF uses np.column_stack of per-column .to_numpy() arrays, manual nanmedian imputation, then LinearRegression per feature — completely bypassing sklearn's ColumnTransformer and set_output wrapper that caused the earlier KeyError: 'sys' and shape mismatch errors.",w:"<strong>Why pure numpy for VIF specifically?</strong> sklearn's ColumnTransformer._validate_column_callables fails when the column list contains post-engineer names that don't exist yet at validation time. The pure numpy path has no such validation step — it just operates on whatever array you hand it.",tags:[["t","pure numpy"],["t","no ColumnTransformer"]]},
+eda_skew:{t:"skewness report — drives Concept E transforms",b:"Computes skewness and kurtosis per numeric column using per-column .to_numpy(dtype=np.float64) conversion. System counters like rchar, wchar, pflt, vflt, Population-like counters all have |skew| >> 1 from exponential distributions. Saved as skewness_report.csv. The 19 columns in LOG_TRANSFORM_FEATURES were chosen based on this known-to-be-skewed profile.",w:"<strong>Why document skewness before engineering?</strong> It creates an auditable record of why each log transform was applied. If a future model reviewer asks 'why log_pflt?', the skewness_report.csv is the evidence.",tags:[["t","19 skewed features"],["a","skewness_report.csv"]]},
+concept_f_eda:{t:"Concept F in EDA — sys+wait+usr≈100 constraint",b:"The CPU time decomposition constraint: every second of CPU time is split among sys (kernel mode), wait (I/O blocked), and usr (user mode). They sum to roughly 100. Since sys and wait are features and usr is the target, this creates near-perfect linear predictors. The EDA grouped stats compute the actual pct_sys_wait_constraint: what fraction of rows have sys+wait+usr between 95 and 105.",w:"<strong>Why does this matter for modelling?</strong> A model that includes sys and wait will have artificially high R² — it just learns usr = 100 − sys − wait. This is data leakage by system definition. The model card warns about this, and the VIF report flags both sys and wait with VIF >> 10.",tags:[["p","Concept F"],["p","sys+wait+usr≈100 constraint"]]},
+eda_out:{t:"EDA outputs — 5 plots + 4 CSVs + JSON",b:"Plots: target distribution (usr %), correlation bar (green positive / red negative), sys vs usr scatter (shows the linear constraint), runqsz vs usr scatter (shows the convex non-linear relationship), log transform demo (vflt before/after). CSVs: missingness, schema, skewness, correlation_with_target, vif_report. JSON: research_decisions with feature policy including LOG_TRANSFORM_FEATURES and POLY_CANDIDATE_FEATURES.",w:"<strong>Why specifically plot runqsz vs usr?</strong> runqsz (run queue size) has a convex, non-linear relationship with usr from queueing theory: E[wait] ≈ ρ/(1-ρ) where ρ = utilisation. This is the mathematical justification for Concept A's polynomial expansion and Concept L's spline regression on this feature.",tags:[["a","5 PNG plots"],["a","4 CSVs + research_decisions.json"]]},
+concept_e:{t:"Concept E — log1p transforms for 19 right-skewed counters",b:"np.log1p(col.clip(lower=0).fillna(0)) for all 19 system counters in LOG_TRANSFORM_FEATURES. log1p used instead of log because values can be exactly 0 (e.g. no page faults in an idle interval). clip(lower=0) prevents negative values from producing NaN. The skewness report confirms |skew| > 1 for all 19. sys and wait are excluded — they are bounded percentages [0,100], not count metrics.",w:"<strong>Why clip then log not the reverse?</strong> If a counter has small negative values from measurement noise or overflow, log(-0.1) = NaN. clip(lower=0) first converts those to 0, then log1p(0) = 0 — the zero-activity case maps cleanly to zero log-space.",tags:[["p","Concept E"],["p","log1p(clip(0).fillna(0))"]]},
+concept_c_fe:{t:"Concept C/A — interaction terms in CPUFeatureEngineer",b:"fork_exec_interact = fork × exec: process spawn intensity. High fork rate AND high exec rate together indicate rapid process creation (e.g. shell scripting, build systems) which consumes CPU differently than either alone. pflt_vflt_interact = pflt × vflt: total page fault pressure. Pressure faults (pflt) and translation faults (vflt) together indicate memory system saturation.",w:"<strong>Why these specific interactions?</strong> Domain knowledge: system performance is multiplicative, not additive. A high fork rate with zero exec (e.g. daemonised forks) has very different CPU impact than high fork AND high exec. Linear models cannot learn this without the explicit product feature.",tags:[["p","Concept C domain interactions"],["p","CPUFeatureEngineer"]]},
+concept_f_fe:{t:"Concept F — domain constraint features",b:"sys_wait_total = sys + wait: total CPU time NOT in user mode. This is a derived feature that directly encodes the complementary relationship — usr ≈ 100 - sys_wait_total. runqsz_sq = runqsz²: queue contention is convex. cpu_contention = runqsz × sys_wait_total: run queue size weighted by non-user CPU pressure. io_pressure and memory_pressure: fault rate normalised by available memory.",w:"<strong>Why add sys_wait_total if it's near-perfect for predicting usr?</strong> It helps linear models fit the constraint directly. Without it, Ridge must discover that -1×sys + -1×wait ≈ the answer. With sys_wait_total as a feature, one coefficient captures the constraint. SelectFromModel can then decide whether to keep or prune it.",tags:[["p","Concept F"],["p","encodes sys+wait+usr≈100"]]},
+prep:{t:"_DynamicNumericPreprocessor — fit-time column resolution",b:"Custom BaseEstimator+TransformerMixin that resolves column names at .fit() time from X.columns, not from a hardcoded list. At fit, stores self.cols_ = [c for c in X.columns if numeric]. At transform, uses only columns present in both self.cols_ and X.columns. Converts each column via .to_numpy(dtype=np.float64) — no pandas API, no set_output wrapper, no _validate_column_callables. Applies median imputation then the chosen scaler.",w:"<strong>Why custom instead of ColumnTransformer?</strong> ColumnTransformer calls _validate_column_callables(X) at fit time, checking that every requested column exists in the input. When the hardcoded post-engineer column list (get_column_groups().numeric) was used, CV folds failed because they received raw X_train before CPUFeatureEngineer ran. The dynamic resolver avoids this by never hardcoding column names.",tags:[["t","dynamic column resolution"],["t","no ColumnTransformer"]]},
+pipeline_flags:{t:"Optional pipeline steps — poly, spline, kernel",b:"build_pipeline() accepts use_poly, use_spline, use_kernel flags. use_poly=True appends PolynomialFeatures(degree=2, interaction_only=False, include_bias=False) — expands ~50 post-FE features to ~1,275. use_spline=True appends SplineTransformer(n_knots=5, degree=3). use_kernel=True appends Nystroem(kernel='rbf', gamma=0.1, n_components=100). Each step is inserted between preprocess and feature_selection.",w:"<strong>Why insert before SelectFromModel?</strong> The polynomial/spline expansion creates many redundant features. SelectFromModel then prunes to the informative subset. Without the selector, passing 1,275 features directly to a linear model would require much stronger regularisation and much more memory.",tags:[["p","Concepts A, B, D"],["p","--use-poly adds 1275 features"]]},
+featsel:{t:"SelectFromModel — ExtraTreesRegressor, median threshold",b:"ExtraTreesRegressor(n_estimators=150) scores all post-expansion features by Gini importance. SelectFromModel keeps only features above the median importance score — typically ~25 of 50 post-FE features, or ~25 of 1,275 post-poly features. Runs inside the Pipeline so it's correctly refit per CV fold without leakage.",w:"<strong>Why ExtraTrees not f_regression?</strong> f_regression measures linear correlation. Most CPU relationships are non-linear (queueing curves, memory pressure thresholds). ExtraTrees captures non-linear importance, giving a selector that works for both linear and tree final models in the search.",tags:[["t","ExtraTreesRegressor selector"],["t","~25 features selected"]]},
+concept_a:{t:"Concept A — polynomial feature analysis",b:"Compares 5 configurations: Linear (d=1), Poly d=2 full, Poly d=2 interact-only, Poly d=3 full, Poly d=3 interact-only. Applied to POLY_CANDIDATE_FEATURES (8 highest-signal features). Each config is evaluated via 5-fold Ridge CV. Plots R² per config and R² vs number of features — the classic polynomial tradeoff chart. Best config identified and logged.",w:"<strong>Why compare interact-only vs full polynomial?</strong> Full polynomial adds squared terms (runqsz²) AND cross-products (runqsz×sys). Interact-only adds only cross-products. If d=2 interact-only matches d=2 full in R², the squared terms aren't needed — you can halve the feature count. This tells you whether the non-linearity is from individual feature curves or from feature interactions.",tags:[["p","Concept A"],["a","polynomial_analysis.json + plot"]]},
+concept_b:{t:"Concept B — basis function comparison on runqsz",b:"5 basis types applied to runqsz alone (1D, so the fitted curve is directly visualisable): Raw linear (1 feature), Polynomial d=2 (2 features), Natural cubic spline 5 knots (6 features), Nystroem RBF k=20 (20 features), Fourier RBFSampler k=20 (20 features). Each evaluated with 5-fold Ridge CV. The fitted curves are plotted over the runqsz range with the actual data scatter behind them.",w:"<strong>Why use runqsz for the 1D demo?</strong> runqsz (run queue size) has a known convex non-linear relationship with CPU utilisation from queueing theory. E[response time] = 1/(μ-λ) in M/M/1 queue. A linear basis simply can't fit this — it's the clearest demonstration that basis expansion is necessary for this dataset.",tags:[["p","Concept B"],["a","plot_basis_functions.png"]]},
+concept_c:{t:"Concept C — mutual information vs Pearson r",b:"mutual_info_regression with n_neighbors=5 (k-NN estimator of MI) versus |Pearson r| for each of the 21 raw features. MI is normalised to [0,1] for comparison. The nonlinear_score = MI_norm − |Pearson r| identifies features where non-linear dependency is high but linear correlation is low. Top-5 most non-linear features are logged and used as the POLY_CANDIDATE_FEATURES list.",w:"<strong>Why k-NN MI estimator?</strong> The Kraskov-Stögbauer-Grassberger estimator (used by sklearn's mutual_info_regression) is model-free — it estimates MI directly from the data distribution using nearest-neighbour distances. It detects non-linear, monotone, and even cyclic relationships that Pearson r misses entirely. High MI + low |r| is the signature of a non-linearly important feature.",tags:[["p","Concept C"],["a","nonlinear_importance.json + plot"]]},
+concept_d:{t:"Concept D — kernel approximation comparison",b:"4 methods compared on POLY_CANDIDATE_FEATURES: Ridge (linear baseline), Poly d=2 + Ridge, Nystroem RBF (k=50) + Ridge, RBFSampler Fourier (k=100) + Ridge. 3-fold CV on standardised features. The Nystroem approximation maps features into a 50-dimensional space approximating the RBF kernel, enabling Ridge to learn non-linear boundaries.",w:"<strong>What is the kernel trick and why approximate it?</strong> An RBF kernel SVM maps features to infinite-dimensional space where linear separation is always possible. Nystroem approximates this mapping with a finite k-dimensional explicit feature map. This lets a fast linear model (Ridge) capture the same non-linearity as an SVM kernel without the O(n²) kernel matrix computation.",tags:[["p","Concept D"],["a","kernel_approx_analysis.json"]]},
+concept_f:{t:"Concept F — multicollinearity: VIF + sys/wait constraint",b:"VIF computed via pure numpy LinearRegression per feature. sys and wait are expected to have VIF >> 10 (possibly 9999) because sys + wait ≈ 100 − usr — they are near-perfect linear combinations of the target. The VIF report documents which features are highly collinear. The model card includes a specific warning about inflated R² when sys and wait are included.",w:"<strong>What should you do when sys/wait VIF is 9999?</strong> Three options: (1) keep them and accept inflated R² with a governance note — useful if the model predicts live system load where sys/wait are available; (2) drop them and evaluate the 'feature-only' model R²; (3) keep them but report both R² values. This pipeline takes option 1 with the governance note.",tags:[["p","Concept F"],["a","vif_report.csv + correlation_heatmap"]]},
+concept_g:{t:"Concept G — regularisation paths on polynomial features",b:"Ridge and Lasso coefficient traces over 50 alpha values (logspace -3 to 3) on degree-2 polynomial-expanded POLY_CANDIDATE_FEATURES. RidgeCV, LassoCV, ElasticNetCV find CV-optimal alphas. Key result: the optimal Ridge alpha for polynomial features is higher than for raw features — more features need stronger regularisation. Lasso zeros most polynomial terms, performing automatic feature selection.",w:"<strong>Why does optimal α shift with polynomial expansion?</strong> The L2 penalty sums over all coefficients. With 1,275 features, the total penalty is much larger than with 8 features for the same alpha. To prevent over-regularisation, sklearn's Ridge adjusts internally, but the CV-optimal alpha is genuinely larger for polynomial-expanded data because more features can overfit.",tags:[["p","Concept G"],["a","plot_regularisation_poly.png + CSV"]]},
+concept_h:{t:"Concept H — residual diagnostics",b:"Breusch-Pagan test: regresses squared residuals on fitted values, computes BP = n×R² of that regression, p-value from χ²(df=1). p < 0.05 → heteroscedastic. Shapiro-Wilk on ≤5000 subsample for normality. For CPU Activity, heteroscedasticity is expected: prediction error is larger at high CPU utilisation because the sys+wait constraint creates more variance at extreme usr values.",w:"<strong>Why test heteroscedasticity for CPU data?</strong> Linear model confidence intervals assume constant error variance (homoscedasticity). If errors grow with fitted value (heteroscedastic), the ±OOF RMSE band underestimates uncertainty at high CPU load and overestimates at low load. The BP test quantifies this — if significant, the constant uncertainty band should be treated as approximate.",tags:[["p","Concept H"],["a","plot_residual_diagnostics.png"]]},
+concept_i:{t:"Concept I — learning curves",b:"learning_curve() with 8 train sizes from 10% to 100% of X_train, 3-fold KFold. Plots train RMSE vs CV RMSE vs sample size with ±1 std shading. If the two curves converge but remain high → high bias (underfitting — add more features or polynomial terms). If there's a large gap → high variance (overfitting — add more data or regularise more).",w:"<strong>Why 3-fold specifically for learning curves?</strong> Learning curves are computationally expensive — 8 sizes × k folds × full pipeline fit each time. 3-fold gives a reasonable variance estimate while keeping compute time manageable. The 5-fold used elsewhere is not needed here because the curve shape (convergence pattern) is more important than the exact CV score.",tags:[["p","Concept I"],["a","plot_learning_curve.png"]]},
+concept_j:{t:"Concept J — partial dependence + ICE plots",b:"PartialDependenceDisplay.from_estimator() with kind='both' for runqsz (col 16) and sys (col 19). kind='both' overlays: thick line = PDP (average marginal effect across all samples), thin lines = ICE (individual conditional expectation for 200 random subsampled rows). Where ICE lines are parallel, the relationship is homogeneous. Where they diverge (fan-out), some samples have a much stronger non-linear effect.",w:"<strong>Why ICE plots over just PDP?</strong> PDP shows the average effect, which can mask heterogeneity. For CPU data, a block group with zero page faults may show no runqsz effect, while a memory-intensive workload shows a steep convex curve. ICE reveals this heterogeneity — thin lines that fan out at high runqsz tell you that not all system states behave the same way.",tags:[["p","Concept J"],["a","plot_partial_dependence.png"]]},
+concept_k:{t:"Concept K — CV stability: KFold vs RepeatedKFold",b:"Compares standard KFold(5) vs RepeatedKFold(n_splits=5, n_repeats=5) giving 25 score samples. Both run on a simple Ridge pipeline (CPUFeatureEngineer → _DynamicNumericPreprocessor → Ridge). The std_reduction_pct measures how much the repeated CV reduces score variance. Plots boxplots and histograms of the two distributions.",w:"<strong>Why does repeated K-Fold reduce variance?</strong> Standard 5-fold splits the data once randomly. A lucky or unlucky split can give an atypically high or low score. Repeating 5 times with different random seeds averages over multiple random splits, giving a more stable estimate. The std_reduction_pct tells you how much a single 5-fold estimate could be misleading.",tags:[["p","Concept K"],["a","cv_stability.json + plot"]]},
+concept_l:{t:"Concept L — spline regression knot analysis",b:"SplineTransformer with 5 configurations: Linear (degree=1, 2 knots), Quadratic 5k, Cubic 5k, Cubic 10k, Cubic 15k. Applied to runqsz → Ridge in 5-fold CV. Plots fitted curves for the first three configs against the data scatter, and R² vs config to show where over-fitting begins (too many knots for the signal-to-noise ratio in this region).",w:"<strong>Why natural cubic splines specifically?</strong> Natural cubic splines (degree=3) are the standard choice for smooth non-linear regression: they are twice continuously differentiable, they fit polynomial-like curves within each knot interval, and they constrain the tails to be linear (the 'natural' boundary condition) which prevents wild extrapolation. The tradeoff: more knots = more flexibility but also more overfitting potential.",tags:[["p","Concept L"],["a","plot_spline_regression.png + JSON"]]},
+tune_linear:{t:"Linear model family in search — Ridge, Lasso, ElasticNet",b:"Ridge: 11 alpha values [0.001..500]. Lasso: 7 alpha values, max_iter=5000. ElasticNet: alpha × l1_ratio grid (5×5=25 combinations), max_iter=5000. All use feature_selection__threshold search over ['median','0.75*median','1.25*median']. When --use-poly is active, these linear models operate on ~1,275 polynomial features with SelectFromModel pruning to ~25.",w:"<strong>Why include all three linear families even with tree models available?</strong> When sys and wait are features (near-perfect predictors), a well-regularised linear model often achieves very high R² with no overfitting. ElasticNet with polynomial features can achieve R² > 0.95 on CPU Activity while remaining interpretable. Tree models may not always beat it.",tags:[["p","Concept G regularisation"],["t","3 regularisation families"]]},
+tune_tree:{t:"Tree model family in search — GBR, RandomForest",b:"GradientBoostingRegressor uses n_estimators=_tree_n (50 in --fast, 100 default) during search. RandomForestRegressor similarly. After search, if the winner has n_estimators==_tree_n, it's upgraded via set_params(n_estimators=300) and refit on all of X_train.",w:"<strong>When would a tree model beat linear on CPU Activity?</strong> When --use-poly is not active and sys/wait are not available as features, tree models handle the non-linear runqsz-usr relationship without feature engineering. GBR typically achieves R² 0.85-0.92 on the 19-feature version without sys/wait, vs Ridge at 0.70-0.80.",tags:[["t","50 trees search → 300 refit"],["t","feature_importances_ triggers upgrade check"]]},
+tune_search:{t:"RandomizedSearchCV — refit=r2, 5-fold KFold",b:"scoring dict includes r2 (refit primary), neg_root_mean_squared_error, neg_mean_absolute_error. return_train_score=True enables overfit gap in cv_results.csv. verbose=1 shows each fit as it completes. Timing log at completion reports elapsed minutes and the winning model class name.",w:"<strong>Why R² as the refit metric rather than RMSE?</strong> RMSE is in the same units as usr (percentage points). With sys+wait included, a model that learns usr = 100 − sys − wait achieves RMSE ≈ 2-3 from measurement noise. R² provides a scale-invariant comparison that reveals whether the model adds information beyond the linear constraint.",tags:[["t","RandomizedSearchCV refit=r2"],["t","returns elapsed timing"]]},
+tune_upgrade:{t:"Tree upgrade — _tree_n → 300 after search",b:"After search.fit(), checks best_model.n_estimators == _tree_n. If true (a tree model won with the search-time n_estimators), calls best_model.set_params(n_estimators=300) then search.best_estimator_.fit(X_train, y_train). The upgrade uses all 6,553 training rows — no CV fold subset.",w:"<strong>Why 300 specifically?</strong> For 6,553 training rows with 21-50 features, 300 trees is more than enough for convergence of the ensemble error. Adding more trees beyond 300 gives diminishing returns — the variance reduction curve flattens. 300 is the standard production-ready count for this data scale.",tags:[["t","set_params + refit on full train"],["t","300 = convergence threshold"]]},
+oof:{t:"compute_oof_uncertainty — 5-fold OOF, asymmetric cost",b:"cross_val_predict(clone(best_estimator), X_train, y_train, cv=KFold(5)) generates one OOF prediction per training row. Residuals = y_train − oof_preds. oof_rmse = RMS of residuals. lower_band = oof_rmse × underpredict_cost, upper_band = oof_rmse × overpredict_cost. Default: symmetric ±oof_rmse.",w:"<strong>Why OOF not test-set RMSE for the band?</strong> The test set is used once at the end to report performance — feeding it back into calibration would contaminate the evaluation. OOF uncertainty is purely training-data-derived and gives an unbiased estimate of how large prediction errors typically are in practice.",tags:[["t","OOF no leakage"],["t","asymmetric cost via CLI flags"]]},
+oof_out:{t:"OOF RMSE band saved in metrics.json",b:"Keys: oof_rmse, oof_mae, oof_r2, lower_band, upper_band, overpredict_cost, underpredict_cost. At inference, predict() reads oof_rmse from metrics.json and applies ±oof_rmse to predicted_usr. wide_interval flag fires when the band exceeds oof_rmse × 2.5 (i.e. when asymmetric cost flags unusually large intervals).",w:"<strong>What does the band mean for CPU predictions?</strong> If oof_rmse = 3.2 percentage points, the output CSV has lower_bound = predicted_usr − 3.2 and upper_bound = predicted_usr + 3.2. For a system monitoring tool, this is the 1-sigma interval — roughly 68% of actual usr values will fall within this band.",tags:[["a","metrics.json"],["t","stateless inference"]]},
+m_r2:{t:"R² — coefficient of determination",b:"r2_score(y_true, y_pred). Scale-invariant. With sys and wait included: expect R² > 0.95 (near-perfect due to the constraint). Without sys and wait: expect R² 0.80-0.92. The model card explicitly notes this inflation. Reporting both versions is recommended.",w:"<strong>Why is R² so high for this dataset?</strong> usr ≈ 100 − sys − wait. A model that learns this constraint achieves R² → 1.0 trivially. The interesting performance measure is R² on a version of the dataset where sys and wait are withheld — that tests whether the model learned genuine patterns in I/O activity and process scheduling.",tags:[["c","r2_score"],["c","inflated by sys+wait"]]},
+m_rmse:{t:"RMSE — root mean squared error",b:"sqrt(mean_squared_error). Units are percentage points of CPU time. A RMSE of 3.0 means predictions are off by ~3% CPU on average, with large errors penalised quadratically. For a monitoring system, RMSE > 5% would be operationally concerning — predicting 60% usr when actual is 80% is a meaningful mis-scheduling signal.",w:"<strong>Why RMSE alongside R² for CPU?</strong> R² can be 0.97 with RMSE = 8.0% — which looks great statistically but may be operationally unacceptable. RMSE in the domain's units (CPU %) is the metric an SRE cares about. Always report both.",tags:[["c","percentage point units"],["c","operationally meaningful"]]},
+m_mae:{t:"MAE — mean absolute error",b:"mean_absolute_error. Percentage points of CPU. The most interpretable metric for a non-technical audience: 'predictions are off by X percent CPU time on average'. Does not penalise large errors extra. For CPU monitoring, MAE of 2.5 means alerts at 90% threshold would fire at predicted values between 87.5% and 92.5%.",w:"<strong>RMSE vs MAE ratio diagnostic</strong>: If RMSE >> MAE, there are occasional large prediction errors (during unusual workload spikes). If RMSE ≈ MAE, errors are uniformly distributed. For CPU prediction, RMSE/MAE ratio > 2.0 suggests the model struggles during high-load transients.",tags:[["c","mean_absolute_error"],["c","% CPU units"]]},
+m_mape:{t:"MAPE — mean absolute percentage error",b:"mean_absolute_percentage_error. Scale-free percentage of the actual value. For CPU Activity, MAPE is tricky near usr=0 (idle periods): a 2% prediction error on a 1% actual usr gives MAPE=200%. The MedAE is a better metric for datasets with near-zero target values.",w:"<strong>Why include MAPE despite the zero-denominator issue?</strong> MAPE is included because it's the standard metric stakeholders recognise ('within 10% of actual'). sklearn's implementation clips denominators to prevent infinity. But MedAE is the more reliable metric for this dataset's near-zero idle periods.",tags:[["c","mean_absolute_percentage_error"],["c","unreliable near usr≈0"]]},
+m_medae:{t:"MedAE — median absolute error",b:"median_absolute_error. The median of all |actual − predicted| values. Completely unaffected by outlier predictions during unusual workload spikes. Complements MAE: if MAE >> MedAE, the model has a few catastrophically wrong predictions during exceptional load conditions. For CPU monitoring, MedAE of 2.0 with MAE of 5.0 tells you most predictions are accurate but rare load spikes cause large errors.",w:"<strong>Why MedAE for CPU Activity specifically?</strong> CPU workloads are bursty — there are rare transients (batch job submissions, overnight backups) that produce extreme usr values. MedAE reports what a typical non-transient prediction error looks like, ignoring those rare extremes.",tags:[["c","median_absolute_error"],["c","robust to workload spikes"]]},
+baselines:{t:"DummyRegressor baselines — mean + median",b:"DummyRegressor(strategy='mean') always returns y_train.mean(). DummyRegressor(strategy='median') always returns y_train.median(). Any useful model must beat both. If R² < 0, the model is worse than always predicting the mean. For CPU Activity with sys+wait included, the real baseline question is: does the model beat usr = 100 − sys − wait by more than noise?",w:"<strong>Why two baseline strategies?</strong> usr distribution is right-skewed for typical workloads (most time is idle or light). The median baseline often beats the mean baseline when the distribution has outliers. A model that only marginally beats the mean might not beat the median — a weaker result than it appears.",tags:[["t","DummyRegressor"],["t","mean + median"]]},
+model_ver:{t:"versioned .joblib — timestamp + SHA1",b:"Filename: cpu_activity_pipeline_{YYYYMMDDTHHMMSSZ}_{sha1[:8]}.joblib. SHA1 = hashlib.sha1(pickle.dumps(model)).hexdigest()[:8]. A stable pointer cpu_activity_pipeline.joblib is also saved. Identical versioning scheme to titanic-ml-pipeline.py and all other pipelines in this series.",w:"<strong>Why SHA1 in the filename?</strong> Two models trained at the same timestamp in a CI pipeline get different SHA1s. Two models with identical parameters and training data get the same SHA1 — detecting accidental duplicates. The timestamp alone is ambiguous under parallel builds.",tags:[["a","versioned .joblib"],["a","SHA1 fingerprint"]]},
+shap:{t:"SHAP — TreeExplainer or LinearExplainer",b:"Auto-detects model type: feature_importances_ → shap.TreeExplainer (exact, fast for GBR/RF). coef_ → shap.LinearExplainer (exact for Ridge/Lasso/ElasticNet). Otherwise → shap.Explainer with Independent masker. Saves global bar, beeswarm, and waterfall for the single test sample with the largest absolute residual.",w:"<strong>For CPU Activity, what should SHAP reveal?</strong> For a Ridge model with sys+wait: sys and wait will dominate SHAP values, confirming the constraint drives the prediction. For a GBR model without sys/wait: runqsz, vflt, and fork_exec_interact should dominate — these are the process scheduling and memory signals.",tags:[["p","auto-detect explainer"],["a","bar + beeswarm + waterfall"]]},
+subgroups:{t:"evaluate_subgroups — load_tier (idle/low/medium/high)",b:"Cuts runqsz into 4 tiers: idle [0,1), low [1,3), medium [3,6), high [6,100). For each tier with n≥15: computes RMSE, R², MAE. Alert fires if sub_rmse > overall_rmse × 1.25. For CPU Activity, high-load tiers are expected to have higher RMSE — the model is less accurate under heavy contention.",w:"<strong>Why runqsz as the grouping variable?</strong> runqsz (run queue size) is the best proxy for system load state. A queue length of 0-1 is idle, 1-3 is lightly loaded, 3-6 is approaching saturation, >6 is overloaded. These are the operationally meaningful segments — a monitoring system needs to know accuracy per load regime, not just overall.",tags:[["k","load_tier 4 bands"],["k","RMSE alert >125% overall"]]},
+model_card:{t:"model_card.json — includes sys+wait constraint warning",b:"Contains: model_details, intended use (live CPU monitoring from system counters), out_of_scope (different hardware architectures), evaluation_results (R², RMSE, MAE), polynomial_insights (best config from Concept A), regularisation_insights (optimal alphas, features zeroed by Lasso), limitations including the sys+wait constraint note and synthetic fallback caveat.",w:"<strong>Why is the sys+wait warning in the limitations section?</strong> A downstream user who reads only the evaluation results (R²=0.97) might deploy this model in a context where sys and wait are NOT available at inference time. The limitation note tells them the actual performance without those features is lower — preventing a false sense of accuracy.",tags:[["k","sys+wait inflation warning"],["k","Google Model Card spec"]]},
+mlflow:{t:"log_to_mlflow — graceful fallback",b:"Sets experiment to 'cpu_activity'. Logs params (best_params), metrics (cv_r2, test_r2, test_rmse), and key artifact files. Wraps everything in try/except — if MLflow is absent or the server is down, training continues normally with a WARNING log.",w:"<strong>Why log polynomial analysis results to MLflow?</strong> The polynomial_analysis.json and regularisation_coefficients.csv are logged as artifacts. This means across multiple runs with different n_iter or --use-poly settings, MLflow preserves the full analysis results for each run — enabling comparison of how polynomial expansion affects regularisation behaviour across experiments.",tags:[["k","experiment=cpu_activity"],["k","never fails train"]]},
+metrics_json:{t:"metrics.json — all 12 concept results + test metrics",b:"Top-level keys: research, baselines, split, polynomial_analysis (5 configs with R²), basis_analysis (5 basis types), mutual_info (Pearson vs MI per feature), kernel_approx (4 kernel methods), multicollinearity (VIF table), regularisation (optimal alphas), cv_stability (KFold vs RepeatedKFold), spline_analysis (5 knot configs), best_cv, uncertainty_info, residual_diag, test_metrics, subgroups.",w:"<strong>Why include all 12 concept results in metrics.json?</strong> Each concept produces quantitative findings (R² per config, optimal alpha, VIF per feature). Saving them all to metrics.json means a CI pipeline can assert not just 'model R² > 0.80' but also 'Lasso zeroed fewer than 50% of polynomial features' or 'optimal Ridge alpha for poly > 1.0'. These are reproducibility checks for the analysis, not just the final model.",tags:[["a","metrics.json"],["a","12 concept results included"]]},
+pred_schema:{t:"pandera schema validation — all features ≥ 0, lazy=True",b:"All 21 RAW_FEATURES validated as float, pa.Check.ge(0), nullable=True. lazy=True collects all errors before raising. strict=False allows extra columns (row IDs, timestamps). A system counter being negative is physically impossible and indicates either a measurement overflow or an upstream pipeline error.",w:"<strong>Why ge(0) for all counters?</strong> System counters are cumulative counts or rates — they cannot be negative in a correctly functioning measurement system. A negative lread or rchar value would indicate overflow wrapping or a unit conversion error. The schema catches these before they silently propagate into predictions.",tags:[["t","pandera lazy=True"],["t","ge(0) physically-grounded"]]},
+pred_col:{t:"column completeness vs training_profile.json",b:"Reads raw_columns from training_profile.json (the 21 RAW_FEATURES). ValueError on missing columns. WARNING on extra columns — they pass through silently because _DynamicNumericPreprocessor selects only its stored self.cols_ at inference time anyway.",w:"<strong>Why raise on missing but warn on extra?</strong> Missing a counter (e.g. no pgout in the incoming data) means the model cannot form the io_pressure interaction term. That's a hard failure. Extra columns (e.g. a timestamp field) are ignored by _DynamicNumericPreprocessor.transform() which only uses self.cols_ — no action needed.",tags:[["t","ValueError on missing"],["t","_DynamicNumericPreprocessor handles extras"]]},
+pred_band:{t:"predicted_usr + ±OOF band + wide_interval",b:"predicted_usr = model.predict(). lower_bound = predicted − oof_rmse. upper_bound = predicted + oof_rmse. wide_interval = 1 if (upper−lower) > oof_rmse × 2.5 — fires only when asymmetric costs expand one side past 125% of the symmetric width. For a CPU monitoring system, the band tells the SRE the confidence range: if lower_bound > 85%, the system is almost certainly under heavy load.",w:"<strong>Practical use of the band in monitoring</strong>: Set alert thresholds at upper_bound not predicted_usr. If upper_bound > 90%, send an alert. If lower_bound > 90%, send a critical alert. Using the band instead of the point estimate reduces false alarm rates during transient load spikes where the model is less certain.",tags:[["t","±OOF RMSE band"],["t","wide_interval flag"]]},
+mon_ks:{t:"KS drift monitor — 100-quantile surrogate, 0.05 alert",b:"For each engineered numeric feature in training_profile.json: retrieves 100 stored quantiles, runs scipy.stats.ks_2samp(quantiles, incoming_values). p < 0.05 fires drift alert. Missing-rate alert fires at 0.05 (5 percentage points change) — stricter than the default 0.15 because CPU Activity training data has exactly 0 missing values.",w:"<strong>What would KS drift mean for a CPU monitoring system?</strong> If the incoming runqsz distribution suddenly shifts (e.g. the server's workload profile changed from web serving to batch computation), the KS test fires before the model starts making systematically wrong predictions. It's an early-warning signal to retrain.",tags:[["t","ks_2samp quantile surrogate"],["t","0.05 alert (strict)"]]},
+pred_out:{t:"predictions.csv + monitoring_report.json outputs",b:"predictions.csv: all original input columns preserved + predicted_usr, lower_bound, upper_bound, wide_interval. monitoring_report.json: checked_at timestamp, row count, missing_required_columns, extra_columns, missing_rate_drift table (per column: train rate, current rate, absolute change, alert bool), distribution_drift table (KS stat, p-value, train/incoming mean+std, alert bool).",w:"<strong>Why preserve input columns in predictions.csv?</strong> A monitoring system needs to correlate predictions with the raw counters for diagnosis. If predicted_usr = 95% but actual = 40%, the engineer can look at the row's raw fork, vflt, runqsz values to understand what the model saw and why it over-predicted.",tags:[["a","predictions.csv"],["a","monitoring_report.json"]]}
+};
+
+let cur=null;
+function show(id){
+  const d=D[id];if(!d)return;
+  if(cur)cur.classList.remove('active');
+  cur=event.currentTarget;cur.classList.add('active');
+  document.getElementById('dp-title').textContent=d.t;
+  document.getElementById('dp-body').textContent=d.b;
+  document.getElementById('dp-why').innerHTML=d.w;
+  const tEl=document.getElementById('dp-tags');tEl.innerHTML='';
+  (d.tags||[]).forEach(([cls,lbl])=>{
+    const s=document.createElement('span');
+    s.className='tg t'+cls;s.textContent=lbl;tEl.appendChild(s);
+  });
+  document.getElementById('dp').style.display='block';
+  document.getElementById('dp').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function closeDp(){
+  document.getElementById('dp').style.display='none';
+  if(cur){cur.classList.remove('active');cur=null;}
+}
+</script>

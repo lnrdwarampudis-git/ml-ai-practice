@@ -1,0 +1,320 @@
+
+<h2 class="sr-only">Interactive flow diagram for the California Housing ML pipeline — from OpenML data load through 10 new concepts, training, inference, and monitoring</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.root{padding:14px 0 32px;font-family:var(--font-sans)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;padding:0 0 12px;font-size:11px;color:var(--color-text-secondary)}
+.ldot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.leg-item{display:flex;align-items:center;gap:5px}
+.slabel{font-size:10px;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:var(--color-text-tertiary);padding:0 0 5px 52px;margin-top:6px}
+.row{display:flex;align-items:stretch}
+.lane{width:50px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.lane span{font-size:10px;font-weight:500;color:var(--color-text-tertiary);writing-mode:vertical-rl;letter-spacing:.5px;text-transform:uppercase}
+.nodes{flex:1;padding:7px 0;display:flex;flex-wrap:wrap;gap:6px;align-items:flex-start}
+.node{border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:8px 11px;cursor:pointer;background:var(--color-background-primary);transition:border-color .12s,background .12s;position:relative}
+.node:hover{border-color:var(--color-border-primary);background:var(--color-background-secondary)}
+.node.active{border-width:1.5px}
+.nt{font-size:13px;font-weight:500;color:var(--color-text-primary);line-height:1.3}
+.ns{font-size:11px;color:var(--color-text-secondary);margin-top:2px;line-height:1.35}
+.pnum{position:absolute;top:4px;right:6px;font-size:9px;color:var(--color-text-tertiary);font-weight:500}
+.node.ct{border-color:#1D9E75;background:rgba(29,158,117,.07)}.node.ct .nt{color:#085041}.node.ct:hover{background:rgba(29,158,117,.13)}
+.node.cp{border-color:#7F77DD;background:rgba(127,119,221,.07)}.node.cp .nt{color:#3C3489}.node.cp:hover{background:rgba(127,119,221,.13)}
+.node.ca{border-color:#BA7517;background:rgba(186,117,23,.07)}.node.ca .nt{color:#633806}.node.ca:hover{background:rgba(186,117,23,.13)}
+.node.cc{border-color:#993C1D;background:rgba(153,60,29,.07)}.node.cc .nt{color:#712B13}.node.cc:hover{background:rgba(153,60,29,.13)}
+.node.ck{border-color:#993556;background:rgba(153,53,86,.07)}.node.ck .nt{color:#4B1528}.node.ck:hover{background:rgba(153,53,86,.13)}
+.node.cg{border-color:#888780;background:rgba(136,135,128,.07)}.node.cg .nt{color:#2C2C2A}.node.cg:hover{background:rgba(136,135,128,.13)}
+@media(prefers-color-scheme:dark){
+.node.ct{background:rgba(29,158,117,.13)}.node.ct .nt{color:#9FE1CB}
+.node.cp{background:rgba(127,119,221,.13)}.node.cp .nt{color:#CECBF6}
+.node.ca{background:rgba(186,117,23,.13)}.node.ca .nt{color:#FAC775}
+.node.cc{background:rgba(153,60,29,.13)}.node.cc .nt{color:#F5C4B3}
+.node.ck{background:rgba(153,53,86,.13)}.node.ck .nt{color:#F4C0D1}
+.node.cg{background:rgba(136,135,128,.13)}.node.cg .nt{color:#D3D1C7}
+}
+.div{height:1px;margin:4px 0 4px 50px;background:var(--color-border-tertiary);position:relative}
+.div::after{content:"↓";position:absolute;left:calc(50% - 7px);bottom:-13px;font-size:13px;color:var(--color-text-tertiary)}
+.gap{height:18px}
+.concept-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;width:100%}
+.dp{border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-lg);padding:15px 17px;margin-top:16px;background:var(--color-background-primary)}
+.dp-hdr{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px}
+.dp-title{font-size:14px;font-weight:500;color:var(--color-text-primary);flex:1;line-height:1.4}
+.dp-close{background:none;border:none;color:var(--color-text-tertiary);font-size:18px;cursor:pointer;padding:0;line-height:1;flex-shrink:0}
+.dp-body{font-size:13px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:10px}
+.dp-why{font-size:12px;color:var(--color-text-secondary);border-left:2px solid var(--color-border-secondary);padding-left:10px;margin-bottom:10px;line-height:1.55;border-radius:0}
+.dp-why strong{color:var(--color-text-primary);font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.tg{font-size:11px;padding:2px 9px;border-radius:20px;font-weight:500}
+.tt{background:rgba(29,158,117,.12);color:#085041}
+.tp{background:rgba(127,119,221,.12);color:#3C3489}
+.ta{background:rgba(186,117,23,.12);color:#633806}
+.tc{background:rgba(153,60,29,.12);color:#712B13}
+.tk{background:rgba(136,135,128,.12);color:#2C2C2A}
+@media(prefers-color-scheme:dark){
+.tt{background:rgba(29,158,117,.2);color:#9FE1CB}
+.tp{background:rgba(127,119,221,.2);color:#CECBF6}
+.ta{background:rgba(186,117,23,.2);color:#FAC775}
+.tc{background:rgba(153,60,29,.2);color:#F5C4B3}
+.tk{background:rgba(136,135,128,.2);color:#D3D1C7}
+}
+</style>
+
+<div class="root">
+<div class="legend">
+  <div class="leg-item"><div class="ldot" style="background:#1D9E75"></div>Data / foundation</div>
+  <div class="leg-item"><div class="ldot" style="background:#7F77DD"></div>New concepts (A–J)</div>
+  <div class="leg-item"><div class="ldot" style="background:#BA7517"></div>Outputs / artifacts</div>
+  <div class="leg-item"><div class="ldot" style="background:#993C1D"></div>Evaluation / metrics</div>
+  <div class="leg-item"><div class="ldot" style="background:#993556"></div>Governance</div>
+  <div class="leg-item" style="font-style:italic">Click any node for details + reasoning</div>
+</div>
+
+<div class="slabel">Entry</div>
+<div class="row">
+  <div class="lane"><span>CLI</span></div>
+  <div class="nodes">
+    <div class="node cg" onclick="show('cli')"><div class="nt">california_pipeline.py</div><div class="ns">train | predict | monitor | sample-input</div></div>
+    <div class="node cg" onclick="show('speed')"><div class="nt">speed controls</div><div class="ns">--fast · --n-iter · --n-cv-splits · ML_N_JOBS</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="slabel">Phase 1 — data loading</div>
+<div class="row">
+  <div class="lane"><span>Data</span></div>
+  <div class="nodes">
+    <div class="node ct" onclick="show('load')"><span class="pnum">1a</span><div class="nt">fetch_openml</div><div class="ns">name="california_housing", v1</div></div>
+    <div class="node ct" onclick="show('rename')"><span class="pnum">1b</span><div class="nt">canonical rename</div><div class="ns">openml → sklearn col names</div></div>
+    <div class="node ct" onclick="show('fix')"><span class="pnum">1c</span><div class="nt">fix_data_types</div><div class="ns">numpy float64 rebuild</div></div>
+    <div class="node ct" onclick="show('split')"><span class="pnum">1d</span><div class="nt">split_data</div><div class="ns">random 80/20, before EDA</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="slabel">Phase 2 — EDA (train-set only)</div>
+<div class="row">
+  <div class="lane"><span>EDA</span></div>
+  <div class="nodes">
+    <div class="node ct" onclick="show('eda_miss')"><span class="pnum">2a</span><div class="nt">missingness report</div><div class="ns">per-column, no test leakage</div></div>
+    <div class="node ct" onclick="show('eda_skew')"><span class="pnum">2b</span><div class="nt">skewness report</div><div class="ns">drives log-transform decisions</div></div>
+    <div class="node ct" onclick="show('eda_corr')"><span class="pnum">2c</span><div class="nt">correlation + VIF</div><div class="ns">pure numpy, no sklearn wrapper</div></div>
+    <div class="node ct" onclick="show('eda_grouped')"><span class="pnum">2d</span><div class="nt">grouped statistics</div><div class="ns">MEDV by income_tier, age_group</div></div>
+    <div class="node cp" onclick="show('concept_f')"><span class="pnum">F</span><div class="nt">target cap analysis</div><div class="ns">5.0 cap · --drop-capped flag</div></div>
+    <div class="node ca" onclick="show('eda_out')"><div class="nt">8 plots + 5 CSVs + JSON</div><div class="ns">eda_*.png / research_decisions.json</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="slabel">Phase 3 — feature engineering (sklearn pipeline step)</div>
+<div class="row">
+  <div class="lane"><span>FE</span></div>
+  <div class="nodes" style="flex-direction:column;align-items:stretch">
+    <div class="concept-grid">
+      <div class="node cp" onclick="show('concept_e1')"><span class="pnum">E</span><div class="nt">log_AveRooms, log_AveBedrms</div><div class="ns">log1p right-skewed counts</div></div>
+      <div class="node cp" onclick="show('concept_e2')"><span class="pnum">E</span><div class="nt">log_Population, log_AveOccup, log_MedInc</div><div class="ns">compress heavy tails</div></div>
+      <div class="node cp" onclick="show('concept_d1')"><span class="pnum">D</span><div class="nt">dist_LA, dist_SF, dist_SAC</div><div class="ns">haversine distance (km)</div></div>
+      <div class="node cp" onclick="show('concept_d2')"><span class="pnum">D</span><div class="nt">geo_cluster (KMeans k=20)</div><div class="ns">learned in fit() — no leakage</div></div>
+      <div class="node cp" onclick="show('concept_c1')"><span class="pnum">C</span><div class="nt">medinc_rooms_interact</div><div class="ns">income × space signal</div></div>
+      <div class="node cp" onclick="show('concept_c2')"><span class="pnum">C</span><div class="nt">rooms_per_person · bedrooms_ratio · income_per_room</div><div class="ns">ratio interaction terms</div></div>
+    </div>
+    <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap">
+      <div class="node ct" onclick="show('prep')" style="flex:1;min-width:130px"><div class="nt">build_preprocessor</div><div class="ns">median impute + StandardScaler</div></div>
+      <div class="node ct" onclick="show('featsel')" style="flex:1;min-width:130px"><div class="nt">SelectFromModel</div><div class="ns">ExtraTreesRegressor, median</div></div>
+    </div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="slabel">Phase 4 — pre-search analysis</div>
+<div class="row">
+  <div class="lane"><span>Analysis</span></div>
+  <div class="nodes">
+    <div class="node cp" onclick="show('concept_a')"><span class="pnum">A</span><div class="nt">compare_scalers</div><div class="ns">Standard vs Robust vs MinMax</div></div>
+    <div class="node cp" onclick="show('concept_b')"><span class="pnum">B</span><div class="nt">analyse_regularisation</div><div class="ns">Ridge path · Lasso path · ElasticNet</div></div>
+    <div class="node cp" onclick="show('concept_j')"><span class="pnum">J</span><div class="nt">compare_cv_strategies</div><div class="ns">KFold vs GroupKFold spatial leak</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="slabel">Phase 5 — hyperparameter search</div>
+<div class="row">
+  <div class="lane"><span>Tune</span></div>
+  <div class="nodes">
+    <div class="node cp" onclick="show('tune_linear')"><div class="nt">Ridge · Lasso · ElasticNet</div><div class="ns">L2, L1, L1+L2 search</div></div>
+    <div class="node cp" onclick="show('tune_tree')"><div class="nt">GBR · RandomForest</div><div class="ns">50 trees search → 300 trees refit</div></div>
+    <div class="node ct" onclick="show('tune_search')"><div class="nt">RandomizedSearchCV</div><div class="ns">refit="r2", 5-fold KFold</div></div>
+    <div class="node ct" onclick="show('tune_upgrade')"><div class="nt">tree upgrade + full refit</div><div class="ns">winner gets 300 trees on all data</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="slabel">Phase 6 — OOF uncertainty</div>
+<div class="row">
+  <div class="lane"><span>OOF</span></div>
+  <div class="nodes">
+    <div class="node ct" onclick="show('oof')"><div class="nt">compute_oof_uncertainty</div><div class="ns">5-fold OOF, asymmetric cost</div></div>
+    <div class="node ca" onclick="show('oof_out')"><div class="nt">±OOF RMSE band</div><div class="ns">saved to metrics.json</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="slabel">Phase 7 — test evaluation (5 metrics)</div>
+<div class="row">
+  <div class="lane"><span>Eval</span></div>
+  <div class="nodes">
+    <div class="node cc" onclick="show('metric_r2')"><div class="nt">R²</div><div class="ns">primary: variance explained</div></div>
+    <div class="node cc" onclick="show('metric_rmse')"><div class="nt">RMSE</div><div class="ns">penalises large errors</div></div>
+    <div class="node cc" onclick="show('metric_mae')"><div class="nt">MAE</div><div class="ns">same unit as target</div></div>
+    <div class="node cc" onclick="show('metric_mape')"><div class="nt">MAPE</div><div class="ns">scale-free %</div></div>
+    <div class="node cc" onclick="show('metric_medae')"><div class="nt">MedAE</div><div class="ns">outlier-robust</div></div>
+    <div class="node ct" onclick="show('baselines')"><div class="nt">DummyRegressor baselines</div><div class="ns">mean + median strategies</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="slabel">Phase 8 — artifact saving + diagnostics</div>
+<div class="row">
+  <div class="lane"><span>Save</span></div>
+  <div class="nodes">
+    <div class="node ca" onclick="show('model_ver')"><div class="nt">versioned .joblib</div><div class="ns">timestamp + SHA1 fingerprint</div></div>
+    <div class="node cp" onclick="show('concept_g')"><span class="pnum">G</span><div class="nt">residual diagnostics</div><div class="ns">Breusch-Pagan · Shapiro-Wilk</div></div>
+    <div class="node cp" onclick="show('concept_h')"><span class="pnum">H</span><div class="nt">learning curves</div><div class="ns">bias-variance vs train size</div></div>
+    <div class="node cp" onclick="show('concept_i')"><span class="pnum">I</span><div class="nt">partial dependence plots</div><div class="ns">MedInc + AveRooms marginal effect</div></div>
+    <div class="node ca" onclick="show('eval_plots')"><div class="nt">4 evaluation plots</div><div class="ns">actual/pred · residuals · band</div></div>
+    <div class="node ca" onclick="show('profile')"><div class="nt">training_profile.json</div><div class="ns">100 quantiles per feature</div></div>
+    <div class="node cg" onclick="show('env_snap')"><div class="nt">environment.json</div><div class="ns">lib versions for audit</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="slabel">Phase 9 — SHAP explainability</div>
+<div class="row">
+  <div class="lane"><span>SHAP</span></div>
+  <div class="nodes">
+    <div class="node cp" onclick="show('shap')"><div class="nt">TreeExplainer / LinearExplainer</div><div class="ns">auto-detect model type</div></div>
+    <div class="node ca" onclick="show('shap_out')"><div class="nt">bar + beeswarm + waterfall</div><div class="ns">worst |residual| sample</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="slabel">Phase 10 — disparity evaluation + governance</div>
+<div class="row">
+  <div class="lane"><span>Gov</span></div>
+  <div class="nodes">
+    <div class="node ck" onclick="show('fairness')"><div class="nt">evaluate_subgroups</div><div class="ns">income_tier · age_group · geo_cluster</div></div>
+    <div class="node ck" onclick="show('fair_alert')"><div class="nt">RMSE alert: >125% overall</div><div class="ns">income disparity detection</div></div>
+    <div class="node ck" onclick="show('model_card')"><div class="nt">model_card.json</div><div class="ns">EU AI Act · redlining note</div></div>
+    <div class="node ck" onclick="show('mlflow')"><div class="nt">log_to_mlflow</div><div class="ns">optional, graceful fallback</div></div>
+    <div class="node ca" onclick="show('metrics_json')"><div class="nt">metrics.json</div><div class="ns">all results, CI-parseable</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="slabel">Inference pipeline</div>
+<div class="row">
+  <div class="lane"><span>Infer</span></div>
+  <div class="nodes">
+    <div class="node ct" onclick="show('pred_schema')"><div class="nt">pandera schema validation</div><div class="ns">lazy=True · all errors at once</div></div>
+    <div class="node ct" onclick="show('pred_col')"><div class="nt">column completeness check</div><div class="ns">vs training_profile.json</div></div>
+    <div class="node cp" onclick="show('pred_band')"><div class="nt">predicted_medv + ±OOF band</div><div class="ns">lower_bound · upper_bound · flag</div></div>
+    <div class="node ca" onclick="show('pred_out')"><div class="nt">predictions.csv</div><div class="ns">point + interval + wide_interval</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="slabel">Monitoring pipeline</div>
+<div class="row">
+  <div class="lane"><span>Mon</span></div>
+  <div class="nodes">
+    <div class="node ct" onclick="show('mon_miss')"><div class="nt">missing-rate drift</div><div class="ns">per-column alert threshold</div></div>
+    <div class="node cp" onclick="show('mon_ks')"><div class="nt">KS distribution drift</div><div class="ns">100-quantile surrogate sample</div></div>
+    <div class="node ca" onclick="show('mon_out')"><div class="nt">monitoring_report.json</div><div class="ns">KS stat · p-value · alerts</div></div>
+  </div>
+</div>
+
+<div class="dp" id="dp" style="display:none">
+  <div class="dp-hdr">
+    <div class="dp-title" id="dp-title"></div>
+    <button class="dp-close" onclick="closeDp()" aria-label="Close">×</button>
+  </div>
+  <div class="dp-body" id="dp-body"></div>
+  <div class="dp-why" id="dp-why"></div>
+  <div class="tags" id="dp-tags"></div>
+</div>
+</div>
+
+<script>
+const D={
+  cli:{t:"CLI entry — four subcommands",b:"train runs the full pipeline end-to-end. predict loads the saved model, validates input, and scores new rows. monitor reads training_profile.json and checks incoming data for drift. sample-input loads OpenML, drops the target, and exports N rows as a ready-to-use inference CSV.",w:"<strong>Why four subcommands?</strong> They map to the four operational modes of a deployed model: training a new version, running inference, checking data drift, and generating test fixtures. The same script serves the data scientist (train), the serving layer (predict, monitor), and QA (sample-input).",tags:[["k","argparse subcommands"],["k","mirrors titanic-ml-pipeline.py"]]},
+  speed:{t:"Speed controls — fast mode, n-iter, n-cv-splits, ML_N_JOBS",b:"--fast uses 50 trees during search (down from 100); the winning model is automatically upgraded to 300 trees and refit on all training data after the search. --n-iter 8 cuts to 40 CV fits total. --n-cv-splits 3 uses 3-fold instead of 5-fold. ML_N_JOBS=-1 uses all CPU cores. Typical runtimes: --fast --n-iter 8 --n-cv-splits 3 = 3–5 min; default = 30–60 min.",w:"<strong>Why upgrade trees after search?</strong> The search finds the best hyperparameter region cheaply with 50 trees. Once the winner is selected, growing 300 trees costs nothing extra (it runs once), but gives a much stronger final model. Searching with 300 trees per candidate would be 6× slower for no gain in region selection quality.",tags:[["k","--fast --n-iter --n-cv-splits"],["k","ML_N_JOBS=-1 env var"]]},
+  load:{t:"fetch_openml(name='california_housing', version=1)",b:"Exact loader pattern as specified. Returns 20,640 rows × 9 columns (8 features + target). All columns arrive as object or float depending on OpenML version. The fallback path uses sklearn's built-in fetch_california_housing() and renames MedHouseVal → median_house_value for consistency.",w:"<strong>Why version=1?</strong> OpenML datasets can be updated. Pinning version=1 guarantees the same 20,640 rows and same feature definitions on every run — a reproducibility contract.",tags:[["t","fetch_openml"],["t","version=1 pinned"]]},
+  rename:{t:"canonical rename — OpenML → sklearn column names",b:"OpenML v1 uses lowercase snake_case: median_income, housing_median_age, total_rooms, total_bedrooms, population, households, latitude, longitude, median_house_value. The rename_map converts all of these to the canonical CamelCase names (MedInc, HouseAge, AveRooms, etc.) that the rest of the pipeline uses. Only columns present in _CANONICAL are renamed; unknown columns pass through unchanged.",w:"<strong>Why rename at load time?</strong> Every downstream function (feature engineer, pandera schema, fairness evaluation, monitoring) uses canonical names. Renaming once at load keeps all other code clean and removes version-specific branching.",tags:[["t","_CANONICAL dict"],["t","logs renamed columns"]]},
+  fix:{t:"fix_data_types — numpy float64 rebuild",b:"Iterates every column, applies pd.to_numeric(errors='coerce'), then reconstructs the entire DataFrame using a dict comprehension with .to_numpy(dtype=np.float64) values. This defeats Arrow dtype, SparseDtype, and object-backed pandas ExtensionArrays that sklearn's set_output wrapper cannot handle. Logs a WARNING for any column that becomes all-NaN after the cast.",w:"<strong>Why rebuild the whole DataFrame?</strong> .astype(float) and .apply(pd.to_numeric) return new DataFrames but can preserve the original backing array type (Arrow, Sparse) in newer pandas. The dict → DataFrame construction guarantees a fresh plain numpy float64 backing with no metadata from the original object.",tags:[["t","numpy float64 backing"],["t","all-NaN warning logged"]]},
+  split:{t:"split_data — random 80/20 before EDA",b:"train_test_split(test_size=0.2, random_state=42). No stratify — continuous target. The split happens before save_research_artifacts so EDA can only see 16,512 training rows, never the 4,128 test rows. This is the primary leakage-prevention mechanism.",w:"<strong>Why random not stratified?</strong> Stratified sampling requires discrete class labels. Binning the continuous target to stratify would impose arbitrary boundaries and introduce bias. For regression with a large dataset (16k rows), random splitting gives stable train/test distributions without stratification.",tags:[["t","before EDA"],["t","test_size=0.2"]]},
+  eda_miss:{t:"missingness report — no test leakage",b:"missingness_report() on eda (X_train with TARGET appended). California Housing has zero missing values in the OpenML version, but the report is retained because CSV round-trips and real-world augmented datasets often introduce nulls. Saved as research_missingness_report.csv.",w:"<strong>Why run it if there are no nulls?</strong> The saved CSV becomes a reference for the monitoring pipeline — it records the 'training state' for each column. If a future batch arrives with missing values, the monitor computes the absolute change versus this baseline and fires an alert.",tags:[["t","zero nulls expected"],["a","research_missingness_report.csv"]]},
+  eda_skew:{t:"skewness report — drives log-transform decisions (Concept E)",b:"Computes skewness and kurtosis per numeric column using .to_numpy(dtype=np.float64) to guarantee correct computation. AveRooms, AveBedrms, Population, AveOccup all have |skew|>1, driving the log1p transforms in CaliforniaFeatureEngineer. MedInc has moderate skew (~1.6). Saved as skewness_report.csv.",w:"<strong>Why check skewness before engineering?</strong> Log transforms only help when skewness is genuine. Computing skew on the training set before feature engineering documents the justification for each transform — if a future model reviewer asks 'why log_AveRooms?', the CSV is the answer.",tags:[["p","Concept E driver"],["a","skewness_report.csv"]]},
+  eda_corr:{t:"correlation + VIF — pure numpy, no sklearn",b:"Pearson r with target computed on a float64 DataFrame rebuilt per-column. VIF (Variance Inflation Factor) uses pure numpy median imputation (nanmedian fill, no SimpleImputer) followed by LinearRegression per feature. sklearn's set_output wrapper was causing shape mismatches across sklearn versions; the numpy path bypasses it entirely.",w:"<strong>Why VIF matters here?</strong> AveRooms and AveBedrms are highly correlated (~0.85). AveRooms and log_AveRooms will be near-perfect duplicates. VIF > 10 flags these — telling us SelectFromModel needs to prune redundant features, and Ridge is more appropriate than OLS for correlated feature sets.",tags:[["t","Pearson r vs target"],["t","pure numpy VIF"]]},
+  eda_grouped:{t:"grouped statistics — income_tier, house_age_group",b:"Cuts MedInc into 4 tiers (low <2, mid 2-4, high 4-6, very_high >6) and HouseAge into 4 bands (new <15yr, mid, old, very_old >45yr). Groups MEDV by each. These grouped stats both document EDA findings and define the subgroup columns used in Phase 10 fairness evaluation.",w:"<strong>Why define income tiers in EDA?</strong> The bins are a modelling decision — they directly affect the fairness audit in Phase 10. Defining them in EDA (on train only) and saving them to research_decisions.json documents the choice before the model is built, making it auditable.",tags:[["t","income_tier 4 bands"],["a","grouped_stats in research_decisions.json"]]},
+  concept_f:{t:"Concept F — target cap analysis: MedHouseVal cap at 5.0",b:"The original 1990 census dataset caps median_house_value at $500k (represented as 5.0 in 100k units). About 5% of blocks hit this cap. These rows contain no price information above the cap — the model can't learn from them above that threshold. The --drop-capped CLI flag excludes these rows before training. The target distribution plot shows both raw and log1p distributions.",w:"<strong>Why does the cap matter for regression?</strong> A regression model will be confused by the pile-up at 5.0. It sees many blocks with very different features all labelled 5.0, creating an artificial cluster. Dropping them removes the distortion; keeping them with awareness of the cap is honest. MedAE is used alongside RMSE because it's robust to this outlier cluster.",tags:[["p","Concept F"],["p","--drop-capped flag"]]},
+  concept_e1:{t:"Concept E — log transforms: AveRooms, AveBedrms, Population, AveOccup",b:"np.log1p(col.clip(lower=0).fillna(0)). log1p is used instead of log because some values may be exactly zero (log(0) = -inf; log1p(0) = 0). clip(lower=0) prevents negative values from producing NaN. The skewness report quantifies the reduction: AveRooms skew drops from ~3.7 to ~0.4 after log1p.",w:"<strong>Why log-transform count features?</strong> Ridge, Lasso, and ElasticNet assume roughly symmetric feature distributions for their regularisation penalty to be applied fairly across features. A highly right-skewed feature like Population (range 3 to 35,682) will dominate the L2 penalty unless compressed. Log1p normalises the scale and the penalty.",tags:[["p","Concept E"],["p","log1p(clip(0))"]]},
+  concept_e2:{t:"Concept E — log_MedInc",b:"np.log1p(MedInc.clip(lower=0).fillna(0)). MedInc is moderately right-skewed (~1.6) and is the strongest single predictor of home value (Pearson r ≈ 0.69). Log-transforming it linearises the MedInc-MEDV relationship for linear models. The partial dependence plot (Concept I) shows the shape before and after the transform.",w:"<strong>Why keep both raw MedInc and log_MedInc?</strong> Raw MedInc is kept for the interaction term medinc_rooms_interact (income × rooms). SelectFromModel decides which representation contributes more signal. For tree models it doesn't matter; for linear models the log version gives cleaner coefficients.",tags:[["p","Concept E"],["p","both raw + log kept"]]},
+  concept_d1:{t:"Concept D — haversine distance to LA, SF, Sacramento",b:"Vectorised haversine formula: d = 2R · arcsin(√(sin²(Δφ/2) + cos(φ1)cos(φ2)sin²(Δλ/2))). Computed in km for each block group's lat/lon vs three fixed reference points. These three cities represent the three largest economic centres in California — proximity to them is a strong proxy for job market access and commute feasibility.",w:"<strong>Why haversine not Euclidean?</strong> Euclidean distance on lat/lon coordinates is incorrect — 1 degree longitude at latitude 34° is ~92km, at latitude 40° it's ~85km. Haversine accounts for Earth's curvature and gives geographically meaningful distances that don't depend on projection choice.",tags:[["p","Concept D"],["p","haversine vectorised"]]},
+  concept_d2:{t:"Concept D — geo_cluster: KMeans k=20 learned in fit()",b:"KMeans(n_clusters=20, random_state=42, n_init=10) fit on Latitude/Longitude of the training set only. The 20 cluster centroids are stored in self._kmeans and applied via .predict() in transform(). This gives each block group a neighbourhood identity label (0-19) as a numeric proxy for unobserved geographic factors.",w:"<strong>Why KMeans in fit() specifically?</strong> If cluster centroids were computed on the full dataset (train + test), test block groups would influence the cluster boundaries — a form of data leakage. Fitting only on training data means the cluster assignment for any new row uses centroids the model never saw that row use to define.",tags:[["p","Concept D"],["p","KMeans fit on train only"]]},
+  concept_c1:{t:"Concept C — medinc_rooms_interact and medinc_age_interact",b:"medinc_rooms_interact = MedInc × AveRooms (income × space). medinc_age_interact = MedInc × HouseAge (income × depreciation). These encode the economic intuition that the same number of rooms means different things in a wealthy vs low-income neighbourhood, and that the value of a large house depreciates differently by income context.",w:"<strong>Why interaction terms instead of PolynomialFeatures?</strong> PolynomialFeatures(degree=2) on 21 features produces 231 terms — a 10× feature explosion. Domain-knowledge interactions (5 terms) are cheaper, interpretable, and target specific hypotheses. SelectFromModel prunes any that don't add signal, so there's no cost to including them.",tags:[["p","Concept C"],["p","domain-knowledge not exhaustive"]]},
+  concept_c2:{t:"Concept C — rooms_per_person, bedrooms_ratio, income_per_room",b:"rooms_per_person = AveRooms / AveOccup (space per occupant — overcrowding proxy). bedrooms_ratio = AveBedrms / AveRooms (bedroom concentration — efficiency signal). income_per_room = MedInc / AveRooms (affordability per unit of space). All use safe denominators (clip lower=0.1) to prevent divide-by-zero.",w:"<strong>Why ratio features?</strong> Raw AveRooms and AveOccup individually are less informative than their ratio. A 6-room house occupied by 8 people is overcrowded; a 6-room house with 2 people is spacious. The ratio captures the density signal that neither raw feature alone contains.",tags:[["p","Concept C"],["p","safe denominators"]]},
+  prep:{t:"build_preprocessor — pure numeric ColumnTransformer",b:"Single numeric pipeline: SimpleImputer(strategy='median', add_indicator=True) → StandardScaler. No categorical pipeline — California Housing has no categorical columns in the raw data. add_indicator=True creates a binary missingness flag for each numeric feature, preserving the 'was this missing?' signal even though California Housing has no missing values.",w:"<strong>Why add_indicator on a dataset with no nulls?</strong> The pipeline is designed to generalise to production data. Real California census data may have missing values for newer tracts. The indicator preserves the missingness signal rather than silently imputing and losing that information.",tags:[["t","median impute + add_indicator"],["t","StandardScaler by default"]]},
+  featsel:{t:"SelectFromModel — ExtraTreesRegressor, median threshold",b:"ExtraTreesRegressor(n_estimators=200) scores all 21 post-FE features by Gini importance. SelectFromModel keeps only features above the median importance score (~10-11 of the 21). This is inside the Pipeline so it's correctly applied at inference without fitting on test data.",w:"<strong>Why ExtraTrees not f_regression?</strong> f_regression measures linear correlation. Many California Housing relationships are non-linear (the MedInc–MEDV curve, the geographic clustering effects). ExtraTrees captures non-linear importance, giving a selector that works for both linear and tree final models.",tags:[["t","ExtraTrees importance selector"],["t","~10 features selected"]]},
+  concept_a:{t:"Concept A — compare_scalers: Standard vs Robust vs MinMax",b:"Fits Ridge(alpha=1.0) with each scaler via 5-fold CV on the engineered training features. Reports CV RMSE ± std and R². The winner is passed as scaler_name to build_pipeline so the hyperparameter search uses the empirically best scaler. Results saved to scaler_comparison.json and a bar chart PNG.",w:"<strong>Why compare scalers?</strong> All features are numeric but have wildly different ranges (Population 3–35,682 vs AveOccup 0.7–1,243). StandardScaler normalises mean/std; RobustScaler uses median/IQR and is resistant to outliers from the 5.0 price cap rows; MinMaxScaler maps to [0,1]. The choice directly affects how the L1/L2 penalty is distributed across features.",tags:[["p","Concept A"],["a","scaler_comparison.json"]]},
+  concept_b:{t:"Concept B — regularisation analysis: Ridge path, Lasso path, optimal α",b:"60 alpha values from 10⁻³ to 10³ (logspace). For each: fits Ridge and Lasso, stores coefficients. Plots coefficient traces (regularisation paths). Then uses RidgeCV, LassoCV, ElasticNetCV to find CV-optimal alphas. Produces coefficient comparison bar chart (Ridge vs Lasso vs ElasticNet) and Ridge bias-variance curve.",w:"<strong>Why analyse regularisation before the main search?</strong> The search samples hyperparameter combinations randomly — it doesn't trace paths. The regularisation analysis gives a principled view of the entire alpha space, telling you whether the optimal alpha for this dataset is in the under-regularised or over-regularised regime before you waste search iterations.",tags:[["p","Concept B"],["a","regularisation_coefficients.csv"]]},
+  concept_j:{t:"Concept J — KFold vs GroupKFold: spatial CV comparison",b:"Compares Ridge CV RMSE under standard KFold(5) vs GroupKFold(5) where groups = geo_cluster. If geographically adjacent blocks appear in both train and validation folds, KFold gives an optimistic CV score because the model has already 'seen' the neighbourhood. GroupKFold ensures all blocks from one cluster go to either train or validation, simulating predicting truly unseen geographies.",w:"<strong>Why does this matter for California Housing?</strong> The geo features (dist_LA, dist_SF, geo_cluster) are highly spatially autocorrelated — nearby blocks have similar values. KFold doesn't account for this. The RMSE difference between KFold and GroupKFold (the 'spatial leakage estimate') quantifies how much the standard CV overstates performance.",tags:[["p","Concept J"],["a","cv_strategy_comparison.json"]]},
+  tune_linear:{t:"Linear model family in search: Ridge, Lasso, ElasticNet",b:"Three separate param_distributions entries. Ridge: alpha in [0.01..100], 10 values. Lasso: alpha in [0.001..1.0], 7 values, max_iter=5000. ElasticNet: alpha × l1_ratio grid (5×5=25 combinations), max_iter=5000. All use the same feature_selection__threshold search over ['median','0.75*median','1.25*median'].",w:"<strong>Why include all three linear families?</strong> Ridge handles correlated features well (AveRooms and log_AveRooms are correlated). Lasso does automatic feature selection by zeroing coefficients. ElasticNet combines both — stable under collinearity (Ridge) and sparse (Lasso). The search data-drives the choice rather than assuming one is best.",tags:[["p","Concept B search"],["t","3 regularisation families"]]},
+  tune_tree:{t:"Tree model family in search: GBR, RandomForest",b:"GradientBoostingRegressor uses n_estimators=_tree_n (50 in --fast mode, 100 default) during search. RandomForestRegressor uses the same. After the search, if the winning model is a tree ensemble that used _tree_n estimators, it is upgraded to 300 and refit on all of X_train before being saved.",w:"<strong>Why reduce trees during search?</strong> One GBR fit with 200 trees on 16k rows takes ~15 seconds. With 20 iterations × 5 folds = 100 fits, that's 25 minutes just for GBR. Using 50 trees (7s per fit) reduces this to ~12 minutes. The hyperparameter region selected by 50 trees is nearly identical to that selected by 200 trees, so the quality of selection doesn't degrade.",tags:[["p","Concept B tree models"],["t","search=50 → final=300 trees"]]},
+  tune_search:{t:"RandomizedSearchCV: refit=r2, KFold, verbose=1",b:"scoring dict includes r2 (refit primary), neg_root_mean_squared_error, neg_mean_absolute_error. return_train_score=True captures train R² for overfit gap analysis in cv_results.csv. verbose=1 logs each fit as it completes so you see progress. Timing log at completion reports elapsed minutes and the winning model class name.",w:"<strong>Why R² as the refit metric?</strong> R² is scale-invariant — it doesn't depend on whether MEDV is in dollars, hundreds of thousands, or any other unit. RMSE is scale-sensitive. For comparing Ridge (scale-normalised by StandardScaler) vs GBR (unscaled internally), R² gives a fair comparison.",tags:[["t","RandomizedSearchCV"],["t","refit=r2"]]},
+  tune_upgrade:{t:"Tree upgrade: 50 → 300 estimators after search",b:"After search.fit(), the code checks if best_model.n_estimators == _tree_n (meaning a tree model won). If so: best_model.set_params(n_estimators=300), then search.best_estimator_.fit(X_train, y_train). The upgraded model is what gets saved and evaluated on the test set.",w:"<strong>Why not just search with 300 trees?</strong> 300 trees × 100 fits = 30,000 tree builds. The winning hyperparameter region selected by 50 trees is 95%+ the same as with 300 trees, but searching is 6× faster. The single final fit with 300 trees recovers the full model quality at negligible extra cost.",tags:[["t","set_params + refit"],["t","one-time upgrade"]]},
+  oof:{t:"compute_oof_uncertainty — 5-fold OOF predictions",b:"cross_val_predict(clone(best_estimator), X_train, y_train, cv=KFold(5)) generates one OOF prediction per training row. Residuals = y_train − oof_preds. oof_rmse = RMS of those residuals. Asymmetric cost: lower_band = oof_rmse × underpredict_cost, upper_band = oof_rmse × overpredict_cost.",w:"<strong>Why OOF instead of test-set RMSE for the band?</strong> The test set is used once at the end to report performance — feeding it back into the model's calibration would violate the hold-out contract. OOF uses only training data and gives an unbiased estimate of prediction uncertainty without touching the test set.",tags:[["t","OOF no leakage"],["a","oof_rmse in metrics.json"]]},
+  oof_out:{t:"Uncertainty band saved to metrics.json",b:"Keys: oof_rmse, oof_mae, oof_r2, lower_band, upper_band, overpredict_cost, underpredict_cost. At inference, predict() reads oof_rmse from metrics.json and applies it as ±band to produce lower_bound and upper_bound columns. Falls back to ML_UNCERTAINTY_BAND env var if the file is absent.",w:"<strong>Why save the band rather than recompute at inference?</strong> OOF requires the training data, which may not be in the serving environment. Saving the pre-computed band keeps inference stateless — only the .joblib and metrics.json are needed. This is the production pattern for regression uncertainty intervals.",tags:[["a","metrics.json"],["t","stateless inference"]]},
+  metric_r2:{t:"R² — coefficient of determination (primary metric)",b:"r2_score(y_true, y_pred) = 1 − SS_res/SS_tot. Scale-invariant: R²=1 is perfect, R²=0 is predicting the mean, R²<0 is worse than the mean. Primary metric for model selection in RandomizedSearchCV (refit='r2'). Industry benchmark for California Housing: R²>0.80 with linear models, >0.85 with gradient boosting.",w:"<strong>Why R² primary over RMSE?</strong> RMSE depends on the scale of the target. California Housing values are in 100k USD units — RMSE of 0.5 sounds small but means $50k error. R² removes scale dependence. It also has a natural interpretation ('proportion of variance explained') that RMSE lacks.",tags:[["c","r2_score"],["c","primary metric"]]},
+  metric_rmse:{t:"RMSE — root mean squared error",b:"sqrt(mean_squared_error). Same units as MEDV (100k USD). Penalises large errors quadratically — one prediction off by $200k counts far more than four predictions off by $50k each. Critical for housing: a catastrophically wrong appraisal (off by $200k) is much more damaging than many small errors.",w:"<strong>Why RMSE alongside R²?</strong> If RMSE >> MedAE, there are catastrophic outlier predictions — the model has a long tail of large errors. If RMSE ≈ MedAE, errors are distributed uniformly. This ratio is a diagnostic for outlier prediction failures, actionable for further feature engineering.",tags:[["c","sqrt(MSE)"],["c","penalises outlier errors"]]},
+  metric_mae:{t:"MAE — mean absolute error (business metric)",b:"mean_absolute_error. Same units as MEDV. The most interpretable metric for a non-technical audience: 'on average predictions are off by X hundred thousand dollars'. Does not penalise outliers extra. A stakeholder asking 'how accurate is the model?' is asking for MAE.",w:"<strong>Why include both MAE and RMSE?</strong> RMSE/MAE ratio tells you about the error distribution. RMSE=0.8, MAE=0.35 → the model is mostly accurate but has occasional large misses. RMSE=0.4, MAE=0.38 → errors are uniformly distributed, no outlier failures. These profiles need different downstream decisions.",tags:[["c","mean_absolute_error"],["c","business-interpretable"]]},
+  metric_mape:{t:"MAPE — mean absolute percentage error",b:"mean_absolute_percentage_error. Scale-free: a MAPE of 0.10 means predictions are off by 10% on average. Useful because the same $50k error means very different things for a $100k block vs a $500k block. Note: MAPE is unreliable near the price cap (5.0) where small absolute errors produce large percentage errors.",w:"<strong>Why MAPE for housing?</strong> California Housing values span $75k to $500k+. A fixed-unit metric (RMSE, MAE) treats all errors equally regardless of price level. MAPE penalises relative errors, which aligns better with how home buyers and sellers perceive value: 10% over/under asking is significant regardless of the price point.",tags:[["c","mean_absolute_percentage_error"],["c","scale-free %"]]},
+  metric_medae:{t:"MedAE — median absolute error (outlier-robust)",b:"median_absolute_error. The median (not mean) of all |y_true − y_pred| values. Completely unaffected by outlier predictions — one catastrophic miss of $300k on a $100k block has zero impact on MedAE. Complements MAE: if MAE >> MedAE, a small number of catastrophic predictions are inflating the average.",w:"<strong>Why MedAE specifically for California Housing?</strong> The 5.0 price cap creates a cluster of misaligned predictions for the ~5% of capped blocks. MedAE reports what a typical (non-outlier) prediction error looks like, ignoring the cap distortion. This gives a more honest picture of performance for the 95% of blocks without the cap issue.",tags:[["c","median_absolute_error"],["c","robust to cap outliers"]]},
+  baselines:{t:"DummyRegressor baselines — mean + median",b:"DummyRegressor(strategy='mean') always returns y_train.mean(). DummyRegressor(strategy='median') always returns y_train.median(). Any useful model must beat both. If R² < 0, the model is literally worse than always predicting the mean. If the model only marginally beats the median, the features add almost no signal.",w:"<strong>Why two strategies?</strong> For a right-skewed target (MEDV has a long high-value tail), the median baseline may beat the mean baseline because the median is more robust to the cap cluster. A model that only barely beats the mean might not beat the median — a much weaker result.",tags:[["t","DummyRegressor"],["t","mean + median"]]},
+  model_ver:{t:"versioned .joblib — timestamp + SHA1",b:"Filename: california_price_pipeline_{YYYYMMDDTHHMMSSZ}_{sha1[:8]}.joblib. SHA1 = hashlib.sha1(pickle.dumps(model)).hexdigest()[:8]. A stable pointer california_price_pipeline.joblib is also saved. Identical versioning scheme to titanic-ml-pipeline.py — only the prefix changes.",w:"<strong>Why both timestamped and stable pointer?</strong> The timestamped file enables rollback: if a new model underperforms in production, reload the previous version by filename. The stable pointer lets inference code always load the 'current' model without hardcoding timestamps.",tags:[["a","versioned .joblib"],["a","SHA1 fingerprint"]]},
+  concept_g:{t:"Concept G — residual diagnostics: Breusch-Pagan + Shapiro-Wilk",b:"Breusch-Pagan test: regresses squared residuals on fitted values. BP statistic = n × R² of that regression; p-value from χ²(df=1). p < 0.05 → heteroscedastic (errors grow with predicted value). Shapiro-Wilk on a 5000-row subsample: p < 0.05 → non-normal residuals. Q-Q plot, scale-location plot, and residual histogram saved.",w:"<strong>Why test heteroscedasticity for regression?</strong> If residuals are larger for high-value blocks (heteroscedastic), linear model confidence intervals are wrong — they assume constant variance. This tells you whether the model's uncertainty band should be constant (±OOF RMSE) or price-dependent. For California Housing, the cap at 5.0 often induces heteroscedasticity.",tags:[["p","Concept G"],["a","plot_residual_diagnostics.png"]]},
+  concept_h:{t:"Concept H — learning curves: bias vs variance diagnosis",b:"learning_curve() with 8 train sizes from 10% to 100% of X_train. Plots train RMSE and CV RMSE vs sample size with ±1 std bands. If the two curves converge high → high bias (add features, reduce regularisation). If there's a large gap at 100% data → high variance (add data, increase regularisation, reduce features).",w:"<strong>Why learning curves before finalising the model?</strong> If the CV curve is still dropping at 100% of training data, more data would improve performance — worth noting in the model card. If the curves have converged, adding data won't help and effort should go to better features instead.",tags:[["p","Concept H"],["a","plot_learning_curve.png"]]},
+  concept_i:{t:"Concept I — partial dependence plots: marginal effects",b:"PartialDependenceDisplay.from_estimator() for MedInc (col 0) and AveRooms (col 2). Shows the average predicted MEDV as each feature varies while all others are held at their marginal distribution. Reveals the shape of the learned relationship: is MedInc linear or does it plateau? Is there a threshold effect?",w:"<strong>Why PDP over coefficient inspection?</strong> For tree models (GBR, RF), there are no coefficients. PDP works for any model type and shows the actual shape of the learned function, not an assumption about it. For linear models, PDP is equivalent to the coefficient × feature range — but it also works for non-linear models.",tags:[["p","Concept I"],["a","plot_partial_dependence.png"]]},
+  shap:{t:"SHAP — TreeExplainer or LinearExplainer, auto-detected",b:"If model has feature_importances_ → shap.TreeExplainer (exact, fast). If model has coef_ → shap.LinearExplainer (exact for linear). Otherwise → shap.Explainer with Independent masker (approximate, max_samples=100). SHAP values are computed on the test set after transforming through feature_engineering and preprocess steps.",w:"<strong>Why auto-detect explainer type?</strong> The hyperparameter search might crown Ridge as the best model. LinearExplainer on Ridge gives exact SHAP values and is instantaneous. Using TreeExplainer on a linear model would raise an error. The auto-detect makes the SHAP code model-agnostic without manual branching.",tags:[["p","SHAP auto-detect"],["a","graceful skip if not installed"]]},
+  shap_out:{t:"SHAP outputs — bar + beeswarm + worst-residual waterfall",b:"plot_shap_bar.png: global bar of mean |SHAP| for top 20 features. plot_shap_beeswarm.png: each dot is one test sample, x = SHAP value, colour = raw feature value (red=high, blue=low). plot_shap_waterfall_worst.png: waterfall for the single test sample with the largest absolute residual — the hardest prediction.",w:"<strong>Why waterfall for the worst prediction?</strong> The worst prediction is the most actionable. If dist_SF pushes the prediction to $450k but the actual is $150k, it means the model is over-relying on proximity to San Francisco for that block group. That's a targeted signal for feature engineering, not a vague global finding.",tags:[["a","bar + beeswarm + waterfall"],["a","worst |residual| sample"]]},
+  fairness:{t:"evaluate_subgroups — income_tier, house_age_group, geo_cluster",b:"For each subgroup with n≥15: computes RMSE, R², MAE, and rmse_gap (= sub_rmse − overall_rmse). income_tier: 4 bands by MedInc. house_age_group: 4 bands by HouseAge. geo_cluster: 20 geographic clusters from KMeans. Each group is evaluated at the champion model's predictions.",w:"<strong>Why geo_cluster in fairness?</strong> Geographic disparities in model accuracy are a proxy for redlining effects. If the model performs poorly in specific geographic clusters (historically underinvested areas), that signals the model has learned discriminatory patterns from the historical data.",tags:[["k","income_tier + age + geo"],["k","rmse_gap per group"]]},
+  fair_alert:{t:"RMSE alert: subgroup RMSE > 125% of overall",b:"alert = bool(sub_rmse > overall_rmse × 1.25). A 25% relative RMSE gap is the regression analogue of the 10-pp F1 gap used in the Titanic pipeline's classification fairness check. If any subgroup is flagged, a WARNING is logged listing group, value, and the gap magnitude. All results saved to fairness_report.csv and fairness_report.json.",w:"<strong>Why 125% and not a fixed absolute gap?</strong> MEDV spans $75k to $500k. A $40k RMSE gap means something very different for low-value blocks than high-value blocks. Using 125% of overall RMSE makes the alert scale-invariant — the same relative standard applies across all price segments.",tags:[["k","sub_rmse > 1.25 × overall"],["k","WARNING log + CSV"]]},
+  model_card:{t:"model_card.json — EU AI Act + redlining ethical note",b:"Contains: model_details, intended_use (primary + out_of_scope), training_data (OpenML source, 1990 census caveat), evaluation_results (R², RMSE, MAE, MAPE, OOF band), regularisation_analysis (optimal alphas, features zeroed by Lasso), fairness, limitations (4 items including cap note), ethical_considerations (3 items including the redlining note).",w:"<strong>Why the redlining note specifically?</strong> California Housing data reflects 1990 housing patterns shaped by decades of racially discriminatory lending practices (redlining). Any model trained on it may encode those patterns. The model card's ethical_considerations section is the correct place to surface this so downstream users understand the model's provenance.",tags:[["k","Google Model Card spec"],["k","redlining + 1990 census note"]]},
+  mlflow:{t:"log_to_mlflow — optional, graceful fallback",b:"Sets experiment to 'california_housing'. Logs: all best_ params, cv_best_r2, test_r2/rmse/mae, oof_rmse. Logs artifact files: model_card.json, metrics.json, training_profile.json, environment.json, fairness_report.json, regularisation_coefficients.csv, scaler_comparison.json, plot_actual_vs_predicted.png, plot_shap_bar.png, plot_regularisation_path.png. Entire block in try/except — never fails the training run.",w:"<strong>Why graceful fallback?</strong> MLflow is a convenience, not a correctness requirement. A model trained without MLflow tracking is still a valid, saved, evaluated model. Failing training because the tracking server is down would be a worse outcome than the loss of experiment tracking for one run.",tags:[["k","boston_housing experiment"],["k","never fails train"]]},
+  metrics_json:{t:"metrics.json — all results, CI-parseable",b:"Top-level keys: research (EDA findings), split (row counts, drop_capped flag), baseline (DummyRegressor R²/RMSE for both strategies), best_scaler, regularisation (optimal alphas, features zeroed), cv_comparison (KFold vs GroupKFold RMSE), best_cv (best_r2 + best_params), uncertainty_info, residual_diag, test_metrics, fairness. All values to_jsonable-safe.",w:"<strong>Why JSON and not just the HTML report?</strong> A CI pipeline can read metrics.json and assert champion R² > 0.82, or that no fairness alerts are present, before allowing deployment — without parsing HTML. The JSON is the machine-readable contract; the HTML is human-readable documentation.",tags:[["a","metrics.json"],["a","CI-parseable"]]},
+  pred_schema:{t:"pandera schema validation at inference",b:"Validates: MedInc [0,20], HouseAge [0,60], AveRooms [0,100], AveBedrms [0,50], Population ≥0, AveOccup [0,100], Latitude [32,42], Longitude [-125,-114]. lazy=True surfaces all validation errors at once. strict=False allows extra columns (row IDs, metadata) without failing.",w:"<strong>Why lazy=True?</strong> In production, you want to see all schema violations at once — not fix one, resubmit, find the next, repeat. lazy=True collects all errors into a SchemaErrors exception with a detailed report, making batch debugging much faster.",tags:[["t","pandera lazy=True"],["t","strict=False"]]},
+  pred_col:{t:"column completeness check vs training_profile.json",b:"Reads raw_columns from training_profile.json (the 8 canonical feature names). Raises ValueError listing all missing columns. Logs WARNING for extra columns but does not block inference — the ColumnTransformer's remainder='drop' handles them silently.",w:"<strong>Why raise on missing but warn on extra?</strong> Missing a feature is a hard failure — the model cannot produce a prediction without it. Extra columns are benign — the pipeline ignores them. Failing on extra columns would break integration with systems that add metadata fields to every row.",tags:[["t","ValueError: missing cols"],["t","WARNING: extra OK"]]},
+  pred_band:{t:"predicted_medv + lower/upper bounds + wide_interval flag",b:"predicted_medv = model.predict(). lower_bound = predicted − oof_rmse × underpredict_cost. upper_bound = predicted + oof_rmse × overpredict_cost. wide_interval = 1 if (upper − lower) > oof_rmse × 2.5 — fires when asymmetric costs widen the band unusually, flagging high-uncertainty predictions for human review.",w:"<strong>Why flag wide intervals?</strong> Symmetric bands always have width = 2 × oof_rmse. The wide_interval flag only fires when asymmetric cost parameters (--overpredict-cost or --underpredict-cost > 1.25) expand one side unusually. It signals 'this prediction's uncertainty band is wider than normal — treat with caution'. Mirrors the Titanic pipeline's low_confidence flag.",tags:[["t","±OOF RMSE band"],["t","wide_interval flag"]]},
+  pred_out:{t:"predictions.csv — point + interval + flag",b:"All original input columns preserved + predicted_medv, lower_bound, upper_bound, wide_interval. The downstream consumer can use predicted_medv for point estimates, lower/upper for interval-based decisions ('only recommend if lower_bound > asking_price'), and wide_interval to route uncertain cases to human review.",w:"<strong>Why preserve input columns?</strong> The output CSV is typically joined back to a transaction system or passed to a visualisation layer. Having the original features alongside predictions enables immediate slice-and-dice ('show all blocks with MedInc>6 and predicted_medv<2.5') without a separate join.",tags:[["a","predictions.csv"],["a","all input cols preserved"]]},
+  mon_miss:{t:"missing-rate drift — per column, configurable alert",b:"For each column in profile['raw_missing_rate'], computes current missing rate from the incoming CSV and flags if |current - train_rate| ≥ missing_rate_alert (default 0.05 for this dataset — stricter than Titanic's 0.15 because California Housing is expected to have zero missing values in training). CLI: --missing-rate-alert 0.05.",w:"<strong>Why 0.05 for this dataset?</strong> California Housing training data has exactly 0 missing values. Any missing value in production data is immediately suspicious — likely an upstream pipeline failure. 0.05 fires on any 5% missing rate, which is a very low bar and appropriate for a dataset that should have no nulls.",tags:[["t","default 0.05 alert"],["a","monitoring_report.json"]]},
+  mon_ks:{t:"KS distribution drift — 100-quantile surrogate",b:"For each numeric feature in numeric_train_stats: retrieves 100 stored quantiles as surrogate training distribution, runs scipy.stats.ks_2samp(quantiles, incoming_values). KS statistic = max CDF distance. p < ks_pvalue_alert (default 0.05) fires drift alert. Engineered features (log_AveRooms, medinc_rooms_interact, etc.) are also monitored.",w:"<strong>Why 100 quantiles instead of the full 16k array?</strong> 100 quantiles per feature ≈ 800 bytes vs ~130KB for the full array. For a model updated monthly, storing raw arrays would accumulate hundreds of MB. KS test power from 100 quantile points is nearly identical to the full array for sample sizes >100 — the same technique as the Titanic reference pipeline.",tags:[["t","ks_2samp quantile surrogate"],["t","engineered features monitored too"]]}
+};
+
+let cur=null;
+function show(id){
+  const d=D[id]; if(!d) return;
+  if(cur) cur.classList.remove('active');
+  cur=event.currentTarget; cur.classList.add('active');
+  document.getElementById('dp-title').textContent=d.t;
+  document.getElementById('dp-body').textContent=d.b;
+  document.getElementById('dp-why').innerHTML=d.w;
+  const tEl=document.getElementById('dp-tags'); tEl.innerHTML='';
+  (d.tags||[]).forEach(([cls,lbl])=>{
+    const s=document.createElement('span');
+    s.className='tg t'+cls; s.textContent=lbl; tEl.appendChild(s);
+  });
+  document.getElementById('dp').style.display='block';
+  document.getElementById('dp').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function closeDp(){
+  document.getElementById('dp').style.display='none';
+  if(cur){cur.classList.remove('active');cur=null;}
+}
+</script>
