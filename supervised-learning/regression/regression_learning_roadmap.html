@@ -1,0 +1,159 @@
+
+<h2 class="sr-only">Regression learning roadmap showing 6 completed datasets and 6 remaining gaps to master professional regression skills on OpenML</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.section{margin-bottom:2rem}
+.sh{font-size:11px;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:12px 14px;cursor:pointer;transition:border-color .1s,background .1s}
+.card:hover{border-color:var(--color-border-primary);background:var(--color-background-secondary)}
+.card.active{border-width:1.5px}
+.card.done{border-color:#1D9E75;background:rgba(29,158,117,.06)}
+.card.done:hover,.card.done.active{background:rgba(29,158,117,.12)}
+.card.next{border-color:#7F77DD;background:rgba(127,119,221,.06)}
+.card.next:hover,.card.next.active{background:rgba(127,119,221,.12)}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:500;padding:2px 8px;border-radius:20px;margin-bottom:6px}
+.b-done{background:rgba(29,158,117,.15);color:#085041}
+.b-next{background:rgba(127,119,221,.15);color:#3C3489}
+@media(prefers-color-scheme:dark){
+.card.done{background:rgba(29,158,117,.12)}.b-done{color:#9FE1CB}
+.card.next{background:rgba(127,119,221,.12)}.b-next{color:#CECBF6}
+}
+.cn{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:3px}
+.cs{font-size:11px;color:var(--color-text-secondary);line-height:1.45}
+.dp{border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-top:6px;background:var(--color-background-primary)}
+.dp-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.dp-title{font-size:14px;font-weight:500;color:var(--color-text-primary)}
+.dp-close{background:none;border:none;color:var(--color-text-tertiary);font-size:17px;cursor:pointer;line-height:1}
+.dp-id{font-size:11px;color:var(--color-text-tertiary);margin-bottom:8px}
+.dp-body{font-size:13px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:8px}
+.dp-why{font-size:12px;border-left:2px solid var(--color-border-secondary);padding-left:10px;color:var(--color-text-secondary);line-height:1.55;border-radius:0}
+.dp-why strong{color:var(--color-text-primary);font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.tag{font-size:11px;padding:2px 8px;border-radius:20px;font-weight:500;background:rgba(127,119,221,.12);color:#3C3489}
+@media(prefers-color-scheme:dark){.tag{background:rgba(127,119,221,.2);color:#CECBF6}}
+</style>
+
+<div style="padding:4px 0 24px">
+
+<div class="section">
+  <div class="sh">Completed — 6 datasets</div>
+  <div class="grid">
+    <div class="card done" onclick="show('cpu')">
+      <div class="badge b-done"><i class="ti ti-check" style="font-size:10px" aria-hidden="true"></i> done</div>
+      <div class="cn">cpu_act</div>
+      <div class="cs">ID 197 · Non-linearity &amp; polynomials</div>
+    </div>
+    <div class="card done" onclick="show('insurance')">
+      <div class="badge b-done"><i class="ti ti-check" style="font-size:10px" aria-hidden="true"></i> done</div>
+      <div class="cn">insurance</div>
+      <div class="cs">ID 44047 · Categorical encoding</div>
+    </div>
+    <div class="card done" onclick="show('housing')">
+      <div class="badge b-done"><i class="ti ti-check" style="font-size:10px" aria-hidden="true"></i> done</div>
+      <div class="cn">house_prices</div>
+      <div class="cs">ID 42165 · Missing data &amp; robustness</div>
+    </div>
+    <div class="card done" onclick="show('bike')">
+      <div class="badge b-done"><i class="ti ti-check" style="font-size:10px" aria-hidden="true"></i> done</div>
+      <div class="cn">bike_sharing</div>
+      <div class="cs">ID 42712 · Gradient boosting &amp; time features</div>
+    </div>
+    <div class="card done" onclick="show('boston')">
+      <div class="badge b-done"><i class="ti ti-check" style="font-size:10px" aria-hidden="true"></i> done</div>
+      <div class="cn">boston / california</div>
+      <div class="cs">Linear regression baseline</div>
+    </div>
+    <div class="card done" onclick="show('diabetes')">
+      <div class="badge b-done"><i class="ti ti-check" style="font-size:10px" aria-hidden="true"></i> done</div>
+      <div class="cn">diabetes</div>
+      <div class="cs">ID 542 · Ridge, Lasso, regularisation</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sh">Remaining gaps — 6 essential topics</div>
+  <div class="grid">
+    <div class="card next" onclick="show('geo')">
+      <div class="badge b-next">next</div>
+      <div class="cn">Geospatial regression</div>
+      <div class="cs">ID 43093 · NYC taxi or energy</div>
+    </div>
+    <div class="card next" onclick="show('survival')">
+      <div class="badge b-next">next</div>
+      <div class="cn">Survival / censored targets</div>
+      <div class="cs">ID 1182 · Tobit, quantile regression</div>
+    </div>
+    <div class="card next" onclick="show('multilabel')">
+      <div class="badge b-next">next</div>
+      <div class="cn">Multi-output regression</div>
+      <div class="cs">ID 41702 · Predict multiple targets jointly</div>
+    </div>
+    <div class="card next" onclick="show('counts')">
+      <div class="badge b-next">next</div>
+      <div class="cn">Count / zero-inflated</div>
+      <div class="cs">ID 44130 · Poisson, negative binomial</div>
+    </div>
+    <div class="card next" onclick="show('calib')">
+      <div class="badge b-next">next</div>
+      <div class="cn">Uncertainty quantification</div>
+      <div class="cs">ID 189 · Conformal prediction, PI calibration</div>
+    </div>
+    <div class="card next" onclick="show('online')">
+      <div class="badge b-next">next</div>
+      <div class="cn">Online / streaming regression</div>
+      <div class="cs">ID 42712 extended · Incremental learning</div>
+    </div>
+  </div>
+</div>
+
+<div class="dp" id="dp" style="display:none">
+  <div class="dp-hdr">
+    <div class="dp-title" id="dpt"></div>
+    <button class="dp-close" onclick="closeDp()" aria-label="Close">×</button>
+  </div>
+  <div class="dp-id" id="dpid"></div>
+  <div class="dp-body" id="dpb"></div>
+  <div class="dp-why" id="dpw"></div>
+  <div class="tags" id="dptags"></div>
+</div>
+
+</div>
+
+<script>
+const D={
+cpu:{title:"cpu_act — non-linearity & polynomials",id:"OpenML ID 197",body:"You built the full pipeline: polynomial feature analysis (degree 1/2/3), basis functions (RBF, spline, Fourier), mutual information vs Pearson r, kernel approximation (Nystroem), log transforms on 19 skewed counters, VIF multicollinearity with the sys+wait+usr≈100 constraint, regularisation paths on polynomial features, learning curves, and PDP+ICE. Benchmark with 16 regressors.",why:"<strong>What you mastered:</strong> every classical non-linearity technique, the distinction between polynomial expansion and spline basis, and how to detect non-linear feature relationships using MI. The sys+wait constraint gave you hands-on experience with data leakage by system definition.",tags:["polynomial","basis functions","VIF","kernel approx"]},
+insurance:{title:"insurance — categorical encoding & interactions",id:"OpenML ID 44047",body:"OHE strategy comparison (drop=first vs if_binary vs ordinal), KFoldTargetEncoder with smoothing, bmi×smoker interaction (the dominant signal), WHO BMI binning, StratifiedKFold on charges quartile, GroupKFold by region, residual diagnostics, SHAP interaction detection. All bugs fixed: Brazilian dataset redirect, category dtype arithmetic, StratifiedKFold on continuous target.",why:"<strong>What you mastered:</strong> every encoding strategy for mixed categorical/numeric data, leakage-free target encoding, and how to diagnose encoding quality from downstream R² rather than reconstruction error.",tags:["OHE","target encoding","cat×num interactions","KFold strategies"]},
+housing:{title:"house_prices — missing data & robustness",id:"OpenML ID 42165",body:"Full MNAR/MAR/MCAR taxonomy for 19 missing columns, SpatialImputer (LotFrontage by Neighborhood median, fit-safe), KNN vs MICE imputation comparison, Isolation Forest + De Cock outlier rule, HuberRegressor vs Ridge, log1p(SalePrice) with RMSLE metric, ordinal quality encoding (Ex→5…Po→1), PolynomialFeatures + domain interactions, SelectFromModel with feature name walk.",why:"<strong>What you mastered:</strong> the most important missing data skill is classifying WHY data is missing before choosing a strategy. MNAR absent columns should never be imputed — filling PoolQC with 'TA' destroys the information that the house has no pool.",tags:["MNAR/MAR/MCAR","MICE","SpatialImputer","Huber loss","RMSLE"]},
+bike:{title:"bike_sharing — gradient boosting & time features",id:"OpenML ID 42712",body:"28 temporal features from datetime (cyclic sin/cos, rush flags, days_elapsed trend), TimeSeriesSplit vs KFold CV comparison (quantified leakage inflation), OOB score for RF and ExtraTrees (bootstrap=True fix), Optuna Bayesian search vs RandomizedSearch, GBR convergence curves via staged_predict, ACF of residuals (48-lag temporal autocorrelation), RMSLE as primary metric. Four bugs fixed.",why:"<strong>What you mastered:</strong> the temporal split is the single most important methodological difference between tabular and time-series regression. Shuffled KFold leaks future seasonal patterns — the bias is invisible in the CV score but real in deployment.",tags:["TimeSeriesSplit","cyclic encoding","OOB score","Optuna","RMSLE","ACF"]},
+boston:{title:"boston / california housing — linear baseline",id:"OpenML IDs 531, 43926",body:"OLS baseline, multicollinearity detection, feature scaling impact, residual analysis fundamentals. This was the starting point that established the pipeline architecture all later pipelines mirror.",why:"<strong>Foundation established:</strong> the evaluate_predictions() structure, split_data() before EDA, DummyRegressor baselines, and SHA1-versioned joblib saving all originated here and were carried forward into every subsequent pipeline.",tags:["OLS","multicollinearity","feature scaling","residual analysis"]},
+diabetes:{title:"diabetes — regularisation",id:"OpenML ID 542",body:"L1/L2 penalty analysis, optimal alpha via RidgeCV/LassoCV/ElasticNetCV, bias-variance decomposition, feature selection via Lasso sparsity, coefficient path visualisation.",why:"<strong>What you mastered:</strong> the bias-variance tradeoff made concrete — larger alpha = more bias, less variance. Lasso's sparsity as automatic feature selection on correlated features.",tags:["Ridge","Lasso","ElasticNet","bias-variance","coefficient paths"]},
+geo:{title:"Geospatial regression",id:"OpenML ID 43093 (NYC energy) or 42225 (electricity)",body:"Predicting a continuous target where spatial location is a key feature. Techniques: latitude/longitude as features, distance-to-centroid features, Haversine distance calculations, KDE-smoothed neighbourhood density, spatial cross-validation (leave-one-location-out to prevent geographic leakage), GeoPandas visualisation. NYC energy consumption or electricity price data both have this structure.",why:"<strong>Why this gap exists in your training:</strong> all your datasets so far have i.i.d. rows. Geospatial data violates this — nearby rows are correlated (Tobler's First Law of Geography). Standard KFold leaks by including nearby locations in both train and test. You need spatial CV to get an honest estimate.",tags:["Haversine features","spatial CV","geographic leakage","KDE density"]},
+survival:{title:"Survival & censored targets",id:"OpenML ID 1182 (liver disorders) or 40701",body:"Quantile regression (predict the 10th/50th/90th percentile rather than the mean), Tobit regression for left/right-censored targets, survival analysis basics (Kaplan-Meier, Cox proportional hazards). Datasets: patient survival times, time-to-failure, time-to-purchase. The key challenge: some targets are censored (the event hasn't happened yet) — standard MSE loss treats censored observations as complete, biasing estimates.",why:"<strong>Why this completes your knowledge:</strong> you've predicted a point estimate (mean) for every target so far. Real-world regression often needs a distribution or a quantile. Loan default models want the 95th percentile of loss, not the mean. Drug trials predict median survival time, not mean (because mean is undefined with censoring).",tags:["quantile regression","censored targets","Tobit","pinball loss"]},
+multilabel:{title:"Multi-output regression",id:"OpenML ID 41702 (energy efficiency) or 41670",body:"Predicting multiple continuous targets simultaneously from the same input. Techniques: MultiOutputRegressor wrapper, chained regression (RegressorChain — output 1 becomes a feature for output 2), shared representation learning, per-output R² and global score. Energy efficiency dataset: predict both heating load AND cooling load from building physical features.",why:"<strong>What this adds:</strong> all your pipelines predict a single scalar. Many real problems have multiple correlated targets — predict revenue AND margin, predict X AND Y coordinates, predict heating AND cooling load. RegressorChain is particularly interesting: it lets one output inform the prediction of another, capturing inter-target correlations that independent models miss.",tags:["MultiOutputRegressor","RegressorChain","multi-target","chained outputs"]},
+counts:{title:"Count data & zero-inflated regression",id:"OpenML ID 44130 or 40664 (poaching incidents)",body:"When the target is a count (0, 1, 2, 3...) rather than a continuous float, OLS violates key assumptions — it can predict negative counts and doesn't respect the integer constraint. Techniques: Poisson regression (log link, equidispersion assumption), negative binomial (overdispersed counts), zero-inflated Poisson (separate model for excess zeros), Tweedie regression (unifies Poisson + gamma). Evaluation: mean Poisson deviance instead of RMSE.",why:"<strong>Why this matters:</strong> bike sharing count is actually a count target — you treated it as continuous regression. For healthcare claims, insurance incidents, or rare event counts, the distribution shape matters more than the scaling. A Poisson model that respects the integer structure often outperforms a tuned GBR on count targets.",tags:["Poisson regression","negative binomial","zero-inflated","Tweedie","deviance"]},
+calib:{title:"Uncertainty quantification & conformal prediction",id:"OpenML ID 189 (kin8nm) — any dataset",body:"Beyond point predictions: quantify how uncertain each prediction is. Techniques: conformal prediction (distribution-free coverage guarantees — the prediction interval contains the true value with probability 1−α, regardless of model), quantile GBR (train separate models for 5th and 95th percentile), Bayesian ridge (posterior uncertainty), jackknife+ (exact coverage for exchangeable data), calibration plots (actual vs predicted interval coverage).",why:"<strong>Why this is the professional frontier:</strong> you've built prediction_interval_coverage checks in every pipeline — they measure whether your ±RMSE band is calibrated. Conformal prediction goes further: it guarantees coverage. A conformal PI with α=0.10 contains the true value in 90% of test cases by construction, without distributional assumptions. This is what regulators ask for in high-stakes predictions.",tags:["conformal prediction","quantile regression","Bayesian uncertainty","calibration","jackknife+"]},
+online:{title:"Online / incremental learning",id:"OpenML ID 42712 extended or any streaming dataset",body:"All your models are trained in batch (fit on all data, then frozen). Incremental learning: the model updates continuously as new data arrives without retraining from scratch. Techniques: sklearn's SGDRegressor with partial_fit(), river (the go-to streaming ML library), concept drift detection (ADWIN, Page-Hinkley test), sliding window vs landmark window training, CUSUM change point detection for drift.",why:"<strong>Why this closes the loop:</strong> bike sharing demand is actually a streaming problem in production — new hourly readings arrive continuously. Retraining from scratch every hour is expensive. partial_fit() lets the model update its weights with each new hour's observation. Concept drift detection then flags when the demand patterns have changed enough (e.g. COVID lockdown) that the model needs a full retrain rather than incremental updates.",tags:["partial_fit","SGDRegressor","concept drift","ADWIN","streaming"]}
+};
+
+let cur=null;
+function show(id){
+  const d=D[id];if(!d)return;
+  if(cur)cur.classList.remove('active');
+  cur=event.currentTarget;cur.classList.add('active');
+  document.getElementById('dpt').textContent=d.title;
+  document.getElementById('dpid').textContent=d.id;
+  document.getElementById('dpb').textContent=d.body;
+  document.getElementById('dpw').innerHTML=d.why;
+  const t=document.getElementById('dptags');t.innerHTML='';
+  (d.tags||[]).forEach(lbl=>{const s=document.createElement('span');s.className='tag';s.textContent=lbl;t.appendChild(s);});
+  document.getElementById('dp').style.display='block';
+  document.getElementById('dp').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function closeDp(){
+  document.getElementById('dp').style.display='none';
+  if(cur){cur.classList.remove('active');cur=null;}
+}
+</script>

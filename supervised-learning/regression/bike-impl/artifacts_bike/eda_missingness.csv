@@ -1,0 +1,14 @@
+,missing_count,missing_rate,dtype
+season,13903.0,1.0,Int64
+holiday,13903.0,1.0,Int64
+workingday,13903.0,1.0,Int64
+weather,13903.0,1.0,Int64
+year,0.0,0.0,int64
+month,0.0,0.0,int64
+hour,0.0,0.0,int64
+weekday,0.0,0.0,int64
+temp,0.0,0.0,float64
+feel_temp,0.0,0.0,float64
+humidity,0.0,0.0,float64
+windspeed,0.0,0.0,float64
+count,0.0,0.0,float64

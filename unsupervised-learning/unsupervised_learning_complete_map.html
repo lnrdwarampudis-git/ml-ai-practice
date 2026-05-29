@@ -1,0 +1,272 @@
+
+<h2 class="sr-only">Complete unsupervised learning curriculum map showing 5 tiers — clustering, density estimation, dimensionality reduction, generative models, and self-supervised learning — with datasets, concepts, and progression paths</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.root{padding:4px 0 28px;font-family:var(--font-sans)}
+.sh{font-size:10px;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(172px,1fr));gap:8px;margin-bottom:20px}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:11px 13px;cursor:pointer;transition:border-color .1s,background .1s}
+.card:hover,.card.active{border-color:var(--color-border-primary);background:var(--color-background-secondary)}
+.card.active{border-width:1.5px}
+.t1{border-color:#1D9E75;background:rgba(29,158,117,.05)}.t1:hover,.t1.active{background:rgba(29,158,117,.11)}
+.t2{border-color:#7F77DD;background:rgba(127,119,221,.05)}.t2:hover,.t2.active{background:rgba(127,119,221,.11)}
+.t3{border-color:#BA7517;background:rgba(186,117,23,.05)}.t3:hover,.t3.active{background:rgba(186,117,23,.11)}
+.t4{border-color:#993C1D;background:rgba(153,60,29,.05)}.t4:hover,.t4.active{background:rgba(153,60,29,.11)}
+.t5{border-color:#993556;background:rgba(153,53,86,.05)}.t5:hover,.t5.active{background:rgba(153,53,86,.11)}
+@media(prefers-color-scheme:dark){
+.t1{background:rgba(29,158,117,.10)}.t2{background:rgba(127,119,221,.10)}
+.t3{background:rgba(186,117,23,.10)}.t4{background:rgba(153,60,29,.10)}
+.t5{background:rgba(153,53,86,.10)}
+}
+.badge{font-size:10px;font-weight:500;padding:2px 7px;border-radius:20px;margin-bottom:6px;display:inline-flex;align-items:center;gap:3px}
+.b1{background:rgba(29,158,117,.15);color:#085041}
+.b2{background:rgba(127,119,221,.15);color:#3C3489}
+.b3{background:rgba(186,117,23,.15);color:#633806}
+.b4{background:rgba(153,60,29,.15);color:#712B13}
+.b5{background:rgba(153,53,86,.15);color:#4B1528}
+@media(prefers-color-scheme:dark){.b1{color:#9FE1CB}.b2{color:#CECBF6}.b3{color:#FAC775}.b4{color:#F5C4B3}.b5{color:#F4C0D1}}
+.num{font-size:10px;color:var(--color-text-tertiary);float:right}
+.cn{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:3px}
+.cs{font-size:11px;color:var(--color-text-secondary);line-height:1.4}
+.dp{border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-top:4px;background:var(--color-background-primary)}
+.dp-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px}
+.dp-title{font-size:14px;font-weight:500;color:var(--color-text-primary)}
+.dp-close{background:none;border:none;color:var(--color-text-tertiary);font-size:17px;cursor:pointer;line-height:1}
+.dp-id{font-size:11px;color:var(--color-text-tertiary);margin-bottom:8px}
+.dp-body{font-size:13px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:8px}
+.dp-why{font-size:12px;border-left:2px solid var(--color-border-secondary);padding-left:10px;color:var(--color-text-secondary);line-height:1.55;border-radius:0;margin-bottom:8px}
+.dp-why strong{color:var(--color-text-primary);font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{font-size:11px;padding:2px 7px;border-radius:20px;font-weight:500}
+.g{background:rgba(29,158,117,.12);color:#085041}.p{background:rgba(127,119,221,.12);color:#3C3489}
+.a{background:rgba(186,117,23,.12);color:#633806}.r{background:rgba(153,60,29,.12);color:#712B13}
+.k{background:rgba(153,53,86,.12);color:#4B1528}
+@media(prefers-color-scheme:dark){.g{color:#9FE1CB}.p{color:#CECBF6}.a{color:#FAC775}.r{color:#F5C4B3}.k{color:#F4C0D1}}
+.btn{margin-top:10px;font-size:12px;cursor:pointer;padding:6px 12px;border-radius:var(--border-radius-md)}
+.bridge{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:8px 12px;font-size:11px;color:var(--color-text-secondary);margin-bottom:14px;border-left:2px solid var(--color-border-secondary);border-radius:0}
+.bridge strong{color:var(--color-text-primary);font-weight:500}
+</style>
+
+<div class="root">
+
+<div class="bridge"><strong>Why unsupervised after supervised?</strong> Every concept below connects back to what you already built. Clustering = classification without labels. Dimensionality reduction = feature engineering without a target. Density estimation = the probability model underneath Naive Bayes. Generative models = learning the data distribution your regressors assumed but never modelled.</div>
+
+<div class="sh">Tier 1 — clustering · discover structure without labels</div>
+<div class="grid">
+  <div class="card t1" onclick="show('kmeans')">
+    <span class="num">01</span>
+    <div class="badge b1">clustering</div>
+    <div class="cn">K-Means & variants</div>
+    <div class="cs">iris · mall customers · elbow · silhouette</div>
+  </div>
+  <div class="card t1" onclick="show('hierarchical')">
+    <span class="num">02</span>
+    <div class="badge b1">clustering</div>
+    <div class="cn">Hierarchical clustering</div>
+    <div class="cs">wine · ID 40691 · dendrogram · linkage</div>
+  </div>
+  <div class="card t1" onclick="show('density_cls')">
+    <span class="num">03</span>
+    <div class="badge b1">clustering</div>
+    <div class="cn">Density-based clustering</div>
+    <div class="cs">DBSCAN · HDBSCAN · arbitrary shapes</div>
+  </div>
+  <div class="card t1" onclick="show('gmm')">
+    <span class="num">04</span>
+    <div class="badge b1">clustering</div>
+    <div class="cn">Gaussian Mixture Models</div>
+    <div class="cs">soft assignments · BIC/AIC · EM algorithm</div>
+  </div>
+  <div class="card t1" onclick="show('cluster_eval')">
+    <span class="num">05</span>
+    <div class="badge b1">clustering</div>
+    <div class="cn">Cluster validation</div>
+    <div class="cs">silhouette · Davies-Bouldin · Rand index</div>
+  </div>
+</div>
+
+<div class="sh">Tier 2 — dimensionality reduction · compress & denoise</div>
+<div class="grid">
+  <div class="card t2" onclick="show('pca')">
+    <span class="num">06</span>
+    <div class="badge b2">dim reduction</div>
+    <div class="cn">PCA & variants</div>
+    <div class="cs">MNIST · explained variance · scree plot</div>
+  </div>
+  <div class="card t2" onclick="show('manifold')">
+    <span class="num">07</span>
+    <div class="badge b2">dim reduction</div>
+    <div class="cn">Manifold learning</div>
+    <div class="cs">t-SNE · UMAP · Swiss roll · topology</div>
+  </div>
+  <div class="card t2" onclick="show('sparse_dr')">
+    <span class="num">08</span>
+    <div class="badge b2">dim reduction</div>
+    <div class="cn">Sparse & independent</div>
+    <div class="cs">NMF · ICA · dictionary learning</div>
+  </div>
+  <div class="card t2" onclick="show('autoenc')">
+    <span class="num">09</span>
+    <div class="badge b2">dim reduction</div>
+    <div class="cn">Autoencoders</div>
+    <div class="cs">bottleneck · denoising · anomaly via recon</div>
+  </div>
+</div>
+
+<div class="sh">Tier 3 — density estimation · model the data distribution</div>
+<div class="grid">
+  <div class="card t3" onclick="show('kde')">
+    <span class="num">10</span>
+    <div class="badge b3">density</div>
+    <div class="cn">Kernel density estimation</div>
+    <div class="cs">bandwidth selection · Parzen windows · KDE</div>
+  </div>
+  <div class="card t3" onclick="show('copula')">
+    <span class="num">11</span>
+    <div class="badge b3">density</div>
+    <div class="cn">Copulas & joint distributions</div>
+    <div class="cs">risk modelling · tail dependence · Gaussian copula</div>
+  </div>
+  <div class="card t3" onclick="show('flow')">
+    <span class="num">12</span>
+    <div class="badge b3">density</div>
+    <div class="cn">Normalising flows</div>
+    <div class="cs">exact likelihood · invertible transforms · RealNVP</div>
+  </div>
+</div>
+
+<div class="sh">Tier 4 — generative models · learn to synthesise data</div>
+<div class="grid">
+  <div class="card t4" onclick="show('vae')">
+    <span class="num">13</span>
+    <div class="badge b4">generative</div>
+    <div class="cn">Variational Autoencoders</div>
+    <div class="cs">latent space · ELBO · reparameterisation</div>
+  </div>
+  <div class="card t4" onclick="show('gan')">
+    <span class="num">14</span>
+    <div class="badge b4">generative</div>
+    <div class="cn">GANs</div>
+    <div class="cs">generator · discriminator · mode collapse · FID</div>
+  </div>
+  <div class="card t4" onclick="show('diffusion')">
+    <span class="num">15</span>
+    <div class="badge b4">generative</div>
+    <div class="cn">Diffusion models</div>
+    <div class="cs">forward noise · denoising · DDPM · score matching</div>
+  </div>
+</div>
+
+<div class="sh">Tier 5 — self-supervised & representation learning · bridge to LLMs</div>
+<div class="grid">
+  <div class="card t5" onclick="show('contrastive')">
+    <span class="num">16</span>
+    <div class="badge b5">self-supervised</div>
+    <div class="cn">Contrastive learning</div>
+    <div class="cs">SimCLR · MoCo · augmentation views · NT-Xent</div>
+  </div>
+  <div class="card t5" onclick="show('masked')">
+    <span class="num">17</span>
+    <div class="badge b5">self-supervised</div>
+    <div class="cn">Masked prediction</div>
+    <div class="cs">BERT · MAE · predict masked tokens/patches</div>
+  </div>
+  <div class="card t5" onclick="show('tabular_ssl')">
+    <span class="num">18</span>
+    <div class="badge b5">self-supervised</div>
+    <div class="cn">Self-supervised for tabular</div>
+    <div class="cs">SCARF · TabTransformer · VIME · pre-training</div>
+  </div>
+  <div class="card t5" onclick="show('graph_ssl')">
+    <span class="num">19</span>
+    <div class="badge b5">self-supervised</div>
+    <div class="cn">Graph representation learning</div>
+    <div class="cs">GCN · node2vec · link prediction · GNN</div>
+  </div>
+</div>
+
+<div class="dp" id="dp" style="display:none">
+  <div class="dp-hdr">
+    <div class="dp-title" id="dpt"></div>
+    <button class="dp-close" onclick="closeDp()" aria-label="Close">×</button>
+  </div>
+  <div class="dp-id" id="dpid"></div>
+  <div class="dp-body" id="dpb"></div>
+  <div class="dp-why" id="dpw"></div>
+  <div class="tags" id="dptags"></div>
+  <button class="btn" id="dpbtn" style="display:none" onclick="sendPromptFn()"></button>
+</div>
+</div>
+
+<script>
+const D={
+kmeans:{t:"K-Means & variants",id:"iris · mall customers · wholesale customers (ID 292) · make_blobs",b:"Lloyd's algorithm: assign each point to nearest centroid, recompute centroids, repeat until convergence. Sensitivity to initialisation — K-Means++ solves this by spreading initial centroids. Choosing K: elbow method (inertia vs K), silhouette score, gap statistic. Mini-batch K-Means for large datasets. K-Medoids (PAM): more robust to outliers — uses actual data points as centres. Bisecting K-Means: hierarchical variant. Assumptions: spherical clusters, equal size, equal variance — when these fail, use GMM or DBSCAN.",w:"<strong>Bridge from your supervised work:</strong> K-Means is K-nearest centroid classification without labels. The assignment step is classification. The update step is computing class means. Understanding K-Means deeply makes Random Forest feature importance interpretable — both are about finding which features separate groups best. Start here — it's the 'linear regression' of unsupervised learning.",tags:["Lloyd's algorithm","K-Means++","elbow method","silhouette","K-Medoids","inertia","Mini-batch"],prompt:"Build complete K-Means clustering pipeline on wholesale customers dataset with elbow, silhouette, and K-Means++ analysis"},
+hierarchical:{t:"Hierarchical clustering",id:"wine quality (ID 40691) · European protein consumption · city distances",b:"Bottom-up (agglomerative): start with each point as its own cluster, merge closest pairs. Linkage methods: single (minimum distance — chain effect), complete (maximum — compact), average (UPGMA), Ward (minimise within-cluster variance — most popular). Top-down (divisive): rarely used. Dendrogram visualisation: cut at different heights for different K. No need to pre-specify K. Distance metrics: Euclidean, Manhattan, cosine, correlation. Cophenetic correlation: how faithfully does the dendrogram preserve original distances?",w:"<strong>Why hierarchical after K-Means:</strong> K-Means requires you to choose K upfront and assumes spherical clusters. Hierarchical clustering shows you the full merging history — you can cut the dendrogram at any level. For tabular datasets with mixed data types (like your Ames Housing features), Ward linkage with Gower distance is often the best first-pass clustering tool.",tags:["agglomerative","dendrogram","Ward linkage","cophenetic","single link","complete link","UPGMA"],prompt:"Build hierarchical clustering pipeline on wine dataset with dendrogram, linkage comparison, and cophenetic analysis"},
+density_cls:{t:"Density-based clustering — arbitrary shapes",id:"moons/circles (sklearn) · spatial point patterns · NOAA weather stations",b:"DBSCAN: core points (>minPts in eps-radius), border points, noise points. No need to specify K. Discovers clusters of arbitrary shape. Handles noise explicitly. Parameters: eps (neighbourhood radius), minPts (density threshold). HDBSCAN: hierarchical DBSCAN — varies eps automatically, extracts stable clusters from the hierarchy, handles variable-density clusters. OPTICS: ordering points to identify cluster structure — DBSCAN at all epsilon values simultaneously. Evaluation: noise ratio, cluster stability.",w:"<strong>Why this is essential:</strong> K-Means and hierarchical assume convex clusters. Real-world spatial data (customer locations, sensor readings, genomics) has clusters with irregular shapes and varying densities. HDBSCAN is production-ready — it's the algorithm behind geospatial clustering in most ride-sharing and logistics applications. It also naturally connects to the IsolationForest and LOF anomaly detection you already used in Ames Housing.",tags:["DBSCAN","HDBSCAN","OPTICS","core points","eps","minPts","noise points","arbitrary shapes"],prompt:"Build DBSCAN and HDBSCAN clustering pipeline with shape comparison against K-Means on make_moons and real spatial data"},
+gmm:{t:"Gaussian Mixture Models — probabilistic clustering",id:"old faithful (geyser) · retail RFM · any bimodal dataset",b:"Each cluster is a Gaussian distribution. EM algorithm: E-step assigns soft probabilities (this point is 70% cluster 1, 30% cluster 2), M-step recomputes Gaussian parameters. Full vs diagonal vs spherical covariance. BIC/AIC for model selection (choose number of components). GMM as density estimator: can evaluate likelihood of new points. Bayesian GMM: Dirichlet process prior — infers number of components automatically. Connection: your insurance charges were bimodal (smoker vs non-smoker) — a GMM would have explicitly modelled those two populations.",w:"<strong>Why GMM over K-Means for your datasets:</strong> K-Means makes hard assignments (each point belongs to exactly one cluster). GMM makes soft assignments — a point can be 60% cluster A and 40% cluster B. For insurance charges (bimodal distribution you already visualised), a 2-component GMM would explicitly model the smoker and non-smoker populations as separate Gaussians with different means and variances.",tags:["EM algorithm","soft assignments","BIC","AIC","Dirichlet process","covariance structure","bimodal"],prompt:"Build Gaussian Mixture Model pipeline with EM visualisation, BIC model selection, and comparison to K-Means"},
+cluster_eval:{t:"Cluster validation — how good are your clusters?",id:"any clustering output · iris · synthetic ground truth",b:"Internal metrics (no labels): silhouette score (-1 to 1, higher=better), Davies-Bouldin index (lower=better), Calinski-Harabasz index (higher=better). External metrics (when labels available for comparison): Adjusted Rand Index (ARI), Normalised Mutual Information (NMI), Fowlkes-Mallows index. Stability analysis: cluster the same data with different random seeds — stable clusters appear consistently. Hopkins statistic: is there any cluster structure at all? Cluster tendency before clustering. Practical stability: bootstrap resampling of cluster assignments.",w:"<strong>The critical skill most tutorials skip:</strong> clustering always produces clusters — even on random data. The Hopkins statistic tests whether your data actually has any cluster structure before you start. ARI and NMI let you compare your unsupervised clusters to ground-truth labels when available (like iris species). Stability analysis tells you whether K=3 is a genuine structure or an artefact of one random initialisation.",tags:["silhouette","Davies-Bouldin","ARI","NMI","Hopkins statistic","cluster stability","Calinski-Harabasz"],prompt:"Build comprehensive cluster validation pipeline comparing all internal and external metrics across K-Means, HDBSCAN, and GMM"},
+pca:{t:"PCA — linear dimensionality reduction",id:"MNIST (ID 554) · gene expression · faces dataset · any high-dim data",b:"Eigendecomposition of covariance matrix. Principal components = directions of maximum variance. Explained variance ratio: scree plot, cumulative explained variance. Choosing n_components: 95% explained variance rule. Whitening PCA. Kernel PCA: non-linear extension (RBF, polynomial kernels). Incremental PCA for large datasets. TruncatedSVD for sparse matrices (text). Reconstruction error as anomaly score. Biplot: visualise both samples and features. PCA for preprocessing: decorrelates features before linear models.",w:"<strong>Direct bridge from your regression work:</strong> in your cpu_act pipeline you computed VIF to detect multicollinearity. PCA is the solution to multicollinearity — it decorrelates features by rotating to principal components. Ridge regression with PCA preprocessing gives Principal Component Regression (PCR), a classical alternative to Ridge that explicitly removes the collinear directions rather than shrinking them.",tags:["eigendecomposition","explained variance","scree plot","Kernel PCA","TruncatedSVD","biplot","whitening"],prompt:"Build PCA pipeline on MNIST with scree plot, cumulative explained variance, reconstruction visualisation, and comparison to Kernel PCA"},
+manifold:{t:"Manifold learning — non-linear dimensionality reduction",id:"MNIST · Swiss roll (sklearn) · single-cell RNA · drug embeddings",b:"t-SNE (van der Maaten & Hinton 2008): preserves local neighbourhood structure. Perplexity parameter controls neighbourhood size. Stochastic — different runs give different layouts. Not suitable for new data (no transform()). UMAP (McInnes 2018): faster, preserves more global structure, supports transform() for new points. Parameters: n_neighbors, min_dist. LLE (Locally Linear Embedding): linear reconstruction from neighbours. Isomap: geodesic distances on manifold. Evaluation: trustworthiness, continuity, Kruskal stress.",w:"<strong>Why manifold learning matters after PCA:</strong> PCA finds linear structure. Real high-dimensional data (images, genes, embeddings) lies on non-linear manifolds — curved surfaces in high dimensions. MNIST digits live on a 2D manifold in 784D pixel space. t-SNE/UMAP reveal cluster structure invisible to PCA. UMAP has replaced t-SNE in production because it preserves global structure and supports inference on new points.",tags:["t-SNE","UMAP","perplexity","n_neighbors","Isomap","LLE","trustworthiness","non-linear manifold"],prompt:"Build manifold learning pipeline on MNIST comparing PCA vs t-SNE vs UMAP with trustworthiness and continuity metrics"},
+sparse_dr:{t:"Sparse & independent components",id:"faces (Olivetti) · financial returns · audio signals · text corpora",b:"NMF (Non-negative Matrix Factorisation): decomposes data into non-negative parts — parts-based representation. Topics in text, facial features in images. Frobenius vs KL divergence reconstruction. ICA (Independent Component Analysis): finds statistically independent sources — the cocktail party problem (separate mixed audio signals). FastICA algorithm. Dictionary Learning: learn an overcomplete basis where data is sparsely represented. Sparse Coding: represent each sample as sparse linear combination of dictionary atoms. Applications: image compression, source separation, topic modelling.",w:"<strong>Why NMF complements PCA:</strong> PCA components can be negative — the 2nd PC of face images is a 'negative face' with no physical interpretation. NMF enforces non-negativity — components are interpretable parts (eyes, nose, mouth). For your text features (spambase, insurance policy text), NMF gives topics as additive word combinations. ICA is PCA's sibling for when the interesting signal structure is statistical independence, not variance.",tags:["NMF","ICA","dictionary learning","sparse coding","FastICA","parts-based","cocktail party"],prompt:"Build NMF pipeline on Olivetti faces dataset with parts visualisation and comparison to PCA components"},
+autoenc:{t:"Autoencoders — learn compressed representations",id:"MNIST · CIFAR-10 · any tabular dataset for anomaly detection",b:"Encoder compresses input to bottleneck (latent code). Decoder reconstructs input from latent code. Loss: reconstruction error (MSE or binary cross-entropy). Undercomplete autoencoder: bottleneck < input — forces compression. Overcomplete with regularisation: sparse autoencoder (L1 on activations), denoising autoencoder (corrupt input, reconstruct clean). Bottleneck as features for downstream classification. Anomaly detection: high reconstruction error = anomalous. Convolutional autoencoder for images.",w:"<strong>Why autoencoders after PCA:</strong> PCA is a linear autoencoder — the encoder and decoder are matrix multiplications. A nonlinear autoencoder (ReLU activations) discovers non-linear structure PCA misses. The denoising autoencoder is directly applicable to your Ames Housing pipeline — train to reconstruct clean features from corrupted inputs, then use as a robust imputation strategy for missing values.",tags:["bottleneck","reconstruction error","denoising","sparse autoencoder","anomaly detection","latent code","convolutional"],prompt:"Build autoencoder pipeline on MNIST with reconstruction visualisation and anomaly detection via reconstruction error"},
+kde:{t:"Kernel density estimation",id:"any 1D/2D continuous dataset · California housing prices · insurance claims",b:"Non-parametric estimate of the probability density function. Place a kernel (Gaussian, Epanechnikov, triangular) at each data point, sum and normalise. Bandwidth h: controls smoothness — too small=spiky (overfits), too large=oversmoothed. Bandwidth selection: Scott's rule, Silverman's rule, cross-validation likelihood. Multivariate KDE. KDE for anomaly detection: log-likelihood threshold. sklearn KernelDensity. Connection to Naive Bayes: GaussianNB assumes Gaussian density per feature — KDE relaxes this to any shape.",w:"<strong>The probability foundation underneath everything:</strong> every supervised model you built makes an implicit assumption about the data distribution. Ridge regression assumes Gaussian errors. Logistic regression assumes Bernoulli outputs. KDE makes no distributional assumption — it estimates the density directly from data. Understanding KDE clarifies why parametric assumptions matter and when non-parametric methods outperform them.",tags:["bandwidth","Scott's rule","Silverman's rule","Parzen window","log-likelihood","non-parametric density","multivariate KDE"],prompt:"Build KDE pipeline on insurance charges with bandwidth selection, anomaly scoring, and comparison to Gaussian assumption"},
+copula:{t:"Copulas — model joint distributions",id:"financial returns · rainfall extremes · insurance joint risks",b:"Sklar's theorem: any joint distribution = marginals + copula (dependency structure). Copula separates marginal distributions from dependence. Gaussian copula: linear correlation in Gaussian space — underestimates tail dependence (caused 2008 financial crisis). t-copula: heavier tails. Clayton copula: lower tail dependence (joint crashes). Gumbel copula: upper tail dependence. Vine copulas for high dimensions. Applications: portfolio risk (joint losses), insurance (correlated claims), reliability engineering. Python: pycopula, scipy.",w:"<strong>Why copulas matter in risk:</strong> insurance and finance care about joint extreme events — not just how often individual losses are large, but when multiple large losses occur simultaneously. Gaussian copulas say 'large losses are independent given extreme conditions' — which is wrong. Clayton copulas say 'extreme losses are correlated' — which matches observed financial crises. Your insurance pipeline modelled charges marginally; copulas would model the joint distribution of charges across policyholders.",tags:["Sklar's theorem","Gaussian copula","tail dependence","Clayton","Gumbel","vine copula","joint distribution"],prompt:"Build copula analysis pipeline on financial returns data with tail dependence comparison across copula families"},
+flow:{t:"Normalising flows — exact likelihood generative models",id:"tabular data · image densities · molecular design",b:"A sequence of invertible transformations that maps a simple distribution (Gaussian) to a complex one. Forward pass: data → latent code (for density estimation). Inverse pass: latent code → generated samples. Exact log-likelihood: no approximation (unlike VAE's ELBO). NICE, RealNVP, Glow: affine coupling layers. Autoregressive flows: MADE, MAF (masked autoregressive flow). Applications: density estimation, anomaly detection (low-likelihood = anomalous), generation. Python: normflows, nflows libraries.",w:"<strong>Why flows complete the density estimation picture:</strong> KDE is non-parametric and doesn't scale. GMM is parametric and assumes Gaussians. Normalising flows are parametric and flexible — they can model any distribution by composing invertible transformations. They give exact likelihoods (unlike VAEs) and exact samples (unlike diffusion models). The tradeoff is that the architecture must be invertible — a significant constraint.",tags:["invertible transforms","exact likelihood","RealNVP","NICE","affine coupling","MAF","MADE"],prompt:"Build normalising flow pipeline for density estimation and anomaly detection on tabular data with likelihood scoring"},
+vae:{t:"Variational Autoencoders",id:"MNIST · CelebA · tabular synthetic data generation",b:"Encoder outputs mean and variance of latent distribution (not a point). Reparameterisation trick: z = mean + eps * std, eps ~ N(0,I) — enables backpropagation through sampling. ELBO loss = reconstruction + KL divergence (latent prior regularisation). KL divergence term: forces latent space to be smooth and continuous. Latent space interpolation: blend two images by interpolating their latent codes. Conditional VAE (CVAE): condition generation on class label. Beta-VAE: stronger disentanglement. Applications: tabular data augmentation, anomaly detection, drug discovery.",w:"<strong>Why VAE after autoencoder:</strong> a regular autoencoder has no constraint on the latent space — similar inputs can have very different latent codes. VAE constrains the latent space to be approximately Gaussian — interpolating between codes produces valid outputs. This is what makes VAEs generative: sample z ~ N(0,I), decode to get a new realistic data point. For your tabular datasets, VAEs can generate synthetic training data to augment imbalanced classes — directly applicable to your credit fraud pipeline.",tags:["ELBO","reparameterisation","KL divergence","latent space","Beta-VAE","CVAE","disentanglement"],prompt:"Build VAE pipeline on MNIST with latent space visualisation, interpolation, and synthetic data generation for tabular augmentation"},
+gan:{t:"Generative Adversarial Networks",id:"MNIST · tabular GAN (CTGAN) · medical imaging",b:"Generator: maps noise z → synthetic data. Discriminator: classifies real vs synthetic. Minimax game: generator minimises, discriminator maximises. Training instability: mode collapse (generator only produces a few modes). Solutions: Wasserstein GAN (WGAN) — uses Wasserstein distance, more stable training. DCGAN for images. CTGAN/TVAE for tabular data synthesis. Conditional GAN (cGAN): condition generation on class. Evaluation: FID (Fréchet Inception Distance) for images, statistical tests for tabular. Applications: data augmentation, privacy-preserving synthetic data.",w:"<strong>Practical application to your pipelines:</strong> CTGAN (Conditional Tabular GAN) is directly applicable to your credit fraud dataset (0.17% positive rate). Instead of SMOTE oversampling, train a CTGAN to generate synthetic fraud examples that preserve the joint distribution of all features — much more realistic than SMOTE's linear interpolation between existing fraud examples.",tags:["minimax","WGAN","mode collapse","DCGAN","CTGAN","FID","conditional GAN","synthetic tabular"],prompt:"Build CTGAN pipeline for synthetic tabular data generation on credit fraud dataset with statistical comparison to real data"},
+diffusion:{t:"Diffusion models",id:"MNIST · image generation · tabular diffusion (TabDDPM)",b:"Forward process: gradually add Gaussian noise over T steps until data becomes pure noise. Reverse process (denoising): learn to remove noise step by step. DDPM (Denoising Diffusion Probabilistic Models): parameterise the noise, not the data. Score matching: learn the gradient of the log density. DDIM: deterministic sampling, much faster. Classifier-free guidance: condition generation on text/labels without separate classifier. TabDDPM: diffusion for tabular data — outperforms CTGAN on many benchmarks. Applications: image synthesis, drug molecule generation, tabular augmentation.",w:"<strong>Why diffusion after GAN:</strong> GANs are fast but unstable — mode collapse means some data regions are never generated. Diffusion models are slower (many denoising steps) but stable and cover the full data distribution. For tabular data, TabDDPM consistently outperforms CTGAN on both fidelity and diversity metrics. Understanding the forward/reverse process also gives intuition for how modern image generation (Stable Diffusion) works at a fundamental level.",tags:["DDPM","forward noise","denoising","score matching","DDIM","classifier-free guidance","TabDDPM"],prompt:"Build diffusion model pipeline for tabular data synthesis with TabDDPM and comparison to CTGAN and SMOTE"},
+contrastive:{t:"Contrastive self-supervised learning",id:"STL-10 · CIFAR-10 unlabelled · any image dataset",b:"Create positive pairs: two augmented views of the same image. Create negative pairs: views from different images. Train encoder to pull positives together, push negatives apart. SimCLR: large batch of negatives, projection head, NT-Xent loss. MoCo: momentum encoder maintains a queue of negatives — memory efficient. BYOL: no negatives — bootstrapped latent representations. SimSiam: no negatives, no momentum — just stop-gradient. Downstream: freeze encoder, train linear probe on labelled data. Linear evaluation protocol measures representation quality.",w:"<strong>Why contrastive learning connects to your supervised work:</strong> metric learning (from the supervised curriculum) and contrastive learning are the same idea — similar inputs should be close in embedding space. The difference: metric learning uses labels to define similarity. Contrastive self-supervised uses data augmentation — if two views came from the same image, they should be similar. This is how CLIP, GPT, and most modern foundation models learn representations.",tags:["SimCLR","MoCo","BYOL","NT-Xent loss","positive pairs","linear probe","augmentation","representation learning"],prompt:"Build contrastive self-supervised learning pipeline on CIFAR-10 with linear evaluation and comparison to supervised baseline"},
+masked:{t:"Masked prediction — self-supervised via reconstruction",id:"Wikipedia text · ImageNet patches · tabular masked features",b:"Mask a portion of the input, train to predict the masked portion. BERT: mask 15% of tokens, predict them from context. MAE (Masked Autoencoder): mask 75% of image patches, reconstruct. The high masking ratio forces global understanding, not just local copying. BEiT: predict discrete visual tokens instead of pixel values. For tabular: mask random features, predict them from others — this is exactly your MICE imputation formalised as self-supervised pretraining. Pre-train on unlabelled data, fine-tune on small labelled dataset.",w:"<strong>The direct connection to your pipelines:</strong> MICE imputation (IterativeImputer) is masked prediction — predict each missing feature from the others. Masked pretraining formalises this as a self-supervised learning objective. Pre-train a TabTransformer on unlabelled tabular data using masked feature prediction, then fine-tune on your small labelled dataset. This is the core idea behind TabPFN and many modern tabular foundation models.",tags:["BERT","MAE","masking ratio","BEiT","masked tabular","fine-tuning","TabTransformer","pretraining"],prompt:"Build masked self-supervised pretraining pipeline for tabular data and compare fine-tuned performance vs supervised baseline on small labelled dataset"},
+tabular_ssl:{t:"Self-supervised learning for tabular data",id:"any tabular dataset with unlabelled rows · UCI repositories",b:"SCARF (Self-Supervised Contrastive Learning using Random Feature Corruption): corrupt random features, train encoder to identify which view is corrupted. VIME (Value Imputation and Mask Estimation): predict which features are masked and impute their values simultaneously. SubTab: split features into subsets, create positive pairs from subsets of same row. TabTransformer: transformer with categorical feature embeddings, pretrain with masked feature prediction. Evaluation: semi-supervised benchmark — pretrain on 95% unlabelled, fine-tune on 5% labelled. Compared against supervised baseline on same labelled fraction.",w:"<strong>Why tabular SSL is the cutting edge:</strong> for images and text, self-supervised pretraining routinely closes the gap between 1% labelled and 100% labelled data. For tabular data, this is an open research problem — SCARF, VIME, and TabTransformer are leading approaches but don't consistently beat well-tuned gradient boosting on small datasets. Knowing where the frontier is, and what its limitations are, is what distinguishes practitioner from researcher knowledge.",tags:["SCARF","VIME","SubTab","TabTransformer","semi-supervised","feature corruption","unlabelled tabular"],prompt:"Build SCARF self-supervised tabular pipeline with semi-supervised evaluation comparing to fully supervised XGBoost baseline"},
+graph_ssl:{t:"Graph representation learning",id:"Cora citation network · Zachary karate club · ogbn-arxiv",b:"Graphs: nodes (entities) + edges (relationships). Node classification: predict label of each node. Link prediction: predict missing edges. Graph classification: predict label of whole graph. GCN (Graph Convolutional Network): aggregate neighbour features. GraphSAGE: sample and aggregate. GAT: attention-weighted aggregation. node2vec: random walk + Word2Vec on graph. DeepWalk: earlier random walk approach. Graph-level: GIN (Graph Isomorphism Network). Self-supervised on graphs: contrastive with graph augmentations (DGI, GraphCL). Applications: fraud detection (transaction graphs), recommendation, molecular property prediction.",w:"<strong>Why graphs complete the unsupervised picture:</strong> all your tabular datasets assume rows are independent. Many real-world datasets have structure — transactions link customers to merchants, papers cite other papers, proteins interact with other proteins. GCNs learn representations that incorporate this relational structure. Fraud detection on transaction graphs (nodes=accounts, edges=transactions) dramatically outperforms tabular-only models because fraudsters form clusters.",tags:["GCN","GraphSAGE","GAT","node2vec","DeepWalk","GIN","link prediction","graph contrastive"],prompt:"Build graph neural network pipeline on Cora citation network with node classification and comparison to tabular-only baseline"}
+};
+
+let cur=null,curId=null;
+function show(id){
+  const d=D[id];if(!d)return;
+  if(cur)cur.classList.remove('active');
+  cur=event.currentTarget;cur.classList.add('active');
+  curId=id;
+  document.getElementById('dpt').textContent=d.t;
+  document.getElementById('dpid').textContent=d.id;
+  document.getElementById('dpb').textContent=d.b;
+  document.getElementById('dpw').innerHTML=d.w;
+  const t=document.getElementById('dptags');t.innerHTML='';
+  const colorMap={
+    "Lloyd's algorithm":"g","K-Means++":"g","elbow method":"g","silhouette":"g","K-Medoids":"g","inertia":"g","Mini-batch":"g",
+    "agglomerative":"g","dendrogram":"g","Ward linkage":"g","cophenetic":"g","single link":"g","complete link":"g","UPGMA":"g",
+    "DBSCAN":"g","HDBSCAN":"g","OPTICS":"g","core points":"g","eps":"g","minPts":"g","noise points":"g","arbitrary shapes":"g",
+    "EM algorithm":"g","soft assignments":"g","BIC":"g","AIC":"g","Dirichlet process":"g","covariance structure":"g","bimodal":"g",
+    "ARI":"g","NMI":"g","Hopkins statistic":"g","cluster stability":"g","Calinski-Harabasz":"g","Davies-Bouldin":"g",
+    "eigendecomposition":"p","explained variance":"p","scree plot":"p","Kernel PCA":"p","TruncatedSVD":"p","biplot":"p","whitening":"p",
+    "t-SNE":"p","UMAP":"p","perplexity":"p","n_neighbors":"p","Isomap":"p","LLE":"p","trustworthiness":"p","non-linear manifold":"p",
+    "NMF":"p","ICA":"p","dictionary learning":"p","sparse coding":"p","FastICA":"p","parts-based":"p","cocktail party":"p",
+    "bottleneck":"p","reconstruction error":"p","denoising":"p","sparse autoencoder":"p","anomaly detection":"p","latent code":"p","convolutional":"p",
+    "bandwidth":"a","Scott's rule":"a","Silverman's rule":"a","Parzen window":"a","log-likelihood":"a","non-parametric density":"a","multivariate KDE":"a",
+    "Sklar's theorem":"a","Gaussian copula":"a","tail dependence":"a","Clayton":"a","Gumbel":"a","vine copula":"a","joint distribution":"a",
+    "invertible transforms":"a","exact likelihood":"a","RealNVP":"a","NICE":"a","affine coupling":"a","MAF":"a","MADE":"a",
+    "ELBO":"r","reparameterisation":"r","KL divergence":"r","latent space":"r","Beta-VAE":"r","CVAE":"r","disentanglement":"r",
+    "minimax":"r","WGAN":"r","mode collapse":"r","DCGAN":"r","CTGAN":"r","FID":"r","conditional GAN":"r","synthetic tabular":"r",
+    "DDPM":"r","forward noise":"r","score matching":"r","DDIM":"r","classifier-free guidance":"r","TabDDPM":"r",
+    "SimCLR":"k","MoCo":"k","BYOL":"k","NT-Xent loss":"k","positive pairs":"k","linear probe":"k","augmentation":"k","representation learning":"k",
+    "BERT":"k","MAE":"k","masking ratio":"k","BEiT":"k","masked tabular":"k","fine-tuning":"k","TabTransformer":"k","pretraining":"k",
+    "SCARF":"k","VIME":"k","SubTab":"k","semi-supervised":"k","feature corruption":"k","unlabelled tabular":"k",
+    "GCN":"k","GraphSAGE":"k","GAT":"k","node2vec":"k","DeepWalk":"k","GIN":"k","link prediction":"k","graph contrastive":"k"
+  };
+  (d.tags||[]).forEach(lbl=>{
+    const s=document.createElement('span');
+    s.className='tag '+(colorMap[lbl]||'g');
+    s.textContent=lbl;t.appendChild(s);
+  });
+  const btn=document.getElementById('dpbtn');
+  if(d.prompt){btn.style.display='inline-block';btn.textContent='Build this pipeline ↗';}
+  else{btn.style.display='none';}
+  document.getElementById('dp').style.display='block';
+  document.getElementById('dp').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function sendPromptFn(){const d=D[curId];if(d&&d.prompt)sendPrompt(d.prompt);}
+function closeDp(){
+  document.getElementById('dp').style.display='none';
+  if(cur){cur.classList.remove('active');cur=null;}
+}
+</script>

@@ -1,0 +1,229 @@
+
+<h2 class="sr-only">Regression curriculum map showing 16 topics across 4 tiers — 6 completed and 10 remaining — with datasets, concepts, and build buttons for each</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.root{padding:4px 0 28px;font-family:var(--font-sans)}
+.sh{font-size:10px;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:8px;margin-bottom:20px}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:11px 13px;cursor:pointer;transition:border-color .1s,background .1s}
+.card:hover,.card.active{border-color:var(--color-border-primary);background:var(--color-background-secondary)}
+.card.active{border-width:1.5px}
+.done{border-color:#1D9E75;background:rgba(29,158,117,.05)}
+.done:hover,.done.active{background:rgba(29,158,117,.11)}
+.tier-b{border-color:#7F77DD;background:rgba(127,119,221,.05)}
+.tier-b:hover,.tier-b.active{background:rgba(127,119,221,.11)}
+.tier-c{border-color:#BA7517;background:rgba(186,117,23,.05)}
+.tier-c:hover,.tier-c.active{background:rgba(186,117,23,.11)}
+.tier-d{border-color:#993C1D;background:rgba(153,60,29,.05)}
+.tier-d:hover,.tier-d.active{background:rgba(153,60,29,.11)}
+@media(prefers-color-scheme:dark){
+.done{background:rgba(29,158,117,.10)}.tier-b{background:rgba(127,119,221,.10)}
+.tier-c{background:rgba(186,117,23,.10)}.tier-d{background:rgba(153,60,29,.10)}
+}
+.badge{font-size:10px;font-weight:500;padding:2px 7px;border-radius:20px;margin-bottom:6px;display:inline-flex;align-items:center;gap:3px}
+.bd{background:rgba(29,158,117,.15);color:#085041}
+.bb{background:rgba(127,119,221,.15);color:#3C3489}
+.bc{background:rgba(186,117,23,.15);color:#633806}
+.be{background:rgba(153,60,29,.15);color:#712B13}
+@media(prefers-color-scheme:dark){.bd{color:#9FE1CB}.bb{color:#CECBF6}.bc{color:#FAC775}.be{color:#F5C4B3}}
+.num{font-size:10px;color:var(--color-text-tertiary);float:right;margin-top:1px}
+.cn{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:3px}
+.cs{font-size:11px;color:var(--color-text-secondary);line-height:1.4}
+.dp{border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-top:4px;background:var(--color-background-primary)}
+.dp-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px}
+.dp-title{font-size:14px;font-weight:500;color:var(--color-text-primary)}
+.dp-close{background:none;border:none;color:var(--color-text-tertiary);font-size:17px;cursor:pointer;line-height:1}
+.dp-id{font-size:11px;color:var(--color-text-tertiary);margin-bottom:8px}
+.dp-body{font-size:13px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:8px}
+.dp-why{font-size:12px;border-left:2px solid var(--color-border-secondary);padding-left:10px;color:var(--color-text-secondary);line-height:1.55;border-radius:0;margin-bottom:8px}
+.dp-why strong{color:var(--color-text-primary);font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{font-size:11px;padding:2px 7px;border-radius:20px;font-weight:500;background:rgba(29,158,117,.12);color:#085041}
+@media(prefers-color-scheme:dark){.tag{background:rgba(29,158,117,.2);color:#9FE1CB}}
+.tag-b{background:rgba(127,119,221,.12);color:#3C3489}
+.tag-c{background:rgba(186,117,23,.12);color:#633806}
+.tag-d{background:rgba(153,60,29,.12);color:#712B13}
+@media(prefers-color-scheme:dark){.tag-b{color:#CECBF6}.tag-c{color:#FAC775}.tag-d{color:#F5C4B3}}
+.btn{margin-top:10px;font-size:12px;cursor:pointer;padding:6px 12px;border-radius:var(--border-radius-md)}
+</style>
+
+<div class="root">
+
+<div class="sh">Tier 1 — foundations (linear & regularisation) · all completed</div>
+<div class="grid">
+  <div class="card done" onclick="show('ols')">
+    <span class="num">01</span>
+    <div class="badge bd"><i class="ti ti-check" style="font-size:10px" aria-hidden="true"></i>done</div>
+    <div class="cn">Linear regression baseline</div>
+    <div class="cs">boston / california · OLS · residuals</div>
+  </div>
+  <div class="card done" onclick="show('regularise')">
+    <span class="num">02</span>
+    <div class="badge bd"><i class="ti ti-check" style="font-size:10px" aria-hidden="true"></i>done</div>
+    <div class="cn">Ridge · Lasso · ElasticNet</div>
+    <div class="cs">diabetes · ID 542 · L1/L2 paths</div>
+  </div>
+  <div class="card done" onclick="show('insurance_reg')">
+    <span class="num">03</span>
+    <div class="badge bd"><i class="ti ti-check" style="font-size:10px" aria-hidden="true"></i>done</div>
+    <div class="cn">Categorical encoding</div>
+    <div class="cs">insurance · ID 44047 · OHE · target enc</div>
+  </div>
+  <div class="card done" onclick="show('cpu_reg')">
+    <span class="num">04</span>
+    <div class="badge bd"><i class="ti ti-check" style="font-size:10px" aria-hidden="true"></i>done</div>
+    <div class="cn">Non-linearity & polynomials</div>
+    <div class="cs">cpu_act · ID 197 · basis · kernels</div>
+  </div>
+</div>
+
+<div class="sh">Tier 2 — robustness & real-world messiness · all completed</div>
+<div class="grid">
+  <div class="card done" onclick="show('housing_reg')">
+    <span class="num">05</span>
+    <div class="badge bd"><i class="ti ti-check" style="font-size:10px" aria-hidden="true"></i>done</div>
+    <div class="cn">Missing data & robustness</div>
+    <div class="cs">ames housing · ID 42165 · MICE · Huber</div>
+  </div>
+  <div class="card done" onclick="show('bike_reg')">
+    <span class="num">06</span>
+    <div class="badge bd"><i class="ti ti-check" style="font-size:10px" aria-hidden="true"></i>done</div>
+    <div class="cn">Gradient boosting & time features</div>
+    <div class="cs">bike sharing · ID 42712 · XGBoost · RMSLE</div>
+  </div>
+  <div class="card tier-b" onclick="show('california_reg')">
+    <span class="num">07</span>
+    <div class="badge bb">next</div>
+    <div class="cn">Spatial & geospatial</div>
+    <div class="cs">california housing · lat/lon · spatial CV</div>
+  </div>
+  <div class="card tier-b" onclick="show('energy_reg')">
+    <span class="num">08</span>
+    <div class="badge bb">next</div>
+    <div class="cn">Multi-output regression</div>
+    <div class="cs">energy efficiency · ID 242 · joint targets</div>
+  </div>
+</div>
+
+<div class="sh">Tier 3 — target distribution & specialised loss · to practice</div>
+<div class="grid">
+  <div class="card tier-c" onclick="show('counts_reg')">
+    <span class="num">09</span>
+    <div class="badge bc">to practice</div>
+    <div class="cn">Count & zero-inflated</div>
+    <div class="cs">abalone · ID 1 · Poisson · Tweedie</div>
+  </div>
+  <div class="card tier-c" onclick="show('quantile_reg')">
+    <span class="num">10</span>
+    <div class="badge bc">to practice</div>
+    <div class="cn">Quantile regression</div>
+    <div class="cs">wine quality · ID 40691 · pinball loss</div>
+  </div>
+  <div class="card tier-c" onclick="show('skewed_reg')">
+    <span class="num">11</span>
+    <div class="badge bc">to practice</div>
+    <div class="cn">Heavy-tailed & log-normal</div>
+    <div class="cs">allstate · ID 42571 · Box-Cox · Yeo-Johnson</div>
+  </div>
+  <div class="card tier-c" onclick="show('ordinal_reg')">
+    <span class="num">12</span>
+    <div class="badge bc">to practice</div>
+    <div class="cn">Ordinal / rating targets</div>
+    <div class="cs">student-performance · ID 40536 · QWK metric</div>
+  </div>
+</div>
+
+<div class="sh">Tier 4 — advanced & production-ready · to practice</div>
+<div class="grid">
+  <div class="card tier-d" onclick="show('conformal_reg')">
+    <span class="num">13</span>
+    <div class="badge be">to practice</div>
+    <div class="cn">Uncertainty quantification</div>
+    <div class="cs">kin8nm · ID 189 · conformal · QR forests</div>
+  </div>
+  <div class="card tier-d" onclick="show('causal_reg')">
+    <span class="num">14</span>
+    <div class="badge be">to practice</div>
+    <div class="cn">Causal & treatment effects</div>
+    <div class="cs">lalonde · twin births · ATE · DML</div>
+  </div>
+  <div class="card tier-d" onclick="show('online_reg')">
+    <span class="num">15</span>
+    <div class="badge be">to practice</div>
+    <div class="cn">Online / incremental learning</div>
+    <div class="cs">electricity prices · partial_fit · ADWIN</div>
+  </div>
+  <div class="card tier-d" onclick="show('neural_reg')">
+    <span class="num">16</span>
+    <div class="badge be">to practice</div>
+    <div class="cn">Neural networks for tabular</div>
+    <div class="cs">higgs · ID 23512 · TabNet · embeddings</div>
+  </div>
+</div>
+
+<div class="dp" id="dp" style="display:none">
+  <div class="dp-hdr">
+    <div class="dp-title" id="dpt"></div>
+    <button class="dp-close" onclick="closeDp()" aria-label="Close">×</button>
+  </div>
+  <div class="dp-id" id="dpid"></div>
+  <div class="dp-body" id="dpb"></div>
+  <div class="dp-why" id="dpw"></div>
+  <div class="tags" id="dptags"></div>
+  <button class="btn" id="dpbtn" style="display:none" onclick="sendPromptFn()"></button>
+</div>
+
+</div>
+
+<script>
+const D={
+ols:{title:"Linear regression baseline",id:"Boston (ID 531) · California housing (ID 43926)",done:true,body:"OLS via LinearRegression. Residual analysis: Q-Q plot, scale-location, Breusch-Pagan heteroscedasticity. Multicollinearity: VIF (pure numpy implementation). Feature scaling impact: StandardScaler vs RobustScaler vs no scaling. Baseline comparisons: DummyRegressor mean and median. 5-fold KFold CV. evaluate_predictions() with MAE, RMSE, R², MAPE, MedAE. Training profile with 100 quantiles for drift monitoring.",why:"<strong>What was established here:</strong> the entire pipeline architecture — split_data() before EDA, SHA1-versioned joblib, training_profile.json, pandera schema, MLflow logging, monitor with KS drift. Every subsequent pipeline inherits this foundation verbatim.",tags:["OLS","VIF","Breusch-Pagan","DummyRegressor","KFold","training profile"]},
+regularise:{title:"Ridge · Lasso · ElasticNet regularisation",id:"Diabetes (ID 542)",done:true,body:"Bias-variance tradeoff made concrete. RidgeCV, LassoCV, ElasticNetCV for CV-optimal alpha. Coefficient path visualisation over 50 alpha values (logspace). Lasso sparsity as automatic feature selection. L1 + L2 = ElasticNet: best of both for correlated features. Optimal alpha interpretation: larger for more features. Comparison: Ridge keeps all features, Lasso zeros redundant ones.",why:"<strong>What you mastered:</strong> the mathematical reason regularisation works — adding penalty to the loss function trades off bias for variance reduction. The coefficient path plots make the shrinkage mechanism visual and concrete.",tags:["Ridge","Lasso","ElasticNet","coefficient paths","RidgeCV","bias-variance"]},
+insurance_reg:{title:"Categorical encoding & interaction terms",id:"Insurance (ID 44047) · fixed: Brazilian dataset redirect",done:true,body:"OHE strategies: no-drop vs drop=first vs drop=if_binary vs OrdinalEncoder. KFoldTargetEncoder with smoothing parameter (0.1→50 comparison). bmi×smoker interaction — the dominant non-linear signal. WHO BMI category binning (underweight/normal/overweight/obese). GroupKFold by region (geographic generalisation test). StratifiedKFold on quartile bins for continuous target. All category dtype arithmetic bugs fixed.",why:"<strong>What you mastered:</strong> the encoding strategy determines whether interaction signals are captured. OHE treats smoker×bmi as two separate additive effects. The explicit product term bmi_smoker_interact captures the multiplicative effect that neither can alone. This single interaction drove R² from 0.75 to 0.87.",tags:["OHE","target encoding","KFoldTargetEncoder","smoothing","cat×num interactions","GroupKFold"]},
+cpu_reg:{title:"Non-linearity & polynomials",id:"cpu_act (ID 197) · benchmark with 16 regressors",done:true,body:"Polynomial degree 1/2/3 comparison (full vs interaction-only). Basis functions: RBF (Nystroem kernel), SplineTransformer (natural cubic, 5 knots), RBFSampler (Fourier features). Mutual information vs Pearson r — detecting non-linear feature importance. Regularisation paths on polynomial-expanded features. _DynamicNumericPreprocessor: fit-time column resolution fixing KeyError: sys. sys+wait+usr≈100 constraint: VIF=9999, documented in model card.",why:"<strong>What you mastered:</strong> non-linearity is not a single technique — it's a choice between polynomial expansion (explicit terms), kernel approximation (implicit high-dim mapping), and spline bases (smooth piecewise). Each has a different computational cost and interpretability tradeoff.",tags:["PolynomialFeatures","SplineTransformer","Nystroem","mutual info","_DynamicNumericPreprocessor","VIF"]},
+housing_reg:{title:"Missing data & robust regression",id:"Ames Housing (ID 42165) · 2930 rows · 82 features · 19 missing cols",done:true,body:"MNAR/MAR/MCAR taxonomy for all 19 columns. SpatialImputer: LotFrontage by Neighborhood median (fit-safe, no leakage). KNN vs MICE (IterativeImputer+BayesianRidge) comparison by downstream R². Isolation Forest + De Cock rule (GrLivArea>4000 & Price<200k). HuberRegressor vs Ridge OLS on luxury outliers. log1p(SalePrice) with RMSLE (Kaggle metric). Ordinal encoding Ex→5 Gd→4 TA→3 Fa→2 Po→1 None→0. bootstrap=True fix for ExtraTrees OOB. save_feature_importance: walk pipeline steps backward.",why:"<strong>What you mastered:</strong> the taxonomy is the key insight — MNAR absent columns (PoolQC=NaN means no pool) must never be imputed. Imputing them with 'TA' destroys the information that the feature is absent. The spatial imputer and the ordinal encoding both required domain knowledge that no algorithm could discover automatically.",tags:["MNAR/MAR/MCAR","SpatialImputer","MICE","IsolationForest","HuberRegressor","RMSLE","ordinal quality"]},
+bike_reg:{title:"Gradient boosting & time-series features",id:"Bike Sharing Demand (ID 42712) · 17379 rows · hourly",done:true,body:"28 temporal features from datetime: hour/dow/month/year, cyclic sin/cos (avoids boundary artifacts), rush flags, days_elapsed (secular trend). TimeSeriesSplit in hyperparameter search (no future leakage). KFold(shuffle=False) for OOF uncertainty (cross_val_predict requires full partition). GBR convergence via staged_predict. ExtraTrees OOB requires bootstrap=True. Optuna Bayesian search. ACF of residuals (48-lag). Four bugs fixed: statsmodels, is_workrush KeyError, boxplot seaborn API, TimeSeriesSplit partition error.",why:"<strong>What you mastered:</strong> temporal ordering is the single most important methodological difference. Shuffled KFold leaks future seasonal patterns and inflates R² by 0.05–0.10. TimeSeriesSplit enforces that every validation fold is strictly after its training data — matching how the model is deployed.",tags:["TimeSeriesSplit","cyclic encoding","staged_predict","Optuna","ACF","RMSLE","bootstrap=True"]},
+california_reg:{title:"Spatial & geospatial regression",id:"California Housing (ID 537) · NYC taxi or energy buildings",done:false,body:"Latitude and longitude as raw features vs engineered spatial features. Haversine distance to urban centres. KDE-smoothed neighbourhood density. Spatial cross-validation: leave-one-location-out, geographic KFold (cluster rows by location then hold out whole clusters). Spatial autocorrelation: Moran's I test — nearby houses are correlated. Geographically Weighted Regression (GWR). Spatial lag features. Kriging as an interpretable spatial interpolation baseline.",why:"<strong>Why this gap:</strong> all your datasets so far have i.i.d. rows. Geospatial data violates independence — nearby observations are correlated (Tobler's First Law). Standard KFold leaks because nearby houses appear in both train and test. Spatial CV holds out entire geographic clusters, giving an honest estimate of how well the model generalises to unseen locations.",tags:["Haversine","Moran's I","spatial CV","GWR","KDE density","geographic leakage"]},
+energy_reg:{title:"Multi-output regression",id:"Energy Efficiency (ID 242) · predict heating AND cooling load",done:false,body:"MultiOutputRegressor: wraps any single-output regressor. RegressorChain: output 1 (heating) becomes a feature for output 2 (cooling) — captures inter-target correlation. Direct multi-output: GBR/RF natively support multi-output. Evaluation: per-target R², mean R², Euclidean distance in output space. Label correlation analysis: are the two targets correlated? When chains beat independent: when targets influence each other. Comparison: independent vs chained vs joint on same data.",why:"<strong>The direct bridge from your pipelines:</strong> RegressorChain is the regression analogue of ClassifierChain in multi-label classification. You already used MultiOutputRegressor concepts implicitly when you had casual+registered decomposition in bike sharing. Energy efficiency makes this explicit — heating load and cooling load are physically coupled through building thermal mass.",tags:["MultiOutputRegressor","RegressorChain","joint targets","inter-target correlation","per-target R²"]},
+counts_reg:{title:"Count data & zero-inflated regression",id:"Abalone (ID 1) · bike sharing (reframe) · insurance claims",done:false,body:"Why OLS fails on counts: predicts negative values, ignores integer constraint, assumes normal errors. Poisson regression: log link, equidispersion (mean=variance). Negative binomial: overdispersed counts (variance > mean). Zero-inflated Poisson (ZIP): separate logistic model for excess zeros. Tweedie distribution: unifies Poisson + gamma, handles compound distributions. Evaluation: mean Poisson deviance, mean Tweedie deviance instead of RMSE. sklearn's TweedieRegressor.",why:"<strong>Why this matters beyond bike sharing:</strong> you treated count as continuous in the bike pipeline. For insurance claims, medical visits, or rare event counts, the distributional assumption matters more than model complexity. A Poisson GLM often outperforms a tuned GBR on count targets because it's correctly specified — it knows the target is non-negative and integer.",tags:["Poisson regression","negative binomial","ZIP","Tweedie","TweedieRegressor","Poisson deviance"]},
+quantile_reg:{title:"Quantile regression",id:"Wine quality (ID 40691) · concrete strength (ID 4353)",done:false,body:"Predicting the 10th/50th/90th percentile instead of the mean. Pinball loss (quantile loss): asymmetric — underprediction and overprediction are penalised differently per quantile. sklearn's QuantileRegressor (linear). Gradient boosting for quantiles: GradientBoostingRegressor(loss='quantile'). LightGBM quantile objective. Prediction intervals from quantile pairs (10th, 90th). Coverage check: does the 80% PI actually contain 80% of test values? Comparison with conformal intervals.",why:"<strong>The bridge from your existing pipelines:</strong> you already built prediction_interval_coverage checks in every pipeline. Quantile regression gives you the theoretical tool to produce those intervals directly — train one model for the lower bound, one for the upper bound, rather than using ±RMSE heuristic. This is more honest than assuming symmetric Gaussian errors.",tags:["pinball loss","QuantileRegressor","quantile GBR","prediction intervals","coverage check","asymmetric loss"]},
+skewed_reg:{title:"Heavy-tailed & log-normal targets",id:"Allstate claims (ID 42571) · medical costs · NYC taxi fares",done:false,body:"Target transformations: log1p (you already used this), Box-Cox (optimal power, requires positive values), Yeo-Johnson (works on negative values too). PowerTransformer in sklearn. Comparing transformations: Shapiro-Wilk normality after each transform. Back-transformation bias: E[expm1(log_pred)] ≠ expm1(E[log_pred]) — need bias correction (smearing estimator). Quantile transformation for extreme skew. Comparison: train on raw vs log vs Box-Cox target, evaluate RMSE in original space.",why:"<strong>What you already know vs what's new:</strong> you used log1p in Ames Housing and bike sharing. Box-Cox extends this — it finds the optimal power λ that best normalises the target rather than assuming log (λ=0). Yeo-Johnson extends Box-Cox to handle negative values. The back-transformation bias correction is the subtle part most practitioners miss.",tags:["Box-Cox","Yeo-Johnson","PowerTransformer","smearing estimator","back-transformation bias","Shapiro-Wilk"]},
+ordinal_reg:{title:"Ordinal / rating targets",id:"Student performance (ID 40536) · wine quality · star ratings",done:false,body:"When the target is an ordered integer (1–5 stars, grade A–F), standard regression and classification are both suboptimal. Frank-Hall ordinal regression: decompose into binary classifiers 1vsRest cumulatively — P(Y>1), P(Y>2), etc. Ordinal logistic regression (proportional odds model). Quadratic Weighted Kappa (QWK): the Kaggle competition metric for medical AI — confusing adjacent grades is penalised less than distant grades. MAE of label ranks. Comparison: regression vs classification vs ordinal on same ordered target.",why:"<strong>Why treating ordinal targets as continuous is wrong:</strong> standard regression on grades 1–5 treats the difference between 1 and 2 as equal to the difference between 4 and 5. But in student grades, failing vs barely passing (D→C) has a different meaning than good vs excellent (A→A+). QWK captures this: the penalty matrix increases with distance between predicted and actual class.",tags:["Frank-Hall","proportional odds","QWK","MAE of ranks","ordinal logistic","ordered targets"]},
+conformal_reg:{title:"Uncertainty quantification & conformal prediction",id:"kin8nm (ID 189) · any regression dataset",done:false,body:"Beyond ±RMSE bands: conformal prediction gives distribution-free coverage guarantees. Split conformal: calibrate on a held-out set, compute nonconformity scores, set the band so 90% of calibration scores are covered. Full conformal: computationally expensive but exact. Jackknife+: coverage guarantee for exchangeable data. Comparison: conformal interval vs quantile regression interval vs ±RMSE. Expected Calibration Error (ECE) for regression. Bayesian Ridge posterior as probabilistic baseline.",why:"<strong>The gap in every pipeline you built:</strong> your prediction_interval_coverage check measured calibration after the fact. Conformal prediction gives it before the fact — a guarantee that the interval contains the true value in 90% of cases by construction, regardless of model or data distribution. This is what regulators and high-stakes applications require.",tags:["conformal prediction","jackknife+","nonconformity scores","split conformal","ECE","coverage guarantee"]},
+causal_reg:{title:"Causal inference & treatment effects",id:"LaLonde job training · twins (observational) · synthetic IV data",done:false,body:"The fundamental problem: observational data has confounding. ATE (average treatment effect): E[Y(1)] - E[Y(0)]. Propensity score matching and IPW (inverse probability weighting). Double ML (DML): orthogonalise both treatment and outcome on confounders, then regress residuals. Causal forests (Wager & Athey). IV regression (instrumental variables). Difference-in-differences for panel data. Comparison: naive OLS ATE vs propensity-adjusted vs DML on same dataset with known ground truth.",why:"<strong>Why causal reasoning is a separate skill from predictive regression:</strong> all your regression models answer 'given X, what is Y?' Causal inference answers 'if we change X, how does Y change?' A model predicting salary from education is not a causal model — it reflects selection bias (smart people get more education AND higher salaries). DML isolates the causal effect of one additional year of education.",tags:["ATE","propensity score","IPW","Double ML","causal forests","IV regression","confounding"]},
+online_reg:{title:"Online & incremental regression",id:"Electricity prices · bike sharing extended · any streaming data",done:false,body:"All your pipelines are batch-trained and frozen. Incremental learning: SGDRegressor.partial_fit() updates weights with each new observation. river library: the go-to streaming ML library with native online regression. Concept drift detection: ADWIN (Adaptive Windowing) — automatically detects distribution shift. Page-Hinkley test for gradual drift. CUSUM for abrupt change. Sliding window vs landmark window. Comparison: batch retrain vs incremental update vs drift-aware on held-out stream.",why:"<strong>The direct extension of your bike pipeline:</strong> you built KS drift monitoring and TimeSeriesSplit in bike sharing. Online learning is the next step — instead of detecting drift and triggering a full retrain, partial_fit() continuously adapts the model. For bike sharing in production, each new hour's count updates the model weights incrementally.",tags:["partial_fit","SGDRegressor","river","ADWIN","Page-Hinkley","CUSUM","concept drift"]},
+neural_reg:{title:"Neural networks for tabular regression",id:"Higgs (ID 23512) · year prediction (ID 44026) · large tabular",done:false,body:"Why trees still beat MLPs on tabular data (and when they don't). TabNet: attention-based feature selection within the network. Entity embeddings for high-cardinality categoricals (learned dense representations vs OHE). MLP with batch normalisation and dropout for regression. Comparison: MLP vs GBR vs TabNet on same tabular dataset. When neural networks win: very large datasets (>500k rows), high-cardinality categoricals, structured latent space. Feature importance from attention weights.",why:"<strong>Why this comes last:</strong> gradient boosting typically outperforms neural networks on tabular data up to ~500k rows. Higgs has 11 million rows — the regime where neural networks start competing. TabNet also introduces the concept of learned feature selection via attention, which is conceptually different from the ExtraTrees-based SelectFromModel you've been using.",tags:["TabNet","entity embeddings","batch norm","MLP vs GBR","attention","large tabular","learned embeddings"]}
+};
+
+let cur=null,curId=null;
+function show(id){
+  const d=D[id];if(!d)return;
+  if(cur)cur.classList.remove('active');
+  cur=event.currentTarget;cur.classList.add('active');
+  curId=id;
+  document.getElementById('dpt').textContent=d.title;
+  document.getElementById('dpid').textContent=d.id;
+  document.getElementById('dpb').textContent=d.body;
+  document.getElementById('dpw').innerHTML=d.why;
+  const t=document.getElementById('dptags');t.innerHTML='';
+  const cls=d.done?'tag':(id.startsWith('cal')||id==='energy_reg'||id==='california_reg'?'tag tag-b':(id==='counts_reg'||id==='quantile_reg'||id==='skewed_reg'||id==='ordinal_reg'?'tag tag-c':'tag tag-d'));
+  (d.tags||[]).forEach(lbl=>{const s=document.createElement('span');s.className=cls;s.textContent=lbl;t.appendChild(s);});
+  const btn=document.getElementById('dpbtn');
+  if(!d.done&&d.title){
+    btn.style.display='inline-block';
+    btn.textContent='Build this pipeline ↗';
+  } else {
+    btn.style.display='none';
+  }
+  document.getElementById('dp').style.display='block';
+  document.getElementById('dp').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function sendPromptFn(){
+  const d=D[curId];if(!d)return;
+  sendPrompt('Build a complete ML pipeline for '+d.title+' using '+d.id+' following the same titanic_pipeline.py architecture with all concepts covered in depth');
+}
+function closeDp(){
+  document.getElementById('dp').style.display='none';
+  if(cur){cur.classList.remove('active');cur=null;}
+}
+</script>

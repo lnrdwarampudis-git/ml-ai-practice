@@ -1,3 +1,4 @@
+mlruns/
 **/mlruns/
-**/artifacts_cpu/*.joblib
-**/artifacts_ca/*.joblib
+*.joblib
+**/*.joblib

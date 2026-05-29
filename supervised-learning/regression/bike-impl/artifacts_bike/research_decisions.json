@@ -1,0 +1,20 @@
+{
+  "problem_type": "regression",
+  "target": "count",
+  "target_unit": "bikes/hour",
+  "log_transform": "log1p(count) \u2014 right-skewed target",
+  "temporal_split": "last 20% of hours as test (time-aware, no future leakage)",
+  "leakage_drop": [
+    "casual",
+    "registered",
+    "datetime"
+  ],
+  "key_features": [
+    "hour",
+    "day_of_week",
+    "season",
+    "weather",
+    "temp",
+    "rush_hour_flags"
+  ]
+}

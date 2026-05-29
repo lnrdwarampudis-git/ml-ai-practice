@@ -1,0 +1,231 @@
+
+<h2 class="sr-only">Classification algorithm curriculum map showing 12 topic areas with recommended OpenML datasets, concepts to cover, and progression from binary to multi-class to advanced techniques</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.root{padding:4px 0 28px;font-family:var(--font-sans)}
+.sh{font-size:10px;font-weight:500;letter-spacing:.7px;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:8px;margin-bottom:20px}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:11px 13px;cursor:pointer;transition:border-color .1s,background .1s}
+.card:hover,.card.active{border-color:var(--color-border-primary);background:var(--color-background-secondary)}
+.card.active{border-width:1.5px}
+.tier-a{border-color:#1D9E75;background:rgba(29,158,117,.05)}
+.tier-a:hover,.tier-a.active{background:rgba(29,158,117,.11)}
+.tier-b{border-color:#7F77DD;background:rgba(127,119,221,.05)}
+.tier-b:hover,.tier-b.active{background:rgba(127,119,221,.11)}
+.tier-c{border-color:#BA7517;background:rgba(186,117,23,.05)}
+.tier-c:hover,.tier-c.active{background:rgba(186,117,23,.11)}
+.tier-d{border-color:#993C1D;background:rgba(153,60,29,.05)}
+.tier-d:hover,.tier-d.active{background:rgba(153,60,29,.11)}
+@media(prefers-color-scheme:dark){
+.tier-a{background:rgba(29,158,117,.10)}.tier-b{background:rgba(127,119,221,.10)}
+.tier-c{background:rgba(186,117,23,.10)}.tier-d{background:rgba(153,60,29,.10)}
+}
+.badge{font-size:10px;font-weight:500;padding:2px 7px;border-radius:20px;margin-bottom:6px;display:inline-block}
+.ba{background:rgba(29,158,117,.15);color:#085041}
+.bb{background:rgba(127,119,221,.15);color:#3C3489}
+.bc{background:rgba(186,117,23,.15);color:#633806}
+.bd{background:rgba(153,60,29,.15);color:#712B13}
+@media(prefers-color-scheme:dark){
+.ba{color:#9FE1CB}.bb{color:#CECBF6}.bc{color:#FAC775}.bd{color:#F5C4B3}
+}
+.cn{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:3px}
+.cs{font-size:11px;color:var(--color-text-secondary);line-height:1.4}
+.num{font-size:10px;color:var(--color-text-tertiary);float:right;margin-top:1px}
+.dp{border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-top:4px;background:var(--color-background-primary)}
+.dp-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px}
+.dp-title{font-size:14px;font-weight:500;color:var(--color-text-primary)}
+.dp-close{background:none;border:none;color:var(--color-text-tertiary);font-size:17px;cursor:pointer;line-height:1}
+.dp-id{font-size:11px;color:var(--color-text-tertiary);margin-bottom:8px}
+.dp-body{font-size:13px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:8px}
+.dp-why{font-size:12px;border-left:2px solid var(--color-border-secondary);padding-left:10px;color:var(--color-text-secondary);line-height:1.55;border-radius:0;margin-bottom:8px}
+.dp-why strong{color:var(--color-text-primary);font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{font-size:11px;padding:2px 7px;border-radius:20px;font-weight:500}
+.ta{background:rgba(29,158,117,.12);color:#085041}
+.tb{background:rgba(127,119,221,.12);color:#3C3489}
+.tc{background:rgba(186,117,23,.12);color:#633806}
+.td{background:rgba(153,60,29,.12);color:#712B13}
+@media(prefers-color-scheme:dark){
+.ta{color:#9FE1CB}.tb{color:#CECBF6}.tc{color:#FAC775}.td{color:#F5C4B3}
+}
+.btn{margin-top:10px;font-size:12px;cursor:pointer;padding:6px 12px;border-radius:var(--border-radius-md)}
+</style>
+
+<div class="root">
+
+<div class="sh">Tier 1 — foundations (binary classification)</div>
+<div class="grid">
+  <div class="card tier-a" onclick="show('logistic')">
+    <span class="num">01</span>
+    <div class="badge ba">foundations</div>
+    <div class="cn">Logistic regression</div>
+    <div class="cs">Titanic · heart disease · ID 40945</div>
+  </div>
+  <div class="card tier-a" onclick="show('threshold')">
+    <span class="num">02</span>
+    <div class="badge ba">foundations</div>
+    <div class="cn">Threshold & metrics</div>
+    <div class="cs">credit-g · ID 31 · imbalanced data</div>
+  </div>
+  <div class="card tier-a" onclick="show('svm')">
+    <span class="num">03</span>
+    <div class="badge ba">foundations</div>
+    <div class="cn">SVM & kernels</div>
+    <div class="cs">breast-cancer · ID 13 · kernel trick</div>
+  </div>
+  <div class="card tier-a" onclick="show('naive')">
+    <span class="num">04</span>
+    <div class="badge ba">foundations</div>
+    <div class="cn">Naive Bayes</div>
+    <div class="cs">spambase · ID 44 · text features</div>
+  </div>
+</div>
+
+<div class="sh">Tier 2 — trees & ensembles</div>
+<div class="grid">
+  <div class="card tier-b" onclick="show('trees')">
+    <span class="num">05</span>
+    <div class="badge bb">ensembles</div>
+    <div class="cn">Decision trees</div>
+    <div class="cs">adult · ID 1590 · interpretability</div>
+  </div>
+  <div class="card tier-b" onclick="show('rf')">
+    <span class="num">06</span>
+    <div class="badge bb">ensembles</div>
+    <div class="cn">Random Forest & boosting</div>
+    <div class="cs">bank-marketing · ID 1461 · XGBoost</div>
+  </div>
+  <div class="card tier-b" onclick="show('multiclass')">
+    <span class="num">07</span>
+    <div class="badge bb">ensembles</div>
+    <div class="cn">Multi-class classification</div>
+    <div class="cs">mnist · ID 554 · OvR vs OvO</div>
+  </div>
+  <div class="card tier-b" onclick="show('calibration')">
+    <span class="num">08</span>
+    <div class="badge bb">ensembles</div>
+    <div class="cn">Probability calibration</div>
+    <div class="cs">Platt scaling · isotonic · reliability diagrams</div>
+  </div>
+</div>
+
+<div class="sh">Tier 3 — imbalance, cost & robustness</div>
+<div class="grid">
+  <div class="card tier-c" onclick="show('imbalance')">
+    <span class="num">09</span>
+    <div class="badge bc">imbalance</div>
+    <div class="cn">Class imbalance</div>
+    <div class="cs">creditcard-fraud · ID 1597 · SMOTE</div>
+  </div>
+  <div class="card tier-c" onclick="show('costsensitive')">
+    <span class="num">10</span>
+    <div class="badge bc">imbalance</div>
+    <div class="cn">Cost-sensitive learning</div>
+    <div class="cs">medical-diagnosis · asymmetric losses</div>
+  </div>
+  <div class="card tier-c" onclick="show('featuresel')">
+    <span class="num">11</span>
+    <div class="badge bc">imbalance</div>
+    <div class="cn">Feature selection</div>
+    <div class="cs">madelon · ID 1485 · high-dim wrapper methods</div>
+  </div>
+  <div class="card tier-c" onclick="show('missing_cls')">
+    <span class="num">12</span>
+    <div class="badge bc">imbalance</div>
+    <div class="cn">Missing data in classification</div>
+    <div class="cs">hepatitis · ID 55 · MCAR vs MAR patterns</div>
+  </div>
+</div>
+
+<div class="sh">Tier 4 — advanced & production-ready</div>
+<div class="grid">
+  <div class="card tier-d" onclick="show('multilabel')">
+    <span class="num">13</span>
+    <div class="badge bd">advanced</div>
+    <div class="cn">Multi-label classification</div>
+    <div class="cs">scene · ID 312 · label powerset</div>
+  </div>
+  <div class="card tier-d" onclick="show('ordinal_cls')">
+    <span class="num">14</span>
+    <div class="badge bd">advanced</div>
+    <div class="cn">Ordinal classification</div>
+    <div class="cs">ESL · ID 182 · ordered outcomes</div>
+  </div>
+  <div class="card tier-d" onclick="show('explain')">
+    <span class="num">15</span>
+    <div class="badge bd">advanced</div>
+    <div class="cn">Explainability & fairness</div>
+    <div class="cs">adult · compas · SHAP + LIME</div>
+  </div>
+  <div class="card tier-d" onclick="show('deploy')">
+    <span class="num">16</span>
+    <div class="badge bd">advanced</div>
+    <div class="cn">Production & drift</div>
+    <div class="cs">electricity · ID 44080 · concept drift</div>
+  </div>
+</div>
+
+<div class="dp" id="dp" style="display:none">
+  <div class="dp-hdr">
+    <div class="dp-title" id="dpt"></div>
+    <button class="dp-close" onclick="closeDp()" aria-label="Close">×</button>
+  </div>
+  <div class="dp-id" id="dpid"></div>
+  <div class="dp-body" id="dpb"></div>
+  <div class="dp-why" id="dpw"></div>
+  <div class="tags" id="dptags"></div>
+  <button class="btn" id="dpbtn" onclick="sendPromptFn()"></button>
+</div>
+
+</div>
+
+<script>
+const D={
+logistic:{title:"Logistic regression — binary foundations",id:"Titanic (ID 40945) · heart-disease (ID 1565) · ionosphere (ID 59)",body:"Sigmoid function and log-odds interpretation. Maximum likelihood estimation vs OLS. Decision boundary visualisation. Log-loss (binary cross-entropy) as the loss function. Coefficients as log-odds ratios — directly interpretable. Regularisation: L1 (sparse) and L2 (stable). Multinomial extension. Comparison with linear regression on the same data to show why MSE is wrong for binary targets.",why:"<strong>Why start here:</strong> logistic regression is the linear regression of classification. Every later technique (SVM, neural nets, gradient boosting) implicitly builds on the log-odds framework. Understanding why sigmoid + log-loss is the right combination (rather than sigmoid + MSE) is the conceptual foundation everything else depends on.",tags:["sigmoid","log-odds","log-loss","L1/L2","decision boundary"],prompt:"Build logistic regression pipeline for heart disease classification with full concept analysis"},
+threshold:{title:"Threshold optimisation & evaluation metrics",id:"credit-g (ID 31) · give-me-credit (ID 41169)",body:"ROC curve and AUC-ROC. Precision-recall curve and AUC-PR (better for imbalanced data). F1, F-beta (adjustable precision-recall tradeoff). Confusion matrix decomposition: TP/FP/TN/FN. Threshold selection: Youden's J, cost-sensitive optimal threshold, precision@k. Calibration vs discrimination. Matthews Correlation Coefficient (MCC) for imbalanced binary. Business cost integration: false positive vs false negative costs.",why:"<strong>Why credit data:</strong> German credit has asymmetric costs — a false negative (approving a bad loan) costs ~5× a false positive (rejecting a good customer). This makes it the ideal dataset to show that accuracy is the wrong metric, and that threshold choice depends entirely on the cost structure, not on the model.",tags:["ROC-AUC","precision-recall","F-beta","MCC","threshold optimisation","cost matrix"],prompt:"Build threshold optimisation pipeline for credit scoring with full metrics analysis"},
+svm:{title:"Support vector machines & kernel methods",id:"breast-cancer-wisconsin (ID 13) · sonar (ID 40) · diabetes (ID 37)",body:"Maximum margin classifier intuition. Support vectors as the critical training points. Hard vs soft margin (C parameter). Kernel trick: RBF, polynomial, sigmoid kernels. Kernel matrix and the dual problem. SVC vs LinearSVC (speed tradeoff). Platt scaling for probability calibration. SVM for non-linear boundaries: XOR problem. Comparison: SVM vs logistic regression on linearly separable vs non-separable data.",why:"<strong>Why SVM matters despite gradient boosting dominance:</strong> SVMs are the only classifier where you can prove the generalisation bound (structural risk minimisation). Understanding the margin and support vectors gives you intuition for why deep networks work — they're implicitly learning something analogous to large-margin separation in a high-dimensional feature space.",tags:["margin","kernel trick","RBF","C parameter","Platt scaling","dual problem"],prompt:"Build SVM pipeline for breast cancer classification with kernel comparison"},
+naive:{title:"Naive Bayes — probabilistic classification",id:"spambase (ID 44) · SMS-spam (ID 44270) · newsgroups (text)",body:"Bayes theorem applied to classification. The naive independence assumption — when it's violated and why it still works. GaussianNB vs MultinomialNB vs BernoulliNB. Laplace smoothing for zero-probability problem. Text feature pipeline: CountVectorizer + TF-IDF + MultinomialNB. Log-probability trick to avoid underflow. Comparison: Naive Bayes vs logistic regression on text — when NB wins at small n.",why:"<strong>Why include NB in a modern curriculum:</strong> NB is the optimal classifier when the naive assumption holds. On text data (spambase), it often outperforms logistic regression at small sample sizes because it has much lower variance. It also introduces probabilistic classification naturally — the posterior P(class|features) is directly interpretable.",tags:["Bayes theorem","independence assumption","GaussianNB","MultinomialNB","TF-IDF","Laplace smoothing"],prompt:"Build Naive Bayes text classification pipeline for spam detection"},
+trees:{title:"Decision trees — interpretable classification",id:"adult-income (ID 1590) · mushroom (ID 24) · car-evaluation (ID 40975)",body:"Gini impurity vs information gain (entropy) as split criteria. Tree depth vs overfitting. Pruning: pre-pruning (max_depth, min_samples_leaf) vs post-pruning (cost-complexity pruning with ccp_alpha). Decision path visualisation. Feature importance from impurity reduction. Class probabilities from leaf distributions. Comparison: deep vs pruned tree on adult income. CART algorithm. Trees as human-readable rules.",why:"<strong>Why trees before ensemble methods:</strong> every tree in a Random Forest or GBR is a decision tree. Understanding how a single tree overfits (memorises training data) and why ensembles fix this is the conceptual bridge to the most powerful methods. The adult dataset is perfect because the features are a mix of numeric and categorical — exactly the real-world complexity that linear models handle poorly.",tags:["Gini impurity","entropy","ccp_alpha pruning","feature importance","CART","decision path"],prompt:"Build decision tree pipeline for adult income classification with interpretability analysis"},
+rf:{title:"Random Forest & gradient boosting",id:"bank-marketing (ID 1461) · Higgs (ID 23512) · covertype (ID 150)",body:"Bagging: bootstrap sampling + feature subsampling reduces variance. OOB error as free validation estimate. Gradient boosting: sequential error correction vs parallel bagging. XGBoost vs LightGBM vs CatBoost. Classification-specific: class_weight='balanced', predict_proba calibration. Feature importance: impurity vs permutation vs SHAP. Partial dependence for classification (log-odds scale). Early stopping in gradient boosting. Stacking with logistic meta-learner.",why:"<strong>Gradient boosting vs regression:</strong> in your regression pipelines you already used GBR and XGBoost. The classification version adds predict_proba calibration, class weighting, and log-loss as the boosting criterion instead of MSE. Bank marketing is ideal: it's a real telemarketing campaign with strong class imbalance (11% yes) requiring all these techniques.",tags:["bagging","OOB error","XGBoost","LightGBM","class_weight","permutation importance","stacking"],prompt:"Build gradient boosting pipeline for bank marketing classification with SHAP analysis"},
+multiclass:{title:"Multi-class classification strategies",id:"mnist (ID 554) · fashion-mnist (ID 40996) · letter-recognition (ID 6)",body:"One-vs-Rest (OvR): one binary classifier per class. One-vs-One (OvO): one classifier per pair. Softmax (multinomial logistic). Confusion matrix for K classes — macro vs micro vs weighted averaging. Top-k accuracy. Cross-entropy loss for K classes. Label encoding vs ordinal vs dummy. Multi-class ROC (OvR AUC per class). Macro F1 for imbalanced multi-class. Class hierarchy (hierarchical classification).",why:"<strong>Why MNIST specifically:</strong> 70,000 images, 10 classes, well-understood. Every algorithm's multi-class performance is documented so you have external benchmarks to compare against. It also introduces the pixel feature space — 784 features that are spatially structured — motivating dimensionality reduction (PCA, t-SNE) and the limitations of tabular models on image data.",tags:["OvR","OvO","softmax","macro F1","confusion matrix","cross-entropy","top-k"],prompt:"Build multi-class classification pipeline for digit recognition with full strategy comparison"},
+calibration:{title:"Probability calibration",id:"breast-cancer (ID 13) · any classification dataset with predict_proba",body:"Reliability diagrams (calibration plots): predicted probability vs actual fraction positive. Brier score as proper scoring rule. Expected Calibration Error (ECE). Platt scaling (logistic regression on raw scores). Isotonic regression calibration (non-parametric, more flexible). Temperature scaling. CalibratedClassifierCV. When calibration matters: ranking vs absolute probability tasks. Random Forest uncalibrated overconfidence. Naive Bayes underconfidence on correlated features.",why:"<strong>Why calibration is often overlooked:</strong> a model that predicts 0.9 probability for every positive should be correct 90% of the time — if it's correct 70%, the model is overconfident. All your regression pipelines included prediction_interval_coverage checks for exactly this reason. Classification calibration is the same concept: are the predicted probabilities honest? Insurance, medicine, and finance require calibrated probabilities, not just good ROC-AUC.",tags:["reliability diagram","Brier score","ECE","Platt scaling","isotonic regression","CalibratedClassifierCV"],prompt:"Build probability calibration analysis pipeline for breast cancer classification"},
+imbalance:{title:"Class imbalance — the core production problem",id:"creditcard-fraud (ID 1597) · KDD-cup (ID 40900) · mammography (ID 310)",body:"Why accuracy fails: 99% of transactions are legitimate, so 'always predict negative' achieves 99% accuracy. SMOTE: synthetic minority oversampling in feature space. ADASYN: adaptive density-based oversampling. Random undersampling vs Tomek links vs edited nearest neighbours. Class weights: class_weight='balanced' in sklearn. Threshold optimisation at optimal F1/recall target. Ensemble methods: BalancedRandomForest, EasyEnsemble. Evaluation: precision-recall AUC, G-mean, MCC for imbalanced data.",why:"<strong>Why fraud detection specifically:</strong> creditcard-fraud has 492 frauds out of 284,807 transactions — 0.17% positive rate. This extreme imbalance makes every evaluation choice consequential. It also has anonymised PCA features (V1–V28), motivating a discussion of when you can't do domain feature engineering. The amount and time features are the only interpretable ones.",tags:["SMOTE","ADASYN","class_weight","BalancedRandomForest","precision-recall AUC","G-mean"],prompt:"Build class imbalance pipeline for credit card fraud detection with full SMOTE analysis"},
+costsensitive:{title:"Cost-sensitive learning",id:"credit-g (ID 31) · medical datasets · any asymmetric-cost problem",body:"Cost matrix: define FP cost and FN cost explicitly. MetaCost algorithm: wraps any classifier with cost sensitivity. Threshold selection from cost matrix: optimal threshold = FP_cost / (FP_cost + FN_cost). class_weight as proxy for cost. Direct cost-minimising objective functions. Decision theory: expected cost minimisation. Comparison: cost-sensitive vs standard classifier on same data. Business impact calculation: revenue saved by reducing FN rate.",why:"<strong>Why this is the bridge between ML and business:</strong> every classification problem has implicit costs. Rejecting a good loan applicant (FP) loses revenue. Approving a bad loan (FN) loses the principal. A model optimised for accuracy maximises neither — it minimises errors weighted equally. Cost-sensitive learning forces you to quantify what errors actually cost, making the model's optimisation objective match the business objective.",tags:["cost matrix","MetaCost","asymmetric loss","threshold from costs","business impact","FP/FN costs"],prompt:"Build cost-sensitive classification pipeline for credit scoring with business cost analysis"},
+featuresel:{title:"Feature selection for classification",id:"madelon (ID 1485) · gisette (ID 1042) · arcene (ID 725)",body:"Filter methods: chi-squared test, mutual information, ANOVA F-test for classification. Wrapper methods: RFE (recursive feature elimination), forward/backward selection. Embedded methods: L1 logistic regression, tree-based importance. High-dimensional challenges: madelon has 500 features (20 informative, 480 noise). RFECV: RFE with cross-validation to find optimal n_features. SelectFromModel. Pipeline integration. Feature importance stability across bootstrap samples.",why:"<strong>Why high-dimensional synthetic datasets:</strong> madelon was designed for the NIPS 2003 feature selection challenge. 480 of 500 features are pure noise. This forces you to build feature selection that actually works rather than relying on the data being informative. In the real world, customer data often has hundreds of derived features where 80% are redundant — this dataset simulates that.",tags:["RFE","SelectFromModel","chi-squared","mutual information","RFECV","high-dimensional","embedded methods"],prompt:"Build feature selection pipeline for high-dimensional classification on madelon dataset"},
+missing_cls:{title:"Missing data in classification",id:"hepatitis (ID 55) · horse-colic (ID 40701) · labor (ID 4)",body:"Same MCAR/MAR/MNAR taxonomy from your Ames Housing pipeline, applied to classification. SimpleImputer with most_frequent for categoricals. KNNImputer for mixed types. IterativeImputer (MICE) for multivariate structure. Missing indicator features as classifiers sometimes need to know a value was missing (not just imputed). Pattern subgroup analysis: are patients with missing lab values systematically different? Comparison of imputation strategies by downstream AUC.",why:"<strong>Why hepatitis:</strong> 155 patients, 20 features, 167 missing values. The missingness is clinically structured — sicker patients have more tests ordered (MAR). Some tests are missing because the doctor didn't think they were needed (MNAR). This mirrors real medical data where missingness carries clinical meaning that imputation destroys if you're not careful.",tags:["MCAR/MAR/MNAR","missing indicator","KNNImputer","MICE","AUC comparison","clinical missingness"],prompt:"Build missing data classification pipeline for hepatitis dataset with imputation comparison"},
+multilabel:{title:"Multi-label classification",id:"scene (ID 312) · yeast (ID 40597) · emotions (ID 40589)",body:"Binary relevance: independent binary classifier per label. Classifier chains: label k uses predictions of labels 1..k-1 as features. Label powerset: treat each unique label combination as a class. Evaluation: Hamming loss, Jaccard similarity, label ranking average precision, subset accuracy. Label correlation analysis: which labels co-occur. sklearn-multilearn library. Applications: image tagging, document categorisation, gene function prediction.",why:"<strong>The key insight that makes multi-label different:</strong> in multi-class, each example has exactly one class. In multi-label, each example has a subset of classes. A photo can be both 'indoor' and 'people'. Classifier chains capture label dependencies (if a photo has 'beach', it's more likely to have 'ocean') — this is the direct analogue of RegressorChain from your multi-output regression work.",tags:["binary relevance","classifier chains","label powerset","Hamming loss","Jaccard similarity","label correlation"],prompt:"Build multi-label classification pipeline for scene recognition"},
+ordinal_cls:{title:"Ordinal classification",id:"ESL (ID 182) · wine-quality (ID 40691) · abalone (ID 1557)",body:"Classes have a natural order: bad < average < good. OLS regression discretised: predict a continuous score, then bucket. Ordinal logistic regression (proportional odds model). Frank-Hall ordinal classifier: decompose into binary classifiers 1vsRest cumulatively. Evaluation: MAE of label ranks, Spearman correlation, quadratic weighted kappa (QWK — the Kaggle competition metric). Class adjacency: confusing grade 3 with grade 4 is less bad than confusing grade 1 with grade 5.",why:"<strong>Why ordinal classification is often treated wrong:</strong> most practitioners use multi-class classification for ordered targets, discarding the ordering information. But confusing adjacent classes (3→4) should be penalised less than distant classes (1→5). Quadratic weighted kappa captures this — it's the official metric for medical AI competitions (diabetic retinopathy grading, cancer staging). Wine quality and abalone rings are perfect tabular examples.",tags:["proportional odds","Frank-Hall","QWK","MAE of ranks","Spearman correlation","ordinal logistic"],prompt:"Build ordinal classification pipeline for wine quality prediction with QWK metric"},
+explain:{title:"Explainability & algorithmic fairness",id:"adult-income (ID 1590) · COMPAS (recidivism) · german-credit (ID 31)",body:"SHAP TreeExplainer for tree models, LinearExplainer for linear, KernelExplainer for any model. LIME: local linear approximation around each prediction. Global vs local explanations. Fairness metrics: demographic parity, equalised odds, individual fairness. Disparate impact analysis: compare FPR and FNR across protected groups (race, sex, age). Fairlearn library. Counterfactual explanations: 'what would need to change for a different prediction?'",why:"<strong>Why adult income for fairness:</strong> the adult dataset predicts income >$50k and explicitly contains sex and race features. A model trained naively achieves different FPR/FNR for men vs women — a disparate impact problem. This is the dataset where algorithmic fairness was first systematically studied. The tension is real: a fair model has lower accuracy than an unfair one. You have to decide which tradeoff to make.",tags:["SHAP","LIME","demographic parity","equalised odds","disparate impact","counterfactual","Fairlearn"],prompt:"Build explainability and fairness analysis pipeline for adult income classification"},
+deploy:{title:"Production classification & concept drift",id:"electricity (ID 44080) · covtype (ID 150) · streaming datasets",body:"All your classification models are batch-trained. Production adds: concept drift (the relationship between features and label changes over time). Population Stability Index (PSI) for feature drift. Performance drift monitoring: sliding window AUC on recent data. ADWIN (Adaptive Windowing) for automatic change point detection. Incremental classifiers: SGDClassifier.partial_fit() for online learning. Champion-challenger framework: new model vs deployed model A/B test. Model versioning for rollback.",why:"<strong>Why electricity dataset for drift:</strong> the electricity dataset records Australian electricity prices and whether each period is up or down. The concept (what predicts price direction) shifts over the 45,000 timesteps as market conditions change. It was specifically designed for concept drift research. It mirrors what you've already built in the bike sharing pipeline's drift monitor — but now applied to classification with AUC monitoring instead of KS testing.",tags:["concept drift","PSI","ADWIN","partial_fit","champion-challenger","AUC monitoring","SGDClassifier"],prompt:"Build production classification pipeline with concept drift detection on electricity dataset"}
+};
+
+let cur=null,curId=null;
+function show(id){
+  const d=D[id];if(!d)return;
+  if(cur)cur.classList.remove('active');
+  cur=event.currentTarget;cur.classList.add('active');
+  curId=id;
+  document.getElementById('dpt').textContent=d.title;
+  document.getElementById('dpid').textContent=d.id;
+  document.getElementById('dpb').textContent=d.body;
+  document.getElementById('dpw').innerHTML=d.why;
+  const t=document.getElementById('dptags');t.innerHTML='';
+  (d.tags||[]).forEach(lbl=>{
+    const s=document.createElement('span');
+    const cls=d.title.includes('Tier')||d.badge;
+    s.className='tag ta';s.textContent=lbl;t.appendChild(s);
+  });
+  const btn=document.getElementById('dpbtn');
+  btn.textContent='Build this pipeline ↗';
+  btn.style.display=d.prompt?'inline-block':'none';
+  document.getElementById('dp').style.display='block';
+  document.getElementById('dp').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function sendPromptFn(){
+  const d=D[curId];if(d&&d.prompt)sendPrompt(d.prompt);
+}
+function closeDp(){
+  document.getElementById('dp').style.display='none';
+  if(cur){cur.classList.remove('active');cur=null;}
+}
+</script>

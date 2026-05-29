@@ -1,0 +1,22 @@
+{
+  "n_iso_outliers": 418,
+  "n_iqr_outliers": 396,
+  "n_weather4": 0,
+  "comparison": {
+    "All data": {
+      "n_kept": 13903,
+      "n_removed": 0,
+      "r2_mean": 0.41928259453929523
+    },
+    "Remove IQR outliers": {
+      "n_kept": 13507,
+      "n_removed": 396,
+      "r2_mean": 0.3927856157094691
+    },
+    "Remove IsolationForest": {
+      "n_kept": 13485,
+      "n_removed": 418,
+      "r2_mean": 0.41875399270066316
+    }
+  }
+}
