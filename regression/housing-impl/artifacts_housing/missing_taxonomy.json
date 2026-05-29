@@ -1,0 +1,135 @@
+[
+  {
+    "column": "PoolQC",
+    "missing_rate": 0.9966,
+    "type": "MNAR_absent",
+    "strategy": "fill_None_or_0",
+    "reason": "NaN means feature does not exist for this property"
+  },
+  {
+    "column": "MiscFeature",
+    "missing_rate": 0.9632,
+    "type": "MNAR_absent",
+    "strategy": "fill_None_or_0",
+    "reason": "NaN means feature does not exist for this property"
+  },
+  {
+    "column": "Alley",
+    "missing_rate": 0.9409,
+    "type": "MNAR_absent",
+    "strategy": "fill_None_or_0",
+    "reason": "NaN means feature does not exist for this property"
+  },
+  {
+    "column": "Fence",
+    "missing_rate": 0.8142,
+    "type": "MNAR_absent",
+    "strategy": "fill_None_or_0",
+    "reason": "NaN means feature does not exist for this property"
+  },
+  {
+    "column": "FireplaceQu",
+    "missing_rate": 0.4717,
+    "type": "MNAR_absent",
+    "strategy": "fill_None_or_0",
+    "reason": "NaN means feature does not exist for this property"
+  },
+  {
+    "column": "LotFrontage",
+    "missing_rate": 0.1858,
+    "type": "MAR_spatial",
+    "strategy": "neighborhood_median",
+    "reason": "Missing rate varies by Neighborhood \u2014 spatially structured"
+  },
+  {
+    "column": "GarageType",
+    "missing_rate": 0.0565,
+    "type": "MNAR_absent",
+    "strategy": "fill_None_or_0",
+    "reason": "NaN means feature does not exist for this property"
+  },
+  {
+    "column": "GarageYrBlt",
+    "missing_rate": 0.0565,
+    "type": "MAR_conditional",
+    "strategy": "garage_yearbuilt_or_0",
+    "reason": "Missing when no garage \u2014 use YearBuilt as proxy"
+  },
+  {
+    "column": "GarageQual",
+    "missing_rate": 0.0565,
+    "type": "MNAR_absent",
+    "strategy": "fill_None_or_0",
+    "reason": "NaN means feature does not exist for this property"
+  },
+  {
+    "column": "GarageCond",
+    "missing_rate": 0.0565,
+    "type": "MNAR_absent",
+    "strategy": "fill_None_or_0",
+    "reason": "NaN means feature does not exist for this property"
+  },
+  {
+    "column": "GarageFinish",
+    "missing_rate": 0.0565,
+    "type": "MNAR_absent",
+    "strategy": "fill_None_or_0",
+    "reason": "NaN means feature does not exist for this property"
+  },
+  {
+    "column": "BsmtFinType2",
+    "missing_rate": 0.0283,
+    "type": "MNAR_absent",
+    "strategy": "fill_None_or_0",
+    "reason": "NaN means feature does not exist for this property"
+  },
+  {
+    "column": "BsmtExposure",
+    "missing_rate": 0.0283,
+    "type": "MNAR_absent",
+    "strategy": "fill_None_or_0",
+    "reason": "NaN means feature does not exist for this property"
+  },
+  {
+    "column": "BsmtCond",
+    "missing_rate": 0.0274,
+    "type": "MNAR_absent",
+    "strategy": "fill_None_or_0",
+    "reason": "NaN means feature does not exist for this property"
+  },
+  {
+    "column": "BsmtFinType1",
+    "missing_rate": 0.0274,
+    "type": "MNAR_absent",
+    "strategy": "fill_None_or_0",
+    "reason": "NaN means feature does not exist for this property"
+  },
+  {
+    "column": "BsmtQual",
+    "missing_rate": 0.0274,
+    "type": "MNAR_absent",
+    "strategy": "fill_None_or_0",
+    "reason": "NaN means feature does not exist for this property"
+  },
+  {
+    "column": "MasVnrArea",
+    "missing_rate": 0.006,
+    "type": "MCAR",
+    "strategy": "median_mode",
+    "reason": "Very low rate \u2014 likely random data entry issue"
+  },
+  {
+    "column": "MasVnrType",
+    "missing_rate": 0.006,
+    "type": "MNAR_absent",
+    "strategy": "fill_None_or_0",
+    "reason": "NaN means feature does not exist for this property"
+  },
+  {
+    "column": "Electrical",
+    "missing_rate": 0.0009,
+    "type": "MCAR",
+    "strategy": "median_mode",
+    "reason": "Very low rate \u2014 likely random data entry issue"
+  }
+]

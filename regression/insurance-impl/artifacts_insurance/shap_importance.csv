@@ -1,0 +1,12 @@
+feature,mean_abs_shap
+num__bmi_smoker_interact,5177.470911876681
+num__high_bmi_smoker,4250.407475877951
+num__age,1171.090878905514
+num__age_sq,1084.328122821802
+num__bmi_age_smoker_triple,889.9426770522834
+num__age_smoker_interact,734.9484143207417
+num__age_bmi_interact,554.4198035413726
+binary__smoker_yes,446.20463717894245
+num__bmi_sq,208.62795492360058
+num__age_group_num,23.236680440406108
+num__senior_flag,6.242579358617986

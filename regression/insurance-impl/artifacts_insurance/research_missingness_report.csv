@@ -1,0 +1,8 @@
+,missing_count,missing_rate,dtype
+age,0.0,0.0,float64
+sex,0.0,0.0,category
+bmi,0.0,0.0,float64
+children,0.0,0.0,float64
+smoker,0.0,0.0,category
+region,0.0,0.0,category
+charges,0.0,0.0,float64

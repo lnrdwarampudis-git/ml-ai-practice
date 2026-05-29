@@ -1,0 +1,12 @@
+feature,importance,coefficient
+num__bmi_smoker_interact,0.4855479617915765,
+num__high_bmi_smoker,0.4208244675251345,
+num__bmi_age_smoker_triple,0.01957924248073321,
+num__age,0.019398081428887645,
+num__age_sq,0.018656694744350395,
+num__age_smoker_interact,0.015921204077773542,
+binary__smoker_yes,0.00918236075642303,
+num__age_bmi_interact,0.006843822199769839,
+num__bmi_sq,0.003815372384355774,
+num__age_group_num,0.00018906643390735335,
+num__senior_flag,4.1726177088234864e-05,

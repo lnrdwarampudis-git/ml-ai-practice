@@ -1,0 +1,307 @@
+{
+  "baselines": {
+    "mean": {
+      "mae": 11242.647969242116,
+      "rmse": 16319.588489429092,
+      "r2": -8.860231744955982e-06,
+      "mape": 0.4647724422224128,
+      "medae": 7776.117354567967,
+      "residual_mean": -48.57690267324305,
+      "residual_std": 16319.516192241521,
+      "residual_max_abs": 55534.6963501499
+    },
+    "median": {
+      "mae": 9402.688630484288,
+      "rmse": 17225.22403035834,
+      "r2": -0.11407697597296229,
+      "mape": 0.2926709357995219,
+      "medae": 4200.062708932558,
+      "residual_mean": 5511.962821645401,
+      "residual_std": 16319.51619224152,
+      "residual_max_abs": 61095.23607446854
+    }
+  },
+  "split": {
+    "train_rows": 1070,
+    "test_rows": 268
+  },
+  "ohe_analysis": {
+    "OHE (no drop)": {
+      "n_features": 18,
+      "r2_mean": 0.9836888241527559,
+      "r2_std": 0.002507701165801539,
+      "rmse_mean": 2094.422285607823
+    },
+    "OHE (drop=first)": {
+      "n_features": 15,
+      "r2_mean": 0.9837142389350519,
+      "r2_std": 0.002483664090923845,
+      "rmse_mean": 2092.9642568231857
+    },
+    "OHE (drop=if_binary)": {
+      "n_features": 16,
+      "r2_mean": 0.9837131090347704,
+      "r2_std": 0.002485780001391551,
+      "rmse_mean": 2093.0259905707117
+    },
+    "OrdinalEncoder": {
+      "n_features": 13,
+      "r2_mean": 0.983761640507369,
+      "r2_std": 0.0024803903215059866,
+      "rmse_mean": 2089.7884601916503
+    }
+  },
+  "target_encoding": {
+    "OHE (baseline)": {
+      "smoothing": null,
+      "r2_mean": 0.9837899965715596,
+      "r2_std": 0.002366378152718523
+    },
+    "TargetEnc (smoothing=0.1)": {
+      "smoothing": 0.1,
+      "r2_mean": 0.9838145273062853,
+      "r2_std": 0.0022707995254218566
+    },
+    "TargetEnc (smoothing=1.0)": {
+      "smoothing": 1.0,
+      "r2_mean": 0.9838145265790033,
+      "r2_std": 0.0022708007195710047
+    },
+    "TargetEnc (smoothing=5.0)": {
+      "smoothing": 5.0,
+      "r2_mean": 0.9838145234087596,
+      "r2_std": 0.00227080592948196
+    },
+    "TargetEnc (smoothing=10.0)": {
+      "smoothing": 10.0,
+      "r2_mean": 0.9838145195832191,
+      "r2_std": 0.0022708122263169943
+    },
+    "TargetEnc (smoothing=50.0)": {
+      "smoothing": 50.0,
+      "r2_mean": 0.9838144935812734,
+      "r2_std": 0.002270855329225201
+    }
+  },
+  "interaction_analysis": {
+    "Baseline (raw numerics only)": {
+      "n_features": 3,
+      "r2_mean": 0.07879563418134579,
+      "r2_std": 0.05032114735534395
+    },
+    "+ OHE categoricals": {
+      "n_features": 6,
+      "r2_mean": 0.07879563418134579,
+      "r2_std": 0.05032114735534395
+    },
+    "+ Polynomial (E)": {
+      "n_features": 6,
+      "r2_mean": 0.07595690278508593,
+      "r2_std": 0.049368975360960056
+    },
+    "+ Cat\u00d7Num interactions (D)": {
+      "n_features": 8,
+      "r2_mean": 0.8927023392486465,
+      "r2_std": 0.020152141932751447
+    },
+    "+ Triple interaction": {
+      "n_features": 9,
+      "r2_mean": 0.9193989621862709,
+      "r2_std": 0.01234693204129792
+    },
+    "+ Risk flags (L)": {
+      "n_features": 11,
+      "r2_mean": 0.9838766893536462,
+      "r2_std": 0.00237106923133387
+    }
+  },
+  "polynomial_analysis": {
+    "Linear (d=1)": {
+      "n_features": 3,
+      "r2_mean": 0.07879563418134579,
+      "r2_std": 0.05032114735534395,
+      "rmse_mean": 15814.875427049003
+    },
+    "Poly d=2 full": {
+      "n_features": 9,
+      "r2_mean": 0.07267590695383921,
+      "r2_std": 0.04928039634992463,
+      "rmse_mean": 15868.543774292335
+    },
+    "Poly d=2 interact": {
+      "n_features": 6,
+      "r2_mean": 0.07660423649690917,
+      "r2_std": 0.04961487202663682,
+      "rmse_mean": 15834.483408711854
+    },
+    "Poly d=3 full": {
+      "n_features": 19,
+      "r2_mean": 0.06041010978597701,
+      "r2_std": 0.051635845634802884,
+      "rmse_mean": 15968.64509939005
+    },
+    "Poly d=3 interact": {
+      "n_features": 7,
+      "r2_mean": 0.07433974996616041,
+      "r2_std": 0.04820742970521657,
+      "rmse_mean": 15856.086965577513
+    }
+  },
+  "binning_analysis": {
+    "Raw age+bmi": {
+      "r2_mean": 0.07879563418134579,
+      "r2_std": 0.05032114735534395
+    },
+    "Binned age+bmi (OHE)": {
+      "r2_mean": 0.0845733593541423,
+      "r2_std": 0.046324787340052014
+    }
+  },
+  "regularisation": {
+    "ridge_optimal_alpha": 0.17957144943716408,
+    "lasso_optimal_alpha": 6.260516572014821,
+    "elasticnet_optimal_alpha": 0.0017269832906594343,
+    "elasticnet_l1_ratio": 0.9,
+    "lasso_n_zeroed": 4,
+    "lasso_n_total": 16
+  },
+  "cv_strategies": {
+    "KFold": {
+      "mean": 0.9809030637119746,
+      "std": 0.003166923624290823
+    },
+    "StratifiedKFold (quartile)": {
+      "mean": 0.9804947559054427,
+      "std": 0.005690803391593151
+    },
+    "GroupKFold (region)": {
+      "mean": 0.9813409194692186,
+      "std": 0.0017649655040437675
+    }
+  },
+  "best_cv": {
+    "best_r2": 0.983008886730007,
+    "best_params": {
+      "model__min_samples_leaf": 2,
+      "model__max_depth": 6,
+      "model": "RandomForestRegressor(n_estimators=150, n_jobs=1, random_state=42)",
+      "feature_selection__threshold": "0.75*median"
+    }
+  },
+  "uncertainty_info": {
+    "oof_rmse": 2144.522826189236,
+    "oof_mae": 1631.7433778578447,
+    "oof_r2": 0.9832413036676566,
+    "lower_band": 2144.522826189236,
+    "upper_band": 2144.522826189236,
+    "overpredict_cost": 1.0,
+    "underpredict_cost": 1.0
+  },
+  "residual_diag": {
+    "breusch_pagan": {
+      "statistic": 0.23048468553169021,
+      "p_value": 0.631164674162215,
+      "heteroscedastic": false
+    },
+    "shapiro_wilk": {
+      "statistic": 0.8882726414101867,
+      "p_value": 3.82678549923659e-13,
+      "normal": false
+    }
+  },
+  "test_metrics": {
+    "mae": 1620.430680015508,
+    "rmse": 2227.9294723836883,
+    "r2": 0.9813624716011873,
+    "mape": 0.07765017487085972,
+    "medae": 1287.2417081974145,
+    "residual_mean": 136.76008521685674,
+    "residual_std": 2223.7280438505372,
+    "residual_max_abs": 10061.919452474023
+  },
+  "fairness": {
+    "overall_rmse": 2227.9294723836883,
+    "subgroups": [
+      {
+        "group_col": "smoker",
+        "group_val": "no",
+        "n": 210,
+        "mean_actual": 17837.79,
+        "rmse": 2169.8,
+        "r2": 0.6681,
+        "rmse_gap": -58.13,
+        "alert": false
+      },
+      {
+        "group_col": "smoker",
+        "group_val": "yes",
+        "n": 58,
+        "mean_actual": 50818.69,
+        "rmse": 2426.77,
+        "r2": 0.982,
+        "rmse_gap": 198.84,
+        "alert": false
+      },
+      {
+        "group_col": "region",
+        "group_val": "northeast",
+        "n": 70,
+        "mean_actual": 23617.2,
+        "rmse": 2175.13,
+        "r2": 0.9782,
+        "rmse_gap": -52.8,
+        "alert": false
+      },
+      {
+        "group_col": "region",
+        "group_val": "northwest",
+        "n": 56,
+        "mean_actual": 23967.5,
+        "rmse": 2255.91,
+        "r2": 0.9811,
+        "rmse_gap": 27.98,
+        "alert": false
+      },
+      {
+        "group_col": "region",
+        "group_val": "southeast",
+        "n": 80,
+        "mean_actual": 26337.39,
+        "rmse": 2334.82,
+        "r2": 0.9812,
+        "rmse_gap": 106.89,
+        "alert": false
+      },
+      {
+        "group_col": "region",
+        "group_val": "southwest",
+        "n": 62,
+        "mean_actual": 25662.01,
+        "rmse": 2117.43,
+        "r2": 0.9842,
+        "rmse_gap": -110.5,
+        "alert": false
+      },
+      {
+        "group_col": "sex",
+        "group_val": "female",
+        "n": 135,
+        "mean_actual": 25299.49,
+        "rmse": 2069.98,
+        "r2": 0.9849,
+        "rmse_gap": -157.95,
+        "alert": false
+      },
+      {
+        "group_col": "sex",
+        "group_val": "male",
+        "n": 133,
+        "mean_actual": 24646.53,
+        "rmse": 2377.55,
+        "r2": 0.9773,
+        "rmse_gap": 149.62,
+        "alert": false
+      }
+    ]
+  }
+}

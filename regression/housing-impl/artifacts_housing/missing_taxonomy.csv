@@ -1,0 +1,20 @@
+column,missing_rate,type,strategy,reason
+PoolQC,0.9966,MNAR_absent,fill_None_or_0,NaN means feature does not exist for this property
+MiscFeature,0.9632,MNAR_absent,fill_None_or_0,NaN means feature does not exist for this property
+Alley,0.9409,MNAR_absent,fill_None_or_0,NaN means feature does not exist for this property
+Fence,0.8142,MNAR_absent,fill_None_or_0,NaN means feature does not exist for this property
+FireplaceQu,0.4717,MNAR_absent,fill_None_or_0,NaN means feature does not exist for this property
+LotFrontage,0.1858,MAR_spatial,neighborhood_median,Missing rate varies by Neighborhood — spatially structured
+GarageQual,0.0565,MNAR_absent,fill_None_or_0,NaN means feature does not exist for this property
+GarageFinish,0.0565,MNAR_absent,fill_None_or_0,NaN means feature does not exist for this property
+GarageCond,0.0565,MNAR_absent,fill_None_or_0,NaN means feature does not exist for this property
+GarageYrBlt,0.0565,MAR_conditional,garage_yearbuilt_or_0,Missing when no garage — use YearBuilt as proxy
+GarageType,0.0565,MNAR_absent,fill_None_or_0,NaN means feature does not exist for this property
+BsmtFinType2,0.0283,MNAR_absent,fill_None_or_0,NaN means feature does not exist for this property
+BsmtExposure,0.0283,MNAR_absent,fill_None_or_0,NaN means feature does not exist for this property
+BsmtCond,0.0274,MNAR_absent,fill_None_or_0,NaN means feature does not exist for this property
+BsmtFinType1,0.0274,MNAR_absent,fill_None_or_0,NaN means feature does not exist for this property
+BsmtQual,0.0274,MNAR_absent,fill_None_or_0,NaN means feature does not exist for this property
+MasVnrArea,0.006,MCAR,median_mode,Very low rate — likely random data entry issue
+MasVnrType,0.006,MNAR_absent,fill_None_or_0,NaN means feature does not exist for this property
+Electrical,0.0009,MCAR,median_mode,Very low rate — likely random data entry issue

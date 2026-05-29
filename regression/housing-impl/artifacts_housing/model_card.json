@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-05-29T00:09:06.062419+00:00",
+  "model_details": {
+    "name": "Ames Housing Price Predictor",
+    "type": "Regression (sklearn Pipeline + log(SalePrice) target)",
+    "algorithm": "GradientBoostingRegressor(learning_rate=0.05, n_estimators=300, random_state=42,\n                          subsample=0.9)"
+  },
+  "intended_use": {
+    "primary_use": "Predict residential home sale prices in Ames, Iowa.",
+    "out_of_scope": [
+      "Real-time bidding",
+      "Other cities",
+      "Post-2010 market conditions"
+    ]
+  },
+  "evaluation_results": {
+    "test_r2": 0.8390658477944526,
+    "test_rmse_usd": 38192.56071931471,
+    "test_mae_usd": 17773.071087646465,
+    "rmsle": 0.140263727710399
+  },
+  "missing_data_strategy": "MNAR\u2192None/0, LotFrontage\u2192Neighborhood median, rest\u2192SimpleImputer",
+  "outlier_strategy": "Remove GrLivArea>4000 & SalePrice<200k (5 houses)",
+  "log_transform": "log1p(SalePrice) \u2014 improves RMSE on high-value houses",
+  "regularisation": {
+    "ridge_optimal_alpha": 372.7593720314938,
+    "lasso_optimal_alpha": 0.013894954943731374,
+    "elasticnet_alpha": 0.1,
+    "elasticnet_l1_ratio": 0.1,
+    "lasso_n_zeroed": 18,
+    "lasso_n_total": 35
+  },
+  "fairness": {
+    "overall_rmse": 38192.56071931471,
+    "alerts": [
+      {
+        "group_col": "Neighborhood",
+        "group_val": "Edwards",
+        "n": 14,
+        "mean_actual": 133437.0,
+        "rmse": 73331.0,
+        "r2": -1.1859,
+        "rmse_gap": 35139.0,
+        "alert": true
+      },
+      {
+        "group_col": "Neighborhood",
+        "group_val": "NoRidge",
+        "n": 15,
+        "mean_actual": 368621.0,
+        "rmse": 112734.0,
+        "r2": 0.5832,
+        "rmse_gap": 74541.0,
+        "alert": true
+      },
+      {
+        "group_col": "Neighborhood",
+        "group_val": "NridgHt",
+        "n": 12,
+        "mean_actual": 326890.0,
+        "rmse": 58819.0,
+        "r2": 0.7555,
+        "rmse_gap": 20627.0,
+        "alert": true
+      },
+      {
+        "group_col": "Neighborhood",
+        "group_val": "StoneBr",
+        "n": 9,
+        "mean_actual": 315335.0,
+        "rmse": 57291.0,
+        "r2": 0.7219,
+        "rmse_gap": 19098.0,
+        "alert": true
+      },
+      {
+        "group_col": "HouseStyle",
+        "group_val": "2Story",
+        "n": 93,
+        "mean_actual": 229476.0,
+        "rmse": 61512.0,
+        "r2": 0.7636,
+        "rmse_gap": 23320.0,
+        "alert": true
+      }
+    ]
+  },
+  "limitations": [
+    "Data from 2006\u20132010 Ames Iowa \u2014 not generalisable to other cities/eras.",
+    "5 influential outliers removed \u2014 model may underperform on luxury market.",
+    "SaleCondition=Normal assumed \u2014 unusual sales may have higher error."
+  ],
+  "ethical_considerations": [
+    "Neighborhood as a feature may encode historical redlining patterns.",
+    "Do not use for automated lending decisions without regulatory review."
+  ],
+  "hyperparameters": {
+    "model__subsample": 0.9,
+    "model__max_depth": 3,
+    "model__learning_rate": 0.05,
+    "model": "GradientBoostingRegressor(n_estimators=150, random_state=42)",
+    "feature_selection__threshold": "1.25*median"
+  },
+  "cv_best_r2": 0.8977846474995415
+}

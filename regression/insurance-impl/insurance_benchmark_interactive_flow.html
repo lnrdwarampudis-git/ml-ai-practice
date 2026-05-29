@@ -1,0 +1,310 @@
+
+<h2 class="sr-only">Interactive flow diagram for the insurance charges benchmark — 10 phases from EDA through champion selection, covering 16 sklearn regressors, statistical tests, ensembles, SHAP, and subgroup disparity</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.root{padding:12px 0 28px;font-family:var(--font-sans)}
+.legend{display:flex;flex-wrap:wrap;gap:12px;padding-bottom:12px;font-size:11px;color:var(--color-text-secondary)}
+.li{display:flex;align-items:center;gap:5px}
+.ld{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.sl{font-size:10px;font-weight:500;letter-spacing:.6px;text-transform:uppercase;color:var(--color-text-tertiary);padding:0 0 5px 46px;margin-top:6px}
+.row{display:flex;align-items:stretch}
+.lane{width:44px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.lane span{font-size:9px;font-weight:500;color:var(--color-text-tertiary);writing-mode:vertical-rl;letter-spacing:.5px;text-transform:uppercase}
+.nodes{flex:1;padding:6px 0;display:flex;flex-wrap:wrap;gap:6px;align-items:flex-start}
+.node{border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:7px 10px;cursor:pointer;background:var(--color-background-primary);transition:border-color .1s,background .1s;position:relative;flex-shrink:0}
+.node:hover,.node.active{border-color:var(--color-border-primary);background:var(--color-background-secondary)}
+.node.active{border-width:1.5px}
+.nt{font-size:12px;font-weight:500;color:var(--color-text-primary);line-height:1.3}
+.ns{font-size:11px;color:var(--color-text-secondary);margin-top:2px;line-height:1.35}
+.pn{position:absolute;top:3px;right:5px;font-size:9px;color:var(--color-text-tertiary)}
+.node.ct{border-color:#1D9E75;background:rgba(29,158,117,.06)}.node.ct .nt{color:#085041}.node.ct:hover,.node.ct.active{background:rgba(29,158,117,.12)}
+.node.cp{border-color:#7F77DD;background:rgba(127,119,221,.06)}.node.cp .nt{color:#3C3489}.node.cp:hover,.node.cp.active{background:rgba(127,119,221,.12)}
+.node.ca{border-color:#BA7517;background:rgba(186,117,23,.06)}.node.ca .nt{color:#633806}.node.ca:hover,.node.ca.active{background:rgba(186,117,23,.12)}
+.node.cc{border-color:#993C1D;background:rgba(153,60,29,.06)}.node.cc .nt{color:#712B13}.node.cc:hover,.node.cc.active{background:rgba(153,60,29,.12)}
+.node.ck{border-color:#993556;background:rgba(153,53,86,.06)}.node.ck .nt{color:#4B1528}.node.ck:hover,.node.ck.active{background:rgba(153,53,86,.12)}
+.node.cg{border-color:#888780;background:rgba(136,135,128,.06)}.node.cg .nt{color:#2C2C2A}.node.cg:hover,.node.cg.active{background:rgba(136,135,128,.12)}
+@media(prefers-color-scheme:dark){
+.node.ct{background:rgba(29,158,117,.12)}.node.ct .nt{color:#9FE1CB}
+.node.cp{background:rgba(127,119,221,.12)}.node.cp .nt{color:#CECBF6}
+.node.ca{background:rgba(186,117,23,.12)}.node.ca .nt{color:#FAC775}
+.node.cc{background:rgba(153,60,29,.12)}.node.cc .nt{color:#F5C4B3}
+.node.ck{background:rgba(153,53,86,.12)}.node.ck .nt{color:#F4C0D1}
+.node.cg{background:rgba(136,135,128,.12)}.node.cg .nt{color:#D3D1C7}
+}
+.div{height:1px;margin:4px 0 4px 44px;background:var(--color-border-tertiary);position:relative}
+.div::after{content:"↓";position:absolute;left:calc(50% - 7px);bottom:-13px;font-size:13px;color:var(--color-text-tertiary)}
+.gap{height:18px}
+.cg2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;width:100%}
+.cg3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;width:100%}
+.dp{border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-top:14px;background:var(--color-background-primary)}
+.dp-hdr{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px}
+.dp-title{font-size:14px;font-weight:500;color:var(--color-text-primary);flex:1;line-height:1.4}
+.dp-close{background:none;border:none;color:var(--color-text-tertiary);font-size:17px;cursor:pointer;line-height:1;flex-shrink:0}
+.dp-body{font-size:13px;color:var(--color-text-secondary);line-height:1.65;margin-bottom:9px}
+.dp-why{font-size:12px;color:var(--color-text-secondary);border-left:2px solid var(--color-border-secondary);padding-left:10px;margin-bottom:9px;line-height:1.55}
+.dp-why strong{color:var(--color-text-primary);font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.tg{font-size:11px;padding:2px 8px;border-radius:20px;font-weight:500}
+.tt{background:rgba(29,158,117,.12);color:#085041}.tp{background:rgba(127,119,221,.12);color:#3C3489}
+.ta{background:rgba(186,117,23,.12);color:#633806}.tc{background:rgba(153,60,29,.12);color:#712B13}
+.tk{background:rgba(153,53,86,.12);color:#4B1528}.tg2{background:rgba(136,135,128,.12);color:#2C2C2A}
+@media(prefers-color-scheme:dark){
+.tt{background:rgba(29,158,117,.2);color:#9FE1CB}.tp{background:rgba(127,119,221,.2);color:#CECBF6}
+.ta{background:rgba(186,117,23,.2);color:#FAC775}.tc{background:rgba(153,60,29,.2);color:#F5C4B3}
+.tk{background:rgba(153,53,86,.2);color:#F4C0D1}.tg2{background:rgba(136,135,128,.2);color:#D3D1C7}
+}
+</style>
+
+<div class="root">
+<div class="legend">
+  <div class="li"><div class="ld" style="background:#1D9E75"></div>Data / foundation</div>
+  <div class="li"><div class="ld" style="background:#7F77DD"></div>Algorithm / encoding</div>
+  <div class="li"><div class="ld" style="background:#BA7517"></div>Outputs / artifacts</div>
+  <div class="li"><div class="ld" style="background:#993C1D"></div>Evaluation</div>
+  <div class="li"><div class="ld" style="background:#993556"></div>Governance</div>
+  <div class="li" style="font-style:italic;color:var(--color-text-tertiary)">Click any node for details</div>
+</div>
+
+<div class="sl">Entry</div>
+<div class="row">
+  <div class="lane"><span>CLI</span></div>
+  <div class="nodes">
+    <div class="node cg" onclick="show('cli')"><div class="nt">insurance_benchmark.py</div><div class="ns">--quick · --output-dir · ML_N_JOBS</div></div>
+    <div class="node cg" onclick="show('data')"><div class="nt">load_data (multi-ID fallback)</div><div class="ns">44047 → 44 → 42477 → name → synthetic</div></div>
+    <div class="node ct" onclick="show('fix')"><div class="nt">fix_data_types · split_data</div><div class="ns">stratified 80/20 on quartile bins</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="sl">Phase 1 — EDA (train-set only)</div>
+<div class="row">
+  <div class="lane"><span>EDA</span></div>
+  <div class="nodes">
+    <div class="node ct" onclick="show('eda_target')"><span class="pn">1a</span><div class="nt">charges distribution</div><div class="ns">bimodal · smoker / non-smoker</div></div>
+    <div class="node ct" onclick="show('eda_smoker')"><span class="pn">1b</span><div class="nt">smoker boxplot</div><div class="ns">3.5× cost difference</div></div>
+    <div class="node ct" onclick="show('eda_bmi')"><span class="pn">1c</span><div class="nt">BMI × smoker scatter</div><div class="ns">key interaction: 4× cost for obese smokers</div></div>
+    <div class="node ct" onclick="show('eda_corr')"><span class="pn">1d</span><div class="nt">correlation bar</div><div class="ns">Pearson r with charges (train only)</div></div>
+    <div class="node ca" onclick="show('eda_out')"><div class="nt">4 PNG + 2 CSVs + JSON</div><div class="ns">eda_grouped_stats.json</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="sl">Phase 2 — feature engineering (shared by all models)</div>
+<div class="row">
+  <div class="lane"><span>FE</span></div>
+  <div class="nodes" style="flex-direction:column;align-items:stretch">
+    <div class="cg3">
+      <div class="node cp" onclick="show('fe_poly')"><div class="nt">polynomial (E)</div><div class="ns">bmi², age², age×bmi</div></div>
+      <div class="node cp" onclick="show('fe_inter')"><div class="nt">cat×num interactions (D)</div><div class="ns">bmi×smoker · age×smoker · triple</div></div>
+      <div class="node cp" onclick="show('fe_bin')"><div class="nt">binning (F)</div><div class="ns">WHO BMI · age group · flags</div></div>
+    </div>
+    <div style="display:flex;gap:6px;margin-top:6px">
+      <div class="node ct" onclick="show('ohe')" style="flex:1"><div class="nt">OHE ColumnTransformer (A)</div><div class="ns">binary drop=if_binary · region drop=first</div></div>
+      <div class="node ct" onclick="show('wrap')" style="flex:1"><div class="nt">wrap_regressor</div><div class="ns">FE → OHE → model (no SelectFromModel)</div></div>
+    </div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="sl">Phase 2 — algorithm screening (5-fold KFold · 6 metrics)</div>
+<div class="row">
+  <div class="lane"><span>Screen</span></div>
+  <div class="nodes" style="flex-direction:column;align-items:stretch">
+    <div class="cg3">
+      <div class="node cp" onclick="show('lin')"><div class="nt">§1.1 Linear (6)</div><div class="ns">Ridge · Lasso · ElasticNet · BayesianRidge · Huber · SGD</div></div>
+      <div class="node cp" onclick="show('svm')"><div class="nt">§1.4 SVR (RBF)</div><div class="ns">C=1000 · ε=500 (USD scale)</div></div>
+      <div class="node cp" onclick="show('knn')"><div class="nt">§1.6 KNN</div><div class="ns">k=7 · distance-weighted</div></div>
+    </div>
+    <div class="cg3" style="margin-top:6px">
+      <div class="node cp" onclick="show('tree')"><div class="nt">§1.10 DecisionTree</div><div class="ns">max_depth=6 · min_samples_leaf=4</div></div>
+      <div class="node cp" onclick="show('ens_screen')"><div class="nt">§1.11 Ensembles (5)</div><div class="ns">RF · ET · GBR · AdaBoost · Bagging</div></div>
+      <div class="node cp" onclick="show('mlp')"><div class="nt">§1.17 MLP</div><div class="ns">128→64 ReLU · early stopping</div></div>
+    </div>
+    <div style="display:flex;gap:6px;margin-top:6px">
+      <div class="node cp" onclick="show('xgb')"><div class="nt">XGBoost + LightGBM</div><div class="ns">conditional on install</div></div>
+      <div class="node ca" onclick="show('screen_out')" style="flex:1"><div class="nt">screening_results.csv + heatmap + boxplot + overfit gap</div></div>
+    </div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="sl">Phase 3 — statistical significance</div>
+<div class="row">
+  <div class="lane"><span>Stats</span></div>
+  <div class="nodes">
+    <div class="node cp" onclick="show('friedman')"><div class="nt">Friedman χ²</div><div class="ns">H₀: all models equal</div></div>
+    <div class="node cp" onclick="show('wilcoxon')"><div class="nt">Wilcoxon pairwise</div><div class="ns">champion vs each model</div></div>
+    <div class="node cp" onclick="show('bonf')"><div class="nt">Bonferroni correction</div><div class="ns">α = 0.05 family-wise</div></div>
+    <div class="node ca" onclick="show('stat_out')"><div class="nt">stat_tests.json + bar plot</div><div class="ns">−log₁₀(p Bonferroni)</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="sl">Phase 4 — hyperparameter tuning (top-3 only)</div>
+<div class="row">
+  <div class="lane"><span>Tune</span></div>
+  <div class="nodes">
+    <div class="node cp" onclick="show('tune_why')"><div class="nt">top-3 by CV R²</div><div class="ns">cost-efficient industry practice</div></div>
+    <div class="node cp" onclick="show('tune_search')"><div class="nt">RandomizedSearchCV</div><div class="ns">30 iter · refit=r² · same 5-fold</div></div>
+    <div class="node ca" onclick="show('tune_out')"><div class="nt">best_params + best_cv_r2</div><div class="ns">per model in benchmark_report.json</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="sl">Phase 5 — ensemble construction</div>
+<div class="row">
+  <div class="lane"><span>Ensemble</span></div>
+  <div class="nodes">
+    <div class="node cp" onclick="show('voting')"><div class="nt">AverageVoting</div><div class="ns">mean of tuned top-3 predictions</div></div>
+    <div class="node cp" onclick="show('stacking')"><div class="nt">Stacking</div><div class="ns">Ridge meta · 3-fold OOF</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="sl">Phase 6 — hold-out test: 8 metrics</div>
+<div class="row">
+  <div class="lane"><span>Eval</span></div>
+  <div class="nodes">
+    <div class="node cc" onclick="show('m_r2')"><div class="nt">R²</div><div class="ns">primary · scale-invariant</div></div>
+    <div class="node cc" onclick="show('m_rmse')"><div class="nt">RMSE ($)</div><div class="ns">penalises smoker misses</div></div>
+    <div class="node cc" onclick="show('m_mae')"><div class="nt">MAE ($)</div><div class="ns">actuary-interpretable</div></div>
+    <div class="node cc" onclick="show('m_medae')"><div class="nt">MedAE ($)</div><div class="ns">robust to bimodal</div></div>
+    <div class="node cc" onclick="show('m_mape')"><div class="nt">MAPE</div><div class="ns">scale-free %</div></div>
+    <div class="node cc" onclick="show('m_bias')"><div class="nt">Bias ($)</div><div class="ns">alert if |bias| > $500</div></div>
+    <div class="node cc" onclick="show('m_rstd')"><div class="nt">Residual Std + Expl.Var</div><div class="ns">random error spread</div></div>
+    <div class="node ca" onclick="show('eval_out')"><div class="nt">leaderboard + actual vs predicted</div><div class="ns">champion marked ★</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="sl">Phase 7 — interval calibration</div>
+<div class="row">
+  <div class="lane"><span>Cal</span></div>
+  <div class="nodes">
+    <div class="node cp" onclick="show('interval')"><div class="nt">±1/2/3 RMSE coverage</div><div class="ns">vs Gaussian ideal 68% / 95%</div></div>
+    <div class="node ca" onclick="show('interval_out')"><div class="nt">prediction_interval_coverage.csv</div><div class="ns">skew from bimodal distribution documented</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="sl">Phase 8 — SHAP explainability</div>
+<div class="row">
+  <div class="lane"><span>SHAP</span></div>
+  <div class="nodes">
+    <div class="node cp" onclick="show('shap_detect')"><div class="nt">auto-detect explainer</div><div class="ns">Tree / Linear / Kernel</div></div>
+    <div class="node ca" onclick="show('shap_out')"><div class="nt">bar + beeswarm + waterfall</div><div class="ns">worst charges residual highlighted</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="sl">Phase 9 — subgroup disparity</div>
+<div class="row">
+  <div class="lane"><span>Fairness</span></div>
+  <div class="nodes">
+    <div class="node ck" onclick="show('sub_smoker')"><div class="nt">smoker</div><div class="ns">most critical split</div></div>
+    <div class="node ck" onclick="show('sub_region')"><div class="nt">region</div><div class="ns">NE / NW / SE / SW</div></div>
+    <div class="node ck" onclick="show('sub_sex')"><div class="nt">sex</div><div class="ns">regulatory fairness check</div></div>
+    <div class="node ck" onclick="show('alert')"><div class="nt">RMSE alert</div><div class="ns">&gt;25% above overall → flag</div></div>
+    <div class="node ca" onclick="show('sub_out')"><div class="nt">subgroup_report.csv + RMSE bar</div></div>
+  </div>
+</div>
+<div class="div"></div><div class="gap"></div>
+
+<div class="sl">Phase 10 — reports</div>
+<div class="row">
+  <div class="lane"><span>Report</span></div>
+  <div class="nodes">
+    <div class="node ca" onclick="show('html')"><div class="nt">benchmark_report.html</div><div class="ns">all phases · colour-coded chips</div></div>
+    <div class="node ca" onclick="show('json')"><div class="nt">benchmark_report.json</div><div class="ns">CI-parseable · all metrics</div></div>
+    <div class="node ca" onclick="show('csv_files')"><div class="nt">screening_results.csv · subgroup_report.csv · shap_importance.csv</div></div>
+    <div class="node ca" onclick="show('champion')"><div class="nt">champion_model.joblib</div><div class="ns">timestamped + SHA1</div></div>
+  </div>
+</div>
+
+<div class="dp" id="dp" style="display:none">
+  <div class="dp-hdr">
+    <div class="dp-title" id="dpt"></div>
+    <button class="dp-close" onclick="close_dp()" aria-label="Close">×</button>
+  </div>
+  <div class="dp-body" id="dpb"></div>
+  <div class="dp-why" id="dpw"></div>
+  <div class="tags" id="dptags"></div>
+</div>
+</div>
+
+<script>
+const D={
+cli:{t:"CLI — two flags, one env var",b:"--quick sets n_splits=3, n_iter=8, top_n=2 for a ~2 min smoke-test run. --output-dir controls where all artifacts land (default: benchmark_insurance/). ML_N_JOBS=-1 enables parallel cross-validation across all CPU cores — the single biggest speed lever for the screening phase.",w:"<strong>Why not more flags?</strong> Professional benchmarks value reproducibility over configuration. The two flags cover the only decisions that meaningfully change runtime: how fast (--quick) and where (--output-dir). Parallelism is exposed via env var so it composes naturally with shell scripts and CI without touching the code.",tags:[["tg2","argparse"]]},
+data:{t:"load_data — multi-ID fallback chain",b:"Tries data_id=44047 first (as specified), then 44 (classic OpenML insurance), then 42477 (variant), then name='insurance', then name='medical_insurance'. After each attempt the result is normalised (all columns lowercased) and validated: if at least 5 of the 7 insurance signature columns are present (age, bmi, children, smoker, sex, region, charges), that dataset is accepted. Falls back to 1338-row synthetic data with realistic bimodal charge distributions if all OpenML sources fail.",w:"<strong>Why validate instead of just trusting the ID?</strong> data_id=44047 maps to a Brazilian rental dataset on some OpenML mirrors. The column validation catches this before any downstream code sees wrong column names — producing a clear log message instead of a cryptic KeyError.",tags:[["tt","multi-ID fallback"],["tt","_is_insurance() validates 5 of 7 cols"]]},
+fix:{t:"fix_data_types · split_data",b:"fix_data_types casts age, bmi, children, charges to float64 and sex/smoker/region to category dtype. split_data does stratified 80/20 on charges quartile bins (pd.qcut with q=4) before any EDA — guaranteeing the bimodal smoker/non-smoker distribution is preserved proportionally in both train and test sets.",w:"<strong>Why stratify on quartiles for regression?</strong> Insurance charges are bimodal — there are two distinct populations (smokers ~$20k average vs non-smokers ~$8k). A plain random split can accidentally put all high-cost smokers in one split. Quartile stratification ensures each fold sees the full cost spectrum.",tags:[["tt","stratify=q_bins"],["tt","before EDA — no leakage"]]},
+eda_target:{t:"Phase 1a — charges distribution",b:"sns.histplot with kde=True on y_train. The bimodal shape is the defining visual of this dataset — two peaks corresponding to non-smokers (left, ~$5k–$12k) and smokers (right, ~$18k–$50k). A vertical line at the median is plotted. The median is used rather than mean because the right tail inflates the mean.",w:"<strong>Why document this before modelling?</strong> If any model produces a unimodal residual distribution, it has failed to learn the smoker/non-smoker separation — the most important signal in the data. The EDA target distribution is the reference for that diagnostic.",tags:[["tt","bimodal distribution"],["ta","eda_target_distribution.png"]]},
+eda_smoker:{t:"Phase 1b — charges by smoker status",b:"sns.boxplot grouped by smoker (yes/no). Non-smokers cluster around $5k–$15k; smokers around $18k–$50k. The median for smokers is approximately 3.5× the non-smoker median. This boxplot is included in the HTML report as the primary EDA evidence for why smoker is the dominant feature.",w:"<strong>Why this plot matters for the benchmark?</strong> In Phase 9 (subgroup disparity), models are evaluated separately for smokers vs non-smokers. A model with high overall R² but poor R² on the smoker subgroup has learned the easy non-smoker pattern and is failing on the high-cost population — the actuarially important one.",tags:[["tt","3.5× median difference"],["tk","informs Phase 9 subgroup split"]]},
+eda_bmi:{t:"Phase 1c — BMI × smoker scatter",b:"Scatter of bmi vs charges with points coloured by smoker status. The interaction is visually dramatic: non-smokers (blue) form a flat band regardless of BMI (BMI doesn't change charges much for non-smokers). Smokers (red) show a strong positive slope — obese smokers cost ~4× non-smoking equivalents. This is why bmi_smoker_interact is the single most important engineered feature.",w:"<strong>Why plot this interaction explicitly?</strong> Linear models cannot detect this interaction without the explicit bmi×smoker product term. The scatter proves the interaction exists in the data before modelling — justifying the feature engineering choice in InsuranceFeatureEngineer.",tags:[["tp","bmi_smoker_interact engineering"],["ta","eda_bmi_smoker.png"]]},
+eda_corr:{t:"Phase 1d — Pearson r with charges (train only)",b:"Horizontal bar chart of correlation coefficients. Expected top features: high_bmi_smoker > bmi_smoker_interact > smoker (encoded) > age > bmi. Computed on the training set only — the test set never touches any EDA calculation. Bars are green for positive, red for negative correlation.",w:"<strong>Why Pearson r when the relationship is non-linear?</strong> Pearson r captures the linear component only — it will understate smoker's importance because the smoker effect is interaction-driven, not additive. The EDA correlation is a baseline; Concept C (mutual information vs Pearson r) in the pipeline script quantifies the full non-linear importance.",tags:[["tt","train-only, no leakage"],["ta","eda_correlation.png"]]},
+eda_out:{t:"Phase 1 outputs",b:"4 PNG plots (target distribution, smoker boxplot, bmi×smoker scatter, correlation bar). 2 CSVs (eda_missingness.csv, eda_correlation_with_target.csv). 1 JSON (eda_grouped_stats.json) with mean/median/std of charges by smoker, region, and sex — used as reference in the HTML report and for Phase 9 subgroup baseline.",w:"<strong>Why separate CSVs from JSON?</strong> The CSVs are for notebook exploration — a data scientist can open them directly in Excel. The JSON is structured for the HTML report template and downstream CI checks ('mean charges for smokers should be at least 2× non-smokers').",tags:[["ta","4 PNG · 2 CSV · 1 JSON"]]},
+fe_poly:{t:"Concept E — polynomial features (in InsuranceFeatureEngineer)",b:"Three polynomial terms computed on numpy float64 arrays (after the category dtype rebuild): bmi² captures the accelerating cost of higher BMI within the smoker group. age² captures the convex age-cost curve (costs accelerate after 50). age×bmi captures the joint age+weight effect.",w:"<strong>Why manual polynomial terms instead of PolynomialFeatures?</strong> PolynomialFeatures(degree=2) on 13 post-engineer features produces 105 terms. Most are noise. Domain knowledge selects the 3 terms that are economically meaningful — bmi², age², age×bmi. SelectFromModel is not used in the benchmark wrapper (wrap_regressor) so all 105 terms would reach every model if we used sklearn's PolynomialFeatures.",tags:[["tp","bmi² age² age×bmi"]]},
+fe_inter:{t:"Concept D — categorical × numeric interactions",b:"Three interaction terms: bmi_smoker_interact = bmi × smoker_flag (the single most predictive engineered feature — captures the non-additive cost of obesity+smoking). age_smoker_interact = age × smoker_flag (older smokers cost disproportionately more). bmi_age_smoker_triple = bmi × age × smoker_flag (three-way interaction capturing the worst-cost cluster: elderly obese smokers). smoker_flag is derived via numpy where() after rebuilding the DataFrame as plain str to avoid category dtype arithmetic errors.",w:"<strong>Why is the category dtype rebuild necessary?</strong> pandas .map() on a category Series returns another category-typed result. Multiplying a category Series by a float raises TypeError. The fix at the top of transform() rebuilds the entire DataFrame — numeric cols as float64, others as str — before any arithmetic.",tags:[["tp","bmi×smoker is most predictive"],["tp","category dtype fix"]]},
+fe_bin:{t:"Concept F — feature binning",b:"WHO BMI categories: underweight (<18.5), normal (18.5–25), overweight (25–30), obese (>30). Encoded as both a numeric ordinal (bmi_category_num, 0–3) and a string category (bmi_category) for OHE. Age groups: young_adult/adult/middle_aged/senior/elderly via AGE_BINS. Derived flags: high_bmi_smoker = 1 if bmi≥30 and smoker==yes (the highest-cost group); senior_flag = 1 if age≥50.",w:"<strong>Why WHO bins rather than quantile bins?</strong> WHO bins are interpretable and regulation-grounded — insurance underwriters recognise them. Quantile bins would shift with each training set, breaking reproducibility and making the model difficult to audit. The WHO bins also correspond to real cost discontinuities in actuarial tables.",tags:[["tp","WHO standard"],["tp","high_bmi_smoker flag"]]},
+ohe:{t:"OHE ColumnTransformer (Concept A)",b:"Three pipelines: numeric (median impute + add_indicator + RobustScaler for the right-skewed engineered features), binary OHE (sex and smoker with drop='if_binary' — binary categoricals produce 1 column each, not 2), multi-class OHE (region with drop='first' — 4 regions produce 3 columns). handle_unknown='ignore' on all OHE steps so unseen categories at inference produce all-zero rows rather than errors.",w:"<strong>Why drop='if_binary' vs drop='first'?</strong> For binary categoricals (sex: male/female, smoker: yes/no), drop='if_binary' keeps exactly 1 column with meaning (female=1, male=0). drop='first' on a binary would do the same thing. For region (4 levels), drop='first' is needed to avoid the dummy variable trap — collinearity makes OLS-based models unidentifiable.",tags:[["tp","Concept A"],["tt","handle_unknown=ignore"]]},
+wrap:{t:"wrap_regressor — shared preprocessing stack",b:"Every regressor in the benchmark is wrapped identically: InsuranceFeatureEngineer() → build_ohe_preprocessor() → regressor. No SelectFromModel. This is deliberate — the benchmark measures what each algorithm contributes given the same features, not what each algorithm contributes plus the selector's choices. A fair comparison requires identical input to all models.",w:"<strong>Why omit SelectFromModel in the benchmark vs the pipeline?</strong> SelectFromModel uses ExtraTreesRegressor internally. If included in the benchmark wrapper, every model comparison would be contaminated by ExtraTrees' opinion of which features matter. The benchmark answer should be 'which algorithm is best?' not 'which algorithm is best after ExtraTrees pre-filtering?'.",tags:[["tt","no SelectFromModel for fair comparison"]]},
+lin:{t:"§1.1 Linear models — 6 variants",b:"Ridge (L2 shrinkage — handles correlated OHE columns). Lasso (L1 — zeros out less-predictive region dummies). ElasticNet (L1+L2 — best of both). BayesianRidge (probabilistic L2 — learns α and λ from data). HuberRegressor (robust to outlier smoker charges — uses Huber loss ε=1.35). SGD (online learning — Huber loss + ElasticNet penalty — useful diagnostic for convergence speed on small data).",w:"<strong>Why are alpha values so large (Lasso α=10, Ridge default stays 1)?</strong> charges are in raw USD (thousands of dollars). After RobustScaler the features are standardised, but the target is not. The L1/L2 penalty operates in feature space — for a $30k range target, the regularisation landscape is 1000× larger than for a unit-range target. Alpha=10 for Lasso corresponds to approximately the same regularisation strength as alpha=0.01 on a [0,1]-scaled target.",tags:[["tp","§1.1 sklearn"]]},
+svm:{t:"§1.4 SVR (RBF kernel) — scale matters",b:"SVR(kernel='rbf', C=1000, epsilon=500). The C and epsilon parameters are set far larger than typical tutorials show — because charges are in USD. C=1 would make the SVM almost completely ignore training errors because $1 tolerance is meaningless when the target spans $1k–$60k. epsilon=500 means predictions within ±$500 of actual incur zero penalty — a reasonable operational tolerance for insurance estimation.",w:"<strong>Why RBF kernel?</strong> The bmi×smoker interaction creates a non-linear boundary that a linear SVM cannot fit. RBF maps features into infinite-dimensional space where linear separation is possible. The benchmark param grid searches C from 100 to 10,000 and epsilon from 100 to 1,000 to find the right scale for USD-denominated charges.",tags:[["tp","§1.4 sklearn"],["tp","C=1000 ε=500 USD scale"]]},
+knn:{t:"§1.6 KNeighborsRegressor — distance-weighted",b:"KNeighborsRegressor(n_neighbors=7, weights='distance'). Distance-weighting means nearer neighbours contribute more to the prediction — important because the insurance feature space has natural clusters (smoker vs non-smoker) where within-cluster similarity is high. weights='uniform' would treat a data point on the wrong side of the smoker boundary equally with one directly above.",w:"<strong>KNN on insurance: when does it work well?</strong> KNN excels when the feature space is well-structured and the training set is dense. With only 1070 training rows and 6 raw features, KNN can struggle — especially for smoker/non-smoker boundary cases where the two populations are densely packed in feature space but cost-separated. Expected to rank mid-table.",tags:[["tp","§1.6 sklearn"]]},
+tree:{t:"§1.10 DecisionTreeRegressor — interpretable baseline",b:"DecisionTreeRegressor(max_depth=6, min_samples_leaf=4). A single decision tree with shallow depth — interpretable but typically outperformed by ensembles. Key value in the benchmark: the overfit gap. Decision trees overfit easily, so a large train-CV R² gap flags that max_depth needs more regularisation. Also produces feature_importances_ for SHAP without needing TreeExplainer.",w:"<strong>Why include a weak model in the benchmark?</strong> Professional benchmarks always include a decision tree as a transparency reference. If GradientBoosting only marginally outperforms a simple tree, the tree may be preferable for regulatory explainability. The tree result sets the 'complexity floor' — below this, simpler models aren't worth their complexity.",tags:[["tp","§1.10 sklearn"]]},
+ens_screen:{t:"§1.11 Ensembles — 5 variants",b:"RandomForest (bagging of deep trees — reduces variance). ExtraTrees (randomised splits — faster than RF, sometimes more accurate). GradientBoosting (sequential error correction — typically the strongest single model). AdaBoost (weighted resampling — sensitive to outlier smoker charges). Bagging (generic bagging wrapper — base estimator is DecisionTree by default, similar to RF but without column subsampling).",w:"<strong>Why include AdaBoost when GBR typically dominates?</strong> AdaBoost's sensitivity to outliers is both a weakness and a diagnostic — if AdaBoost ranks higher than GBR, it suggests the outlier smoker charges are actually well-structured and predictable (not noise). If AdaBoost ranks low with a high RMSE, the smoker outliers are the main error source.",tags:[["tp","§1.11 sklearn"]]},
+mlp:{t:"§1.17 MLPRegressor — neural baseline",b:"MLPRegressor(hidden_layer_sizes=(128,64), activation='relu', max_iter=500, early_stopping=True). A 2-layer network: 128 hidden units → 64 → output. early_stopping=True holds out 10% of training data as validation, stopping when validation loss stops improving — prevents overfitting on the 1070-row training set. All features are pre-scaled by RobustScaler so the MLP receives inputs with comparable magnitudes.",w:"<strong>Expectation for MLP on 1070 rows?</strong> Neural networks generally need more data than 1070 rows to outperform well-tuned gradient boosting. Expected to rank in the middle — better than linear models (it captures non-linearities) but worse than GBR/XGBoost (insufficient data to learn complex representations). Most useful as a 'deep learning lower bound' reference.",tags:[["tp","§1.17 sklearn"]]},
+xgb:{t:"XGBoost + LightGBM — industry de facto",b:"Both wrapped identically: n_estimators=150 (screening), max_depth=4, learning_rate=0.05, subsample=0.8, colsample_bytree=0.8. LightGBM uses leaf-wise growth (faster, lower memory) vs XGBoost's level-wise growth. Both are conditional on pip install — if absent they are silently skipped and the benchmark runs with the 15 sklearn models.",w:"<strong>Expected benchmark position?</strong> XGBoost or LightGBM typically wins on tabular regression when the dataset has strong interaction features (which this does — bmi×smoker). The champion result from your run (Stacking R²=0.9837) confirms that ensemble methods dominate. XGBoost/LightGBM are likely top-3 screened models before the stacking ensemble adds extra gain.",tags:[["tp","industry standard"],["tp","conditional install"]]},
+screen_out:{t:"Phase 2 outputs — 4 plots + 1 CSV",b:"screening_results.csv: one row per model, columns for each of the 6 CV metrics (mean, std, train_mean, overfit_gap). screening_heatmap.png: colour-coded R²/RMSE/MAE/MedAE/Expl.Var grid sorted by R² — green=strong (≥0.85), yellow=acceptable (≥0.70), red=weak. cv_boxplot_r2.png + cv_boxplot_neg_rmse.png: box-and-whisker of CV score distributions. overfit_gap.png: bar chart of train-CV R² gap (red=gap>0.05).",w:"<strong>Why both mean and distribution plots?</strong> A model can have high mean R² but high variance across folds — unstable on different data slices. The boxplot catches this. The overfit gap catches models that memorise training data. A good model has high mean, low variance, and small gap — all three visualisations together make this assessment possible.",tags:[["ta","4 plots + CSV"]]},
+friedman:{t:"Phase 3 — Friedman χ² global test",b:"scipy.stats.friedmanchisquare(*arrays) where arrays is the list of CV score arrays (one per model). Tests H₀: all models are drawn from the same distribution. If p < 0.05, at least one model is significantly different from the others. This is the gate test — if Friedman is not significant, pairwise tests are not needed.",w:"<strong>Why Friedman and not ANOVA?</strong> ANOVA assumes normally distributed residuals and equal variances. CV score distributions are often skewed (especially with n_splits=5 — only 5 data points per model). Friedman is a non-parametric rank-based test that makes no distributional assumptions — more appropriate for small-sample CV comparisons.",tags:[["tp","Friedman non-parametric"]]},
+wilcoxon:{t:"Phase 3 — Wilcoxon signed-rank test",b:"For each model vs the champion: scipy.stats.wilcoxon(champion_scores - model_scores, alternative='greater'). Tests whether the champion's CV scores are significantly higher than the challenger's. Returns a W statistic and a p-value. Run for every non-champion model.",w:"<strong>Why signed-rank vs paired t-test?</strong> The paired t-test assumes normal differences. With only 5 CV fold scores, normality cannot be assumed. Wilcoxon signed-rank uses only the rank ordering of differences — much more robust to skewed score distributions common in small datasets.",tags:[["tp","paired non-parametric"]]},
+bonf:{t:"Phase 3 — Bonferroni correction",b:"p_bonferroni = min(1.0, p_wilcoxon × n_comparisons) where n_comparisons = number of models − 1 (because we exclude the champion from its own comparison). If p_bonferroni < 0.05, that model is flagged as significantly worse than the champion at the family-wise error rate. The HTML report shows these flags in red in the stat test bar chart.",w:"<strong>Why Bonferroni and not FDR?</strong> In a benchmark context, we want to be conservative — we'd rather fail to reject a model that is slightly worse than falsely declare models significantly worse. Bonferroni controls the family-wise error rate (probability that any test falsely rejects). FDR (Benjamini-Hochberg) is more liberal and appropriate when you expect many true positives.",tags:[["tp","FWER control"],["ta","stat_tests.json"]]},
+stat_out:{t:"Phase 3 output",b:"stat_tests.json: {metric, champion_model, friedman: {statistic, p_value, significant}, pairwise_vs_champion: [{model, wilcoxon_stat, p_value, p_bonferroni, significantly_worse}]}. stat_test_results.png: horizontal bar chart of −log₁₀(p_bonferroni) per model, coloured red (significantly worse) or green (not significantly worse). The vertical dashed line marks −log₁₀(0.05).",w:"<strong>Reading the chart</strong>: bars to the right of the dashed line are significantly worse than the champion at α=0.05 Bonferroni. A very short bar means the model's CV scores were close to the champion's — not significantly different. This does not mean it is as good — it means the evidence is insufficient with n_splits fold scores.",tags:[["ta","stat_tests.json"],["ta","stat_test_results.png"]]},
+tune_why:{t:"Phase 4 — why tune only top-3?",b:"Tuning all 16+ models would be 16 × 30 RandomizedSearchCV iterations × 5 folds = 2,400 pipeline fits — far too slow for routine use. Industry practice: screen cheaply to eliminate obvious losers, then tune only the candidates with genuine potential. The top-3 by CV R² are the most likely to yield the champion after tuning.",w:"<strong>What if the top-3 screened models are all the same family?</strong> This can happen (e.g. if GBR, XGBoost, and LightGBM all win screening). The tuning still proceeds — each is tuned independently with its own search grid. The ensemble in Phase 5 then benefits from diversity within the same family through different hyperparameter configurations.",tags:[["tt","cost-efficient"]]},
+tune_search:{t:"Phase 4 — RandomizedSearchCV configuration",b:"n_iter=30 (8 in --quick mode). scoring='r2' — refit=True ensures the best model is refit on the full training set after CV. The same KFold(n_splits=5, shuffle=True, random_state=42) is used as in screening, so results are directly comparable. Insurance-specific: Lasso alpha grid starts at 1 (not 0.001) and SVR C grid starts at 100 (not 0.1) — scaled for USD-range charges.",w:"<strong>Why RandomizedSearch over GridSearch?</strong> For 30 iterations on a mixed-type search space (e.g. GBR with 4 continuous + 1 discrete hyperparameter), RandomizedSearch explores 30 random combinations vs GridSearch needing 4×3×3×2 = 72 fits for the same coverage. Random sampling also finds near-optimal regions that grid lines might miss.",tags:[["tt","30 iter refit=r2"]]},
+tune_out:{t:"Phase 4 outputs",b:"Per tuned model: best_params (dict of winning hyperparameters), best_cv_r2 (float), best_estimator (fitted Pipeline ready for Phase 5 and 6). Stored in the tuned dict and serialised to benchmark_report.json under tuning_summary. If tuning fails for any model (rare edge case), that model falls back to its default-configuration fitted pipeline.",w:"<strong>How are tuned estimators used in Phase 5?</strong> Phase 5 builds VotingRegressor(estimators=[(name1, tuned_pipe1), (name2, tuned_pipe2), ...]) — it uses the already-tuned pipelines as base learners. This means the ensemble benefits from the tuned hyperparameters of each base model, not just defaults.",tags:[["tt","best_estimator forwarded"]]},
+voting:{t:"Phase 5 — AverageVoting ensemble",b:"VotingRegressor(estimators=tuned_top_3, n_jobs=N_JOBS). Simple average of predictions from each tuned model. Requires no meta-training. Can be instantiated and fitted in one step on the full training set. Typically reduces variance compared to any single model when the base models have diverse error patterns.",w:"<strong>When does averaging beat the best single model?</strong> When the top-3 models make errors on different samples — their errors cancel in the average. For insurance, if Ridge errors on smoker outliers and GBR errors on non-smoker edge cases, their average may outperform either alone. If all three make the same errors (e.g. all fail on elderly obese smokers), averaging doesn't help.",tags:[["tp","VotingRegressor"]]},
+stacking:{t:"Phase 5 — StackingRegressor (champion in your run)",b:"StackingRegressor(estimators=tuned_top_3, final_estimator=Ridge(alpha=1.0), cv=3). Each base model makes out-of-fold (OOF) predictions on training data — these OOF predictions become features for the Ridge meta-learner. The meta-learner learns the optimal weights for each base model's prediction rather than a simple average. Your run's result: Stacking R²=0.9837.",w:"<strong>Why Ridge as the meta-learner?</strong> The stacking features (OOF predictions from 3 models) are highly correlated — all three models are making predictions for the same target. Ridge handles correlated inputs gracefully via L2 shrinkage. Lasso would zero out some base models entirely; a more complex meta-learner would overfit on the 3-dimensional stacking input.",tags:[["tp","StackingRegressor"],["tp","Ridge meta-learner"]]},
+m_r2:{t:"R² — coefficient of determination",b:"r2_score(y_true, y_pred) = 1 − SS_res/SS_tot. Scale-invariant — not affected by the USD scale of charges. R²=1.0 is perfect, R²=0 means predicting the mean, R²<0 is worse than the mean. Primary selection metric for the leaderboard and RandomizedSearchCV refit. Your champion achieved R²=0.9837 — meaning 98.37% of the variance in insurance charges is explained.",w:"<strong>Why R² primary and not RMSE?</strong> RMSE depends on the scale of charges (USD). Comparing RMSE across different target transformations (log charges vs raw charges) is meaningless. R² is scale-invariant and has a natural 0–1 interpretation. For final reporting to stakeholders, convert back to RMSE in dollars for operational meaning.",tags:[["tc","primary metric"]]},
+m_rmse:{t:"RMSE — root mean squared error in USD",b:"sqrt(mean_squared_error). For insurance, RMSE penalises catastrophically wrong smoker predictions more than many small non-smoker errors (quadratic penalty). Your champion RMSE=$2,085 means on average predictions are off by about $2,085 — a meaningful operational tolerance for a product with median charges around $10k.",w:"<strong>RMSE vs MAE for bimodal charges</strong>: because smoker charges can be $30k–$60k, even a 10% error is $3k–$6k — a large absolute error. RMSE will be disproportionately driven by these high-cost smoker prediction errors. If RMSE >> MedAE, the model is specifically failing on the smoker population — a critical finding for the subgroup report.",tags:[["tc","USD scale"]]},
+m_mae:{t:"MAE — mean absolute error",b:"mean_absolute_error. Same USD units as charges. The most interpretable metric for non-technical stakeholders: 'on average, our model predicts insurance charges within $X of actual.' Does not penalise large errors extra — a $5,000 error counts the same as five $1,000 errors. For actuarial reporting, MAE is often the primary business metric.",w:"<strong>MAE vs MedAE diagnostic</strong>: if MAE >> MedAE, the model has a small number of catastrophically wrong predictions (the long right tail of smoker charges). If MAE ≈ MedAE, errors are uniformly distributed. The ratio guides where to focus improvement — better smoker modelling (if MAE >> MedAE) vs general feature engineering (if MAE ≈ MedAE).",tags:[["tc","actuary-interpretable"]]},
+m_medae:{t:"MedAE — median absolute error (bimodal-robust)",b:"median_absolute_error. The median of all |actual − predicted| values. Completely unaffected by outlier predictions — one catastrophically wrong $40k smoker prediction doesn't move the median. For the bimodal insurance distribution, MedAE reports what a typical (non-outlier) prediction error looks like. Especially useful when model performance on the majority non-smoker population is the primary operational concern.",w:"<strong>Why include MedAE alongside RMSE for insurance?</strong> The smoker population is ~20% of rows. A model that gets smoker predictions badly wrong but is perfect on non-smokers will have: high RMSE (driven by smoker errors), low MedAE (median is from the non-smoker population). The RMSE/MedAE ratio directly measures how much the smoker tail is hurting overall performance.",tags:[["tc","robust to bimodal"]]},
+m_mape:{t:"MAPE — mean absolute percentage error",b:"mean_absolute_percentage_error. Scale-free percentage. Useful for comparing models across different price levels — a $2k error on a $5k policy (40%) is much worse than on a $50k policy (4%). Known limitation for insurance: unstable near low charges (young non-smoking adults might have charges of $1,100, making even small absolute errors appear as large percentages).",w:"<strong>Why include MAPE despite its instability?</strong> The HTML report shows MAPE to four decimal places so stakeholders can assess relative error. For insurance pricing where premium-to-claims ratios matter, percentage errors are more meaningful than absolute errors. But MedAE is the more reliable outlier-robust metric — MAPE is reported as a secondary reference.",tags:[["tc","scale-free"]]},
+m_bias:{t:"Bias — residual mean ($) — insurance-critical metric",b:"float(residuals.mean()) where residuals = y_true − y_pred. Positive bias = model systematically underpredicts charges. Negative bias = model systematically overpredicts. The HTML report flags |bias| > $500 in red. For insurance, systematic underprediction of smoker charges is an underwriting risk — the model would recommend premiums below actual costs.",w:"<strong>Why bias is uniquely important for insurance?</strong> A model with R²=0.95 and bias=−$2,000 is actually dangerous for an insurer — it systematically overestimates how much to charge, leading to uncompetitive premiums. A model with R²=0.92 and bias=+$200 may be preferable. Bias is the metric most insurance regulators focus on for model fairness audits.",tags:[["tc","alert >$500"],["tk","regulatory relevance"]]},
+m_rstd:{t:"Residual Std + Explained Variance",b:"Residual Std = residuals.std() — the random (non-systematic) component of errors after removing the bias. Explained Variance = 1 − var(residuals)/var(y_true) — similar to R² but does not penalise bias. If R² < Explained Variance, the model has a systematic bias component. Both are stored in the test_results list and serialised to JSON.",w:"<strong>R² vs Explained Variance</strong>: if a model predicts perfectly except for a constant shift (bias=$500), Explained Variance = 1.0 but R² < 1.0. This decomposition helps diagnose whether errors are systematic (trainable — add a bias correction) or random (irreducible — need better features or more data).",tags:[["tc","decompose errors"]]},
+eval_out:{t:"Phase 6 outputs",b:"leaderboard.png: horizontal bar chart sorted by R², champion in green with ★. Each bar annotated with RMSE, MAE, Bias. actual_vs_predicted.png: grid of scatter plots (actual vs predicted) for all tuned+ensemble models, one subplot per model with R² and RMSE in the title. residual_diagnostics.png: overlaid residual histograms and residuals-vs-predicted scatter.",w:"<strong>What the actual vs predicted plot reveals</strong>: a perfect model has all points on the red diagonal line. For insurance, expect a fan shape — small errors for non-smokers (bottom-left cluster), larger spread for smokers (top-right). Models that learn the interaction well will show uniform scatter around the diagonal; models that miss it will show two separate clouds.",tags:[["ta","leaderboard + actual vs pred"]]},
+interval:{t:"Phase 7 — prediction interval calibration",b:"For each model, computes the fraction of test residuals within ±1×RMSE, ±2×RMSE, and ±3×RMSE. For normally distributed residuals these should be 68%, 95%, and 99.7% respectively. Insurance residuals are right-skewed (bimodal) so ±1 RMSE coverage will be lower than 68% — some smoker residuals will be far outside. Documents exactly how much the normality assumption is violated.",w:"<strong>Why does this matter for insurance?</strong> If a model reports 'predicted charges = $15,000 ± $3,000', the ±$3,000 band assumes normally distributed errors. If actual ±1 RMSE coverage is only 55% (not 68%), the confidence interval is overconfident — the band should be wider. This calibration check quantifies how much wider.",tags:[["tp","68% ideal"],["ta","prediction_interval_coverage.csv"]]},
+interval_out:{t:"Phase 7 output — coverage table",b:"CSV with columns: model, within_1_rmse (actual %), within_2_rmse (actual %), within_3_rmse (actual %), ideal_1_rmse (0.683), ideal_2_rmse (0.954). Also included in the HTML report table. For your run's champion (Stacking, RMSE=$2,085): expect within_1_rmse around 0.60–0.65 due to the bimodal distribution rather than the Gaussian ideal of 0.683.",w:"<strong>How to use this operationally</strong>: if within_1_rmse = 0.62, then to achieve true 68% coverage you need ±(0.68/0.62) × RMSE ≈ ±1.10 × RMSE. The ratio 0.68/within_1_rmse is the coverage correction factor — multiply RMSE by it to report honest uncertainty intervals to stakeholders.",tags:[["ta","prediction_interval_coverage.csv"]]},
+shap_detect:{t:"Phase 8 — SHAP explainer auto-detection",b:"Checks model type: if clf has feature_importances_ → shap.TreeExplainer (exact Shapley values, fast). If clf has coef_ → shap.LinearExplainer (exact for linear models). Otherwise → shap.Explainer with Independent masker (model-agnostic, approximate, max_samples=100 for speed). The auto-detection makes the SHAP phase model-agnostic — works for any of the 16 screened algorithms.",w:"<strong>What should SHAP reveal for insurance?</strong> For tree models (GBR, RF, XGBoost, Stacking): bmi_smoker_interact and high_bmi_smoker should have the highest mean |SHAP| values. age_smoker_interact should be second tier. For linear models (Ridge, Lasso): the OHE smoker column and bmi_smoker_interact coefficient magnitudes will dominate. If raw bmi dominates over bmi_smoker_interact, the interaction wasn't learned.",tags:[["tp","Tree/Linear/Kernel auto"]]},
+shap_out:{t:"Phase 8 outputs — bar + beeswarm + waterfall",b:"shap_bar.png: global mean |SHAP value| per feature — top 20. shap_beeswarm.png: each dot is one test sample, x-axis = SHAP value, colour = raw feature value (red=high, blue=low). shap_waterfall.png: for the single test sample with the largest |actual − predicted|, shows which features pushed the prediction up or down. shap_importance.csv for programmatic access.",w:"<strong>The beeswarm reveals the smoker interaction</strong>: for bmi_smoker_interact, the beeswarm should show red dots (high bmi × smoker=1) clustered on the positive x-axis (pushing predictions up) and blue dots (low bmi or smoker=0) near zero. This is the visual proof that the model has correctly learned the obesity+smoking interaction.",tags:[["ta","bar + beeswarm + waterfall"]]},
+sub_smoker:{t:"Phase 9 — smoker subgroup disparity (most critical)",b:"Evaluates RMSE and R² separately for smoker=yes and smoker=no rows in the test set. smoker=yes has ~$20k average charges and high variance — harder to predict. smoker=no has ~$8k average and lower variance — easier. Expected: lower R² and higher RMSE for the smoker subgroup. If RMSE(smoker) > 1.25 × RMSE(overall), the alert fires.",w:"<strong>Why is the smoker subgroup the most critical?</strong> For an insurance product, predicting smoker costs accurately determines premium adequacy. If the model underpredicts smoker charges by $3k on average, every smoker policy sold at the model's recommended premium is sold at a loss. This is an underwriting risk, not just a modelling accuracy issue.",tags:[["tk","underwriting risk"]]},
+sub_region:{t:"Phase 9 — region subgroup disparity",b:"Evaluates RMSE and R² per region (northeast, northwest, southeast, southwest). Regional cost variation in the dataset is modest compared to the smoker effect — expect similar RMSE across regions. If one region shows significantly higher RMSE, it may indicate that regional feature interactions are not captured (e.g. if smoker prevalence varies by region and the model handles that non-uniformly).",w:"<strong>Regulatory significance of region</strong>: using region as a pricing factor is restricted in some insurance markets. The subgroup report shows whether the model is accurate across all regions equally — if it systematically underpredicts one region, that's both an accuracy and a fairness issue requiring disclosure.",tags:[["tk","regulatory fairness"]]},
+sub_sex:{t:"Phase 9 — sex subgroup disparity",b:"Evaluates RMSE and R² for male and female rows. In the insurance dataset, sex is included as a feature but has modest predictive power (smoker status dominates). Expected: similar RMSE for both sexes. If one sex has significantly worse predictions, it may indicate that age×sex or bmi×sex interactions exist that are not captured.",w:"<strong>Ethics note</strong>: using sex as a rating factor in health insurance is illegal in many jurisdictions (ACA in the US). The benchmark includes it as a feature to match the reference dataset, but the model card in the HTML report notes: 'Do not use sex as an individual pricing factor.' The subgroup report provides the evidence for whether sex-based disparities exist in the model output.",tags:[["tk","ACA compliance note"]]},
+alert:{t:"Phase 9 — RMSE alert threshold (>25% above overall)",b:"alert = bool(sub_rmse > overall_rmse × 1.25). A subgroup RMSE more than 25% above the overall RMSE indicates meaningful performance disparity — the model is materially worse for that group than on average. In the HTML report, these rows are coloured red. The model card lists all triggered alerts.",w:"<strong>Why 25% and not a fixed dollar amount?</strong> A $500 RMSE gap is trivial if overall RMSE=$10,000 but severe if overall RMSE=$1,500. The 25% relative threshold scales with model quality — as the champion RMSE improves, the alert standard tightens proportionally. This is the regression analogue of the 10-pp F1 gap threshold in classification fairness literature.",tags:[["tk","25% relative threshold"]]},
+sub_out:{t:"Phase 9 outputs",b:"subgroup_report.csv: rows for each (group_col, group_val) combination with n, mean_actual, RMSE, R², rmse_gap, alert flag. subgroup_rmse.png: horizontal bar chart with bars coloured red (alert) or blue (no alert), vertical dashed line at overall RMSE.",w:"<strong>Who uses this output?</strong> Data scientists: compare RMSE gaps across models to pick the champion that minimises disparity, not just overall R². Actuaries: use the smoker subgroup R² to validate premium adequacy per risk segment. Compliance: the sex and region subgroup results feed directly into regulatory model documentation filings.",tags:[["ta","subgroup_report.csv + plot"]]},
+html:{t:"Phase 10 — benchmark_report.html (self-contained)",b:"All 10 phases in one HTML file with embedded images (linked via relative paths, not base64 — keep it under 5MB). Each phase has a colour-coded metric chip system: R² green if ≥0.85, yellow if ≥0.70, red otherwise. RMSE/MAE green if ≤$1,500, yellow if ≤$3,000, red otherwise. Bias flagged red if |bias|>$500. Champion marked with ★ in every table. Footer includes full metric guide and ethics note.",w:"<strong>Why relative image paths not base64?</strong> Embedding 9 PNG images as base64 would make the HTML file ~15MB — slow to open. Relative paths keep it small (8KB) and images load from the same directory. For sharing, zip the entire benchmark directory.",tags:[["ta","self-contained HTML"]]},
+json:{t:"Phase 10 — benchmark_report.json (CI-parseable)",b:"Top-level keys: generated_at, champion, elapsed_seconds, data_source, n_regressors_screened, cv_splits, screening_summary (list of dicts), stat_tests (Friedman + pairwise), tuning_summary, test_results (8 metrics per model), interval_coverage, subgroups, champion_metrics. All arrays serialised via to_jsonable() which handles np.nan → null, np.float64 → float, BaseEstimator → repr().",w:"<strong>CI pipeline usage</strong>: assert report['champion_metrics']['r2'] > 0.85. assert not any(s['alert'] for s in report['subgroups']['subgroups']). assert abs(report['champion_metrics']['bias']) < 500. These three assertions validate model quality, fairness, and bias before any deployment decision — without opening any HTML or CSV.",tags:[["ta","JSON"],["ta","CI-parseable"]]},
+csv_files:{t:"Phase 10 — CSV artifacts",b:"screening_results.csv: 16+ rows × 20+ columns — one model per row, all CV metrics plus raw fold scores and timing. subgroup_report.csv: one row per (group_col, group_val) combination with performance metrics. shap_importance.csv: feature name and mean |SHAP value| sorted descending — the feature importance ranking for the champion model only.",w:"<strong>Why save SHAP importance as CSV separately from the PNG?</strong> The PNG shows the top 20 features visually. The CSV contains all features with exact numeric values — for downstream analysis like 'what is the ratio of bmi_smoker_interact importance to raw bmi importance?' or building a custom feature importance dashboard in another tool.",tags:[["ta","3 CSVs"]]},
+champion:{t:"Phase 10 — champion_model.joblib",b:"Two files: champion_{ModelName}_{timestamp}_{sha1[:8]}.joblib (versioned, never overwritten) and champion_model.joblib (stable pointer, overwritten on each run). SHA1 = hashlib.sha1(pickle.dumps(model)).hexdigest()[:8]. The saved object is the complete fitted Pipeline: InsuranceFeatureEngineer → OHE ColumnTransformer → tuned regressor (+ stacking meta-learner if Stacking won).",w:"<strong>What does the saved pipeline include?</strong> Everything needed for inference: the feature engineer's fit state, the OHE encoder's fitted categories (so unseen regions get all-zero OHE), the imputer's learned medians, the scaler's learned IQR, and the final model's learned parameters. Loading the .joblib and calling .predict(X_new) with the 6 raw columns is all that's needed for production scoring.",tags:[["ta","versioned SHA1"],["ta","full Pipeline"]]},
+};
+
+let cur=null;
+function show(id){
+  const d=D[id]; if(!d) return;
+  if(cur) cur.classList.remove('active');
+  cur=event.currentTarget; cur.classList.add('active');
+  document.getElementById('dpt').textContent=d.t;
+  document.getElementById('dpb').textContent=d.b;
+  document.getElementById('dpw').innerHTML=d.w;
+  const tEl=document.getElementById('dptags'); tEl.innerHTML='';
+  (d.tags||[]).forEach(([cls,lbl])=>{
+    const s=document.createElement('span');
+    s.className='tg '+cls; s.textContent=lbl; tEl.appendChild(s);
+  });
+  document.getElementById('dp').style.display='block';
+  document.getElementById('dp').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function close_dp(){
+  document.getElementById('dp').style.display='none';
+  if(cur){cur.classList.remove('active');cur=null;}
+}
+</script>

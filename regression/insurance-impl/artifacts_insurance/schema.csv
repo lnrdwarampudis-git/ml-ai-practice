@@ -1,0 +1,8 @@
+,dtype
+age,float64
+sex,category
+bmi,float64
+children,float64
+smoker,category
+region,category
+charges,float64

@@ -1,0 +1,9 @@
+group_col,group_val,n,mean_actual,rmse,r2,rmse_gap,alert
+smoker,no,210,17837.79,2169.8,0.6681,-58.13,False
+smoker,yes,58,50818.69,2426.77,0.982,198.84,False
+region,northeast,70,23617.2,2175.13,0.9782,-52.8,False
+region,northwest,56,23967.5,2255.91,0.9811,27.98,False
+region,southeast,80,26337.39,2334.82,0.9812,106.89,False
+region,southwest,62,25662.01,2117.43,0.9842,-110.5,False
+sex,female,135,25299.49,2069.98,0.9849,-157.95,False
+sex,male,133,24646.53,2377.55,0.9773,149.62,False

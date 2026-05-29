@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-05-28T04:25:04.252978+00:00",
+  "model_details": {
+    "name": "Medical Insurance Cost Predictor",
+    "type": "Regression (sklearn Pipeline)",
+    "algorithm": "RandomForestRegressor(max_depth=6, min_samples_leaf=2, n_estimators=300,\n                      n_jobs=1, random_state=42)"
+  },
+  "intended_use": {
+    "primary_use": "Estimate individual medical insurance costs from demographic and health features.",
+    "out_of_scope": [
+      "Individual underwriting decisions",
+      "Real-time pricing",
+      "Non-US markets"
+    ]
+  },
+  "evaluation_results": {
+    "test_r2": 0.9813624716011873,
+    "test_rmse": 2227.9294723836883,
+    "test_mae": 1620.430680015508,
+    "oof_rmse": 2144.522826189236,
+    "uncertainty_band": {
+      "lower": 2144.522826189236,
+      "upper": 2144.522826189236
+    }
+  },
+  "regularisation_insights": {
+    "ridge_optimal_alpha": 0.17957144943716408,
+    "lasso_optimal_alpha": 6.260516572014821,
+    "elasticnet_optimal_alpha": 0.0017269832906594343,
+    "elasticnet_l1_ratio": 0.9,
+    "lasso_n_zeroed": 4,
+    "lasso_n_total": 16
+  },
+  "fairness": {
+    "overall_rmse": 2227.9294723836883,
+    "alerts": []
+  },
+  "limitations": [
+    "Synthetic/1990s data \u2014 not reflective of current insurance markets.",
+    "Smoker status is self-reported and the single largest cost driver.",
+    "Only 6 input features \u2014 missing many real-world risk factors."
+  ],
+  "ethical_considerations": [
+    "Do not use sex or region as basis for individual pricing decisions.",
+    "BMI as health proxy has known limitations across populations.",
+    "Smoker flag encodes behavioural data \u2014 use with regulatory awareness."
+  ],
+  "hyperparameters": {
+    "model__min_samples_leaf": 2,
+    "model__max_depth": 6,
+    "model": "RandomForestRegressor(n_estimators=150, n_jobs=1, random_state=42)",
+    "feature_selection__threshold": "0.75*median"
+  },
+  "cv_best_r2": 0.983008886730007
+}

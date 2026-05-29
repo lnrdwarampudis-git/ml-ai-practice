@@ -1,0 +1,546 @@
+{
+  "baselines": {
+    "mean": {
+      "mae": 62028.751090729966,
+      "rmse": 95472.08736947751,
+      "r2": -0.005642217180495068,
+      "mape": 0.36329178741481566,
+      "medae": 45034.0,
+      "rmsle": 0.42928295249270276,
+      "residual_mean": 7151.210616438361,
+      "residual_std": 95203.88465501019
+    },
+    "median": {
+      "mae": 60463.97260273973,
+      "rmse": 98095.52278337597,
+      "r2": -0.06166874726807814,
+      "mape": 0.3214636528613506,
+      "medae": 37070.5,
+      "rmsle": 0.42711161954597965,
+      "residual_mean": 23642.164383561645,
+      "residual_std": 95203.88465501019
+    }
+  },
+  "split": {
+    "train_rows": 1168,
+    "test_rows": 292
+  },
+  "missing_taxonomy": {
+    "taxonomy": [
+      {
+        "column": "PoolQC",
+        "missing_rate": 0.9966,
+        "type": "MNAR_absent",
+        "strategy": "fill_None_or_0",
+        "reason": "NaN means feature does not exist for this property"
+      },
+      {
+        "column": "MiscFeature",
+        "missing_rate": 0.9632,
+        "type": "MNAR_absent",
+        "strategy": "fill_None_or_0",
+        "reason": "NaN means feature does not exist for this property"
+      },
+      {
+        "column": "Alley",
+        "missing_rate": 0.9409,
+        "type": "MNAR_absent",
+        "strategy": "fill_None_or_0",
+        "reason": "NaN means feature does not exist for this property"
+      },
+      {
+        "column": "Fence",
+        "missing_rate": 0.8142,
+        "type": "MNAR_absent",
+        "strategy": "fill_None_or_0",
+        "reason": "NaN means feature does not exist for this property"
+      },
+      {
+        "column": "FireplaceQu",
+        "missing_rate": 0.4717,
+        "type": "MNAR_absent",
+        "strategy": "fill_None_or_0",
+        "reason": "NaN means feature does not exist for this property"
+      },
+      {
+        "column": "LotFrontage",
+        "missing_rate": 0.1858,
+        "type": "MAR_spatial",
+        "strategy": "neighborhood_median",
+        "reason": "Missing rate varies by Neighborhood \u2014 spatially structured"
+      },
+      {
+        "column": "GarageType",
+        "missing_rate": 0.0565,
+        "type": "MNAR_absent",
+        "strategy": "fill_None_or_0",
+        "reason": "NaN means feature does not exist for this property"
+      },
+      {
+        "column": "GarageYrBlt",
+        "missing_rate": 0.0565,
+        "type": "MAR_conditional",
+        "strategy": "garage_yearbuilt_or_0",
+        "reason": "Missing when no garage \u2014 use YearBuilt as proxy"
+      },
+      {
+        "column": "GarageQual",
+        "missing_rate": 0.0565,
+        "type": "MNAR_absent",
+        "strategy": "fill_None_or_0",
+        "reason": "NaN means feature does not exist for this property"
+      },
+      {
+        "column": "GarageCond",
+        "missing_rate": 0.0565,
+        "type": "MNAR_absent",
+        "strategy": "fill_None_or_0",
+        "reason": "NaN means feature does not exist for this property"
+      },
+      {
+        "column": "GarageFinish",
+        "missing_rate": 0.0565,
+        "type": "MNAR_absent",
+        "strategy": "fill_None_or_0",
+        "reason": "NaN means feature does not exist for this property"
+      },
+      {
+        "column": "BsmtFinType2",
+        "missing_rate": 0.0283,
+        "type": "MNAR_absent",
+        "strategy": "fill_None_or_0",
+        "reason": "NaN means feature does not exist for this property"
+      },
+      {
+        "column": "BsmtExposure",
+        "missing_rate": 0.0283,
+        "type": "MNAR_absent",
+        "strategy": "fill_None_or_0",
+        "reason": "NaN means feature does not exist for this property"
+      },
+      {
+        "column": "BsmtCond",
+        "missing_rate": 0.0274,
+        "type": "MNAR_absent",
+        "strategy": "fill_None_or_0",
+        "reason": "NaN means feature does not exist for this property"
+      },
+      {
+        "column": "BsmtFinType1",
+        "missing_rate": 0.0274,
+        "type": "MNAR_absent",
+        "strategy": "fill_None_or_0",
+        "reason": "NaN means feature does not exist for this property"
+      },
+      {
+        "column": "BsmtQual",
+        "missing_rate": 0.0274,
+        "type": "MNAR_absent",
+        "strategy": "fill_None_or_0",
+        "reason": "NaN means feature does not exist for this property"
+      },
+      {
+        "column": "MasVnrArea",
+        "missing_rate": 0.006,
+        "type": "MCAR",
+        "strategy": "median_mode",
+        "reason": "Very low rate \u2014 likely random data entry issue"
+      },
+      {
+        "column": "MasVnrType",
+        "missing_rate": 0.006,
+        "type": "MNAR_absent",
+        "strategy": "fill_None_or_0",
+        "reason": "NaN means feature does not exist for this property"
+      },
+      {
+        "column": "Electrical",
+        "missing_rate": 0.0009,
+        "type": "MCAR",
+        "strategy": "median_mode",
+        "reason": "Very low rate \u2014 likely random data entry issue"
+      }
+    ]
+  },
+  "imputation": {
+    "Simple (median)": {
+      "r2_mean": 0.39741347546907074,
+      "r2_std": 0.04438714476472721
+    },
+    "KNN (k=5)": {
+      "r2_mean": 0.40420659660808334,
+      "r2_std": 0.04187361250187109
+    },
+    "Iterative (MICE)": {
+      "r2_mean": 0.4096844803622872,
+      "r2_std": 0.04081107527290473
+    }
+  },
+  "outlier_analysis": {
+    "n_iqr_outliers": 18,
+    "n_iso_outliers": 24,
+    "n_area_outliers": 1,
+    "comparison": {
+      "All data": {
+        "n_kept": 1168,
+        "n_removed": 0,
+        "r2_mean": 0.8037813792851521,
+        "r2_std": 0.10561876920526492
+      },
+      "IQR removal": {
+        "n_kept": 1150,
+        "n_removed": 18,
+        "r2_mean": 0.8094600914174613,
+        "r2_std": 0.10735312213631656
+      },
+      "Area outlier removal": {
+        "n_kept": 1167,
+        "n_removed": 1,
+        "r2_mean": 0.8924397092378722,
+        "r2_std": 0.02036341635339311
+      },
+      "Isolation Forest": {
+        "n_kept": 1144,
+        "n_removed": 24,
+        "r2_mean": 0.8869930061740039,
+        "r2_std": 0.01933087524686399
+      }
+    }
+  },
+  "robust_regression": {
+    "Ridge (OLS-like)": {
+      "r2_mean": 0.8042567070084953,
+      "r2_std": 0.10511761793547382,
+      "rmse_mean": 0.16809310416257936
+    },
+    "HuberRegressor \u03b5=1.35": {
+      "r2_mean": 0.8372943520077574,
+      "r2_std": 0.11661179991667633,
+      "rmse_mean": 0.1500528506881153
+    },
+    "HuberRegressor \u03b5=2.0": {
+      "r2_mean": 0.8354844863785201,
+      "r2_std": 0.11995930183494201,
+      "rmse_mean": 0.15064025463787864
+    }
+  },
+  "log_transform": {
+    "raw_r2": 0.7565789767534277,
+    "log_r2": 0.8042567070084953,
+    "raw_rmse_usd": 37461.81957603223,
+    "log_rmse_usd": 91661.97511294627,
+    "improvement_pct": -144.6810543382972
+  },
+  "ordinal_encoding": {
+    "Ordinal (domain)": {
+      "n_features": 10,
+      "r2_mean": 0.6701924035026534,
+      "r2_std": 0.05012347016507216
+    },
+    "OHE (naive)": {
+      "n_features": 50,
+      "r2_mean": 0.6732002846625538,
+      "r2_std": 0.04271531631071941
+    }
+  },
+  "polynomial": {
+    "baseline_r2": 0.7891605244498685,
+    "with_interact_r2": 0.8012984363798136,
+    "uplift": 0.012137911929945067
+  },
+  "regularisation": {
+    "ridge_optimal_alpha": 372.7593720314938,
+    "lasso_optimal_alpha": 0.013894954943731374,
+    "elasticnet_alpha": 0.1,
+    "elasticnet_l1_ratio": 0.1,
+    "lasso_n_zeroed": 18,
+    "lasso_n_total": 35
+  },
+  "best_cv": {
+    "best_r2": 0.8977846474995415,
+    "best_params": {
+      "model__subsample": 0.9,
+      "model__max_depth": 3,
+      "model__learning_rate": 0.05,
+      "model": "GradientBoostingRegressor(n_estimators=150, random_state=42)",
+      "feature_selection__threshold": "1.25*median"
+    }
+  },
+  "uncertainty_info": {
+    "oof_rmse_log": 0.12396270795356383,
+    "oof_rmse_usd": 23906.32050011021,
+    "oof_r2": 0.9002148183960184,
+    "lower_band_log": 0.12396270795356383,
+    "upper_band_log": 0.12396270795356383,
+    "lower_band_usd": 23906.32050011021,
+    "upper_band_usd": 23906.32050011021
+  },
+  "residual_diag": {
+    "breusch_pagan": {
+      "statistic": 1.403714591600949,
+      "p_value": 0.23610261576727476,
+      "heteroscedastic": false
+    },
+    "shapiro_wilk": {
+      "statistic": 0.8424466141065337,
+      "p_value": 1.412386452344783e-16,
+      "normal": false
+    }
+  },
+  "test_metrics": {
+    "mae": 17773.071087646465,
+    "rmse": 38192.56071931471,
+    "r2": 0.8390658477944526,
+    "mape": 0.09422913471970201,
+    "medae": 9841.77517376565,
+    "rmsle": 0.140263727710399,
+    "residual_mean": 4343.967576340892,
+    "residual_std": 37944.718209445695
+  },
+  "fairness": {
+    "overall_rmse": 38192.56071931471,
+    "overall_r2": 0.8390658477944526,
+    "subgroups": [
+      {
+        "group_col": "Neighborhood",
+        "group_val": "BrkSide",
+        "n": 8,
+        "mean_actual": 140375.0,
+        "rmse": 10499.0,
+        "r2": 0.852,
+        "rmse_gap": -27694.0,
+        "alert": false
+      },
+      {
+        "group_col": "Neighborhood",
+        "group_val": "CollgCr",
+        "n": 27,
+        "mean_actual": 201443.0,
+        "rmse": 18170.0,
+        "r2": 0.882,
+        "rmse_gap": -20023.0,
+        "alert": false
+      },
+      {
+        "group_col": "Neighborhood",
+        "group_val": "Crawfor",
+        "n": 16,
+        "mean_actual": 217784.0,
+        "rmse": 21098.0,
+        "r2": 0.9022,
+        "rmse_gap": -17095.0,
+        "alert": false
+      },
+      {
+        "group_col": "Neighborhood",
+        "group_val": "Edwards",
+        "n": 14,
+        "mean_actual": 133437.0,
+        "rmse": 73331.0,
+        "r2": -1.1859,
+        "rmse_gap": 35139.0,
+        "alert": true
+      },
+      {
+        "group_col": "Neighborhood",
+        "group_val": "Gilbert",
+        "n": 9,
+        "mean_actual": 178159.0,
+        "rmse": 7729.0,
+        "r2": 0.8222,
+        "rmse_gap": -30464.0,
+        "alert": false
+      },
+      {
+        "group_col": "Neighborhood",
+        "group_val": "IDOTRR",
+        "n": 9,
+        "mean_actual": 88988.0,
+        "rmse": 18748.0,
+        "r2": 0.5989,
+        "rmse_gap": -19445.0,
+        "alert": false
+      },
+      {
+        "group_col": "Neighborhood",
+        "group_val": "Mitchel",
+        "n": 10,
+        "mean_actual": 158120.0,
+        "rmse": 22645.0,
+        "r2": 0.6639,
+        "rmse_gap": -15548.0,
+        "alert": false
+      },
+      {
+        "group_col": "Neighborhood",
+        "group_val": "NAmes",
+        "n": 54,
+        "mean_actual": 144637.0,
+        "rmse": 13649.0,
+        "r2": 0.7385,
+        "rmse_gap": -24543.0,
+        "alert": false
+      },
+      {
+        "group_col": "Neighborhood",
+        "group_val": "NWAmes",
+        "n": 12,
+        "mean_actual": 173525.0,
+        "rmse": 8706.0,
+        "r2": 0.4314,
+        "rmse_gap": -29486.0,
+        "alert": false
+      },
+      {
+        "group_col": "Neighborhood",
+        "group_val": "NoRidge",
+        "n": 15,
+        "mean_actual": 368621.0,
+        "rmse": 112734.0,
+        "r2": 0.5832,
+        "rmse_gap": 74541.0,
+        "alert": true
+      },
+      {
+        "group_col": "Neighborhood",
+        "group_val": "NridgHt",
+        "n": 12,
+        "mean_actual": 326890.0,
+        "rmse": 58819.0,
+        "r2": 0.7555,
+        "rmse_gap": 20627.0,
+        "alert": true
+      },
+      {
+        "group_col": "Neighborhood",
+        "group_val": "OldTown",
+        "n": 22,
+        "mean_actual": 137091.0,
+        "rmse": 34395.0,
+        "r2": 0.8507,
+        "rmse_gap": -3798.0,
+        "alert": false
+      },
+      {
+        "group_col": "Neighborhood",
+        "group_val": "Sawyer",
+        "n": 13,
+        "mean_actual": 136558.0,
+        "rmse": 10264.0,
+        "r2": 0.7261,
+        "rmse_gap": -27929.0,
+        "alert": false
+      },
+      {
+        "group_col": "Neighborhood",
+        "group_val": "SawyerW",
+        "n": 13,
+        "mean_actual": 209008.0,
+        "rmse": 24269.0,
+        "r2": 0.7983,
+        "rmse_gap": -13923.0,
+        "alert": false
+      },
+      {
+        "group_col": "Neighborhood",
+        "group_val": "Somerst",
+        "n": 19,
+        "mean_actual": 220338.0,
+        "rmse": 18805.0,
+        "r2": 0.8664,
+        "rmse_gap": -19388.0,
+        "alert": false
+      },
+      {
+        "group_col": "Neighborhood",
+        "group_val": "StoneBr",
+        "n": 9,
+        "mean_actual": 315335.0,
+        "rmse": 57291.0,
+        "r2": 0.7219,
+        "rmse_gap": 19098.0,
+        "alert": true
+      },
+      {
+        "group_col": "BldgType",
+        "group_val": "1Fam",
+        "n": 246,
+        "mean_actual": 194226.0,
+        "rmse": 41133.0,
+        "r2": 0.8286,
+        "rmse_gap": 2941.0,
+        "alert": false
+      },
+      {
+        "group_col": "BldgType",
+        "group_val": "Duplex",
+        "n": 8,
+        "mean_actual": 122682.0,
+        "rmse": 17878.0,
+        "r2": 0.077,
+        "rmse_gap": -20314.0,
+        "alert": false
+      },
+      {
+        "group_col": "BldgType",
+        "group_val": "Twnhs",
+        "n": 14,
+        "mean_actual": 140457.0,
+        "rmse": 11463.0,
+        "r2": 0.9298,
+        "rmse_gap": -26730.0,
+        "alert": false
+      },
+      {
+        "group_col": "BldgType",
+        "group_val": "TwnhsE",
+        "n": 18,
+        "mean_actual": 172480.0,
+        "rmse": 11064.0,
+        "r2": 0.9693,
+        "rmse_gap": -27129.0,
+        "alert": false
+      },
+      {
+        "group_col": "HouseStyle",
+        "group_val": "1.5Fin",
+        "n": 32,
+        "mean_actual": 141985.0,
+        "rmse": 16990.0,
+        "r2": 0.8984,
+        "rmse_gap": -21202.0,
+        "alert": false
+      },
+      {
+        "group_col": "HouseStyle",
+        "group_val": "1Story",
+        "n": 135,
+        "mean_actual": 171860.0,
+        "rmse": 16271.0,
+        "r2": 0.9409,
+        "rmse_gap": -21921.0,
+        "alert": false
+      },
+      {
+        "group_col": "HouseStyle",
+        "group_val": "2Story",
+        "n": 93,
+        "mean_actual": 229476.0,
+        "rmse": 61512.0,
+        "r2": 0.7636,
+        "rmse_gap": 23320.0,
+        "alert": true
+      },
+      {
+        "group_col": "HouseStyle",
+        "group_val": "SLvl",
+        "n": 17,
+        "mean_actual": 176278.0,
+        "rmse": 22467.0,
+        "r2": 0.7283,
+        "rmse_gap": -15725.0,
+        "alert": false
+      }
+    ]
+  }
+}

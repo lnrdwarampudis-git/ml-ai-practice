@@ -1,0 +1,6 @@
+model,within_1_rmse,within_2_rmse,within_3_rmse,ideal_1_rmse,ideal_2_rmse
+GradientBoosting,0.7836,0.9366,0.9813,0.683,0.954
+Lasso,0.8097,0.9291,0.9776,0.683,0.954
+BayesianRidge,0.7873,0.9366,0.9776,0.683,0.954
+AverageVoting,0.8097,0.9328,0.9776,0.683,0.954
+Stacking,0.8022,0.9366,0.9776,0.683,0.954

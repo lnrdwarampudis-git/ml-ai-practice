@@ -1,0 +1,116 @@
+{
+  "metric": "r2",
+  "champion_model": "GradientBoosting",
+  "friedman": {
+    "statistic": 68.32941176470587,
+    "p_value": 8.847963490772756e-09,
+    "significant": true
+  },
+  "pairwise_vs_champion": [
+    {
+      "model": "Ridge",
+      "wilcoxon_stat": 10.0,
+      "p_value": 0.3125,
+      "p_bonferroni": 1.0,
+      "significantly_worse": false
+    },
+    {
+      "model": "Lasso",
+      "wilcoxon_stat": 9.0,
+      "p_value": 0.40625,
+      "p_bonferroni": 1.0,
+      "significantly_worse": false
+    },
+    {
+      "model": "ElasticNet",
+      "wilcoxon_stat": 15.0,
+      "p_value": 0.03125,
+      "p_bonferroni": 0.46875,
+      "significantly_worse": false
+    },
+    {
+      "model": "BayesianRidge",
+      "wilcoxon_stat": 11.0,
+      "p_value": 0.21875,
+      "p_bonferroni": 1.0,
+      "significantly_worse": false
+    },
+    {
+      "model": "HuberRegressor",
+      "wilcoxon_stat": 15.0,
+      "p_value": 0.03125,
+      "p_bonferroni": 0.46875,
+      "significantly_worse": false
+    },
+    {
+      "model": "SGD",
+      "wilcoxon_stat": 15.0,
+      "p_value": 0.03125,
+      "p_bonferroni": 0.46875,
+      "significantly_worse": false
+    },
+    {
+      "model": "SVR_RBF",
+      "wilcoxon_stat": 15.0,
+      "p_value": 0.03125,
+      "p_bonferroni": 0.46875,
+      "significantly_worse": false
+    },
+    {
+      "model": "KNN",
+      "wilcoxon_stat": 15.0,
+      "p_value": 0.03125,
+      "p_bonferroni": 0.46875,
+      "significantly_worse": false
+    },
+    {
+      "model": "DecisionTree",
+      "wilcoxon_stat": 15.0,
+      "p_value": 0.03125,
+      "p_bonferroni": 0.46875,
+      "significantly_worse": false
+    },
+    {
+      "model": "RandomForest",
+      "wilcoxon_stat": 15.0,
+      "p_value": 0.03125,
+      "p_bonferroni": 0.46875,
+      "significantly_worse": false
+    },
+    {
+      "model": "ExtraTrees",
+      "wilcoxon_stat": 15.0,
+      "p_value": 0.03125,
+      "p_bonferroni": 0.46875,
+      "significantly_worse": false
+    },
+    {
+      "model": "AdaBoost",
+      "wilcoxon_stat": 15.0,
+      "p_value": 0.03125,
+      "p_bonferroni": 0.46875,
+      "significantly_worse": false
+    },
+    {
+      "model": "Bagging",
+      "wilcoxon_stat": 15.0,
+      "p_value": 0.03125,
+      "p_bonferroni": 0.46875,
+      "significantly_worse": false
+    },
+    {
+      "model": "MLP",
+      "wilcoxon_stat": 15.0,
+      "p_value": 0.03125,
+      "p_bonferroni": 0.46875,
+      "significantly_worse": false
+    },
+    {
+      "model": "XGBoost",
+      "wilcoxon_stat": 11.0,
+      "p_value": 0.21875,
+      "p_bonferroni": 1.0,
+      "significantly_worse": false
+    }
+  ]
+}

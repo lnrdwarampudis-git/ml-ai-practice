@@ -1,0 +1,26 @@
+{
+  "All data": {
+    "n_kept": 1168,
+    "n_removed": 0,
+    "r2_mean": 0.8037813792851521,
+    "r2_std": 0.10561876920526492
+  },
+  "IQR removal": {
+    "n_kept": 1150,
+    "n_removed": 18,
+    "r2_mean": 0.8094600914174613,
+    "r2_std": 0.10735312213631656
+  },
+  "Area outlier removal": {
+    "n_kept": 1167,
+    "n_removed": 1,
+    "r2_mean": 0.8924397092378722,
+    "r2_std": 0.02036341635339311
+  },
+  "Isolation Forest": {
+    "n_kept": 1144,
+    "n_removed": 24,
+    "r2_mean": 0.8869930061740039,
+    "r2_std": 0.01933087524686399
+  }
+}

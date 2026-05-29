@@ -1,0 +1,32 @@
+{
+  "OHE (baseline)": {
+    "smoothing": null,
+    "r2_mean": 0.9837899965715596,
+    "r2_std": 0.002366378152718523
+  },
+  "TargetEnc (smoothing=0.1)": {
+    "smoothing": 0.1,
+    "r2_mean": 0.9838145273062853,
+    "r2_std": 0.0022707995254218566
+  },
+  "TargetEnc (smoothing=1.0)": {
+    "smoothing": 1.0,
+    "r2_mean": 0.9838145265790033,
+    "r2_std": 0.0022708007195710047
+  },
+  "TargetEnc (smoothing=5.0)": {
+    "smoothing": 5.0,
+    "r2_mean": 0.9838145234087596,
+    "r2_std": 0.00227080592948196
+  },
+  "TargetEnc (smoothing=10.0)": {
+    "smoothing": 10.0,
+    "r2_mean": 0.9838145195832191,
+    "r2_std": 0.0022708122263169943
+  },
+  "TargetEnc (smoothing=50.0)": {
+    "smoothing": 50.0,
+    "r2_mean": 0.9838144935812734,
+    "r2_std": 0.002270855329225201
+  }
+}
