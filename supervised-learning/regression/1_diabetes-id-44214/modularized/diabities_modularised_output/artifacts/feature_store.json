@@ -1,0 +1,112 @@
+{
+  "age": {
+    "name": "age",
+    "dtype": "float64",
+    "mean": -0.0,
+    "std": 0.047619,
+    "min": -0.107226,
+    "max": 0.110727,
+    "description": "Preprocessed age from Diabetes dataset",
+    "version": "1.0",
+    "created": "2026-06-01"
+  },
+  "sex": {
+    "name": "sex",
+    "dtype": "float64",
+    "mean": 0.0,
+    "std": 0.047619,
+    "min": -0.044642,
+    "max": 0.05068,
+    "description": "Preprocessed sex from Diabetes dataset",
+    "version": "1.0",
+    "created": "2026-06-01"
+  },
+  "bmi": {
+    "name": "bmi",
+    "dtype": "float64",
+    "mean": -0.0,
+    "std": 0.047619,
+    "min": -0.090275,
+    "max": 0.170555,
+    "description": "Preprocessed bmi from Diabetes dataset",
+    "version": "1.0",
+    "created": "2026-06-01"
+  },
+  "bp": {
+    "name": "bp",
+    "dtype": "float64",
+    "mean": -0.0,
+    "std": 0.047619,
+    "min": -0.112399,
+    "max": 0.132044,
+    "description": "Preprocessed bp from Diabetes dataset",
+    "version": "1.0",
+    "created": "2026-06-01"
+  },
+  "s1": {
+    "name": "s1",
+    "dtype": "float64",
+    "mean": -0.0,
+    "std": 0.047619,
+    "min": -0.126781,
+    "max": 0.153914,
+    "description": "Preprocessed s1 from Diabetes dataset",
+    "version": "1.0",
+    "created": "2026-06-01"
+  },
+  "s2": {
+    "name": "s2",
+    "dtype": "float64",
+    "mean": 0.0,
+    "std": 0.047619,
+    "min": -0.115613,
+    "max": 0.198788,
+    "description": "Preprocessed s2 from Diabetes dataset",
+    "version": "1.0",
+    "created": "2026-06-01"
+  },
+  "s3": {
+    "name": "s3",
+    "dtype": "float64",
+    "mean": -0.0,
+    "std": 0.047619,
+    "min": -0.102307,
+    "max": 0.181179,
+    "description": "Preprocessed s3 from Diabetes dataset",
+    "version": "1.0",
+    "created": "2026-06-01"
+  },
+  "s4": {
+    "name": "s4",
+    "dtype": "float64",
+    "mean": -0.0,
+    "std": 0.047619,
+    "min": -0.076395,
+    "max": 0.185234,
+    "description": "Preprocessed s4 from Diabetes dataset",
+    "version": "1.0",
+    "created": "2026-06-01"
+  },
+  "s5": {
+    "name": "s5",
+    "dtype": "float64",
+    "mean": 0.0,
+    "std": 0.047619,
+    "min": -0.126097,
+    "max": 0.133597,
+    "description": "Preprocessed s5 from Diabetes dataset",
+    "version": "1.0",
+    "created": "2026-06-01"
+  },
+  "s6": {
+    "name": "s6",
+    "dtype": "float64",
+    "mean": 0.0,
+    "std": 0.047619,
+    "min": -0.137767,
+    "max": 0.135612,
+    "description": "Preprocessed s6 from Diabetes dataset",
+    "version": "1.0",
+    "created": "2026-06-01"
+  }
+}

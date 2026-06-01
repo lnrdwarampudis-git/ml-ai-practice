@@ -1,0 +1,19 @@
+{
+  "selected_strategy": "80/20 holdout plus shuffled KFold cross-validation on the training split",
+  "why": "Ames rows are treated as independent property sales without a reliable temporal deployment field in this exercise.",
+  "train_test_split": {
+    "test_size": 0.2,
+    "random_state": 42
+  },
+  "cross_validation": {
+    "type": "KFold",
+    "shuffle": true,
+    "random_state": 42
+  },
+  "alternatives_to_consider": [
+    "GroupKFold by Neighborhood if evaluating generalization to unseen neighborhoods.",
+    "Time-based split by YrSold if deployment is future sale prediction.",
+    "Spatial split if latitude/longitude or richer geospatial features are available."
+  ],
+  "row_count": 2344
+}

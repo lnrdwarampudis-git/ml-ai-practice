@@ -1,0 +1,10 @@
+{
+  "n": 345,
+  "n_events": 317,
+  "n_censored": 28,
+  "censoring_rate": 0.08115942028985507,
+  "naive_complete_case_mean": 12.8801261829653,
+  "naive_all_as_events_mean": 16.055072463768116,
+  "time_min": 1.0,
+  "time_max": 52.0
+}

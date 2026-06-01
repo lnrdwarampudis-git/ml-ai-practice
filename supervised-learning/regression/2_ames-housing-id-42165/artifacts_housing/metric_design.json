@@ -1,0 +1,15 @@
+{
+  "primary_metric": "rmse",
+  "secondary_metrics": [
+    "mae",
+    "rmsle",
+    "r2"
+  ],
+  "metric_interpretation": {
+    "rmse": "Penalizes large dollar mistakes more strongly.",
+    "mae": "Average absolute dollar error; easiest to communicate.",
+    "rmsle": "Better for skewed house prices and relative error behavior.",
+    "r2": "Explained variance, useful but not sufficient alone."
+  },
+  "selection_rule": "Use CV RMSE to select a model, then inspect MAE/RMSLE/residuals before trusting it."
+}

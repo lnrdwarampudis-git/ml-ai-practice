@@ -1,0 +1,19 @@
+{
+  "problem_type": "survival_analysis",
+  "dataset": "Rossi Recidivism \u2014 time to re-arrest",
+  "time_col": "week",
+  "event_col": "arrest",
+  "censoring_rate": 0.08115942028985507,
+  "time_unit": "weeks",
+  "n_events": 317,
+  "n_censored": 28,
+  "primary_models": [
+    "CoxPH",
+    "AFT-Weibull",
+    "SurvivalRF",
+    "QuantileGBR"
+  ],
+  "primary_metric": "C-index (Harrell concordance)",
+  "secondary_metric": "Integrated Brier Score",
+  "why_not_mse": "MSE treats censored observations as complete, underestimating survival time and biasing all coefficient estimates"
+}

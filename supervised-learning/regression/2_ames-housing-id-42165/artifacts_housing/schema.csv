@@ -1,0 +1,83 @@
+,dtype
+Order,int64
+PID,int64
+MS SubClass,int64
+MS Zoning,str
+Lot Frontage,float64
+Lot Area,int64
+Street,str
+Alley,str
+Lot Shape,str
+Land Contour,str
+Utilities,str
+Lot Config,str
+Land Slope,str
+Neighborhood,str
+Condition 1,str
+Condition 2,str
+Bldg Type,str
+House Style,str
+Overall Qual,int64
+Overall Cond,int64
+Year Built,int64
+Year Remod/Add,int64
+Roof Style,str
+Roof Matl,str
+Exterior 1st,str
+Exterior 2nd,str
+Mas Vnr Type,str
+Mas Vnr Area,float64
+Exter Qual,str
+Exter Cond,str
+Foundation,str
+Bsmt Qual,str
+Bsmt Cond,str
+Bsmt Exposure,str
+BsmtFin Type 1,str
+BsmtFin SF 1,float64
+BsmtFin Type 2,str
+BsmtFin SF 2,float64
+Bsmt Unf SF,float64
+Total Bsmt SF,float64
+Heating,str
+Heating QC,str
+Central Air,str
+Electrical,str
+1st Flr SF,int64
+2nd Flr SF,int64
+Low Qual Fin SF,int64
+Gr Liv Area,int64
+Bsmt Full Bath,float64
+Bsmt Half Bath,float64
+Full Bath,int64
+Half Bath,int64
+Bedroom AbvGr,int64
+Kitchen AbvGr,int64
+Kitchen Qual,str
+TotRms AbvGrd,int64
+Functional,str
+Fireplaces,int64
+Fireplace Qu,str
+Garage Type,str
+Garage Yr Blt,float64
+Garage Finish,str
+Garage Cars,float64
+Garage Area,float64
+Garage Qual,str
+Garage Cond,str
+Paved Drive,str
+Wood Deck SF,int64
+Open Porch SF,int64
+Enclosed Porch,int64
+3Ssn Porch,int64
+Screen Porch,int64
+Pool Area,int64
+Pool QC,str
+Fence,str
+Misc Feature,str
+Misc Val,int64
+Mo Sold,int64
+Yr Sold,int64
+Sale Type,str
+Sale Condition,str
+SalePrice,int64

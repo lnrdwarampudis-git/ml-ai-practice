@@ -1,0 +1,7 @@
+{
+  "data_id": 42165,
+  "rows": 2930,
+  "columns": 82,
+  "sha256_hash": "91bad56d794eba1c149fc13034263266e2c71c37e2ae4df83f4db075721d1eac",
+  "hash_policy": "sha256 over pandas row hashes after sorting columns and casting values to string"
+}

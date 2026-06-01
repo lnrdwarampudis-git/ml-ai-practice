@@ -1,0 +1,1269 @@
+{
+  "target": "SalePrice",
+  "required_columns": [
+    "Order",
+    "PID",
+    "MS SubClass",
+    "MS Zoning",
+    "Lot Frontage",
+    "Lot Area",
+    "Street",
+    "Alley",
+    "Lot Shape",
+    "Land Contour",
+    "Utilities",
+    "Lot Config",
+    "Land Slope",
+    "Neighborhood",
+    "Condition 1",
+    "Condition 2",
+    "Bldg Type",
+    "House Style",
+    "Overall Qual",
+    "Overall Cond",
+    "Year Built",
+    "Year Remod/Add",
+    "Roof Style",
+    "Roof Matl",
+    "Exterior 1st",
+    "Exterior 2nd",
+    "Mas Vnr Type",
+    "Mas Vnr Area",
+    "Exter Qual",
+    "Exter Cond",
+    "Foundation",
+    "Bsmt Qual",
+    "Bsmt Cond",
+    "Bsmt Exposure",
+    "BsmtFin Type 1",
+    "BsmtFin SF 1",
+    "BsmtFin Type 2",
+    "BsmtFin SF 2",
+    "Bsmt Unf SF",
+    "Total Bsmt SF",
+    "Heating",
+    "Heating QC",
+    "Central Air",
+    "Electrical",
+    "1st Flr SF",
+    "2nd Flr SF",
+    "Low Qual Fin SF",
+    "Gr Liv Area",
+    "Bsmt Full Bath",
+    "Bsmt Half Bath",
+    "Full Bath",
+    "Half Bath",
+    "Bedroom AbvGr",
+    "Kitchen AbvGr",
+    "Kitchen Qual",
+    "TotRms AbvGrd",
+    "Functional",
+    "Fireplaces",
+    "Fireplace Qu",
+    "Garage Type",
+    "Garage Yr Blt",
+    "Garage Finish",
+    "Garage Cars",
+    "Garage Area",
+    "Garage Qual",
+    "Garage Cond",
+    "Paved Drive",
+    "Wood Deck SF",
+    "Open Porch SF",
+    "Enclosed Porch",
+    "3Ssn Porch",
+    "Screen Porch",
+    "Pool Area",
+    "Pool QC",
+    "Fence",
+    "Misc Feature",
+    "Misc Val",
+    "Mo Sold",
+    "Yr Sold",
+    "Sale Type",
+    "Sale Condition"
+  ],
+  "column_count": 81,
+  "columns": {
+    "Order": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 2344,
+      "kind": "numeric",
+      "min": 1.0,
+      "max": 2930.0,
+      "quantiles": {
+        "0.01": 25.43,
+        "0.05": 145.15,
+        "0.5": 1466.0,
+        "0.95": 2778.85,
+        "0.99": 2903.57
+      }
+    },
+    "PID": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 2344,
+      "kind": "numeric",
+      "min": 526301100.0,
+      "max": 924152030.0,
+      "quantiles": {
+        "0.01": 527105514.1,
+        "0.05": 527276056.5,
+        "0.5": 535454060.0,
+        "0.95": 916455067.0,
+        "0.99": 923275118.5
+      }
+    },
+    "MS SubClass": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 16,
+      "kind": "numeric",
+      "min": 20.0,
+      "max": 190.0,
+      "quantiles": {
+        "0.01": 20.0,
+        "0.05": 20.0,
+        "0.5": 50.0,
+        "0.95": 160.0,
+        "0.99": 190.0
+      }
+    },
+    "MS Zoning": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 7,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "RL",
+        "RM",
+        "FV",
+        "RH",
+        "C (all)",
+        "A (agr)",
+        "I (all)"
+      ]
+    },
+    "Lot Frontage": {
+      "dtype": "float64",
+      "missing_rate": 0.16766211604095563,
+      "unique_values": 120,
+      "kind": "numeric",
+      "min": 21.0,
+      "max": 313.0,
+      "quantiles": {
+        "0.01": 21.0,
+        "0.05": 34.0,
+        "0.5": 68.0,
+        "0.95": 107.0,
+        "0.99": 135.5
+      }
+    },
+    "Lot Area": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 1634,
+      "kind": "numeric",
+      "min": 1300.0,
+      "max": 215245.0,
+      "quantiles": {
+        "0.01": 1680.0,
+        "0.05": 3217.25,
+        "0.5": 9356.5,
+        "0.95": 17342.29999999999,
+        "0.99": 32165.010000000115
+      }
+    },
+    "Street": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 2,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "Pave",
+        "Grvl"
+      ]
+    },
+    "Alley": {
+      "dtype": "str",
+      "missing_rate": 0.9308873720136519,
+      "unique_values": 2,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "Grvl",
+        "Pave"
+      ]
+    },
+    "Lot Shape": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 4,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "Reg",
+        "IR1",
+        "IR2",
+        "IR3"
+      ]
+    },
+    "Land Contour": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 4,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "Lvl",
+        "HLS",
+        "Bnk",
+        "Low"
+      ]
+    },
+    "Utilities": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 3,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "AllPub",
+        "NoSewr",
+        "NoSeWa"
+      ]
+    },
+    "Lot Config": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 5,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "Inside",
+        "Corner",
+        "CulDSac",
+        "FR2",
+        "FR3"
+      ]
+    },
+    "Land Slope": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 3,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "Gtl",
+        "Mod",
+        "Sev"
+      ]
+    },
+    "Neighborhood": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 28,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "NAmes",
+        "CollgCr",
+        "OldTown",
+        "Edwards",
+        "Gilbert",
+        "Somerst",
+        "NridgHt",
+        "Sawyer",
+        "NWAmes",
+        "SawyerW",
+        "Mitchel",
+        "Crawfor",
+        "BrkSide",
+        "IDOTRR",
+        "Timber",
+        "NoRidge",
+        "SWISU",
+        "StoneBr",
+        "ClearCr",
+        "MeadowV",
+        "BrDale",
+        "Blmngtn",
+        "Veenker",
+        "NPkVill",
+        "Blueste",
+        "Greens",
+        "GrnHill",
+        "Landmrk"
+      ]
+    },
+    "Condition 1": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 9,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "Norm",
+        "Feedr",
+        "Artery",
+        "RRAn",
+        "PosN",
+        "RRAe",
+        "PosA",
+        "RRNn",
+        "RRNe"
+      ]
+    },
+    "Condition 2": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 8,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "Norm",
+        "Feedr",
+        "Artery",
+        "PosA",
+        "PosN",
+        "RRNn",
+        "RRAe",
+        "RRAn"
+      ]
+    },
+    "Bldg Type": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 5,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "1Fam",
+        "TwnhsE",
+        "Duplex",
+        "Twnhs",
+        "2fmCon"
+      ]
+    },
+    "House Style": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 8,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "1Story",
+        "2Story",
+        "1.5Fin",
+        "SLvl",
+        "SFoyer",
+        "2.5Unf",
+        "1.5Unf",
+        "2.5Fin"
+      ]
+    },
+    "Overall Qual": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 10,
+      "kind": "numeric",
+      "min": 1.0,
+      "max": 10.0,
+      "quantiles": {
+        "0.01": 3.0,
+        "0.05": 4.0,
+        "0.5": 6.0,
+        "0.95": 8.0,
+        "0.99": 9.0
+      }
+    },
+    "Overall Cond": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 9,
+      "kind": "numeric",
+      "min": 1.0,
+      "max": 9.0,
+      "quantiles": {
+        "0.01": 3.0,
+        "0.05": 4.0,
+        "0.5": 5.0,
+        "0.95": 8.0,
+        "0.99": 9.0
+      }
+    },
+    "Year Built": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 118,
+      "kind": "numeric",
+      "min": 1872.0,
+      "max": 2010.0,
+      "quantiles": {
+        "0.01": 1896.86,
+        "0.05": 1915.0,
+        "0.5": 1972.0,
+        "0.95": 2007.0,
+        "0.99": 2008.0
+      }
+    },
+    "Year Remod/Add": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 61,
+      "kind": "numeric",
+      "min": 1950.0,
+      "max": 2010.0,
+      "quantiles": {
+        "0.01": 1950.0,
+        "0.05": 1950.0,
+        "0.5": 1992.0,
+        "0.95": 2007.0,
+        "0.99": 2009.0
+      }
+    },
+    "Roof Style": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 6,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "Gable",
+        "Hip",
+        "Gambrel",
+        "Flat",
+        "Mansard",
+        "Shed"
+      ]
+    },
+    "Roof Matl": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 8,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "CompShg",
+        "Tar&Grv",
+        "WdShake",
+        "WdShngl",
+        "Roll",
+        "ClyTile",
+        "Membran",
+        "Metal"
+      ]
+    },
+    "Exterior 1st": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 16,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "VinylSd",
+        "HdBoard",
+        "MetalSd",
+        "Wd Sdng",
+        "Plywood",
+        "CemntBd",
+        "BrkFace",
+        "WdShing",
+        "AsbShng",
+        "Stucco",
+        "BrkComm",
+        "Stone",
+        "AsphShn",
+        "CBlock",
+        "PreCast",
+        "ImStucc"
+      ]
+    },
+    "Exterior 2nd": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 16,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "VinylSd",
+        "MetalSd",
+        "HdBoard",
+        "Wd Sdng",
+        "Plywood",
+        "CmentBd",
+        "Wd Shng",
+        "BrkFace",
+        "Stucco",
+        "AsbShng",
+        "Brk Cmn",
+        "ImStucc",
+        "Stone",
+        "CBlock",
+        "AsphShn",
+        "PreCast"
+      ]
+    },
+    "Mas Vnr Type": {
+      "dtype": "str",
+      "missing_rate": 0.6083617747440273,
+      "unique_values": 4,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "BrkFace",
+        "Stone",
+        "BrkCmn",
+        "CBlock"
+      ]
+    },
+    "Mas Vnr Area": {
+      "dtype": "float64",
+      "missing_rate": 0.008105802047781569,
+      "unique_values": 391,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 1290.0,
+      "quantiles": {
+        "0.01": 0.0,
+        "0.05": 0.0,
+        "0.5": 0.0,
+        "0.95": 450.7999999999997,
+        "0.99": 737.039999999999
+      }
+    },
+    "Exter Qual": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 4,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "TA",
+        "Gd",
+        "Ex",
+        "Fa"
+      ]
+    },
+    "Exter Cond": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 5,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "TA",
+        "Gd",
+        "Fa",
+        "Ex",
+        "Po"
+      ]
+    },
+    "Foundation": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 6,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "CBlock",
+        "PConc",
+        "BrkTil",
+        "Slab",
+        "Stone",
+        "Wood"
+      ]
+    },
+    "Bsmt Qual": {
+      "dtype": "str",
+      "missing_rate": 0.026023890784982934,
+      "unique_values": 5,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "TA",
+        "Gd",
+        "Ex",
+        "Fa",
+        "Po"
+      ]
+    },
+    "Bsmt Cond": {
+      "dtype": "str",
+      "missing_rate": 0.026023890784982934,
+      "unique_values": 5,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "TA",
+        "Gd",
+        "Fa",
+        "Po",
+        "Ex"
+      ]
+    },
+    "Bsmt Exposure": {
+      "dtype": "str",
+      "missing_rate": 0.02687713310580205,
+      "unique_values": 4,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "No",
+        "Av",
+        "Gd",
+        "Mn"
+      ]
+    },
+    "BsmtFin Type 1": {
+      "dtype": "str",
+      "missing_rate": 0.026023890784982934,
+      "unique_values": 6,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "Unf",
+        "GLQ",
+        "ALQ",
+        "Rec",
+        "BLQ",
+        "LwQ"
+      ]
+    },
+    "BsmtFin SF 1": {
+      "dtype": "float64",
+      "missing_rate": 0.0004266211604095563,
+      "unique_values": 882,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 5644.0,
+      "quantiles": {
+        "0.01": 0.0,
+        "0.05": 0.0,
+        "0.5": 375.0,
+        "0.95": 1249.0,
+        "0.99": 1613.539999999999
+      }
+    },
+    "BsmtFin Type 2": {
+      "dtype": "str",
+      "missing_rate": 0.026450511945392493,
+      "unique_values": 6,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "Unf",
+        "Rec",
+        "LwQ",
+        "BLQ",
+        "ALQ",
+        "GLQ"
+      ]
+    },
+    "BsmtFin SF 2": {
+      "dtype": "float64",
+      "missing_rate": 0.0004266211604095563,
+      "unique_values": 231,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 1526.0,
+      "quantiles": {
+        "0.01": 0.0,
+        "0.05": 0.0,
+        "0.5": 0.0,
+        "0.95": 435.0,
+        "0.99": 871.3199999999997
+      }
+    },
+    "Bsmt Unf SF": {
+      "dtype": "float64",
+      "missing_rate": 0.0004266211604095563,
+      "unique_values": 1014,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 2336.0,
+      "quantiles": {
+        "0.01": 0.0,
+        "0.05": 0.0,
+        "0.5": 462.0,
+        "0.95": 1458.4000000000005,
+        "0.99": 1753.0
+      }
+    },
+    "Total Bsmt SF": {
+      "dtype": "float64",
+      "missing_rate": 0.0004266211604095563,
+      "unique_values": 936,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 6110.0,
+      "quantiles": {
+        "0.01": 0.0,
+        "0.05": 456.20000000000005,
+        "0.5": 988.0,
+        "0.95": 1745.6000000000004,
+        "0.99": 2157.9799999999977
+      }
+    },
+    "Heating": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 6,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "GasA",
+        "GasW",
+        "Grav",
+        "Wall",
+        "OthW",
+        "Floor"
+      ]
+    },
+    "Heating QC": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 5,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "Ex",
+        "TA",
+        "Gd",
+        "Fa",
+        "Po"
+      ]
+    },
+    "Central Air": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 2,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "Y",
+        "N"
+      ]
+    },
+    "Electrical": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 5,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "SBrkr",
+        "FuseA",
+        "FuseF",
+        "FuseP",
+        "Mix"
+      ]
+    },
+    "1st Flr SF": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 980,
+      "kind": "numeric",
+      "min": 334.0,
+      "max": 5095.0,
+      "quantiles": {
+        "0.01": 520.0,
+        "0.05": 672.0,
+        "0.5": 1082.0,
+        "0.95": 1802.85,
+        "0.99": 2268.690000000003
+      }
+    },
+    "2nd Flr SF": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 550,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 2065.0,
+      "quantiles": {
+        "0.01": 0.0,
+        "0.05": 0.0,
+        "0.5": 0.0,
+        "0.95": 1127.6999999999998,
+        "0.99": 1394.260000000003
+      }
+    },
+    "Low Qual Fin SF": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 29,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 1064.0,
+      "quantiles": {
+        "0.01": 0.0,
+        "0.05": 0.0,
+        "0.5": 0.0,
+        "0.95": 0.0,
+        "0.99": 142.28000000000065
+      }
+    },
+    "Gr Liv Area": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 1143,
+      "kind": "numeric",
+      "min": 334.0,
+      "max": 5642.0,
+      "quantiles": {
+        "0.01": 691.86,
+        "0.05": 848.9000000000001,
+        "0.5": 1436.5,
+        "0.95": 2459.9499999999994,
+        "0.99": 2944.57
+      }
+    },
+    "Bsmt Full Bath": {
+      "dtype": "float64",
+      "missing_rate": 0.0004266211604095563,
+      "unique_values": 4,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 3.0,
+      "quantiles": {
+        "0.01": 0.0,
+        "0.05": 0.0,
+        "0.5": 0.0,
+        "0.95": 1.0,
+        "0.99": 2.0
+      }
+    },
+    "Bsmt Half Bath": {
+      "dtype": "float64",
+      "missing_rate": 0.0004266211604095563,
+      "unique_values": 3,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 2.0,
+      "quantiles": {
+        "0.01": 0.0,
+        "0.05": 0.0,
+        "0.5": 0.0,
+        "0.95": 1.0,
+        "0.99": 1.0
+      }
+    },
+    "Full Bath": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 5,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 4.0,
+      "quantiles": {
+        "0.01": 1.0,
+        "0.05": 1.0,
+        "0.5": 2.0,
+        "0.95": 2.0,
+        "0.99": 3.0
+      }
+    },
+    "Half Bath": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 3,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 2.0,
+      "quantiles": {
+        "0.01": 0.0,
+        "0.05": 0.0,
+        "0.5": 0.0,
+        "0.95": 1.0,
+        "0.99": 1.0
+      }
+    },
+    "Bedroom AbvGr": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 8,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 8.0,
+      "quantiles": {
+        "0.01": 1.0,
+        "0.05": 2.0,
+        "0.5": 3.0,
+        "0.95": 4.0,
+        "0.99": 5.0
+      }
+    },
+    "Kitchen AbvGr": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 4,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 3.0,
+      "quantiles": {
+        "0.01": 1.0,
+        "0.05": 1.0,
+        "0.5": 1.0,
+        "0.95": 1.0,
+        "0.99": 2.0
+      }
+    },
+    "Kitchen Qual": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 4,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "TA",
+        "Gd",
+        "Ex",
+        "Fa"
+      ]
+    },
+    "TotRms AbvGrd": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 14,
+      "kind": "numeric",
+      "min": 2.0,
+      "max": 15.0,
+      "quantiles": {
+        "0.01": 4.0,
+        "0.05": 4.0,
+        "0.5": 6.0,
+        "0.95": 9.0,
+        "0.99": 11.0
+      }
+    },
+    "Functional": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 8,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "Typ",
+        "Min2",
+        "Min1",
+        "Mod",
+        "Maj1",
+        "Maj2",
+        "Sev",
+        "Sal"
+      ]
+    },
+    "Fireplaces": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 5,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 4.0,
+      "quantiles": {
+        "0.01": 0.0,
+        "0.05": 0.0,
+        "0.5": 1.0,
+        "0.95": 2.0,
+        "0.99": 2.0
+      }
+    },
+    "Fireplace Qu": {
+      "dtype": "str",
+      "missing_rate": 0.4880546075085324,
+      "unique_values": 5,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "Gd",
+        "TA",
+        "Fa",
+        "Po",
+        "Ex"
+      ]
+    },
+    "Garage Type": {
+      "dtype": "str",
+      "missing_rate": 0.051194539249146756,
+      "unique_values": 6,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "Attchd",
+        "Detchd",
+        "BuiltIn",
+        "Basment",
+        "2Types",
+        "CarPort"
+      ]
+    },
+    "Garage Yr Blt": {
+      "dtype": "float64",
+      "missing_rate": 0.05204778156996587,
+      "unique_values": 102,
+      "kind": "numeric",
+      "min": 1895.0,
+      "max": 2207.0,
+      "quantiles": {
+        "0.01": 1915.0,
+        "0.05": 1926.0,
+        "0.5": 1978.0,
+        "0.95": 2007.0,
+        "0.99": 2008.0
+      }
+    },
+    "Garage Finish": {
+      "dtype": "str",
+      "missing_rate": 0.05204778156996587,
+      "unique_values": 3,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "Unf",
+        "RFn",
+        "Fin"
+      ]
+    },
+    "Garage Cars": {
+      "dtype": "float64",
+      "missing_rate": 0.0004266211604095563,
+      "unique_values": 5,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 4.0,
+      "quantiles": {
+        "0.01": 0.0,
+        "0.05": 0.0,
+        "0.5": 2.0,
+        "0.95": 3.0,
+        "0.99": 3.0
+      }
+    },
+    "Garage Area": {
+      "dtype": "float64",
+      "missing_rate": 0.0004266211604095563,
+      "unique_values": 549,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 1488.0,
+      "quantiles": {
+        "0.01": 0.0,
+        "0.05": 0.0,
+        "0.5": 476.0,
+        "0.95": 850.0,
+        "0.99": 999.6399999999994
+      }
+    },
+    "Garage Qual": {
+      "dtype": "str",
+      "missing_rate": 0.05204778156996587,
+      "unique_values": 5,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "TA",
+        "Fa",
+        "Gd",
+        "Po",
+        "Ex"
+      ]
+    },
+    "Garage Cond": {
+      "dtype": "str",
+      "missing_rate": 0.05204778156996587,
+      "unique_values": 5,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "TA",
+        "Fa",
+        "Gd",
+        "Po",
+        "Ex"
+      ]
+    },
+    "Paved Drive": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 3,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "Y",
+        "N",
+        "P"
+      ]
+    },
+    "Wood Deck SF": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 350,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 870.0,
+      "quantiles": {
+        "0.01": 0.0,
+        "0.05": 0.0,
+        "0.5": 0.0,
+        "0.95": 328.0,
+        "0.99": 498.8500000000008
+      }
+    },
+    "Open Porch SF": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 232,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 742.0,
+      "quantiles": {
+        "0.01": 0.0,
+        "0.05": 0.0,
+        "0.5": 26.0,
+        "0.95": 181.69999999999982,
+        "0.99": 287.57000000000016
+      }
+    },
+    "Enclosed Porch": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 171,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 1012.0,
+      "quantiles": {
+        "0.01": 0.0,
+        "0.05": 0.0,
+        "0.5": 0.0,
+        "0.95": 182.54999999999973,
+        "0.99": 264.57000000000016
+      }
+    },
+    "3Ssn Porch": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 25,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 508.0,
+      "quantiles": {
+        "0.01": 0.0,
+        "0.05": 0.0,
+        "0.5": 0.0,
+        "0.95": 0.0,
+        "0.99": 125.70000000000164
+      }
+    },
+    "Screen Porch": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 98,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 576.0,
+      "quantiles": {
+        "0.01": 0.0,
+        "0.05": 0.0,
+        "0.5": 0.0,
+        "0.95": 161.8499999999999,
+        "0.99": 257.7100000000005
+      }
+    },
+    "Pool Area": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 13,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 800.0,
+      "quantiles": {
+        "0.01": 0.0,
+        "0.05": 0.0,
+        "0.5": 0.0,
+        "0.95": 0.0,
+        "0.99": 0.0
+      }
+    },
+    "Pool QC": {
+      "dtype": "str",
+      "missing_rate": 0.9948805460750854,
+      "unique_values": 4,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "Ex",
+        "Gd",
+        "TA",
+        "Fa"
+      ]
+    },
+    "Fence": {
+      "dtype": "str",
+      "missing_rate": 0.7994880546075085,
+      "unique_values": 4,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "MnPrv",
+        "GdPrv",
+        "GdWo",
+        "MnWw"
+      ]
+    },
+    "Misc Feature": {
+      "dtype": "str",
+      "missing_rate": 0.9598976109215017,
+      "unique_values": 4,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "Shed",
+        "Gar2",
+        "Othr",
+        "Elev"
+      ]
+    },
+    "Misc Val": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 35,
+      "kind": "numeric",
+      "min": 0.0,
+      "max": 17000.0,
+      "quantiles": {
+        "0.01": 0.0,
+        "0.05": 0.0,
+        "0.5": 0.0,
+        "0.95": 0.0,
+        "0.99": 1200.0
+      }
+    },
+    "Mo Sold": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 12,
+      "kind": "numeric",
+      "min": 1.0,
+      "max": 12.0,
+      "quantiles": {
+        "0.01": 1.0,
+        "0.05": 2.0,
+        "0.5": 6.0,
+        "0.95": 11.0,
+        "0.99": 12.0
+      }
+    },
+    "Yr Sold": {
+      "dtype": "int64",
+      "missing_rate": 0.0,
+      "unique_values": 5,
+      "kind": "numeric",
+      "min": 2006.0,
+      "max": 2010.0,
+      "quantiles": {
+        "0.01": 2006.0,
+        "0.05": 2006.0,
+        "0.5": 2008.0,
+        "0.95": 2010.0,
+        "0.99": 2010.0
+      }
+    },
+    "Sale Type": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 10,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "WD ",
+        "New",
+        "COD",
+        "ConLD",
+        "CWD",
+        "ConLI",
+        "Oth",
+        "Con",
+        "ConLw",
+        "VWD"
+      ]
+    },
+    "Sale Condition": {
+      "dtype": "str",
+      "missing_rate": 0.0,
+      "unique_values": 6,
+      "kind": "categorical",
+      "allowed_values_top_50": [
+        "Normal",
+        "Partial",
+        "Abnorml",
+        "Family",
+        "Alloca",
+        "AdjLand"
+      ]
+    }
+  },
+  "max_allowed_missing_rate": 0.35,
+  "max_allowed_new_category_share": 0.05
+}

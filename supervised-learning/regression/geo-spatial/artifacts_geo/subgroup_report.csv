@@ -1,0 +1,5 @@
+region,n,mean_actual,rmse,r2,rmse_gap,alert
+bay_area,752,2.731,0.5376,0.7732,0.049,False
+la_basin,1574,2.409,0.5131,0.7866,0.0244,False
+northern_ca,737,1.346,0.3674,0.7309,-0.1213,False
+southern_ca,805,1.753,0.5233,0.74,0.0346,False

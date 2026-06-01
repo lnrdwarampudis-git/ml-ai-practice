@@ -1,0 +1,12 @@
+,dtype
+age,float64
+sex,float64
+bmi,float64
+bp,float64
+s1,float64
+s2,float64
+s3,float64
+s4,float64
+s5,float64
+s6,float64
+target,float64

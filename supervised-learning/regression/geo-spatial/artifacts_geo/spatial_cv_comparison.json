@@ -1,0 +1,5 @@
+{
+  "random_kfold_r2": 0.6605036021175689,
+  "spatial_kfold_r2": -10.742243118749043,
+  "leakage_inflation": 11.402746720866611
+}

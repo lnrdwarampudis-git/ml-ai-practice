@@ -1,0 +1,9 @@
+{
+  "random_seed": 42,
+  "sklearn_version": "1.8.0",
+  "numpy_version": "2.4.5",
+  "pandas_version": "3.0.3",
+  "train_hash": "af0c112baf2a",
+  "test_hash": "5008b6ea7e5b",
+  "best_model": "Lasso"
+}

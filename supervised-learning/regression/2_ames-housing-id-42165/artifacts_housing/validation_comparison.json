@@ -1,0 +1,10 @@
+{
+  "group_kfold_by_neighborhood": {
+    "n_splits": 5,
+    "rmse_mean": 25732.26980714625,
+    "rmse_std": 7352.872091191712,
+    "mae_mean": 15847.290342618839,
+    "r2_mean": 0.8558680527065963,
+    "why": "Tests whether performance holds when entire neighborhoods are withheld."
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "target": "SalePrice",
+  "prediction_time_assumption": "Only features known before the sale price outcome is finalized should be used.",
+  "suspicious_columns": [
+    {
+      "column": "Mo Sold",
+      "reasons": [
+        "name suggests target/outcome timing"
+      ]
+    },
+    {
+      "column": "Yr Sold",
+      "reasons": [
+        "name suggests target/outcome timing"
+      ]
+    },
+    {
+      "column": "Sale Type",
+      "reasons": [
+        "name suggests target/outcome timing"
+      ]
+    },
+    {
+      "column": "Sale Condition",
+      "reasons": [
+        "name suggests target/outcome timing"
+      ]
+    }
+  ],
+  "status": "review_required"
+}

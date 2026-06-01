@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-05-29T22:46:04.817808+00:00",
+  "model_type": "Survival Analysis Pipeline",
+  "dataset": "Rossi Recidivism \u2014 time to re-arrest",
+  "evaluation_results": {
+    "best_c_index": 0,
+    "pi_coverage_80": 0.8045977011494253,
+    "survival_ml_c_indices": {}
+  },
+  "censoring_rate": 0.08115942028985507,
+  "methods_used": [
+    "Kaplan-Meier",
+    "Nelson-Aalen",
+    "Cox PH",
+    "AFT (Weibull/LN/LL)",
+    "Quantile GBR",
+    "Tobit MLE",
+    "Survival RF",
+    "GBSA"
+  ],
+  "limitations": [
+    "Cox PH requires proportional hazards assumption \u2014 check Schoenfeld residuals.",
+    "Quantile regression ignores censoring mechanism \u2014 valid only for well-randomised censoring.",
+    "AFT parametric models assume a specific distribution family for T."
+  ],
+  "ethical_considerations": [
+    "Recidivism models must not be used for parole decisions without human oversight.",
+    "Survival models for medical outcomes require prospective validation.",
+    "Race as a feature in recidivism models perpetuates historical bias \u2014 model for research only."
+  ]
+}

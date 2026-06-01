@@ -1,0 +1,79 @@
+{
+  "dataset": "diabetes_openml_44214",
+  "version": "1.0.0",
+  "date": "2026-06-01",
+  "features": {
+    "age": {
+      "dtype": "float64",
+      "min": -0.1072256316073538,
+      "max": 0.11072667545381144,
+      "null_allowed": false
+    },
+    "sex": {
+      "dtype": "float64",
+      "min": -0.044641636506989144,
+      "max": 0.05068011873981862,
+      "null_allowed": false
+    },
+    "bmi": {
+      "dtype": "float64",
+      "min": -0.09027529589850945,
+      "max": 0.17055522598064407,
+      "null_allowed": false
+    },
+    "bp": {
+      "dtype": "float64",
+      "min": -0.11239880254408448,
+      "max": 0.13204361674121307,
+      "null_allowed": false
+    },
+    "s1": {
+      "dtype": "float64",
+      "min": -0.12678066991651324,
+      "max": 0.15391371315651542,
+      "null_allowed": false
+    },
+    "s2": {
+      "dtype": "float64",
+      "min": -0.11561306597939897,
+      "max": 0.19878798965729408,
+      "null_allowed": false
+    },
+    "s3": {
+      "dtype": "float64",
+      "min": -0.10230705051741597,
+      "max": 0.18117906039727852,
+      "null_allowed": false
+    },
+    "s4": {
+      "dtype": "float64",
+      "min": -0.0763945037500033,
+      "max": 0.18523444326019867,
+      "null_allowed": false
+    },
+    "s5": {
+      "dtype": "float64",
+      "min": -0.12609712083330468,
+      "max": 0.13359728192191356,
+      "null_allowed": false
+    },
+    "s6": {
+      "dtype": "float64",
+      "min": -0.13776722569000302,
+      "max": 0.13561183068907107,
+      "null_allowed": false
+    }
+  },
+  "target": {
+    "name": "target",
+    "dtype": "float64",
+    "min": 25.0,
+    "max": 346.0,
+    "null_allowed": false
+  },
+  "row_count": {
+    "min": 400,
+    "max": 500
+  },
+  "hash": "84ac48a14cf3"
+}

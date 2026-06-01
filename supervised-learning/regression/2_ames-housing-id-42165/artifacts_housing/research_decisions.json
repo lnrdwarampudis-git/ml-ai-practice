@@ -1,0 +1,32 @@
+{
+  "problem_definition": {
+    "problem_type": "regression",
+    "target": "SalePrice",
+    "source": "fetch_openml(data_id=42165, as_frame=True, parser='auto')"
+  },
+  "missing_data_policy": {
+    "simple": "Median imputation plus missingness indicators.",
+    "mice": "IterativeImputer with BayesianRidge to model feature-conditional missing values.",
+    "knn": "KNNImputer with distance weighting for local-neighborhood imputation.",
+    "categorical": "Most-frequent imputation plus unknown-safe one-hot encoding."
+  },
+  "robustness_policy": {
+    "outliers": "Clip numeric features at train-set 1st/99th percentiles inside the pipeline.",
+    "scaling": "RobustScaler for median/IQR scaling where appropriate.",
+    "robust_regression": "HuberRegressor reduces sensitivity to large target residuals.",
+    "target_transform": "Linear robust/basis models use log1p target fitting with expm1 predictions."
+  },
+  "nonlinearity_policy": {
+    "polynomial_features": "Degree-2 numeric basis for curvature and pairwise products.",
+    "interaction_only_features": "Pairwise numeric interactions without squared terms.",
+    "splines": "Cubic spline basis for smooth nonlinear numeric effects.",
+    "tree_models": "Random forest and histogram gradient boosting capture higher-order interactions."
+  },
+  "industry_readiness_policy": {
+    "data_contract": "Train-derived schema, missingness, numeric range, and categorical-level contract.",
+    "leakage_audit": "Column-name and target-correlation checks to flag suspicious fields.",
+    "validation_strategy": "Documented holdout and KFold assumptions with alternatives.",
+    "metric_design": "RMSE primary with MAE, RMSLE, and R2 as secondary checks.",
+    "baselines_first": "Dummy median baseline is included in every model comparison."
+  }
+}

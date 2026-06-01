@@ -1,0 +1,41 @@
+{
+  "dataset": "rossi",
+  "censoring": {
+    "n": 345,
+    "n_events": 317,
+    "n_censored": 28,
+    "censoring_rate": 0.08115942028985507,
+    "naive_complete_case_mean": 12.8801261829653,
+    "naive_all_as_events_mean": 16.055072463768116,
+    "time_min": 1.0,
+    "time_max": 52.0
+  },
+  "kaplan_meier": {},
+  "cox_ph": {},
+  "aft_models": {},
+  "quantile_regression": {
+    "quantiles": [
+      0.1,
+      0.25,
+      0.5,
+      0.75,
+      0.9
+    ],
+    "pinball_scores": {
+      "q10": 1.5747126436781609,
+      "q25": 3.6412244538725007,
+      "q50": 5.405627626691776,
+      "q75": 4.993881114185377,
+      "q90": 3.1289883831390184
+    },
+    "coverage_80_pi": 0.8045977011494253
+  },
+  "tobit": {
+    "ols_rmse": 16.256766960322214,
+    "tobit_rmse": 14.435695011573204,
+    "sigma_hat": 0.9545748210340911,
+    "improvement_pct": 11.201931805959257
+  },
+  "survival_ml": {},
+  "calibration": {}
+}

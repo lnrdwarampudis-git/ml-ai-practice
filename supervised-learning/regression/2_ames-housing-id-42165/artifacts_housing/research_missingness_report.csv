@@ -1,0 +1,83 @@
+,missing_count,missing_rate,dtype,unique_values
+Pool QC,2332.0,0.9948805460750854,str,4
+Misc Feature,2250.0,0.9598976109215017,str,4
+Alley,2182.0,0.9308873720136519,str,2
+Fence,1874.0,0.7994880546075085,str,4
+Mas Vnr Type,1426.0,0.6083617747440273,str,4
+Fireplace Qu,1144.0,0.4880546075085324,str,5
+Lot Frontage,393.0,0.16766211604095563,float64,120
+Garage Qual,122.0,0.05204778156996587,str,5
+Garage Cond,122.0,0.05204778156996587,str,5
+Garage Finish,122.0,0.05204778156996587,str,3
+Garage Yr Blt,122.0,0.05204778156996587,float64,102
+Garage Type,120.0,0.051194539249146756,str,6
+Bsmt Exposure,63.0,0.02687713310580205,str,4
+BsmtFin Type 2,62.0,0.026450511945392493,str,6
+BsmtFin Type 1,61.0,0.026023890784982934,str,6
+Bsmt Cond,61.0,0.026023890784982934,str,5
+Bsmt Qual,61.0,0.026023890784982934,str,5
+Mas Vnr Area,19.0,0.008105802047781569,float64,391
+BsmtFin SF 1,1.0,0.0004266211604095563,float64,882
+Bsmt Full Bath,1.0,0.0004266211604095563,float64,4
+BsmtFin SF 2,1.0,0.0004266211604095563,float64,231
+Bsmt Unf SF,1.0,0.0004266211604095563,float64,1014
+Total Bsmt SF,1.0,0.0004266211604095563,float64,936
+Bsmt Half Bath,1.0,0.0004266211604095563,float64,3
+Garage Cars,1.0,0.0004266211604095563,float64,5
+Garage Area,1.0,0.0004266211604095563,float64,549
+Mo Sold,0.0,0.0,int64,12
+Full Bath,0.0,0.0,int64,5
+Half Bath,0.0,0.0,int64,3
+Bedroom AbvGr,0.0,0.0,int64,8
+Kitchen AbvGr,0.0,0.0,int64,4
+Kitchen Qual,0.0,0.0,str,4
+TotRms AbvGrd,0.0,0.0,int64,14
+Sale Condition,0.0,0.0,str,6
+Sale Type,0.0,0.0,str,10
+Yr Sold,0.0,0.0,int64,5
+Misc Val,0.0,0.0,int64,35
+Pool Area,0.0,0.0,int64,13
+Screen Porch,0.0,0.0,int64,98
+3Ssn Porch,0.0,0.0,int64,25
+Enclosed Porch,0.0,0.0,int64,171
+Functional,0.0,0.0,str,8
+Fireplaces,0.0,0.0,int64,5
+Open Porch SF,0.0,0.0,int64,232
+Wood Deck SF,0.0,0.0,int64,350
+Paved Drive,0.0,0.0,str,3
+Order,0.0,0.0,int64,2344
+Heating QC,0.0,0.0,str,5
+Gr Liv Area,0.0,0.0,int64,1143
+Lot Config,0.0,0.0,str,5
+House Style,0.0,0.0,str,8
+Bldg Type,0.0,0.0,str,5
+Condition 2,0.0,0.0,str,8
+Condition 1,0.0,0.0,str,9
+Neighborhood,0.0,0.0,str,28
+Land Slope,0.0,0.0,str,3
+Utilities,0.0,0.0,str,3
+Low Qual Fin SF,0.0,0.0,int64,29
+Land Contour,0.0,0.0,str,4
+Lot Shape,0.0,0.0,str,4
+Street,0.0,0.0,str,2
+Lot Area,0.0,0.0,int64,1634
+MS Zoning,0.0,0.0,str,7
+MS SubClass,0.0,0.0,int64,16
+Overall Qual,0.0,0.0,int64,10
+Overall Cond,0.0,0.0,int64,9
+Year Built,0.0,0.0,int64,118
+Year Remod/Add,0.0,0.0,int64,61
+Roof Style,0.0,0.0,str,6
+Roof Matl,0.0,0.0,str,8
+Exterior 1st,0.0,0.0,str,16
+Exterior 2nd,0.0,0.0,str,16
+Exter Qual,0.0,0.0,str,4
+Exter Cond,0.0,0.0,str,5
+Foundation,0.0,0.0,str,6
+Heating,0.0,0.0,str,6
+PID,0.0,0.0,int64,2344
+Central Air,0.0,0.0,str,2
+Electrical,0.0,0.0,str,5
+1st Flr SF,0.0,0.0,int64,980
+2nd Flr SF,0.0,0.0,int64,550
+SalePrice,0.0,0.0,int64,887

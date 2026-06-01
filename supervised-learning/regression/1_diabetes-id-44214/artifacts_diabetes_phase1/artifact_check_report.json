@@ -1,0 +1,100 @@
+{
+  "all_required_present": true,
+  "artifacts": [
+    {
+      "artifact": "diabetes_regression_pipeline.joblib",
+      "exists": true,
+      "size_bytes": 6387
+    },
+    {
+      "artifact": "metrics.json",
+      "exists": true,
+      "size_bytes": 5413
+    },
+    {
+      "artifact": "training_profile.json",
+      "exists": true,
+      "size_bytes": 5103
+    },
+    {
+      "artifact": "dataset_version.json",
+      "exists": true,
+      "size_bytes": 280
+    },
+    {
+      "artifact": "dataset_card.md",
+      "exists": true,
+      "size_bytes": 780
+    },
+    {
+      "artifact": "model_card.md",
+      "exists": true,
+      "size_bytes": 1002
+    },
+    {
+      "artifact": "cv_results.csv",
+      "exists": true,
+      "size_bytes": 2129
+    },
+    {
+      "artifact": "research_decisions.json",
+      "exists": true,
+      "size_bytes": 1157
+    },
+    {
+      "artifact": "test_predictions.csv",
+      "exists": true,
+      "size_bytes": 24193
+    },
+    {
+      "artifact": "largest_prediction_errors.csv",
+      "exists": true,
+      "size_bytes": 10877
+    },
+    {
+      "artifact": "plot_loss_functions.png",
+      "exists": true,
+      "size_bytes": 112612
+    },
+    {
+      "artifact": "plot_learning_curve.png",
+      "exists": true,
+      "size_bytes": 65562
+    },
+    {
+      "artifact": "plot_validation_curve_ridge_alpha.png",
+      "exists": true,
+      "size_bytes": 53699
+    },
+    {
+      "artifact": "plot_ridge_coefficient_paths.png",
+      "exists": true,
+      "size_bytes": 97887
+    },
+    {
+      "artifact": "plot_lasso_coefficient_paths.png",
+      "exists": true,
+      "size_bytes": 95358
+    },
+    {
+      "artifact": "plot_actual_vs_predicted.png",
+      "exists": true,
+      "size_bytes": 54765
+    },
+    {
+      "artifact": "plot_residuals.png",
+      "exists": true,
+      "size_bytes": 39764
+    },
+    {
+      "artifact": "plot_residual_distribution.png",
+      "exists": true,
+      "size_bytes": 45344
+    },
+    {
+      "artifact": "plot_residual_qq.png",
+      "exists": true,
+      "size_bytes": 54893
+    }
+  ]
+}

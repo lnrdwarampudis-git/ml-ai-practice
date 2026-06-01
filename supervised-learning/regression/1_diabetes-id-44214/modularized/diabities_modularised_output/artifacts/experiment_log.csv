@@ -1,0 +1,7 @@
+run_id,model,params,rmse,r2,timestamp
+c055d5e9,LinearRegression,"{'copy_X': True, 'fit_intercept': True, 'n_jobs': None, 'positive': False, 'tol'",53.853,0.4526,2026-06-01 08:38:57.365510
+04df42b1,Ridge,"{'alpha': 1.0, 'copy_X': True, 'fit_intercept': True, 'max_iter': None, 'positiv",55.474,0.4192,2026-06-01 08:38:57.366138
+908c79f1,Lasso,"{'alpha': 0.1, 'copy_X': True, 'fit_intercept': True, 'max_iter': 1000, 'positiv",52.898,0.4719,2026-06-01 08:38:57.366708
+6533af5c,ElasticNet,"{'alpha': 0.1, 'copy_X': True, 'fit_intercept': True, 'l1_ratio': 0.5, 'max_iter",69.105,0.0987,2026-06-01 08:38:57.367296
+6db7847f,SVR(rbf),"{'memory': None, 'steps': [('sc', StandardScaler()), ('m', SVR())], 'transform_i",65.824,0.1822,2026-06-01 08:38:57.369406
+31787865,KNN(k=5),"{'algorithm': 'auto', 'leaf_size': 30, 'metric': 'minkowski', 'metric_params': N",54.946,0.4302,2026-06-01 08:38:57.370348

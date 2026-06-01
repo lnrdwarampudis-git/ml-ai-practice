@@ -1,0 +1,8 @@
+{
+  "data_id": 44214,
+  "source": "sklearn_builtin_diabetes",
+  "rows": 442,
+  "columns": 11,
+  "sha256_hash": "d56d152d304e85f31001b83452ecfc98cd0b96727e44a72e2ea718c7b8ba61cf",
+  "hash_policy": "sha256 over pandas row hashes after sorting columns and casting values to string"
+}

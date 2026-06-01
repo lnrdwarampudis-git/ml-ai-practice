@@ -1,0 +1,47 @@
+{
+  "problem_definition": {
+    "problem_type": "regression",
+    "target": "target",
+    "source": "fetch_openml(data_id=44214, as_frame=True, parser='auto')",
+    "fallback": "sklearn.datasets.load_diabetes(as_frame=True) when OpenML is unavailable"
+  },
+  "metric_policy": {
+    "primary": "rmse",
+    "secondary": [
+      "mae",
+      "median_absolute_error",
+      "r2"
+    ],
+    "why": "RMSE penalizes larger clinical progression errors; MAE is easier to explain."
+  },
+  "modeling_policy": {
+    "baselines": [
+      "DummyRegressor",
+      "LinearRegression"
+    ],
+    "regularization": [
+      "Ridge",
+      "Lasso",
+      "ElasticNet"
+    ],
+    "robustness": [
+      "OutlierClipper",
+      "RobustScaler",
+      "HuberRegressor"
+    ],
+    "nonlinearity": [
+      "interaction features",
+      "PolynomialFeatures interaction_only",
+      "SplineTransformer"
+    ],
+    "ensembles": [
+      "RandomForestRegressor",
+      "ExtraTreesRegressor",
+      "HistGradientBoostingRegressor"
+    ]
+  },
+  "validation_policy": {
+    "split": "80/20 holdout for final reporting",
+    "cross_validation": "42-seeded shuffled KFold on training data"
+  }
+}

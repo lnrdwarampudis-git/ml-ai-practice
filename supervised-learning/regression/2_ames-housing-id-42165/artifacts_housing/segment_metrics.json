@@ -1,0 +1,230 @@
+{
+  "Neighborhood": [
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "Blmngtn",
+      "rows": 5,
+      "mae": 20623.90552527217,
+      "rmse": 23779.179665100077,
+      "mean_actual_price": 212898.0
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "BrDale",
+      "rows": 6,
+      "mae": 6224.565915592844,
+      "rmse": 7701.566660065568,
+      "mean_actual_price": 106250.0
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "BrkSide",
+      "rows": 24,
+      "mae": 10763.132013814704,
+      "rmse": 12885.486453013165,
+      "mean_actual_price": 126687.5
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "ClearCr",
+      "rows": 9,
+      "mae": 14152.30980612256,
+      "rmse": 17148.81381932849,
+      "mean_actual_price": 201111.11111111112
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "CollgCr",
+      "rows": 56,
+      "mae": 10287.443971816885,
+      "rmse": 14457.628818484689,
+      "mean_actual_price": 205415.32142857142
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "Crawfor",
+      "rows": 14,
+      "mae": 32820.74943282185,
+      "rmse": 43046.41909414276,
+      "mean_actual_price": 248242.85714285713
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "Edwards",
+      "rows": 44,
+      "mae": 19697.46969905275,
+      "rmse": 63598.890515147265,
+      "mean_actual_price": 128452.27272727272
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "Gilbert",
+      "rows": 27,
+      "mae": 9825.965540853682,
+      "rmse": 12315.36629457743,
+      "mean_actual_price": 189412.59259259258
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "IDOTRR",
+      "rows": 20,
+      "mae": 10755.984595969678,
+      "rmse": 12962.384289959751,
+      "mean_actual_price": 105812.5
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "MeadowV",
+      "rows": 9,
+      "mae": 4363.7304538025965,
+      "rmse": 5267.813964317729,
+      "mean_actual_price": 89760.0
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "Mitchel",
+      "rows": 17,
+      "mae": 16350.230804057532,
+      "rmse": 19722.82513113368,
+      "mean_actual_price": 188726.4705882353
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "NAmes",
+      "rows": 76,
+      "mae": 8868.882419187546,
+      "rmse": 11882.870798996111,
+      "mean_actual_price": 142550.13157894736
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "NPkVill",
+      "rows": 8,
+      "mae": 8503.068002672546,
+      "rmse": 9480.452192569353,
+      "mean_actual_price": 141218.75
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "NWAmes",
+      "rows": 22,
+      "mae": 10645.328694338912,
+      "rmse": 13790.728733130332,
+      "mean_actual_price": 199925.0
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "NoRidge",
+      "rows": 14,
+      "mae": 25386.086635801945,
+      "rmse": 34204.988575803975,
+      "mean_actual_price": 328089.28571428574
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "NridgHt",
+      "rows": 45,
+      "mae": 32335.65858098709,
+      "rmse": 48053.451934797056,
+      "mean_actual_price": 346956.86666666664
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "OldTown",
+      "rows": 40,
+      "mae": 11408.059044844671,
+      "rmse": 15405.307529942362,
+      "mean_actual_price": 120188.025
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "SWISU",
+      "rows": 11,
+      "mae": 7265.888992805206,
+      "rmse": 8030.773338131489,
+      "mean_actual_price": 108000.0
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "Sawyer",
+      "rows": 32,
+      "mae": 10544.859965590338,
+      "rmse": 14368.266139707497,
+      "mean_actual_price": 140212.78125
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "SawyerW",
+      "rows": 27,
+      "mae": 9595.02852085353,
+      "rmse": 10933.835177200783,
+      "mean_actual_price": 188249.44444444444
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "Somerst",
+      "rows": 46,
+      "mae": 13973.290799998911,
+      "rmse": 17397.062651956294,
+      "mean_actual_price": 240665.30434782608
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "StoneBr",
+      "rows": 15,
+      "mae": 22392.705215092097,
+      "rmse": 33000.24498003782,
+      "mean_actual_price": 318723.0
+    },
+    {
+      "segment_column": "Neighborhood",
+      "segment_value": "Timber",
+      "rows": 13,
+      "mae": 24552.47259704808,
+      "rmse": 31243.615772233414,
+      "mean_actual_price": 276115.3846153846
+    }
+  ],
+  "actual_price_quintile": [
+    {
+      "segment_column": "actual_price_quintile",
+      "segment_value": "(43999.999, 126000.0]",
+      "rows": 124,
+      "mae": 8942.118004636173,
+      "rmse": 11201.564010009366,
+      "mean_actual_price": 101760.82258064517
+    },
+    {
+      "segment_column": "actual_price_quintile",
+      "segment_value": "(126000.0, 148000.0]",
+      "rows": 112,
+      "mae": 9861.613658498016,
+      "rmse": 13984.178033512575,
+      "mean_actual_price": 137086.54464285713
+    },
+    {
+      "segment_column": "actual_price_quintile",
+      "segment_value": "(148000.0, 185900.0]",
+      "rows": 117,
+      "mae": 13492.387921116806,
+      "rmse": 39882.668035915034,
+      "mean_actual_price": 166448.8205128205
+    },
+    {
+      "segment_column": "actual_price_quintile",
+      "segment_value": "(185900.0, 246990.0]",
+      "rows": 116,
+      "mae": 12598.785268871494,
+      "rmse": 16286.376104274244,
+      "mean_actual_price": 214506.2327586207
+    },
+    {
+      "segment_column": "actual_price_quintile",
+      "segment_value": "(246990.0, 625000.0]",
+      "rows": 117,
+      "mae": 27929.530789305427,
+      "rmse": 39938.83571835062,
+      "mean_actual_price": 331679.41025641025
+    }
+  ]
+}

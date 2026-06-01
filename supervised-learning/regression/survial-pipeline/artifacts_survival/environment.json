@@ -1,0 +1,16 @@
+{
+  "saved_at": "2026-05-29T22:46:04.817945+00:00",
+  "python": "3.11.15 (main, Mar 11 2026, 17:14:47) [Clang 20.1.8 ]",
+  "platform": "darwin",
+  "libraries": {
+    "sklearn": "1.8.0",
+    "pandas": "2.3.3",
+    "numpy": "1.26.4",
+    "scipy": "1.17.1",
+    "joblib": "1.5.3",
+    "lifelines": "not_installed",
+    "sksurv": "not_installed",
+    "shap": "0.49.1",
+    "mlflow": "3.11.1"
+  }
+}

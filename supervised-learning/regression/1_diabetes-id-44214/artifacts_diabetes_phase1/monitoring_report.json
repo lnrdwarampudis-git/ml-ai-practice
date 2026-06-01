@@ -1,0 +1,78 @@
+{
+  "row_count": 5,
+  "missing_required_columns": [],
+  "extra_columns": [],
+  "missing_rate_alert_threshold": 0.1,
+  "missing_rate_drift": [
+    {
+      "column": "age",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "sex",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "bmi",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "bp",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "s1",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "s2",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "s3",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "s4",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "s5",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    },
+    {
+      "column": "s6",
+      "train_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "absolute_change": 0.0,
+      "alert": false
+    }
+  ]
+}

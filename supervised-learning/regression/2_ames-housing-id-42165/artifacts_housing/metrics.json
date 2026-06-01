@@ -1,0 +1,395 @@
+{
+  "data_id": 42165,
+  "dataset_version": {
+    "data_id": 42165,
+    "rows": 2930,
+    "columns": 82,
+    "sha256_hash": "91bad56d794eba1c149fc13034263266e2c71c37e2ae4df83f4db075721d1eac",
+    "hash_policy": "sha256 over pandas row hashes after sorting columns and casting values to string"
+  },
+  "target": "SalePrice",
+  "split": {
+    "train_rows": 2344,
+    "test_rows": 586,
+    "test_size": 0.2
+  },
+  "validation_strategy": {
+    "selected_strategy": "80/20 holdout plus shuffled KFold cross-validation on the training split",
+    "why": "Ames rows are treated as independent property sales without a reliable temporal deployment field in this exercise.",
+    "train_test_split": {
+      "test_size": 0.2,
+      "random_state": 42
+    },
+    "cross_validation": {
+      "type": "KFold",
+      "shuffle": true,
+      "random_state": 42
+    },
+    "alternatives_to_consider": [
+      "GroupKFold by Neighborhood if evaluating generalization to unseen neighborhoods.",
+      "Time-based split by YrSold if deployment is future sale prediction.",
+      "Spatial split if latitude/longitude or richer geospatial features are available."
+    ],
+    "row_count": 2344
+  },
+  "validation_comparison": {
+    "group_kfold_by_neighborhood": {
+      "n_splits": 5,
+      "rmse_mean": 25732.26980714625,
+      "rmse_std": 7352.872091191712,
+      "mae_mean": 15847.290342618839,
+      "r2_mean": 0.8558680527065963,
+      "why": "Tests whether performance holds when entire neighborhoods are withheld."
+    }
+  },
+  "metric_design": {
+    "primary_metric": "rmse",
+    "secondary_metrics": [
+      "mae",
+      "rmsle",
+      "r2"
+    ],
+    "metric_interpretation": {
+      "rmse": "Penalizes large dollar mistakes more strongly.",
+      "mae": "Average absolute dollar error; easiest to communicate.",
+      "rmsle": "Better for skewed house prices and relative error behavior.",
+      "r2": "Explained variance, useful but not sufficient alone."
+    },
+    "selection_rule": "Use CV RMSE to select a model, then inspect MAE/RMSLE/residuals before trusting it."
+  },
+  "best_model": "simple_ridge",
+  "segment_metrics_summary": {
+    "Neighborhood": [
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "Blmngtn",
+        "rows": 5,
+        "mae": 20623.90552527217,
+        "rmse": 23779.179665100077,
+        "mean_actual_price": 212898.0
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "BrDale",
+        "rows": 6,
+        "mae": 6224.565915592844,
+        "rmse": 7701.566660065568,
+        "mean_actual_price": 106250.0
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "BrkSide",
+        "rows": 24,
+        "mae": 10763.132013814704,
+        "rmse": 12885.486453013165,
+        "mean_actual_price": 126687.5
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "ClearCr",
+        "rows": 9,
+        "mae": 14152.30980612256,
+        "rmse": 17148.81381932849,
+        "mean_actual_price": 201111.11111111112
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "CollgCr",
+        "rows": 56,
+        "mae": 10287.443971816885,
+        "rmse": 14457.628818484689,
+        "mean_actual_price": 205415.32142857142
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "Crawfor",
+        "rows": 14,
+        "mae": 32820.74943282185,
+        "rmse": 43046.41909414276,
+        "mean_actual_price": 248242.85714285713
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "Edwards",
+        "rows": 44,
+        "mae": 19697.46969905275,
+        "rmse": 63598.890515147265,
+        "mean_actual_price": 128452.27272727272
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "Gilbert",
+        "rows": 27,
+        "mae": 9825.965540853682,
+        "rmse": 12315.36629457743,
+        "mean_actual_price": 189412.59259259258
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "IDOTRR",
+        "rows": 20,
+        "mae": 10755.984595969678,
+        "rmse": 12962.384289959751,
+        "mean_actual_price": 105812.5
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "MeadowV",
+        "rows": 9,
+        "mae": 4363.7304538025965,
+        "rmse": 5267.813964317729,
+        "mean_actual_price": 89760.0
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "Mitchel",
+        "rows": 17,
+        "mae": 16350.230804057532,
+        "rmse": 19722.82513113368,
+        "mean_actual_price": 188726.4705882353
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "NAmes",
+        "rows": 76,
+        "mae": 8868.882419187546,
+        "rmse": 11882.870798996111,
+        "mean_actual_price": 142550.13157894736
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "NPkVill",
+        "rows": 8,
+        "mae": 8503.068002672546,
+        "rmse": 9480.452192569353,
+        "mean_actual_price": 141218.75
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "NWAmes",
+        "rows": 22,
+        "mae": 10645.328694338912,
+        "rmse": 13790.728733130332,
+        "mean_actual_price": 199925.0
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "NoRidge",
+        "rows": 14,
+        "mae": 25386.086635801945,
+        "rmse": 34204.988575803975,
+        "mean_actual_price": 328089.28571428574
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "NridgHt",
+        "rows": 45,
+        "mae": 32335.65858098709,
+        "rmse": 48053.451934797056,
+        "mean_actual_price": 346956.86666666664
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "OldTown",
+        "rows": 40,
+        "mae": 11408.059044844671,
+        "rmse": 15405.307529942362,
+        "mean_actual_price": 120188.025
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "SWISU",
+        "rows": 11,
+        "mae": 7265.888992805206,
+        "rmse": 8030.773338131489,
+        "mean_actual_price": 108000.0
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "Sawyer",
+        "rows": 32,
+        "mae": 10544.859965590338,
+        "rmse": 14368.266139707497,
+        "mean_actual_price": 140212.78125
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "SawyerW",
+        "rows": 27,
+        "mae": 9595.02852085353,
+        "rmse": 10933.835177200783,
+        "mean_actual_price": 188249.44444444444
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "Somerst",
+        "rows": 46,
+        "mae": 13973.290799998911,
+        "rmse": 17397.062651956294,
+        "mean_actual_price": 240665.30434782608
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "StoneBr",
+        "rows": 15,
+        "mae": 22392.705215092097,
+        "rmse": 33000.24498003782,
+        "mean_actual_price": 318723.0
+      },
+      {
+        "segment_column": "Neighborhood",
+        "segment_value": "Timber",
+        "rows": 13,
+        "mae": 24552.47259704808,
+        "rmse": 31243.615772233414,
+        "mean_actual_price": 276115.3846153846
+      }
+    ],
+    "actual_price_quintile": [
+      {
+        "segment_column": "actual_price_quintile",
+        "segment_value": "(43999.999, 126000.0]",
+        "rows": 124,
+        "mae": 8942.118004636173,
+        "rmse": 11201.564010009366,
+        "mean_actual_price": 101760.82258064517
+      },
+      {
+        "segment_column": "actual_price_quintile",
+        "segment_value": "(126000.0, 148000.0]",
+        "rows": 112,
+        "mae": 9861.613658498016,
+        "rmse": 13984.178033512575,
+        "mean_actual_price": 137086.54464285713
+      },
+      {
+        "segment_column": "actual_price_quintile",
+        "segment_value": "(148000.0, 185900.0]",
+        "rows": 117,
+        "mae": 13492.387921116806,
+        "rmse": 39882.668035915034,
+        "mean_actual_price": 166448.8205128205
+      },
+      {
+        "segment_column": "actual_price_quintile",
+        "segment_value": "(185900.0, 246990.0]",
+        "rows": 116,
+        "mae": 12598.785268871494,
+        "rmse": 16286.376104274244,
+        "mean_actual_price": 214506.2327586207
+      },
+      {
+        "segment_column": "actual_price_quintile",
+        "segment_value": "(246990.0, 625000.0]",
+        "rows": 117,
+        "mae": 27929.530789305427,
+        "rmse": 39938.83571835062,
+        "mean_actual_price": 331679.41025641025
+      }
+    ]
+  },
+  "cross_validation": [
+    {
+      "model": "simple_ridge",
+      "train_rmse_mean": 19966.295683922403,
+      "cv_rmse_mean": 24700.325896014412,
+      "cv_rmse_std": 2609.8383210105603,
+      "train_mae_mean": 12611.516628639169,
+      "cv_mae_mean": 14533.03478627938,
+      "train_r2_mean": 0.9322121819952689,
+      "cv_r2_mean": 0.8958478827279486,
+      "generalization_gap_rmse": 4734.03021209201,
+      "fit_time_mean": 0.03609895706176758
+    },
+    {
+      "model": "simple_hist_gradient_boosting",
+      "train_rmse_mean": 7544.612907124398,
+      "cv_rmse_mean": 26414.79300735348,
+      "cv_rmse_std": 586.9695641535018,
+      "train_mae_mean": 3602.645585873805,
+      "cv_mae_mean": 15171.687768029216,
+      "train_r2_mean": 0.9902570676880904,
+      "cv_r2_mean": 0.8824387764380623,
+      "generalization_gap_rmse": 18870.18010022908,
+      "fit_time_mean": 2.7693164348602295
+    },
+    {
+      "model": "knn_ridge_splines",
+      "train_rmse_mean": 23727.31607901369,
+      "cv_rmse_mean": 27763.947361067985,
+      "cv_rmse_std": 529.4523976729688,
+      "train_mae_mean": 14293.064245606114,
+      "cv_mae_mean": 15996.417228768398,
+      "train_r2_mean": 0.905109373330968,
+      "cv_r2_mean": 0.8703029995961029,
+      "generalization_gap_rmse": 4036.6312820542953,
+      "fit_time_mean": 0.04877650737762451
+    },
+    {
+      "model": "mice_huber_robust",
+      "train_rmse_mean": 26276.79404826957,
+      "cv_rmse_mean": 28381.62566184262,
+      "cv_rmse_std": 505.02267303181907,
+      "train_mae_mean": 15473.931341000829,
+      "cv_mae_mean": 17597.372665131374,
+      "train_r2_mean": 0.883136357106663,
+      "cv_r2_mean": 0.8644690492381166,
+      "generalization_gap_rmse": 2104.8316135730493,
+      "fit_time_mean": 0.27952635288238525
+    },
+    {
+      "model": "mice_random_forest",
+      "train_rmse_mean": 16455.105440311352,
+      "cv_rmse_mean": 29584.9081857935,
+      "cv_rmse_std": 70.0721938724455,
+      "train_mae_mean": 9514.021509853148,
+      "cv_mae_mean": 17268.17965714765,
+      "train_r2_mean": 0.9544019242341995,
+      "cv_r2_mean": 0.852688747488927,
+      "generalization_gap_rmse": 13129.80274548215,
+      "fit_time_mean": 0.44824135303497314
+    },
+    {
+      "model": "simple_elastic_interactions",
+      "train_rmse_mean": 11862.877266177526,
+      "cv_rmse_mean": 67368.61881424201,
+      "cv_rmse_std": 32026.426188618752,
+      "train_mae_mean": 8172.4186582049815,
+      "cv_mae_mean": 21340.133183640268,
+      "train_r2_mean": 0.9763208549622908,
+      "cv_r2_mean": 0.052535258219798375,
+      "generalization_gap_rmse": 55505.741548064485,
+      "fit_time_mean": 1.1779383420944214
+    },
+    {
+      "model": "dummy_median",
+      "train_rmse_mean": 79243.41768308324,
+      "cv_rmse_mean": 79332.11396108978,
+      "cv_rmse_std": 299.02727837651037,
+      "train_mae_mean": 54081.71032423208,
+      "cv_mae_mean": 54210.65315699659,
+      "train_r2_mean": -0.056580041536630765,
+      "cv_r2_mean": -0.05929220713899952,
+      "generalization_gap_rmse": 88.69627800653689,
+      "fit_time_mean": 0.0015064477920532227
+    },
+    {
+      "model": "simple_ridge_polynomial",
+      "train_rmse_mean": 14756.199509907012,
+      "cv_rmse_mean": 142426043.48300454,
+      "cv_rmse_std": 142003846.86928752,
+      "train_mae_mean": 9777.394669357018,
+      "cv_mae_mean": 4185856.3589597913,
+      "train_r2_mean": 0.9633155278510037,
+      "cv_r2_mean": -6911051.456055164,
+      "generalization_gap_rmse": 142411287.28349462,
+      "fit_time_mean": 0.05547142028808594
+    }
+  ],
+  "test": {
+    "rmse": 27431.614624585127,
+    "mae": 14541.206386749413,
+    "rmsle": 0.11126534558777532,
+    "r2": 0.9061441868016928
+  }
+}

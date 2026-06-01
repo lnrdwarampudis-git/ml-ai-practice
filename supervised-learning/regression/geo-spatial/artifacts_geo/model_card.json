@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-05-29T18:03:04.148640+00:00",
+  "model_details": {
+    "name": "California Housing Spatial Regressor",
+    "type": "Geospatial Regression (sklearn Pipeline)",
+    "algorithm": "GradientBoostingRegressor(learning_rate=0.05, max_depth=4, n_estimators=300,\n                          random_state=42, subsample=0.9)"
+  },
+  "intended_use": {
+    "primary_use": "Predict block-group median house value using spatial and demographic features.",
+    "out_of_scope": [
+      "Individual house valuation",
+      "Post-1990 markets",
+      "Other US states"
+    ]
+  },
+  "evaluation_results": {
+    "test_r2": 0.8196594885742569,
+    "test_rmse": 0.4886805570198283,
+    "test_mae": 0.31701276485909297
+  },
+  "spatial_analysis": {
+    "global_moran_I": null,
+    "residual_moran_I": null,
+    "leakage_inflation": 11.402746720866611
+  },
+  "limitations": [
+    "1990 Census data \u2014 not reflective of current California housing market.",
+    "Target capped at $500k \u2014 luxury market predictions are unreliable.",
+    "Block-group centroids, not individual parcel coordinates."
+  ],
+  "ethical_considerations": [
+    "Latitude/longitude encode neighbourhood characteristics that may reflect historical redlining.",
+    "Do not use for automated individual lending or valuation decisions."
+  ],
+  "hyperparameters": {
+    "model__subsample": 0.9,
+    "model__max_depth": 4,
+    "model__learning_rate": 0.05,
+    "model": "GradientBoostingRegressor(n_estimators=150, random_state=42)",
+    "feature_selection__threshold": "0.75*median"
+  },
+  "cv_strategy": "SpatialKFold(5) \u2014 prevents geographic leakage",
+  "cv_best_r2": -0.32109485792241
+}

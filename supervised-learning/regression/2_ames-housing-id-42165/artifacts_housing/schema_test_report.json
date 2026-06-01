@@ -1,0 +1,18 @@
+{
+  "checks": {
+    "all_required_columns_present": true,
+    "no_extra_columns_in_training_frame": true,
+    "no_columns_above_contract_missing_threshold": false,
+    "leakage_audit_reviewed": true
+  },
+  "high_missing_columns": [
+    "Alley",
+    "Mas Vnr Type",
+    "Fireplace Qu",
+    "Pool QC",
+    "Fence",
+    "Misc Feature"
+  ],
+  "leakage_status": "review_required",
+  "overall_status": "pass_with_review_items"
+}

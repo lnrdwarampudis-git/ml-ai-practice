@@ -1,0 +1,12 @@
+,missing_count,missing_rate,dtype,unique_values
+age,0.0,0.0,float64,56
+sex,0.0,0.0,float64,2
+bmi,0.0,0.0,float64,153
+bp,0.0,0.0,float64,91
+s1,0.0,0.0,float64,132
+s2,0.0,0.0,float64,259
+s3,0.0,0.0,float64,60
+s4,0.0,0.0,float64,54
+s5,0.0,0.0,float64,163
+s6,0.0,0.0,float64,56
+target,0.0,0.0,float64,199

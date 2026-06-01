@@ -1,0 +1,655 @@
+{
+  "row_count": 2344,
+  "missing_required_columns": [],
+  "extra_columns": [],
+  "column_reports": [
+    {
+      "column": "Order",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.020477815699658702
+    },
+    {
+      "column": "PID",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.020477815699658702
+    },
+    {
+      "column": "MS SubClass",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.0
+    },
+    {
+      "column": "MS Zoning",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Lot Frontage",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.16766211604095563,
+      "current_missing_rate": 0.16766211604095563,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.008532423208191127
+    },
+    {
+      "column": "Lot Area",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.016638225255972697
+    },
+    {
+      "column": "Street",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Alley",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.9308873720136519,
+      "current_missing_rate": 0.9308873720136519,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Lot Shape",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Land Contour",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Utilities",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Lot Config",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Land Slope",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Neighborhood",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Condition 1",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Condition 2",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Bldg Type",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "House Style",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Overall Qual",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.015358361774744027
+    },
+    {
+      "column": "Overall Cond",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.005546075085324232
+    },
+    {
+      "column": "Year Built",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.017918088737201365
+    },
+    {
+      "column": "Year Remod/Add",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.0034129692832764505
+    },
+    {
+      "column": "Roof Style",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Roof Matl",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Exterior 1st",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Exterior 2nd",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Mas Vnr Type",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.6083617747440273,
+      "current_missing_rate": 0.6083617747440273,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Mas Vnr Area",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.008105802047781569,
+      "current_missing_rate": 0.008105802047781569,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.010238907849829351
+    },
+    {
+      "column": "Exter Qual",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Exter Cond",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Foundation",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Bsmt Qual",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.026023890784982934,
+      "current_missing_rate": 0.026023890784982934,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Bsmt Cond",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.026023890784982934,
+      "current_missing_rate": 0.026023890784982934,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Bsmt Exposure",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.02687713310580205,
+      "current_missing_rate": 0.02687713310580205,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "BsmtFin Type 1",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.026023890784982934,
+      "current_missing_rate": 0.026023890784982934,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "BsmtFin SF 1",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0004266211604095563,
+      "current_missing_rate": 0.0004266211604095563,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.010238907849829351
+    },
+    {
+      "column": "BsmtFin Type 2",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.026450511945392493,
+      "current_missing_rate": 0.026450511945392493,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "BsmtFin SF 2",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0004266211604095563,
+      "current_missing_rate": 0.0004266211604095563,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.010238907849829351
+    },
+    {
+      "column": "Bsmt Unf SF",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0004266211604095563,
+      "current_missing_rate": 0.0004266211604095563,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.009812286689419795
+    },
+    {
+      "column": "Total Bsmt SF",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0004266211604095563,
+      "current_missing_rate": 0.0004266211604095563,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.010238907849829351
+    },
+    {
+      "column": "Heating",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Heating QC",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Central Air",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Electrical",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "1st Flr SF",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.019197952218430035
+    },
+    {
+      "column": "2nd Flr SF",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.010238907849829351
+    },
+    {
+      "column": "Low Qual Fin SF",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.010238907849829351
+    },
+    {
+      "column": "Gr Liv Area",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.020477815699658702
+    },
+    {
+      "column": "Bsmt Full Bath",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0004266211604095563,
+      "current_missing_rate": 0.0004266211604095563,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.0008532423208191126
+    },
+    {
+      "column": "Bsmt Half Bath",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0004266211604095563,
+      "current_missing_rate": 0.0004266211604095563,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.001279863481228669
+    },
+    {
+      "column": "Full Bath",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.005546075085324232
+    },
+    {
+      "column": "Half Bath",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.008105802047781569
+    },
+    {
+      "column": "Bedroom AbvGr",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.008532423208191127
+    },
+    {
+      "column": "Kitchen AbvGr",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.0017064846416382253
+    },
+    {
+      "column": "Kitchen Qual",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "TotRms AbvGrd",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.015784982935153583
+    },
+    {
+      "column": "Functional",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Fireplaces",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.005119453924914676
+    },
+    {
+      "column": "Fireplace Qu",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.4880546075085324,
+      "current_missing_rate": 0.4880546075085324,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Garage Type",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.051194539249146756,
+      "current_missing_rate": 0.051194539249146756,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Garage Yr Blt",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.05204778156996587,
+      "current_missing_rate": 0.05204778156996587,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.016211604095563138
+    },
+    {
+      "column": "Garage Finish",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.05204778156996587,
+      "current_missing_rate": 0.05204778156996587,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Garage Cars",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0004266211604095563,
+      "current_missing_rate": 0.0004266211604095563,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.005546075085324232
+    },
+    {
+      "column": "Garage Area",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0004266211604095563,
+      "current_missing_rate": 0.0004266211604095563,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.010238907849829351
+    },
+    {
+      "column": "Garage Qual",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.05204778156996587,
+      "current_missing_rate": 0.05204778156996587,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Garage Cond",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.05204778156996587,
+      "current_missing_rate": 0.05204778156996587,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Paved Drive",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Wood Deck SF",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.010238907849829351
+    },
+    {
+      "column": "Open Porch SF",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.010238907849829351
+    },
+    {
+      "column": "Enclosed Porch",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.010238907849829351
+    },
+    {
+      "column": "3Ssn Porch",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.010238907849829351
+    },
+    {
+      "column": "Screen Porch",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.010238907849829351
+    },
+    {
+      "column": "Pool Area",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.005119453924914676
+    },
+    {
+      "column": "Pool QC",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.9948805460750854,
+      "current_missing_rate": 0.9948805460750854,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Fence",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.7994880546075085,
+      "current_missing_rate": 0.7994880546075085,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Misc Feature",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.9598976109215017,
+      "current_missing_rate": 0.9598976109215017,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Misc Val",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.00938566552901024
+    },
+    {
+      "column": "Mo Sold",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.0
+    },
+    {
+      "column": "Yr Sold",
+      "expected_kind": "numeric",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "outside_train_1_99_quantile_share": 0.0
+    },
+    {
+      "column": "Sale Type",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    },
+    {
+      "column": "Sale Condition",
+      "expected_kind": "categorical",
+      "training_missing_rate": 0.0,
+      "current_missing_rate": 0.0,
+      "missing_rate_change": 0.0,
+      "new_or_rare_category_share": 0.0
+    }
+  ]
+}
