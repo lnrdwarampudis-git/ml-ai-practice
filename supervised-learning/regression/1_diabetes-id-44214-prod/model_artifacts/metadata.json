@@ -1,0 +1,33 @@
+{
+  "model_id": "gbr_pipeline_v1",
+  "model_type": "Pipeline(StandardScaler + GradientBoostingRegressor)",
+  "trained_at": "2026-06-02 02:24:40.306214",
+  "seed": 42,
+  "feature_names": [
+    "age",
+    "sex",
+    "bmi",
+    "bp",
+    "s1",
+    "s2",
+    "s3",
+    "s4",
+    "s5",
+    "s6"
+  ],
+  "target": "target",
+  "best_params": {
+    "model__n_estimators": 100,
+    "model__min_samples_leaf": 2,
+    "model__max_depth": 2,
+    "model__learning_rate": 0.05
+  },
+  "metrics": {
+    "rmse": 52.5054,
+    "mae": 42.5651,
+    "r2": 0.4797,
+    "n_train": 353,
+    "n_test": 89
+  },
+  "model_hash": "b1dd8840d9feec82"
+}
